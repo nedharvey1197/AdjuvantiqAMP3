@@ -1,0 +1,1056 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AdjuvantIQ | The Operating System for Trial Cognition</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            overflow-x: hidden;
+        }
+
+        /* Header & Navigation */
+        .header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(10, 17, 40, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            padding: 1rem 0;
+            transition: all 0.3s ease;
+        }
+
+        .nav {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2rem;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #00d4ff;
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: #00d4ff;
+        }
+
+        .cta-button {
+            background: linear-gradient(135deg, #00d4ff, #0099cc);
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: transform 0.3s ease;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #0a1128 0%, #1e3a5f 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grid" width="10" height="10" patternUnits="userSpaceOnUse"><path d="M 10 0 L 0 0 0 10" fill="none" stroke="%23ffffff" stroke-width="0.1" opacity="0.1"/></pattern></defs><rect width="100" height="100" fill="url(%23grid)"/></svg>');
+            opacity: 0.3;
+        }
+
+        .hero-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            z-index: 2;
+            position: relative;
+        }
+
+        .hero h1 {
+            font-size: clamp(2.5rem, 6vw, 4.5rem);
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(45deg, #00d4ff, #00a8ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            line-height: 1.2;
+        }
+
+        .hero .subtitle {
+            font-size: clamp(1.2rem, 3vw, 1.8rem);
+            color: #b0c4de;
+            margin-bottom: 2rem;
+            max-width: 600px;
+        }
+
+        .hero .tagline {
+            font-size: clamp(1rem, 2.5vw, 1.3rem);
+            color: #7fb3d3;
+            font-style: italic;
+            margin-bottom: 3rem;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #00d4ff, #0099cc);
+            color: white;
+            padding: 1rem 2rem;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(0, 212, 255, 0.3);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: white;
+            padding: 1rem 2rem;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            border: 2px solid #00d4ff;
+            transition: all 0.3s ease;
+        }
+
+        .btn-secondary:hover {
+            background: #00d4ff;
+            color: #0a1128;
+        }
+
+        /* Problem Section */
+        .problem {
+            background: linear-gradient(135deg, #2d1b1b 0%, #4a2c2a 100%);
+            padding: 6rem 0;
+            color: white;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .section-title {
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            color: #ff6b6b;
+        }
+
+        .section-subtitle {
+            font-size: clamp(1.1rem, 3vw, 1.5rem);
+            color: #ffb3b3;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .problem-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .problem-card {
+            background: rgba(255, 107, 107, 0.1);
+            padding: 2rem;
+            border-radius: 15px;
+            border-left: 5px solid #ff6b6b;
+            backdrop-filter: blur(10px);
+            transition: transform 0.3s ease;
+        }
+
+        .problem-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .problem-card h3 {
+            font-size: 1.5rem;
+            color: #ff6b6b;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .problem-number {
+            background: #ff6b6b;
+            color: white;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 0.9rem;
+        }
+
+        /* Solution Section */
+        .solution {
+            background: linear-gradient(135deg, #0f1419 0%, #1a2332 100%);
+            padding: 6rem 0;
+            color: white;
+        }
+
+        .solution-title {
+            color: #00d4ff;
+        }
+
+        .solution-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 3rem;
+            margin-top: 3rem;
+        }
+
+        .solution-card {
+            background: rgba(0, 212, 255, 0.1);
+            padding: 2.5rem;
+            border-radius: 20px;
+            border: 1px solid rgba(0, 212, 255, 0.2);
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+        }
+
+        .solution-card:hover {
+            transform: translateY(-5px);
+            border-color: #00d4ff;
+            box-shadow: 0 20px 40px rgba(0, 212, 255, 0.1);
+        }
+
+        .solution-card h3 {
+            font-size: 1.5rem;
+            color: #00d4ff;
+            margin-bottom: 1rem;
+        }
+
+        .solution-card p {
+            color: #b0c4de;
+            line-height: 1.7;
+        }
+
+        /* Platform Features */
+        .platform {
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            padding: 6rem 0;
+            color: white;
+        }
+
+        .platform-title {
+            color: #2ecc71;
+        }
+
+        .agent-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .agent-card {
+            background: rgba(46, 204, 113, 0.1);
+            padding: 2rem;
+            border-radius: 15px;
+            border-left: 4px solid #2ecc71;
+            transition: all 0.3s ease;
+        }
+
+        .agent-card:hover {
+            transform: translateY(-5px);
+            background: rgba(46, 204, 113, 0.15);
+        }
+
+        .agent-card h3 {
+            color: #2ecc71;
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+        }
+
+        .agent-card p {
+            color: #b0c4de;
+            line-height: 1.6;
+        }
+
+        /* Strategy Section */
+        .strategy {
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            padding: 6rem 0;
+            color: white;
+        }
+
+        .stack-visual {
+            max-width: 800px;
+            margin: 3rem auto;
+            display: flex;
+            flex-direction: column;
+            gap: 0;
+        }
+
+        .zone {
+            padding: 3rem 2rem;
+            text-align: center;
+            position: relative;
+        }
+
+        .winner-zone {
+            background: linear-gradient(135deg, #27ae60 0%, #2ecc71 100%);
+            border-radius: 15px 15px 0 0;
+            border: 3px solid #27ae60;
+            box-shadow: 0 0 30px rgba(39, 174, 96, 0.4);
+        }
+
+        .commodity-zone {
+            background: linear-gradient(135deg, #7f8c8d 0%, #95a5a6 100%);
+            border-radius: 0 0 15px 15px;
+            border: 2px solid #95a5a6;
+            opacity: 0.8;
+        }
+
+        .zone-label {
+            font-size: 1rem;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 1rem;
+            color: white;
+            background: rgba(0, 0, 0, 0.3);
+            display: inline-block;
+            padding: 0.5rem 1.5rem;
+            border-radius: 20px;
+        }
+
+        .zone-title {
+            font-size: 2rem;
+            font-weight: bold;
+            color: white;
+            margin-bottom: 1.5rem;
+        }
+
+        .solution-highlight {
+            background: rgba(255, 255, 255, 0.15);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin: 0 auto;
+            max-width: 400px;
+        }
+
+        .solution-highlight strong {
+            font-size: 1.5rem;
+            color: white;
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        .solution-highlight p {
+            font-size: 1.1rem;
+            color: rgba(255, 255, 255, 0.9);
+            line-height: 1.4;
+            margin: 0;
+        }
+
+        .divider {
+            height: 60px;
+            background: linear-gradient(90deg, transparent 0%, #e74c3c 50%, transparent 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        .divider span {
+            background: #e74c3c;
+            color: white;
+            padding: 0.5rem 1.5rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            box-shadow: 0 4px 15px rgba(231, 76, 60, 0.4);
+        }
+
+        /* Team Section */
+        .team {
+            background: #f8f9fa;
+            padding: 6rem 0;
+        }
+
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 3rem;
+            margin-top: 3rem;
+        }
+
+        .team-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+
+        .team-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .team-photo {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #00d4ff, #0099cc);
+            margin: 0 auto 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            color: white;
+            font-weight: 700;
+        }
+
+        .team-card h3 {
+            font-size: 1.3rem;
+            color: #333;
+            margin-bottom: 0.5rem;
+        }
+
+        .team-role {
+            color: #666;
+            font-size: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .team-bio {
+            color: #555;
+            line-height: 1.6;
+            font-size: 0.9rem;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            background: linear-gradient(135deg, #2c1810 0%, #3d2817 100%);
+            padding: 6rem 0;
+            color: white;
+            text-align: center;
+        }
+
+        .cta-title {
+            color: #f39c12;
+        }
+
+        .pilot-benefits {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+
+        .benefit-card {
+            background: rgba(243, 156, 18, 0.1);
+            padding: 1.5rem;
+            border-radius: 10px;
+            border: 1px solid rgba(243, 156, 18, 0.3);
+        }
+
+        .benefit-card h4 {
+            color: #f39c12;
+            margin-bottom: 0.5rem;
+        }
+
+        /* Footer */
+        .footer {
+            background: #0a1128;
+            color: white;
+            padding: 3rem 0 2rem;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            text-align: center;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .footer-links a {
+            color: #7fb3d3;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: #00d4ff;
+        }
+
+        .contact-info {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .contact-item {
+            background: rgba(0, 212, 255, 0.1);
+            padding: 0.75rem 1.5rem;
+            border-radius: 25px;
+            border: 1px solid rgba(0, 212, 255, 0.3);
+            color: #00d4ff;
+            text-decoration: none;
+        }
+
+        .contact-item:hover {
+            background: rgba(0, 212, 255, 0.2);
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .hero-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .btn-primary, .btn-secondary {
+                width: 100%;
+                max-width: 300px;
+                text-align: center;
+            }
+
+            .problem-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .solution-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .agent-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .zone {
+                padding: 2rem 1rem;
+            }
+
+            .stack-visual {
+                margin: 2rem auto;
+            }
+        }
+
+        /* Scroll animations */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <nav class="nav">
+            <a href="#" class="logo">AdjuvantIQ</a>
+            <ul class="nav-links">
+                <li><a href="#problem">The Problem</a></li>
+                <li><a href="#solution">Our Solution</a></li>
+                <li><a href="#platform">Platform</a></li>
+                <li><a href="#team">Team</a></li>
+            </ul>
+            <a href="#pilot" class="cta-button">Join Pilot Program</a>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <h1>Unlocking Billions in Lost Drug Development Investment</h1>
+            <p class="subtitle">One Trial at a Time</p>
+            <p class="tagline">The Operating System for Trial Cognition</p>
+            <div class="hero-buttons">
+                <a href="#pilot" class="btn-primary">Start Your Pilot</a>
+                <a href="#solution" class="btn-secondary">Learn More</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Problem Section -->
+    <section class="problem" id="problem">
+        <div class="container">
+            <div class="section-header fade-in">
+                <h2 class="section-title">An 'Analog' Process Needing a Digital Intelligence Upgrade</h2>
+                <p class="section-subtitle">Clinical trials are plagued by inefficiencies that cost billions and delay life-saving treatments</p>
+            </div>
+            <div class="problem-grid">
+                <div class="problem-card fade-in">
+                    <h3><span class="problem-number">01</span> Slow</h3>
+                    <p>Manual iteration and resource-intensive workload. Critical data buried in massive information volumes.</p>
+                </div>
+                <div class="problem-card fade-in">
+                    <h3><span class="problem-number">02</span> Costly</h3>
+                    <p>Average cost to get a drug to market: $2.6B. Delays cost millions (Avg $40K/day in Phase 3).</p>
+                </div>
+                <div class="problem-card fade-in">
+                    <h3><span class="problem-number">03</span> Opaque</h3>
+                    <p>Black-box decision making without audit trails. Volume of information means research isn't exhaustive.</p>
+                </div>
+                <div class="problem-card fade-in">
+                    <h3><span class="problem-number">04</span> Risky</h3>
+                    <p>Bias leading to regulatory and commercial failures. Design complexity causes failures and delays.</p>
+                </div>
+                <div class="problem-card fade-in">
+                    <h3><span class="problem-number">05</span> Siloed</h3>
+                    <p>Complex workflows that don't engage ALL stakeholders lead to designs that can't be executed.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Solution Section -->
+    <section class="solution" id="solution">
+        <div class="container">
+            <div class="section-header fade-in">
+                <h2 class="section-title solution-title">Purpose Built to Integrate Workflow & Process Understanding</h2>
+                <p class="section-subtitle">An operating system for trial cognition - bringing tech leadership and agentic intelligence to the clinical trial industry</p>
+            </div>
+            <div class="solution-grid">
+                <div class="solution-card fade-in">
+                    <h3>Integrated End-to-End Platform</h3>
+                    <p>Unifying clinical development and clinical operations in one comprehensive system that streamlines complex collaboration.</p>
+                </div>
+                <div class="solution-card fade-in">
+                    <h3>Streamlined Communication & Workflows</h3>
+                    <p>Breaking down silos between stakeholders with intelligent workflow automation and real-time collaboration tools.</p>
+                </div>
+                <div class="solution-card fade-in">
+                    <h3>Strategic Planning & Intelligent Design</h3>
+                    <p>Catalyzing coordinated execution through AI-powered insights and perspective-aware decision making.</p>
+                </div>
+                <div class="solution-card fade-in">
+                    <h3>Empowering All Stakeholders</h3>
+                    <p>Maximizing trial success by ensuring every voice is heard and every perspective is considered in the design process.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Strategy Section -->
+    <section class="strategy" id="strategy">
+        <div class="container">
+            <div class="section-header fade-in">
+                <h2 class="section-title">The Strategic Play: Build Where Others Can't Compete</h2>
+            </div>
+            
+            <div class="stack-visual fade-in">
+                <div class="zone winner-zone">
+                    <div class="zone-label">🏆 WHERE WINNERS BUILD</div>
+                    <div class="zone-title">Application Layer</div>
+                    <div class="solution-highlight">
+                        <strong>AdjuvantIQ</strong>
+                        <p>Domain expertise + Regulatory knowledge = Unbeatable moat</p>
+                    </div>
+                </div>
+
+                <div class="divider">
+                    <span>THE COMPETITIVE MOAT</span>
+                </div>
+
+                <div class="zone commodity-zone">
+                    <div class="zone-label">📦 COMMODITIZING FAST</div>
+                    <div class="zone-title">Infrastructure Layer</div>
+                    <p style="font-size: 1.1rem; color: rgba(255, 255, 255, 0.8);">
+                        ChatGPT • Claude • LangChain • AutoGPT
+                    </p>
+                </div>
+            </div>
+
+            <div class="fade-in" style="background: linear-gradient(135deg, #3498db 0%, #2980b9 100%); border-radius: 15px; padding: 2rem; text-align: center; color: white; margin-top: 3rem;">
+                <h3 style="margin-bottom: 1rem;">💡 The Insight</h3>
+                <p style="font-size: 1.2rem; line-height: 1.6;">While everyone fights over generic AI infrastructure, biotech sponsors win by owning purpose-built applications that competitors can't replicate</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Platform Section -->
+    <section class="platform" id="platform">
+        <div class="container">
+            <div class="section-header fade-in">
+                <h2 class="section-title platform-title">24/7 Expert Agents Providing Limitless Impact</h2>
+                <p class="section-subtitle">Multi-agent collaboration with built-in governance and perspective-aware reasoning</p>
+            </div>
+            <div class="agent-grid">
+                <div class="agent-card fade-in">
+                    <h3>MoA Tagger</h3>
+                    <p><strong>Mechanism of Action</strong> analysis and classification for drug compounds with intelligent tagging.</p>
+                </div>
+                <div class="agent-card fade-in">
+                    <h3>Compliance Sentinel</h3>
+                    <p>Regulatory alignment with <strong>GCP</strong> (Good Clinical Practice) validation and real-time compliance monitoring.</p>
+                </div>
+                <div class="agent-card fade-in">
+                    <h3>Biostat Sidekick</h3>
+                    <p>Statistical design with <strong>REML</strong> (Restricted Maximum Likelihood) and Bayesian optimization plugins.</p>
+                </div>
+                <div class="agent-card fade-in">
+                    <h3>Design Critic</h3>
+                    <p>Multi-perspective protocol evaluation across all stakeholder viewpoints with bias detection.</p>
+                </div>
+                <div class="agent-card fade-in">
+                    <h3>Writer Assistant</h3>
+                    <p>Context-rich documentation generation for protocols and regulatory submissions.</p>
+                </div>
+                <div class="agent-card fade-in">
+                    <h3>TrialSight Engine</h3>
+                    <p>Real-time analytics and contextual insights for optimized trial design and execution.</p>
+                </div>
+            </div>
+            
+            <div class="fade-in" style="background: rgba(255, 107, 53, 0.1); border: 2px solid #ff6b35; border-radius: 15px; padding: 2rem; text-align: center; margin-top: 3rem;">
+                <h3 style="color: #ff6b35; margin-bottom: 1rem;">🛡️ OGSP Governance Framework</h3>
+                <p style="color: #b0c4de;">Ontological Governance-Schema Protocol provides zero-trust credentialed access and complete audit trails for all agent interactions</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Team Section -->
+    <section class="team" id="team">
+        <div class="container">
+            <div class="section-header fade-in">
+                <h2 class="section-title" style="color: #333;">Experienced Founders with an Outside Perspective</h2>
+                <p class="section-subtitle" style="color: #666;">A proven leadership combination of strategic execution and technical innovation</p>
+            </div>
+            <div class="team-grid">
+                <div class="team-card fade-in">
+                    <div class="team-photo">DH</div>
+                    <h3>Doug Henston</h3>
+                    <p class="team-role">CEO & Co-Founder</p>
+                    <p class="team-bio">Serial company builder with 25+ years scaling frontier innovations from lab to market. Yale biophysics, Harvard MBA, Naval Aviator, and Goldman Sachs veteran who raised $400M+ for regulated ventures. Disciplined risk management and institutional funding expertise.</p>
+                </div>
+                <div class="team-card fade-in">
+                    <div class="team-photo">NH</div>
+                    <h3>Ned Harvey</h3>
+                    <p class="team-role">Head of Product & Co-Founder</p>
+                    <p class="team-bio">Engineering innovator and Harvard MBA with 20+ years pioneering data-driven solutions. Former Naval Submariner, Digital Gaia co-founder, and RMI Climate Intelligence architect. Specializes in translating complex systems into market-ready products.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section" id="pilot">
+        <div class="container">
+            <div class="section-header fade-in">
+                <h2 class="section-title cta-title">Join the Founding Cohort of Agentic Biotech Leaders</h2>
+                <p class="section-subtitle">Be among the first sponsor companies to transform protocol development from months to hours</p>
+            </div>
+            
+            <div class="pilot-benefits">
+                <div class="benefit-card fade-in">
+                    <h4>🚀 Launch</h4>
+                    <p>Design Archetype Discovery pilot with your next protocol</p>
+                </div>
+                <div class="benefit-card fade-in">
+                    <h4>🔧 Onboard</h4>
+                    <p>Gain access to Copilot, MoA-Tagger, and Biostat Sidekick modules</p>
+                </div>
+                <div class="benefit-card fade-in">
+                    <h4>✅ Validate</h4>
+                    <p>Participate in OGSP credentialing and provide feedback on workflows</p>
+                </div>
+                <div class="benefit-card fade-in">
+                    <h4>📝 Co-Author</h4>
+                    <p>Collaborate on validation paper aligned to Forrester AI guidance</p>
+                </div>
+                <div class="benefit-card fade-in">
+                    <h4>🎯 Shape Future</h4>
+                    <p>Influence AdjuvantIQ roadmap and feature priorities as founding partner</p>
+                </div>
+            </div>
+
+            <div class="fade-in" style="margin: 3rem 0;">
+                <p style="font-style: italic; color: #f39c12; font-size: 1.2rem; margin-bottom: 2rem;">
+                    "Join biotech sponsors and their development partners in pioneering agentic trial intelligence"
+                </p>
+                <div style="display: flex; gap: 2rem; justify-content: center; flex-wrap: wrap;">
+                    <a href="mailto:pilot@adjuvantiq.com" class="btn-primary">Start Your Pilot Today</a>
+                    <a href="#solution" class="btn-secondary">Learn More About Our Platform</a>
+                </div>
+            </div>
+
+            <div class="fade-in" style="margin-top: 3rem; padding: 2rem; background: rgba(231, 76, 60, 0.1); border: 2px solid #e74c3c; border-radius: 15px;">
+                <h3 style="color: #e74c3c; margin-bottom: 1rem;">Limited Time Pilot Program</h3>
+                <p style="margin-bottom: 1.5rem;">We're accepting only 25 founding partners for our initial pilot program. Join the companies already transforming their clinical development process.</p>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; margin-top: 1.5rem;">
+                    <div style="text-align: center;">
+                        <h4 style="color: #f39c12; font-size: 2rem; margin-bottom: 0.5rem;">$75-120M</h4>
+                        <p style="font-size: 0.9rem; color: #ddd;">Projected Year 5 ARR</p>
+                    </div>
+                    <div style="text-align: center;">
+                        <h4 style="color: #f39c12; font-size: 2rem; margin-bottom: 0.5rem;">~6,400</h4>
+                        <p style="font-size: 0.9rem; color: #ddd;">Target SME Market</p>
+                    </div>
+                    <div style="text-align: center;">
+                        <h4 style="color: #f39c12; font-size: 2rem; margin-bottom: 0.5rem;">15-20x</h4>
+                        <p style="font-size: 0.9rem; color: #ddd;">LTV/CAC Ratio</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-links">
+                <a href="#problem">The Problem</a>
+                <a href="#solution">Our Solution</a>
+                <a href="#platform">Platform</a>
+                <a href="#team">Team</a>
+                <a href="#pilot">Pilot Program</a>
+            </div>
+            
+            <div class="contact-info">
+                <a href="mailto:invest@adjuvantiq.com" class="contact-item">📧 invest@adjuvantiq.com</a>
+                <a href="mailto:pilot@adjuvantiq.com" class="contact-item">🚀 pilot@adjuvantiq.com</a>
+                <a href="tel:+13038857143" class="contact-item">📞 +1 303-885-7143</a>
+                <a href="#" class="contact-item">🌐 www.adjuvantiq.com</a>
+            </div>
+
+            <div style="margin-top: 2rem; padding-top: 2rem; border-top: 1px solid rgba(127, 179, 211, 0.3);">
+                <div style="display: flex; align-items: center; justify-content: center; margin-bottom: 1rem;">
+                    <div style="font-size: 2rem; margin-right: 1rem; color: #00d4ff;">🧬</div>
+                    <div style="font-size: 1.5rem; font-weight: 700; color: #00d4ff;">AdjuvantIQ</div>
+                </div>
+                <p style="color: #7fb3d3; font-style: italic; margin-bottom: 1rem;">
+                    "Unlocking Billions in Lost Drug Development Value – One Trial at a Time"
+                </p>
+                <p style="color: #666; font-size: 0.9rem;">
+                    © 2024 AdjuvantIQ. All rights reserved. | Ontology-Governed • Perspective-Aware • AWS-Native
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Header background on scroll
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('.header');
+            if (window.scrollY > 100) {
+                header.style.background = 'rgba(10, 17, 40, 0.98)';
+            } else {
+                header.style.background = 'rgba(10, 17, 40, 0.95)';
+            }
+        });
+
+        // Intersection Observer for fade-in animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        // Observe all fade-in elements
+        document.querySelectorAll('.fade-in').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Mobile navigation toggle (if needed)
+        function toggleMobileNav() {
+            const navLinks = document.querySelector('.nav-links');
+            navLinks.style.display = navLinks.style.display === 'flex' ? 'none' : 'flex';
+        }
+
+        // Add loading animation
+        window.addEventListener('load', () => {
+            document.body.style.opacity = '0';
+            setTimeout(() => {
+                document.body.style.transition = 'opacity 0.5s ease';
+                document.body.style.opacity = '1';
+            }, 100);
+        });
+
+        // Dynamic typing effect for hero subtitle
+        function typeWriter(element, text, speed = 50) {
+            let i = 0;
+            element.innerHTML = '';
+            function typing() {
+                if (i < text.length) {
+                    element.innerHTML += text.charAt(i);
+                    i++;
+                    setTimeout(typing, speed);
+                }
+            }
+            typing();
+        }
+
+        // Initialize typing effect when page loads
+        window.addEventListener('load', () => {
+            const subtitle = document.querySelector('.hero .subtitle');
+            if (subtitle) {
+                const originalText = subtitle.textContent;
+                setTimeout(() => {
+                    typeWriter(subtitle, originalText, 80);
+                }, 1000);
+            }
+        });
+
+        // Add particle effect to hero background
+        function createParticles() {
+            const hero = document.querySelector('.hero');
+            const particles = [];
+            
+            for (let i = 0; i < 50; i++) {
+                const particle = document.createElement('div');
+                particle.style.position = 'absolute';
+                particle.style.width = '2px';
+                particle.style.height = '2px';
+                particle.style.background = 'rgba(0, 212, 255, 0.5)';
+                particle.style.borderRadius = '50%';
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.top = Math.random() * 100 + '%';
+                particle.style.animation = `float ${3 + Math.random() * 4}s ease-in-out infinite`;
+                hero.appendChild(particle);
+                particles.push(particle);
+            }
+        }
+
+        // Add CSS animation for particles
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes float {
+                0%, 100% { transform: translateY(0px) translateX(0px); opacity: 0.5; }
+                50% { transform: translateY(-20px) translateX(10px); opacity: 1; }
+            }
+        `;
+        document.head.appendChild(style);
+
+        // Initialize particles
+        setTimeout(createParticles, 2000);
+
+        // Form submission handler (if you add a contact form)
+        function handleFormSubmission(event) {
+            event.preventDefault();
+            // Add your form handling logic here
+            alert('Thank you for your interest! We will contact you soon.');
+        }
+
+        // Add hover effects for cards
+        document.querySelectorAll('.problem-card, .solution-card, .agent-card, .team-card').forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-5px) scale(1.02)';
+            });
+            
+            card.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0) scale(1)';
+            });
+        });
+
+        // Add click tracking for analytics (placeholder)
+        document.querySelectorAll('.btn-primary, .btn-secondary, .cta-button').forEach(button => {
+            button.addEventListener('click', function() {
+                // Add analytics tracking here
+                console.log('Button clicked:', this.textContent);
+            });
+        });
+    </script>
+</body>
+</html>

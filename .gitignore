@@ -1,0 +1,67 @@
+# Dependencies
+node_modules/
+
+# Build outputs
+dist/
+build/
+
+# Environment variables
+.env
+.env.local
+.env.production
+
+# OS files
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+
+# IDE files
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Runtime data
+pids
+*.pid
+*.seed
+*.pid.lock
+
+# Coverage directory used by tools like istanbul
+coverage/
+
+# Temporary folders
+tmp/
+temp/
+
+# AWS Amplify
+amplify/\#current-cloud-backend
+amplify/.config/local-*
+amplify/logs
+amplify/mock-data
+amplify/src/aws-exports.js
+amplify/src/awsconfiguration.json
+amplify/src/graphql/API.ts
+amplify/src/graphql/API.tsx
+amplify/src/graphql/queries.ts
+amplify/src/graphql/queries.tsx
+amplify/src/graphql/mutations.ts
+amplify/src/graphql/mutations.tsx
+amplify/src/graphql/subscriptions.ts
+amplify/src/graphql/subscriptions.tsx
+amplify/src/graphql/schema.json
+amplify/src/graphql/schema.graphql
+
+# Local Netlify folder
+.netlify
+
+# Cursor specific
+.cursorindexingignore
+.specstory/
