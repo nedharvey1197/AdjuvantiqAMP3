@@ -180,3 +180,158 @@ build/
 # Environment variables
 .env
 .env.local
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+```
+
+## 🎯 Business Metrics
+
+### Target Conversion Rates
+- **Traffic → Pilot Signup:** 3-5%
+- **Form Completion Rate:** 80%+
+- **Mobile Conversion:** 2-4%
+- **Page Load Time:** <2 seconds
+
+### Lead Quality Scoring
+- **Hot Lead:** Immediate timeline + known company
+- **Warm Lead:** 3-6 month timeline + biotech/pharma
+- **Cold Lead:** Planning phase + unknown company
+
+## 🛡️ Security & Performance
+
+### Security Headers
+```
+Content-Security-Policy: default-src 'self'
+X-Frame-Options: DENY
+X-Content-Type-Options: nosniff
+Referrer-Policy: strict-origin-when-cross-origin
+```
+
+### Performance Optimizations
+- ✅ **Minified CSS/JS** - Inline for fastest loading
+- ✅ **Optimized Images** - WebP format with fallbacks
+- ✅ **Lazy Loading** - Intersection Observer for animations
+- ✅ **Preload Fonts** - Google Fonts optimization
+- ✅ **CDN Delivery** - Global edge locations via Amplify
+
+## 📞 Support & Maintenance
+
+### Content Updates
+- **Forms:** Modify in `index.html` and redeploy
+- **Copy Changes:** Edit HTML directly
+- **Styling:** Update CSS in `<style>` section
+- **Analytics:** Add tracking in `<script>` section
+
+### Monitoring
+- **Uptime:** AWS Amplify health dashboard
+- **Performance:** Google PageSpeed Insights
+- **Forms:** Amplify console submissions
+- **Analytics:** Google Analytics dashboard
+
+### Emergency Contacts
+- **Technical Issues:** Ned Harvey (ned@adjuvantiq.com)
+- **Content Updates:** Doug Henston (doug@adjuvantiq.com)
+- **Form Problems:** pilot@adjuvantiq.com
+
+## 🔄 Deployment Pipeline
+
+### Branch Strategy
+```
+main        → Production (adjuvantiq.com)
+staging     → Staging (dev.adjuvantiq.com)
+feature/*   → Preview deployments
+```
+
+### Deployment Process
+1. **Develop locally** with live preview
+2. **Push to feature branch** for testing
+3. **Merge to staging** for stakeholder review
+4. **Merge to main** for production deployment
+5. **Automatic deployment** via Amplify
+
+## 📋 Roadmap
+
+### Phase 1: Launch (Week 1)
+- [x] Core website development
+- [x] Form integration
+- [x] AWS Amplify deployment
+- [x] Custom domain setup
+- [ ] Google Analytics integration
+- [ ] Email notification testing
+
+### Phase 2: Optimization (Month 1)
+- [ ] A/B testing framework
+- [ ] Advanced form analytics
+- [ ] CRM integration (HubSpot/Salesforce)
+- [ ] Auto-response email sequences
+- [ ] Landing page variations
+
+### Phase 3: Enhancement (Month 2-3)
+- [ ] Blog/content section
+- [ ] Customer testimonials
+- [ ] Interactive demo booking
+- [ ] Webinar registration
+- [ ] Investor portal
+
+## 🤝 Contributing
+
+### Making Changes
+1. Create feature branch from `main`
+2. Make changes locally
+3. Test thoroughly
+4. Submit pull request
+5. Review and merge
+
+### Code Style
+- **HTML:** Semantic markup, proper indentation
+- **CSS:** BEM methodology, mobile-first
+- **JavaScript:** ES6+, vanilla JS preferred
+- **Comments:** Explain complex logic
+
+## 📚 Resources
+
+### Documentation
+- [AWS Amplify Docs](https://docs.amplify.aws/)
+- [HTML5 Semantic Elements](https://developer.mozilla.org/en-US/docs/Web/HTML/Element)
+- [CSS Grid Guide](https://css-tricks.com/snippets/css/complete-guide-grid/)
+- [Google Analytics Setup](https://support.google.com/analytics/answer/9304153)
+
+### Design Inspiration
+- [Mission Transcend](https://missiontranscend.ai/) - Design reference
+- [Stripe](https://stripe.com/) - Professional SaaS design
+- [Linear](https://linear.app/) - Modern B2B aesthetics
+
+---
+
+## 📄 License
+
+© 2024 AdjuvantIQ. All rights reserved.
+
+**Confidential and Proprietary** - This website and its content are the intellectual property of AdjuvantIQ and contain confidential business information.
+
+---
+
+## 📞 Contact
+
+**AdjuvantIQ**
+- 🌐 Website: https://adjuvantiq.com
+- 📧 General: info@adjuvantiq.com
+- 🚀 Pilot Program: pilot@adjuvantiq.com
+- 💰 Investment: invest@adjuvantiq.com
+- 📞 Phone: +1 303-885-7143
+
+**Development Team**
+- Ned Harvey - Head of Product (ned@adjuvantiq.com)
+- Doug Henston - CEO (doug@adjuvantiq.com)
+
+---
+
+*"Unlocking Billions in Lost Drug Development Value – One Trial at a Time"*
