@@ -960,13 +960,10 @@
                 </div>
             </div>
 
-            <!-- Amplify Form -->
-            <form name="pilot-signup" method="POST" data-netlify="true" netlify-honeypot="bot-field" class="pilot-form fade-in">
-                <!-- Hidden fields for Amplify -->
-                <input type="hidden" name="form-name" value="pilot-signup" />
-                <p class="hidden">
-                    <label>Don't fill this out if you're human: <input name="bot-field" /></label>
-                </p>
+            <!-- Contact Form -->
+            <form action="https://formspree.io/f/xjkoorgk" method="POST" class="pilot-form fade-in">
+                <input type="hidden" name="_subject" value="New AdjuvantIQ Pilot Application" />
+                <input type="hidden" name="_next" value="https://www.adjuvantiq.com/#pilot" />
                 
                 <div class="form-grid">
                     <div class="form-group">
@@ -1235,52 +1232,28 @@
 
         // Form submission handling
         document.addEventListener('DOMContentLoaded', function() {
-            const form = document.querySelector('form[name="pilot-signup"]');
+            const form = document.querySelector('form[action*="formspree"]');
             const successMessage = document.getElementById('success-message');
             
             if (form) {
                 form.addEventListener('submit', function(e) {
-                    e.preventDefault();
-                    
                     // Show loading state
                     const submitBtn = form.querySelector('button[type="submit"]');
                     const originalText = submitBtn.textContent;
                     submitBtn.textContent = 'Submitting...';
                     submitBtn.disabled = true;
                     
-                    // Collect form data
-                    const formData = new FormData(form);
+                    // Let Formspree handle the submission
+                    // Form will redirect to success page automatically
                     
-                    // Submit to Amplify
-                    fetch('/', {
-                        method: 'POST',
-                        headers: { "Content-Type": "application/x-www-form-urlencoded" },
-                        body: new URLSearchParams(formData).toString()
-                    })
-                    .then(() => {
-                        // Hide form and show success message
-                        form.style.display = 'none';
-                        successMessage.style.display = 'block';
-                        
-                        // Scroll to success message
-                        successMessage.scrollIntoView({ behavior: 'smooth' });
-                        
-                        // Track conversion (add your analytics here)
-                        if (typeof gtag !== 'undefined') {
-                            gtag('event', 'pilot_signup', {
-                                'event_category': 'engagement',
-                                'event_label': formData.get('company')
-                            });
-                        }
-                    })
-                    .catch((error) => {
-                        console.error('Error:', error);
-                        alert('There was an error submitting the form. Please try again or email pilot@adjuvantiq.com');
-                        
-                        // Reset button
-                        submitBtn.textContent = originalText;
-                        submitBtn.disabled = false;
-                    });
+                    // Track conversion (add your analytics here)
+                    const formData = new FormData(form);
+                    if (typeof gtag !== 'undefined') {
+                        gtag('event', 'pilot_signup', {
+                            'event_category': 'engagement',
+                            'event_label': formData.get('company')
+                        });
+                    }
                 });
             }
         });
