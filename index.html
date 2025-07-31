@@ -12,6 +12,121 @@
             box-sizing: border-box;
         }
 
+        .contact-method:hover {
+            background: rgba(0, 212, 255, 0.2);
+        }
+
+        /* Form Styles */
+        .pilot-form {
+            max-width: 600px;
+            margin: 3rem auto;
+            background: rgba(255, 255, 255, 0.05);
+            padding: 2rem;
+            border-radius: 15px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .form-group {
+            margin-bottom: 1rem;
+        }
+
+        .form-group.full-width {
+            grid-column: 1 / -1;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: #00d4ff;
+            font-weight: 500;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 8px;
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            font-size: 1rem;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .form-group input::placeholder,
+        .form-group textarea::placeholder {
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #00d4ff;
+            box-shadow: 0 0 0 2px rgba(0, 212, 255, 0.2);
+        }
+
+        .form-submit {
+            text-align: center;
+            margin-top: 2rem;
+        }
+
+        .form-note {
+            margin-top: 1rem;
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.7);
+            font-style: italic;
+        }
+
+        .success-message {
+            max-width: 600px;
+            margin: 3rem auto;
+            background: rgba(46, 204, 113, 0.1);
+            padding: 2rem;
+            border-radius: 15px;
+            border: 1px solid rgba(46, 204, 113, 0.3);
+            text-align: center;
+        }
+
+        .success-message h3 {
+            color: #2ecc71;
+            margin-bottom: 1rem;
+        }
+
+        .success-message ul {
+            text-align: left;
+            margin: 1rem 0;
+            padding-left: 2rem;
+        }
+
+        .success-message li {
+            margin-bottom: 0.5rem;
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        @media (max-width: 768px) {
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .pilot-form {
+                padding: 1.5rem;
+                margin: 2rem 1rem;
+            }
+        }
+
         body {
             font-family: 'Inter', sans-serif;
             line-height: 1.6;
@@ -814,7 +929,7 @@
         </div>
     </section>
 
-    <!-- CTA Section -->
+    <!-- Contact Form Section -->
     <section class="cta-section" id="pilot">
         <div class="container">
             <div class="section-header fade-in">
@@ -845,14 +960,80 @@
                 </div>
             </div>
 
-            <div class="fade-in" style="margin: 3rem 0;">
-                <p style="font-style: italic; color: #f39c12; font-size: 1.2rem; margin-bottom: 2rem;">
-                    "Join biotech sponsors and their development partners in pioneering agentic trial intelligence"
+            <!-- Amplify Form -->
+            <form name="pilot-signup" method="POST" data-netlify="true" netlify-honeypot="bot-field" class="pilot-form fade-in">
+                <!-- Hidden fields for Amplify -->
+                <input type="hidden" name="form-name" value="pilot-signup" />
+                <p class="hidden">
+                    <label>Don't fill this out if you're human: <input name="bot-field" /></label>
                 </p>
-                <div style="display: flex; gap: 2rem; justify-content: center; flex-wrap: wrap;">
-                    <a href="mailto:pilot@adjuvantiq.com" class="btn-primary">Start Your Pilot Today</a>
-                    <a href="#solution" class="btn-secondary">Learn More About Our Platform</a>
+                
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label for="name">Full Name *</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="email">Email Address *</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="company">Company *</label>
+                        <input type="text" id="company" name="company" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="title">Job Title</label>
+                        <input type="text" id="title" name="title">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="interest">Primary Interest *</label>
+                        <select id="interest" name="interest" required>
+                            <option value="">Select Interest</option>
+                            <option value="pilot">Pilot Program</option>
+                            <option value="demo">Request Demo</option>
+                            <option value="investment">Investment Inquiry</option>
+                            <option value="partnership">Partnership Discussion</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="timeline">Timeline for Clinical Trials</label>
+                        <select id="timeline" name="timeline">
+                            <option value="">Select Timeline</option>
+                            <option value="immediate">Starting Now</option>
+                            <option value="3months">Next 3 Months</option>
+                            <option value="6months">Next 6 Months</option>
+                            <option value="planning">Planning Phase</option>
+                        </select>
+                    </div>
                 </div>
+                
+                <div class="form-group full-width">
+                    <label for="message">Tell us about your clinical development challenges</label>
+                    <textarea id="message" name="message" rows="4" placeholder="Describe your current trial design process, pain points, or specific areas where AI could help..."></textarea>
+                </div>
+                
+                <div class="form-submit">
+                    <button type="submit" class="btn-primary">Join Pilot Program</button>
+                    <p class="form-note">We'll respond within 24 hours to discuss your pilot opportunity</p>
+                </div>
+            </form>
+
+            <!-- Success Message (hidden by default) -->
+            <div id="success-message" class="success-message" style="display: none;">
+                <h3>🎉 Thank You!</h3>
+                <p>We've received your pilot program application. Our team will review your submission and contact you within 24 hours to discuss next steps.</p>
+                <p><strong>What happens next:</strong></p>
+                <ul>
+                    <li>Initial consultation call (30 minutes)</li>
+                    <li>Technical requirements assessment</li>
+                    <li>Custom pilot program design</li>
+                    <li>Implementation timeline discussion</li>
+                </ul>
             </div>
 
             <div class="fade-in" style="margin-top: 3rem; padding: 2rem; background: rgba(231, 76, 60, 0.1); border: 2px solid #e74c3c; border-radius: 15px;">
@@ -1050,6 +1231,58 @@
                 // Add analytics tracking here
                 console.log('Button clicked:', this.textContent);
             });
+        });
+
+        // Form submission handling
+        document.addEventListener('DOMContentLoaded', function() {
+            const form = document.querySelector('form[name="pilot-signup"]');
+            const successMessage = document.getElementById('success-message');
+            
+            if (form) {
+                form.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    
+                    // Show loading state
+                    const submitBtn = form.querySelector('button[type="submit"]');
+                    const originalText = submitBtn.textContent;
+                    submitBtn.textContent = 'Submitting...';
+                    submitBtn.disabled = true;
+                    
+                    // Collect form data
+                    const formData = new FormData(form);
+                    
+                    // Submit to Amplify
+                    fetch('/', {
+                        method: 'POST',
+                        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+                        body: new URLSearchParams(formData).toString()
+                    })
+                    .then(() => {
+                        // Hide form and show success message
+                        form.style.display = 'none';
+                        successMessage.style.display = 'block';
+                        
+                        // Scroll to success message
+                        successMessage.scrollIntoView({ behavior: 'smooth' });
+                        
+                        // Track conversion (add your analytics here)
+                        if (typeof gtag !== 'undefined') {
+                            gtag('event', 'pilot_signup', {
+                                'event_category': 'engagement',
+                                'event_label': formData.get('company')
+                            });
+                        }
+                    })
+                    .catch((error) => {
+                        console.error('Error:', error);
+                        alert('There was an error submitting the form. Please try again or email pilot@adjuvantiq.com');
+                        
+                        // Reset button
+                        submitBtn.textContent = originalText;
+                        submitBtn.disabled = false;
+                    });
+                });
+            }
         });
     </script>
 </body>
