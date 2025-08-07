@@ -245,6 +245,17 @@ collections:
           - {label: "Meta Description", name: "description", widget: "text", default: "Transform clinical trial design with AI-powered cognition. Join biotech leaders using AdjuvantIQ to unlock billions in lost drug development investment."}
           - {label: "Keywords", name: "keywords", widget: "string", default: "clinical trials, AI, biotech, drug development, trial design"}
 
+      - label: "Theme"
+        name: "theme"
+        file: "content/theme.json"
+        fields:
+          - {label: "Primary Color", name: "primary_color", widget: "string", default: "#2c5282", hint: "Main brand color (navy)"}
+          - {label: "Accent Color", name: "accent_color", widget: "string", default: "#2d7d7d", hint: "Secondary brand color (teal)"}
+          - {label: "White", name: "white", widget: "string", default: "#ffffff", hint: "White color"}
+          - {label: "Warm Gray", name: "warm_gray", widget: "string", default: "#718096", hint: "Warm gray color"}
+          - {label: "Light Gray", name: "light_gray", widget: "string", default: "rgba(113, 128, 150, 0.1)", hint: "Light gray with transparency"}
+          - {label: "Google Fonts URL", name: "google_fonts_href", widget: "string", default: "https://fonts.googleapis.com/css2?family=Source+Sans+Pro:ital,wght@0,300;0,400;0,600;0,700;1,400&family=Merriweather:ital,wght@0,300;0,400;0,700;1,300;1,400&display=swap", hint: "Google Fonts stylesheet URL"}
+
   - name: "pages"
     label: "Pages"
     files:

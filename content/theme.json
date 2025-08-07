@@ -1,0 +1,8 @@
+{
+  "primary_color": "#2c5282",
+  "accent_color": "#2d7d7d", 
+  "white": "#ffffff",
+  "warm_gray": "#718096",
+  "light_gray": "rgba(113, 128, 150, 0.1)",
+  "google_fonts_href": "https://fonts.googleapis.com/css2?family=Source+Sans+Pro:ital,wght@0,300;0,400;0,600;0,700;1,400&family=Merriweather:ital,wght@0,300;0,400;0,700;1,300;1,400&display=swap"
+}

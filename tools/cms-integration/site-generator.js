@@ -21,7 +21,8 @@ class SiteGenerator {
             'pilot.json',
             'contact.json',
             'stats.json',
-            'seo.json'
+            'seo.json',
+            'theme.json'
         ];
 
         contentFiles.forEach(file => {
@@ -90,6 +91,11 @@ class SiteGenerator {
         // Update SEO
         if (content.seo) {
             html = this.updateSEO(html, content.seo);
+        }
+
+        // Update theme (colors and fonts)
+        if (content.theme) {
+            html = this.updateTheme(html, content.theme);
         }
 
         fs.writeFileSync(indexPath, html);
@@ -229,6 +235,39 @@ class SiteGenerator {
         if (seo.keywords) {
             html = html.replace(/<meta[^>]*name="keywords"[^>]*>/s, `<meta name="keywords" content="${seo.keywords}">`);
         }
+        return html;
+    }
+
+    // Update theme (colors and fonts)
+    updateTheme(html, theme) {
+        if (!theme) return html;
+
+        // Update CSS variables in :root
+        if (theme.primary_color || theme.accent_color || theme.white || theme.warm_gray || theme.light_gray) {
+            const cssVars = [];
+            if (theme.primary_color) cssVars.push(`--primary-color: ${theme.primary_color}`);
+            if (theme.accent_color) cssVars.push(`--accent-color: ${theme.accent_color}`);
+            if (theme.white) cssVars.push(`--white: ${theme.white}`);
+            if (theme.warm_gray) cssVars.push(`--warm-gray: ${theme.warm_gray}`);
+            if (theme.light_gray) cssVars.push(`--light-gray: ${theme.light_gray}`);
+
+            if (cssVars.length > 0) {
+                const cssVarsString = cssVars.join('; ');
+                html = html.replace(
+                    /:root\s*\{[^}]*\}/s,
+                    `:root {\n        ${cssVarsString};\n    }`
+                );
+            }
+        }
+
+        // Update Google Fonts link
+        if (theme.google_fonts_href) {
+            html = html.replace(
+                /<link[^>]*href="[^"]*fonts\.googleapis\.com[^"]*"[^>]*>/s,
+                `<link rel="preconnect" href="https://fonts.googleapis.com">\n    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>\n    <link href="${theme.google_fonts_href}" rel="stylesheet">`
+            );
+        }
+
         return html;
     }
 
