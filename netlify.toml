@@ -2,7 +2,7 @@
 # Main hosting is handled by AWS Amplify
 
 [build]
-  command = "npm run build"
+  command = "npm run generate-site && npm run generate-demos"
   publish = "."
 
 [[redirects]]
