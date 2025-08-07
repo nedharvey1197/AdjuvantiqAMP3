@@ -1,6 +1,10 @@
 # Netlify configuration for CMS access only
 # Main hosting is handled by AWS Amplify
 
+[build]
+  command = "npm run build"
+  publish = "."
+
 [[redirects]]
   from = "/admin/*"
   to = "/admin/index.html"
@@ -13,4 +17,5 @@
 
 # Enable Git Gateway for CMS
 [build.environment]
-  GIT_LFS_ENABLED = "true" 
+  GIT_LFS_ENABLED = "true"
+  NODE_VERSION = "18" 

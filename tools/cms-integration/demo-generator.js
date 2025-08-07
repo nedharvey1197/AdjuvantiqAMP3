@@ -53,8 +53,14 @@ class DemoGenerator {
         const template = this.loadTemplate('demo-hub');
         const html = template({ demos });
         
-        fs.writeFileSync(path.join(this.outputDir, 'index.html'), html);
-        console.log('Generated demo hub page');
+        // Only generate if there are demos, and don't overwrite existing index.html
+        if (demos.length > 0) {
+            const outputFile = path.join(this.outputDir, 'cms-generated-hub.html');
+            fs.writeFileSync(outputFile, html);
+            console.log(`Generated CMS demo hub page: cms-generated-hub.html (${demos.length} demos)`);
+        } else {
+            console.log('No published demos found - skipping demo hub generation');
+        }
     }
 
     // Generate individual demo page
@@ -63,8 +69,10 @@ class DemoGenerator {
         const template = this.loadTemplate('demo-page');
         const html = template(demo);
         
-        fs.writeFileSync(path.join(this.outputDir, `${demoSlug}.html`), html);
-        console.log(`Generated demo page: ${demoSlug}.html`);
+        // Use cms- prefix to avoid conflicts with existing files
+        const outputFile = path.join(this.outputDir, `cms-${demoSlug}.html`);
+        fs.writeFileSync(outputFile, html);
+        console.log(`Generated CMS demo page: cms-${demoSlug}.html`);
     }
 
     // Generate phase page
@@ -73,8 +81,10 @@ class DemoGenerator {
         const template = this.loadTemplate('phase-page');
         const html = template(phase);
         
-        fs.writeFileSync(path.join(this.outputDir, `${phaseSlug}.html`), html);
-        console.log(`Generated phase page: ${phaseSlug}.html`);
+        // Use cms- prefix to avoid conflicts with existing files
+        const outputFile = path.join(this.outputDir, `cms-${phaseSlug}.html`);
+        fs.writeFileSync(outputFile, html);
+        console.log(`Generated CMS phase page: cms-${phaseSlug}.html`);
     }
 
     // Load Handlebars template

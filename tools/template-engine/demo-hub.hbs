@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Demo Hub - AdjuvantIQ</title>
+    <style>
+        /* Demo Hub specific styles */
+        .demo-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+        .demo-card {
+            border: 2px solid #e1e5e9;
+            border-radius: 12px;
+            padding: 2rem;
+            background: white;
+            transition: all 0.3s ease;
+        }
+        .demo-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+        }
+        .demo-card-header {
+            margin-bottom: 1.5rem;
+        }
+        .demo-card-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #2d3748;
+            margin-bottom: 0.5rem;
+        }
+        .demo-card-subtitle {
+            font-size: 1rem;
+            color: #718096;
+            font-weight: 500;
+        }
+        .demo-features {
+            list-style: none;
+            padding: 0;
+            margin: 1.5rem 0;
+        }
+        .demo-features li {
+            padding: 0.5rem 0;
+            color: #4a5568;
+            position: relative;
+            padding-left: 1.5rem;
+        }
+        .demo-features li:before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: #48bb78;
+            font-weight: bold;
+        }
+        .demo-button {
+            display: inline-block;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 1rem 2rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        .demo-button:hover {
+            background: linear-gradient(135deg, #5a6fd8 0%, #6a4190 100%);
+            transform: translateY(-2px);
+        }
+        .primary-demo {
+            border: 3px solid #667eea !important;
+            background: linear-gradient(135deg, #f8f9fc 0%, #e3f2fd 100%) !important;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="hero">
+            <h1>Interactive Demo Hub</h1>
+            <p class="lead">Experience how AdjuvantIQ transforms clinical development through AI-powered cognition</p>
+        </div>
+
+        <div class="demo-grid">
+            {{#each demos}}
+            <div class="demo-card {{#if (eq type 'primary')}}primary-demo{{/if}}">
+                <div class="demo-card-header">
+                    <div class="demo-card-title">{{icon}} {{title}}</div>
+                    <div class="demo-card-subtitle">{{subtitle}}</div>
+                </div>
+                <div class="demo-card-content">
+                    <p>{{description}}</p>
+                    <ul class="demo-features">
+                        {{#each features}}
+                        <li>{{feature}}</li>
+                        {{/each}}
+                    </ul>
+                    <a href="{{slug}}.html" class="demo-button">Start {{title}} Demo</a>
+                </div>
+            </div>
+            {{/each}}
+        </div>
+    </div>
+</body>
+</html> 

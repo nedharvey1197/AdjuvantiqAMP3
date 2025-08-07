@@ -9,7 +9,8 @@
     "generate-demo": "node tools/cms-integration/demo-generator.js generate-demo",
     "generate-phase": "node tools/cms-integration/demo-generator.js generate-phase",
     "generate-hub": "node tools/cms-integration/demo-generator.js generate-hub",
-    "build": "npm run generate-demos"
+    "generate-site": "node tools/cms-integration/site-generator.js generate",
+    "build": "npm run generate-site && npm run generate-demos"
   },
   "dependencies": {
     "handlebars": "^4.7.8"
