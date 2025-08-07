@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Biostatistics & Analytics for Oncology Biomarker Trial - AdjuvantIQ Demo</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <title>Oncology Interim Analysis - AdjuvantIQ Demo</title>
+    <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:ital,wght@0,300;0,400;0,600;0,700;1,400&family=Merriweather:ital,wght@0,300;0,400;0,700;1,300;1,400&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
@@ -12,15 +12,29 @@
             box-sizing: border-box;
         }
         
+        /* Brand Colors */
+        :root {
+            --navy: #2c5282;
+            --teal: #2d7d7d;
+            --white: #ffffff;
+            --warm-gray: #718096;
+            --light-gray: rgba(113, 128, 150, 0.1);
+        }
+        
         body {
-            font-family: 'Inter', sans-serif;
+            font-family: 'Merriweather', serif;
             line-height: 1.6;
             color: #333;
             background: #f8f9fc;
         }
         
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Source Sans Pro', sans-serif;
+            color: var(--navy);
+        }
+        
         .hero {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(135deg, var(--navy) 0%, var(--teal) 100%);
             color: white;
             padding: 60px 20px;
             text-align: center;
@@ -29,20 +43,13 @@
         .hero h1 {
             font-size: 2.5em;
             margin-bottom: 20px;
+            color: white;
         }
         
         .hero .lead {
             font-size: 1.3em;
             margin-bottom: 30px;
             opacity: 0.9;
-        }
-        
-        .time-investment {
-            background: rgba(255,255,255,0.1);
-            padding: 15px;
-            border-radius: 8px;
-            margin-top: 20px;
-            font-size: 1.1em;
         }
         
         .container {
@@ -70,20 +77,20 @@
         }
         
         .progress {
-            background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(90deg, var(--teal), var(--navy));
             height: 100%;
             transition: width 0.3s ease;
-            width: 25%;
+            width: 75%;
         }
         
         .progress-text {
             font-weight: 600;
-            color: #666;
+            color: var(--warm-gray);
         }
         
         .user-input {
-            background: #e8f5e8;
-            border-left: 5px solid #4caf50;
+            background: rgba(45, 125, 125, 0.1);
+            border-left: 5px solid var(--teal);
             padding: 20px;
             margin: 15px 0;
             border-radius: 6px;
@@ -95,7 +102,7 @@
             position: absolute;
             top: -10px;
             left: 15px;
-            background: #4caf50;
+            background: var(--teal);
             color: white;
             padding: 4px 8px;
             font-size: 0.8em;
@@ -530,7 +537,7 @@
     <div class="hero">
         <div class="container">
             <a href="index.html" class="back-link">← Back to Demo Hub</a>
-            <h1>Biostatistics & Analytics for Oncology Biomarker Trial</h1>
+            <h1>Oncology Interim Analysis</h1>
             <p class="lead">See how AI-assisted reasoning transforms complex interim analysis decisions</p>
             <div class="time-investment">
                 ⏱️ 12-15 minutes • Real oncology trial scenario • Statistical analysis focus
