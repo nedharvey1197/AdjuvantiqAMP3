@@ -2,11 +2,12 @@ backend:
   name: git-gateway
   branch: main # Change to 'master' if that's your default branch
 
-# Auth0 configuration
+# Auth0 configuration using environment variables
 auth:
-  domain: "dev-oey8js2dmzcfsrky.us.auth0.com"
-  client_id: "58Hz6ez6M8xWBRQUh79XSd7DEsc2UFWg"
-  audience: "https://dev-oey8js2dmzcfsrky.us.auth0.com/api/v2/"
+  domain: ${AUTH0_DOMAIN}
+  client_id: ${AUTH0_CLIENT_ID}
+  client_secret: ${AUTH0_CLIENT_SECRET}
+  audience: ${AUTH0_AUDIENCE}
 
 media_folder: "images"
 public_folder: "/images"
