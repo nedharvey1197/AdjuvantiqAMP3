@@ -145,12 +145,34 @@ class SiteGenerator {
 
     // Update team section
     updateTeamSection(html, team) {
+        // Update headings
         if (team.title) {
-            html = html.replace(/<h2[^>]*class="[^"]*section-title[^"]*"[^>]*>.*?<\/h2>/s, `<h2 class="section-title">${team.title}</h2>`);
+            html = html.replace(/<h2[^>]*class="[^"]*section-title[^"]*"[^>]*>.*?<\/h2>/s, `<h2 class="section-title">${team.title}<\/h2>`);
         }
         if (team.subtitle) {
-            html = html.replace(/<p[^>]*class="[^"]*section-subtitle[^"]*"[^>]*>.*?<\/p>/s, `<p class="section-subtitle">${team.subtitle}</p>`);
+            html = html.replace(/<p[^>]*class="[^"]*section-subtitle[^"]*"[^>]*>.*?<\/p>/s, `<p class="section-subtitle">${team.subtitle}<\/p>`);
         }
+
+        // If members provided, replace the team grid contents
+        if (Array.isArray(team.members) && team.members.length > 0) {
+            const membersHtml = team.members.map(m => {
+                const initials = (m.initials || (m.name || '')
+                    .split(/\s+/)
+                    .map(p => p[0])
+                    .join('')
+                    .toUpperCase()).slice(0, 3);
+                const name = m.name || '';
+                const role = m.role || '';
+                const bio = m.bio || '';
+                return `\n                <div class="team-card fade-in">\n                    <div class="team-photo">${initials}</div>\n                    <h3>${name}</h3>\n                    <p class="team-role">${role}</p>\n                    <p class="team-bio">${bio}</p>\n                </div>`;
+            }).join('');
+
+            html = html.replace(
+                /(<div[^>]*class=\"[^\"<>]*team-grid[^\"<>]*\"[^>]*>)([\s\S]*?)(<\/div>)/,
+                (_, startTag, _inner, endTag) => `${startTag}${membersHtml}\n${endTag}`
+            );
+        }
+
         return html;
     }
 
