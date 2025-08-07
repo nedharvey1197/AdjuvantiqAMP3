@@ -120,20 +120,14 @@
       document.getElementById('loading').style.display = 'none';
       document.getElementById('cms-container').style.display = 'block';
       
-      // Initialize Netlify CMS properly
-      if (typeof netlifyIdentity !== 'undefined') {
-        // If using Netlify Identity, initialize CMS
-        netlifyIdentity.open();
-      } else {
-        // Initialize Netlify CMS directly
-        const cmsScript = document.createElement('script');
-        cmsScript.src = 'https://unpkg.com/netlify-cms@^2.0.0/dist/netlify-cms.js';
-        cmsScript.onload = function() {
-          // CMS should initialize automatically
-          console.log('Netlify CMS loaded');
-        };
-        document.getElementById('cms-container').appendChild(cmsScript);
-      }
+      // Initialize Netlify CMS directly (Auth0 handles authentication)
+      const cmsScript = document.createElement('script');
+      cmsScript.src = 'https://unpkg.com/netlify-cms@^2.0.0/dist/netlify-cms.js';
+      cmsScript.onload = function() {
+        // CMS should initialize automatically
+        console.log('Netlify CMS loaded');
+      };
+      document.getElementById('cms-container').appendChild(cmsScript);
     }
     
     // Initialize when page loads
