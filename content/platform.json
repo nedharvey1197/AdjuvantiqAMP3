@@ -1,1 +1,30 @@
-{} 
+{
+  "title": "24/7 Expert Agents Providing Limitless Impact",
+  "subtitle": "Multi-agent collaboration with built-in governance and perspective-aware reasoning",
+  "agents": [
+    {
+      "name": "MoA Tagger",
+      "description": "Mechanism of Action analysis and classification for drug compounds with intelligent tagging."
+    },
+    {
+      "name": "Compliance Sentinel", 
+      "description": "Regulatory alignment with GCP (Good Clinical Practice) validation and real-time compliance monitoring."
+    },
+    {
+      "name": "Biostat Sidekick",
+      "description": "Statistical design with REML (Restricted Maximum Likelihood) and Bayesian optimization plugins."
+    },
+    {
+      "name": "Design Critic",
+      "description": "Multi-perspective protocol evaluation across all stakeholder viewpoints with bias detection."
+    },
+    {
+      "name": "Writer Assistant",
+      "description": "Context-rich documentation generation for protocols and regulatory submissions."
+    },
+    {
+      "name": "TrialSight Engine",
+      "description": "Real-time analytics and contextual insights for optimized trial design and execution."
+    }
+  ]
+} 

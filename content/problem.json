@@ -3,24 +3,29 @@
   "subtitle": "Clinical trials are plagued by inefficiencies that cost billions and delay life-saving treatments",
   "cards": [
     {
-      "number": "1",
-      "title": "Manual Protocol Design",
-      "description": "Months of back-and-forth between teams, leading to delays and inconsistencies"
+      "number": "01",
+      "title": "Slow",
+      "description": "Manual iteration and resource-intensive workload. Critical data buried in massive information volumes."
     },
     {
-      "number": "2", 
-      "title": "Inefficient Site Selection",
-      "description": "Poor site performance and recruitment challenges costing millions in delays"
+      "number": "02", 
+      "title": "Costly",
+      "description": "Average cost to get a drug to market: $2.6B. Delays cost millions (Avg $40K/day in Phase 3)."
     },
     {
-      "number": "3",
-      "title": "Reactive Trial Management",
-      "description": "Late-stage modifications and protocol amendments increasing costs and timelines"
+      "number": "03",
+      "title": "Opaque",
+      "description": "Black-box decision making without audit trails. Volume of information means research isn't exhaustive."
     },
     {
-      "number": "4",
-      "title": "Regulatory Uncertainty",
-      "description": "Unclear pathways and submission strategies leading to approval delays"
+      "number": "04",
+      "title": "Risky",
+      "description": "Bias leading to regulatory and commercial failures. Design complexity causes failures and delays."
+    },
+    {
+      "number": "05",
+      "title": "Siloed",
+      "description": "Complex workflows that don't engage ALL stakeholders lead to designs that can't be executed."
     }
   ]
 } 

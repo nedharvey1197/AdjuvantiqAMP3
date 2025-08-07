@@ -1,1 +1,32 @@
-{} 
+{
+  "title": "Join the Founding Cohort of Agentic Biotech Leaders",
+  "subtitle": "Be among the first sponsor companies to transform protocol development from months to hours",
+  "benefits": [
+    {
+      "icon": "🚀",
+      "title": "Launch",
+      "description": "Design Archetype Discovery pilot with your next protocol"
+    },
+    {
+      "icon": "🔧", 
+      "title": "Onboard",
+      "description": "Gain access to Copilot, MoA-Tagger, and Biostat Sidekick modules"
+    },
+    {
+      "icon": "✅",
+      "title": "Validate", 
+      "description": "Participate in OGSP credentialing and provide feedback on workflows"
+    },
+    {
+      "icon": "📝",
+      "title": "Co-Author",
+      "description": "Collaborate on validation paper aligned to Forrester AI guidance"
+    },
+    {
+      "icon": "🎯",
+      "title": "Shape Future",
+      "description": "Influence AdjuvantIQ roadmap and feature priorities as founding partner"
+    }
+  ],
+  "form_action": "https://formspree.io/f/xjkoorgk"
+} 

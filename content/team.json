@@ -3,22 +3,16 @@
   "subtitle": "A proven leadership combination of strategic execution and technical innovation",
   "members": [
     {
-      "name": "Dr. Sarah Chen",
+      "name": "Doug Henston",
       "role": "CEO & Co-Founder",
-      "initials": "SC",
-      "bio": "Former VP Clinical Development at Genentech with 15+ years in oncology drug development. Led multiple Phase III trials to successful FDA approval."
+      "initials": "DH",
+      "bio": "Serial company builder with 25+ years scaling frontier innovations from lab to market. Yale biophysics, Harvard MBA, Naval Aviator, and Goldman Sachs veteran who raised $400M+ for regulated ventures. Disciplined risk management and institutional funding expertise."
     },
     {
-      "name": "Michael Rodriguez",
-      "role": "CTO & Co-Founder", 
-      "initials": "MR",
-      "bio": "Former Director of Clinical Operations with expertise in global trial management and site optimization. Built clinical systems at top 10 pharma."
-    },
-    {
-      "name": "Dr. Jennifer Walsh",
-      "role": "Chief Medical Officer",
-      "initials": "JW", 
-      "bio": "Former FDA reviewer with deep regulatory expertise. Led clinical strategy for multiple successful drug approvals across therapeutic areas."
+      "name": "Ned Harvey",
+      "role": "Head of Product & Co-Founder", 
+      "initials": "NH",
+      "bio": "Engineering innovator and Harvard MBA with 20+ years pioneering data-driven solutions. Former Naval Submariner, Digital Gaia co-founder, and RMI Climate Intelligence architect. Specializes in translating complex systems into market-ready products."
     }
   ]
 } 
