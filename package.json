@@ -10,13 +10,15 @@
     "generate-phase": "node tools/cms-integration/demo-generator.js generate-phase",
     "generate-hub": "node tools/cms-integration/demo-generator.js generate-hub",
     "generate-site": "node tools/cms-integration/site-generator.js generate",
-    "build": "npm run generate-site && npm run generate-demos",
-    "auth0-setup": "node tools/auth0-setup.js"
+    "build": "npm run inject-env && npm run generate-site && npm run generate-demos",
+    "auth0-setup": "node tools/auth0-setup.js",
+    "inject-env": "node tools/env-injector.js"
   },
   "dependencies": {
     "handlebars": "^4.7.8",
     "jsonwebtoken": "^9.0.0",
-    "jwks-rsa": "^3.0.0"
+    "jwks-rsa": "^3.0.0",
+    "dotenv": "^16.0.0"
   },
   "devDependencies": {
     "netlify-cli": "^17.0.0"

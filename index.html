@@ -354,12 +354,12 @@
             font-size: clamp(2rem, 5vw, 3.5rem);
             font-weight: 700;
             margin-bottom: 1.5rem;
-            color: #ff6b6b;
+            color: var(--teal);
         }
 
         .section-subtitle {
             font-size: clamp(1.1rem, 3vw, 1.5rem);
-            color: #ffb3b3;
+            color: rgba(255, 255, 255, 0.8);
             max-width: 800px;
             margin: 0 auto;
         }
@@ -372,10 +372,10 @@
         }
 
         .problem-card {
-            background: rgba(255, 107, 107, 0.1);
+            background: rgba(45, 125, 125, 0.1);
             padding: 2rem;
             border-radius: 15px;
-            border-left: 5px solid #ff6b6b;
+            border-left: 5px solid var(--teal);
             backdrop-filter: blur(10px);
             transition: transform 0.3s ease;
         }
@@ -386,7 +386,7 @@
 
         .problem-card h3 {
             font-size: 1.5rem;
-            color: #ff6b6b;
+            color: var(--teal);
             margin-bottom: 1rem;
             display: flex;
             align-items: center;
@@ -394,7 +394,7 @@
         }
 
         .problem-number {
-            background: #ff6b6b;
+            background: var(--teal);
             color: white;
             width: 30px;
             height: 30px;
@@ -414,7 +414,7 @@
         }
 
         .solution-title {
-            color: #00d4ff;
+            color: var(--teal);
         }
 
         .solution-grid {
@@ -425,28 +425,28 @@
         }
 
         .solution-card {
-            background: rgba(0, 212, 255, 0.1);
+            background: rgba(45, 125, 125, 0.1);
             padding: 2.5rem;
             border-radius: 20px;
-            border: 1px solid rgba(0, 212, 255, 0.2);
+            border: 1px solid rgba(45, 125, 125, 0.2);
             backdrop-filter: blur(10px);
             transition: all 0.3s ease;
         }
 
         .solution-card:hover {
             transform: translateY(-5px);
-            border-color: #00d4ff;
-            box-shadow: 0 20px 40px rgba(0, 212, 255, 0.1);
+            border-color: var(--teal);
+            box-shadow: 0 20px 40px rgba(45, 125, 125, 0.1);
         }
 
         .solution-card h3 {
             font-size: 1.5rem;
-            color: #00d4ff;
+            color: var(--teal);
             margin-bottom: 1rem;
         }
 
         .solution-card p {
-            color: #b0c4de;
+            color: rgba(255, 255, 255, 0.8);
             line-height: 1.7;
         }
 
@@ -458,7 +458,7 @@
         }
 
         .platform-title {
-            color: #2ecc71;
+            color: var(--teal);
         }
 
         .agent-grid {
@@ -469,26 +469,26 @@
         }
 
         .agent-card {
-            background: rgba(46, 204, 113, 0.1);
+            background: rgba(45, 125, 125, 0.1);
             padding: 2rem;
             border-radius: 15px;
-            border-left: 4px solid #2ecc71;
+            border-left: 4px solid var(--teal);
             transition: all 0.3s ease;
         }
 
         .agent-card:hover {
             transform: translateY(-5px);
-            background: rgba(46, 204, 113, 0.15);
+            background: rgba(45, 125, 125, 0.15);
         }
 
         .agent-card h3 {
-            color: #2ecc71;
+            color: var(--teal);
             font-size: 1.3rem;
             margin-bottom: 1rem;
         }
 
         .agent-card p {
-            color: #b0c4de;
+            color: rgba(255, 255, 255, 0.8);
             line-height: 1.6;
         }
 
@@ -514,16 +514,16 @@
         }
 
         .winner-zone {
-            background: linear-gradient(135deg, #27ae60 0%, #2ecc71 100%);
+            background: linear-gradient(135deg, var(--teal) 0%, var(--navy) 100%);
             border-radius: 15px 15px 0 0;
-            border: 3px solid #27ae60;
-            box-shadow: 0 0 30px rgba(39, 174, 96, 0.4);
+            border: 3px solid var(--teal);
+            box-shadow: 0 0 30px rgba(45, 125, 125, 0.4);
         }
 
         .commodity-zone {
-            background: linear-gradient(135deg, #7f8c8d 0%, #95a5a6 100%);
+            background: linear-gradient(135deg, var(--warm-gray) 0%, #95a5a6 100%);
             border-radius: 0 0 15px 15px;
-            border: 2px solid #95a5a6;
+            border: 2px solid var(--warm-gray);
             opacity: 0.8;
         }
 
@@ -572,7 +572,7 @@
 
         .divider {
             height: 60px;
-            background: linear-gradient(90deg, transparent 0%, #e74c3c 50%, transparent 100%);
+            background: linear-gradient(90deg, transparent 0%, var(--teal) 50%, transparent 100%);
             display: flex;
             align-items: center;
             justify-content: center;
@@ -580,7 +580,7 @@
         }
 
         .divider span {
-            background: #e74c3c;
+            background: var(--teal);
             color: white;
             padding: 0.5rem 1.5rem;
             border-radius: 20px;
@@ -588,7 +588,7 @@
             font-weight: bold;
             text-transform: uppercase;
             letter-spacing: 1px;
-            box-shadow: 0 4px 15px rgba(231, 76, 60, 0.4);
+            box-shadow: 0 4px 15px rgba(45, 125, 125, 0.4);
         }
 
         /* Team Section */
@@ -621,7 +621,7 @@
             width: 120px;
             height: 120px;
             border-radius: 50%;
-            background: linear-gradient(135deg, #00d4ff, #0099cc);
+            background: linear-gradient(135deg, var(--teal), var(--navy));
             margin: 0 auto 1.5rem;
             display: flex;
             align-items: center;
@@ -651,14 +651,14 @@
 
         /* CTA Section */
         .cta-section {
-            background: linear-gradient(135deg, #2c1810 0%, #3d2817 100%);
+            background: linear-gradient(135deg, var(--navy) 0%, #1e293b 100%);
             padding: 6rem 0;
             color: white;
             text-align: center;
         }
 
         .cta-title {
-            color: #f39c12;
+            color: var(--teal);
         }
 
         .pilot-benefits {
@@ -669,14 +669,14 @@
         }
 
         .benefit-card {
-            background: rgba(243, 156, 18, 0.1);
+            background: rgba(45, 125, 125, 0.1);
             padding: 1.5rem;
             border-radius: 10px;
-            border: 1px solid rgba(243, 156, 18, 0.3);
+            border: 1px solid rgba(45, 125, 125, 0.3);
         }
 
         .benefit-card h4 {
-            color: #f39c12;
+            color: var(--teal);
             margin-bottom: 0.5rem;
         }
 

@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AdjuvantIQ Demo | Interactive Clinical Trial Intelligence</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:ital,wght@0,300;0,400;0,600;0,700;1,400&family=Merriweather:ital,wght@0,300;0,400;0,700;1,300;1,400&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
@@ -12,15 +12,29 @@
             box-sizing: border-box;
         }
         
+        /* Brand Colors */
+        :root {
+            --navy: #2c5282;
+            --teal: #2d7d7d;
+            --white: #ffffff;
+            --warm-gray: #718096;
+            --light-gray: rgba(113, 128, 150, 0.1);
+        }
+        
         body {
-            font-family: 'Inter', sans-serif;
+            font-family: 'Merriweather', serif;
             line-height: 1.6;
             color: #333;
             background: #f8f9fc;
         }
         
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Source Sans Pro', sans-serif;
+            color: var(--navy);
+        }
+        
         .hero {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(135deg, var(--navy) 0%, var(--teal) 100%);
             color: white;
             padding: 60px 20px;
             text-align: center;
@@ -29,6 +43,7 @@
         .hero h1 {
             font-size: 2.5em;
             margin-bottom: 20px;
+            color: white;
         }
         
         .hero .lead {
@@ -64,7 +79,7 @@
         }
         
         .demo-card-header {
-            background: linear-gradient(135deg, #e3f2fd 0%, #f3e5f5 100%);
+            background: linear-gradient(135deg, rgba(44, 82, 130, 0.1) 0%, rgba(45, 125, 125, 0.1) 100%);
             padding: 25px;
             border-bottom: 1px solid #e0e0e0;
         }
@@ -72,12 +87,12 @@
         .demo-card-title {
             font-size: 1.4em;
             font-weight: bold;
-            color: #1976d2;
+            color: var(--navy);
             margin-bottom: 10px;
         }
         
         .demo-card-subtitle {
-            color: #666;
+            color: var(--warm-gray);
             font-size: 0.95em;
         }
         
@@ -101,50 +116,51 @@
         
         .demo-features li:before {
             content: "✓";
-            color: #4caf50;
+            color: var(--teal);
             font-weight: bold;
             margin-right: 10px;
         }
         
         .demo-button {
             display: inline-block;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(135deg, var(--teal), var(--navy));
             color: white;
             padding: 12px 25px;
             text-decoration: none;
             border-radius: 6px;
             font-weight: 500;
-            transition: background 0.3s ease;
+            transition: all 0.3s ease;
         }
         
         .demo-button:hover {
-            background: linear-gradient(135deg, #5a6fd8 0%, #6a4190 100%);
+            background: linear-gradient(135deg, var(--navy), var(--teal));
+            transform: translateY(-2px);
         }
         
         .primary-demo {
-            border: 3px solid #667eea !important;
-            background: linear-gradient(135deg, #f8f9fc 0%, #e3f2fd 100%) !important;
+            border: 3px solid var(--teal) !important;
+            background: linear-gradient(135deg, rgba(44, 82, 130, 0.05) 0%, rgba(45, 125, 125, 0.05) 100%) !important;
         }
         
         .back-link {
             display: inline-block;
             margin: 20px 0;
-            color: #667eea;
+            color: var(--navy);
             text-decoration: none;
             font-weight: 600;
             padding: 12px 20px;
-            background: linear-gradient(135deg, #f8f9fc 0%, #e3f2fd 100%);
+            background: rgba(255, 255, 255, 0.9);
             border-radius: 8px;
-            border: 2px solid #667eea;
+            border: 2px solid var(--navy);
             transition: all 0.3s ease;
             font-size: 1.1em;
         }
         
         .back-link:hover {
-            color: #5a67d8;
-            background: linear-gradient(135deg, #e3f2fd 0%, #f3e5f5 100%);
+            color: var(--teal);
+            background: white;
             transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+            box-shadow: 0 4px 12px rgba(44, 82, 130, 0.3);
             text-decoration: none;
         }
         
@@ -153,7 +169,7 @@
             padding: 30px;
             margin: 30px 0;
             border-radius: 8px;
-            border-left: 4px solid #9c27b0;
+            border-left: 4px solid var(--teal);
         }
         
         .credibility-grid {
