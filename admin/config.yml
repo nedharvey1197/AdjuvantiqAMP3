@@ -1,8 +1,9 @@
 backend:
   name: git-gateway
-  branch: main # Change to 'master' if that's your default branch
+  branch: main
 
-# No authentication for now - will add proper auth later
+# Auth0 integration for Netlify CMS
+# This configuration works with Auth0 social logins (Google, GitHub)
 
 media_folder: "images"
 public_folder: "/images"
