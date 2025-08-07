@@ -2,6 +2,7 @@ backend:
   name: github
   repo: nedharvey1197/AdjuvantiqAMP3
   branch: main
+  site_domain: adjuvantiq.netlify.app
 
 # Auth0 integration for Netlify CMS
 # This configuration works with Auth0 social logins (Google, GitHub)
