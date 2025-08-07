@@ -1,0 +1,263 @@
+{
+  "example": {
+    "id": "statistical_analysis_oncology",
+    "title": "Statistical Analysis and Data Interpretation",
+    "subtitle": "Mid-course analysis of oncology biomarker trial with mixed efficacy signals",
+    "duration": "12-15 minutes",
+    "category": "Data Analysis & Biomarker Development",
+    
+    "hero": {
+      "title": "Clinical Trial Data Analysis Intelligence",
+      "lead": "See how AI-assisted reasoning transforms complex interim analysis decisions",
+      "timeInvestment": "12-15 minutes • Real oncology trial scenario • Statistical analysis focus"
+    },
+    
+    "credibility": {
+      "expertise": "Developed with biostatisticians from Genentech, Roche, and leading oncology biotechs",
+      "dataSource": "Based on analysis of 25+ Phase II oncology biomarker trials and FDA guidance"
+    },
+    
+    "persona": {
+      "name": "Dr. Marcus Rodriguez",
+      "title": "Chief Medical Officer",
+      "company": "Series B oncology biotech developing novel CDK4/6 inhibitor",
+      "background": "15 years oncology drug development, former Genentech",
+      "challenge": "Phase II trial showing mixed results, needs data interpretation for go/no-go decision"
+    },
+    
+    "scenario": {
+      "title": "Oncology Biomarker Trial Mid-Course Analysis",
+      "description": "Phase II dose-finding study showing mixed efficacy signals across dose levels and biomarker subgroups",
+      "context": {
+        "study": "Phase II CDK4/6 inhibitor in HR+/HER2- metastatic breast cancer",
+        "status": "85 patients enrolled (target 120), interim analysis at 60 patients completed",
+        "challenge": "23% ORR overall with significant differences between dose levels and biomarker subgroups"
+      }
+    },
+    
+    "steps": [
+      {
+        "stepNumber": 1,
+        "title": "Statistical Analysis Planning",
+        "userInput": {
+          "type": "user-input",
+          "speaker": "Dr. Rodriguez",
+          "content": "I need help interpreting our interim analysis results for our CDK4/6 inhibitor trial. We're seeing 23% ORR overall but big differences between dose levels and some interesting biomarker patterns. I want to understand if we should modify our enrollment strategy, adjust dose levels, or how to position this data for the FDA."
+        },
+        "systemAnalysis": {
+          "type": "system-analysis",
+          "title": "System Initial Analysis",
+          "bullets": [
+            "**Trial Type Recognition:** Phase II oncology biomarker study with interim analysis",
+            "**Statistical Context:** 60/120 patients analyzed, ORR primary endpoint",
+            "**Historical Benchmarks:** Previous CDK4/6 inhibitor trials (PALOMA-3, MONALEESA-3, MONARCH-2)",
+            "**Regulatory Context:** FDA oncology guidance for biomarker-driven development",
+            "**Key Analysis Areas:** Dose-response relationship, biomarker stratification, sample size adequacy"
+          ]
+        },
+        "reasoning": {
+          "title": "How did the system analyze the interim results?",
+          "steps": [
+            "**Study Design Mapping:** Maps trial to oncology biomarker study ontology, identifies comparable historical trials",
+            "**Statistical Framework Activation:** Engages statistical analysis agents for interim analysis interpretation, dose-response modeling",
+            "**Regulatory Pathway Assessment:** Analyzes results against FDA guidance for oncology biomarker studies",
+            "**Historical Performance Comparison:** Benchmarks 23% ORR against historical CDK4/6 inhibitor studies",
+            "**Decision Tree Preparation:** Prepares multiple pathway options based on statistical interpretations"
+          ]
+        },
+        "feedback": {
+          "question": "How do you typically handle interim analysis decisions with mixed efficacy signals?",
+          "options": [
+            "Collaborative team analysis",
+            "External statistical consultants", 
+            "Principal investigator judgment",
+            "This is a challenge for us"
+          ]
+        }
+      },
+      
+      {
+        "stepNumber": 2,
+        "title": "Multi-Agent Statistical Analysis",
+        "systemAnalysis": {
+          "type": "system-analysis",
+          "title": "Coordinated Agent Analysis Results",
+          "agents": [
+            {
+              "icon": "📊",
+              "name": "Statistical Analysis Agent",
+              "result": "23% ORR at interim (n=60) suggests potential efficacy signal; confidence interval 13-35% indicates need for larger sample"
+            },
+            {
+              "icon": "🧬",
+              "name": "Biomarker Stratification Agent", 
+              "result": "Strong signal in PIK3CA wild-type patients (35% ORR, n=25) vs. PIK3CA mutant (12% ORR, n=35)"
+            },
+            {
+              "icon": "💊",
+              "name": "Dose-Response Agent",
+              "result": "Clear dose-response: 300mg (18% ORR), 450mg (28% ORR), 600mg (25% ORR with toxicity)"
+            },
+            {
+              "icon": "⚖️",
+              "name": "Regulatory Strategy Agent",
+              "result": "Results support biomarker-driven registration; PIK3CA stratification enables accelerated approval pathway"
+            },
+            {
+              "icon": "📈",
+              "name": "Power Analysis Agent",
+              "result": "70% power for overall population, 85% power for PIK3CA wild-type subgroup with full enrollment"
+            }
+          ]
+        },
+        "reasoning": {
+          "title": "How do multiple AI agents coordinate statistical analysis?",
+          "steps": [
+            "**Multi-Dimensional Integration:** Coordinates statistical, biomarker, dose-response, and regulatory agents",
+            "**Historical Benchmarking:** Compares results against 15 similar oncology biomarker trials",
+            "**Biomarker Effect Calculation:** Uses PIK3CA data to calculate biomarker-specific effect sizes",
+            "**Dose Optimization Modeling:** Applies modeling to identify optimal dose balancing efficacy/safety",
+            "**Regulatory Pathway Mapping:** Maps results to FDA biomarker guidance for registration strategy"
+          ]
+        },
+        "dataVisualization": {
+          "title": "Statistical Analysis Summary",
+          "chartType": "biomarker_stratification",
+          "data": "Overall ORR: 23% | PIK3CA Wild-type: 35% | PIK3CA Mutant: 12% | Optimal Dose: 450mg (28% ORR)"
+        },
+        "feedback": {
+          "question": "Have you seen similar biomarker effects that changed your development strategy?",
+          "options": [
+            "Yes, biomarkers often reshape our trials",
+            "Sometimes, but we're cautious about subgroups",
+            "Rarely modify based on biomarker signals",
+            "We avoid biomarker-driven development"
+          ]
+        }
+      },
+      
+      {
+        "stepNumber": 3,
+        "title": "Strategic Recommendations for Trial Modification",
+        "systemRecommendations": {
+          "type": "system-recommendations",
+          "title": "Optimized Development Strategy Options",
+          "options": [
+            {
+              "icon": "🎯",
+              "name": "Biomarker-Driven Pivot",
+              "strategy": "Modify enrollment to focus on PIK3CA wild-type patients only",
+              "sampleSize": "75 additional wild-type patients needed",
+              "timeline": "+6 months for biomarker screening and targeted recruitment",
+              "advantage": "35% ORR in wild-type provides stronger regulatory position"
+            },
+            {
+              "icon": "🚀", 
+              "name": "Dose Optimization Path",
+              "strategy": "Continue current enrollment, focus on 450mg dose level",
+              "sampleSize": "Complete planned enrollment (60 additional patients)",
+              "timeline": "On track for completion in 8 months",
+              "risk": "Overall population may not meet regulatory threshold"
+            },
+            {
+              "icon": "⚡",
+              "name": "Accelerated Development",
+              "strategy": "Use interim data for FDA Breakthrough Therapy Designation in PIK3CA wild-type",
+              "rationale": "35% ORR exceeds FDA expectations for BTD in this population",
+              "advantage": "Accelerated approval pathway, reduced Phase III requirements"
+            }
+          ]
+        },
+        "reasoning": {
+          "title": "How does the system generate strategic recommendations?",
+          "steps": [
+            "**Multi-Scenario Optimization:** Evaluates 50+ protocol modification scenarios considering biomarker stratification and regulatory pathways",
+            "**Risk-Benefit Quantification:** Models trade-offs between broader population vs. biomarker-selected approaches",
+            "**Regulatory Pathway Simulation:** Uses FDA guidance to simulate approval pathways and success probability",
+            "**Competitive Integration:** Factors in competitive CDK4/6 inhibitor timelines and market positioning",
+            "**Economic Impact Modeling:** Calculates NPV impact of different strategies"
+          ]
+        },
+        "feedback": {
+          "question": "Which strategic approach resonates most with your development philosophy?",
+          "options": [
+            "Biomarker-driven pivot for stronger efficacy",
+            "Dose optimization with broader population",
+            "Accelerated regulatory strategy",
+            "Need more risk-benefit analysis"
+          ]
+        }
+      },
+      
+      {
+        "stepNumber": 4,
+        "title": "Expert Decision & Adaptive Monitoring",
+        "expertDecision": {
+          "type": "expert-decision",
+          "speaker": "Dr. Rodriguez",
+          "decision": "This analysis is incredibly helpful. I'm leaning toward the biomarker-driven pivot. The 35% ORR in PIK3CA wild-type patients is compelling, and the regulatory pathway advantages make sense. Let's model what the modified trial would look like and prepare for FDA discussion about the biomarker strategy.",
+          "rationale": "Biomarker signal strength + regulatory advantage justifies timeline extension for stronger market position"
+        },
+        "systemUpdate": {
+          "type": "system-analysis",
+          "title": "Updated Trial Projections Based on Decision",
+          "projections": [
+            "**Modified Population:** PIK3CA wild-type HR+/HER2- metastatic breast cancer",
+            "**Updated Sample Size:** 95 total patients (60 current + 35 additional)",  
+            "**Revised Timeline:** 14 months total (6 additional months for targeted recruitment)",
+            "**Statistical Power:** 90% power to detect 30% ORR vs. 15% historical control",
+            "**Budget Impact:** +$3.2M for extended recruitment and biomarker screening",
+            "**Commercial Advantage:** Clear differentiation, potentially faster approval"
+          ]
+        },
+        "reasoning": {
+          "title": "How does the system learn and adapt from this decision?",
+          "steps": [
+            "**Decision Impact Propagation:** Updates all trial projections based on biomarker-driven strategy",
+            "**Recruitment Feasibility Modeling:** Assesses PIK3CA wild-type patient availability across site network",
+            "**Regulatory Documentation Prep:** Generates FDA pre-submission meeting outline and BTD application components",
+            "**Risk Mitigation Planning:** Identifies recruitment and biomarker testing logistics challenges",
+            "**Organizational Learning:** Updates company biomarker development preferences for future trials"
+          ]
+        },
+        "adaptiveMonitoring": {
+          "title": "Real-Time Data Monitoring (Month 8 Update)",
+          "alerts": [
+            "**Recruitment Status:** 78/95 patients enrolled (ahead of timeline)",
+            "**Efficacy Signal:** 38% ORR in PIK3CA wild-type population (exceeding projections)",
+            "**Safety Profile:** Manageable toxicity at 450mg dose",
+            "**Competitive Intel:** Competitor Phase III failure validates biomarker approach"
+          ]
+        },
+        "feedback": {
+          "question": "Which aspect of this data interpretation process would be most valuable for your organization?",
+          "options": [
+            "Statistical analysis and interpretation support",
+            "Biomarker stratification guidance", 
+            "Regulatory pathway optimization",
+            "Competitive intelligence integration",
+            "All of the above"
+          ]
+        }
+      }
+    ],
+    
+    "engagementTools": {
+      "title": "Found this valuable? Take the next step:",
+      "buttons": [
+        {
+          "text": "📄 Download Statistical Analysis Guide",
+          "action": "download_statistical_guide"
+        },
+        {
+          "text": "📤 Share Biomarker Development Insights", 
+          "action": "share_biomarker_insights"
+        },
+        {
+          "text": "🚀 Discuss Data Analysis Pilot",
+          "action": "request_data_pilot"
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,917 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Biostatistics & Analytics for Oncology Biomarker Trial - AdjuvantIQ Demo</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #f8f9fc;
+        }
+        
+        .hero {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 60px 20px;
+            text-align: center;
+        }
+        
+        .hero h1 {
+            font-size: 2.5em;
+            margin-bottom: 20px;
+        }
+        
+        .hero .lead {
+            font-size: 1.3em;
+            margin-bottom: 30px;
+            opacity: 0.9;
+        }
+        
+        .time-investment {
+            background: rgba(255,255,255,0.1);
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 20px;
+            font-size: 1.1em;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        .progress-section {
+            background: white;
+            padding: 20px;
+            border-bottom: 1px solid #ddd;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        .progress-bar {
+            background: #e0e0e0;
+            height: 6px;
+            border-radius: 3px;
+            overflow: hidden;
+            margin-bottom: 10px;
+        }
+        
+        .progress {
+            background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
+            height: 100%;
+            transition: width 0.3s ease;
+            width: 25%;
+        }
+        
+        .progress-text {
+            font-weight: 600;
+            color: #666;
+        }
+        
+        .user-input {
+            background: #e8f5e8;
+            border-left: 5px solid #4caf50;
+            padding: 20px;
+            margin: 15px 0;
+            border-radius: 6px;
+            position: relative;
+        }
+        
+        .user-input::before {
+            content: "👤 USER INPUT";
+            position: absolute;
+            top: -10px;
+            left: 15px;
+            background: #4caf50;
+            color: white;
+            padding: 4px 8px;
+            font-size: 0.8em;
+            font-weight: bold;
+            border-radius: 3px;
+        }
+        
+        .system-analysis {
+            background: #e3f2fd;
+            border-left: 5px solid #2196f3;
+            padding: 20px;
+            margin: 15px 0;
+            border-radius: 6px;
+            position: relative;
+        }
+        
+        .system-analysis::before {
+            content: "🤖 SYSTEM ANALYSIS";
+            position: absolute;
+            top: -10px;
+            left: 15px;
+            background: #2196f3;
+            color: white;
+            padding: 4px 8px;
+            font-size: 0.8em;
+            font-weight: bold;
+            border-radius: 3px;
+        }
+        
+        .system-recommendations {
+            background: #f3e5f5;
+            border-left: 5px solid #9c27b0;
+            padding: 20px;
+            margin: 15px 0;
+            border-radius: 6px;
+            position: relative;
+        }
+        
+        .system-recommendations::before {
+            content: "💡 RECOMMENDATIONS";
+            position: absolute;
+            top: -10px;
+            left: 15px;
+            background: #9c27b0;
+            color: white;
+            padding: 4px 8px;
+            font-size: 0.8em;
+            font-weight: bold;
+            border-radius: 3px;
+        }
+        
+        .expert-decision {
+            background: #e8f5e8;
+            border-left: 5px solid #4caf50;
+            padding: 20px;
+            margin: 15px 0;
+            border-radius: 6px;
+            position: relative;
+        }
+        
+        .expert-decision::before {
+            content: "🎯 KEY DECISION";
+            position: absolute;
+            top: -10px;
+            left: 15px;
+            background: #4caf50;
+            color: white;
+            padding: 4px 8px;
+            font-size: 0.8em;
+            font-weight: bold;
+            border-radius: 3px;
+        }
+        
+        .reasoning-box {
+            background: #fff3e0;
+            border: 2px solid #ff9800;
+            padding: 20px;
+            margin: 15px 0;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        
+        .reasoning-box::before {
+            content: "🔧 AI REASONING";
+            position: absolute;
+            top: -10px;
+            left: 15px;
+            background: #ff9800;
+            color: white;
+            padding: 4px 8px;
+            font-size: 0.8em;
+            font-weight: bold;
+            border-radius: 3px;
+        }
+        
+        .reasoning-box:hover {
+            box-shadow: 0 4px 12px rgba(255,152,0,0.2);
+        }
+        
+        .reasoning-box.expanded {
+            background: #fff8e1;
+        }
+        
+        .reasoning-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: bold;
+            color: #e65100;
+        }
+        
+        .expand-icon {
+            font-size: 1.2em;
+            margin-left: auto;
+            transition: transform 0.3s ease;
+        }
+        
+        .reasoning-box.expanded .expand-icon {
+            transform: rotate(45deg);
+        }
+        
+        .reasoning-details {
+            margin-top: 15px;
+            display: none;
+        }
+        
+        .reasoning-box.expanded .reasoning-details {
+            display: block;
+        }
+        
+        .workflow-step {
+            opacity: 0.3;
+            transform: translateY(20px);
+            transition: all 0.5s ease;
+        }
+        
+        .workflow-step.in-view {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .content-section {
+            background: white;
+            margin: 20px 0;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        
+        .section-header {
+            background: #f8f9fc;
+            padding: 30px;
+            border-bottom: 1px solid #e0e6ed;
+        }
+        
+        .persona-card {
+            background: linear-gradient(135deg, #e3f2fd 0%, #f3e5f5 100%);
+            border-left: 5px solid #2196f3;
+            padding: 25px;
+            margin: 20px 0;
+            border-radius: 8px;
+        }
+        
+        .persona-title {
+            font-size: 1.4em;
+            font-weight: bold;
+            color: #1976d2;
+            margin-bottom: 10px;
+        }
+        
+        .workflow-step {
+            padding: 30px;
+            border-bottom: 1px solid #f0f0f0;
+        }
+        
+        .workflow-step:last-child {
+            border-bottom: none;
+        }
+        
+        .step-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        
+        .step-number {
+            background: #2196f3;
+            color: white;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 20px;
+            font-weight: bold;
+            font-size: 1.2em;
+        }
+        
+        .step-title {
+            font-size: 1.3em;
+            font-weight: 600;
+            color: #333;
+        }
+        
+        .credibility-indicators {
+            background: #f8f9fc;
+            padding: 20px;
+            margin: 30px 0;
+            border-radius: 8px;
+            border-left: 4px solid #9c27b0;
+        }
+        
+        .expertise-note, .data-note {
+            display: flex;
+            align-items: center;
+            margin: 10px 0;
+        }
+        
+        .expertise-note .icon, .data-note .icon {
+            font-size: 1.5em;
+            margin-right: 15px;
+        }
+        
+        .micro-feedback {
+            background: #f0f8ff;
+            border: 1px solid #b3d9ff;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 6px;
+            text-align: center;
+        }
+        
+        .feedback-buttons button {
+            background: #2196f3;
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            margin: 5px;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+        
+        .feedback-buttons button:hover {
+            background: #1976d2;
+        }
+        
+        .data-visualization {
+            background: white;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 20px 0;
+            text-align: center;
+        }
+        
+        .chart-placeholder {
+            height: 200px;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #666;
+            font-style: italic;
+            margin: 15px 0;
+        }
+        
+        .engagement-tools {
+            background: #e8f5e8;
+            padding: 20px;
+            margin: 30px 0;
+            border-radius: 8px;
+            text-align: center;
+        }
+        
+        .engagement-tools button {
+            background: #4caf50;
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            margin: 5px;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+        
+        .engagement-tools button:hover {
+            background: #45a049;
+        }
+        
+        .toast {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: #4caf50;
+            color: white;
+            padding: 15px 20px;
+            border-radius: 6px;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            z-index: 1001;
+        }
+        
+        .toast.show {
+            opacity: 1;
+        }
+        
+        .back-link {
+            display: inline-block;
+            margin: 20px 0;
+            color: #667eea;
+            text-decoration: none;
+            font-weight: 600;
+            padding: 12px 20px;
+            background: linear-gradient(135deg, #f8f9fc 0%, #e3f2fd 100%);
+            border-radius: 8px;
+            border: 2px solid #667eea;
+            transition: all 0.3s ease;
+            font-size: 1.1em;
+        }
+        
+        .back-link:hover {
+            color: #5a67d8;
+            background: linear-gradient(135deg, #e3f2fd 0%, #f3e5f5 100%);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+            text-decoration: none;
+        }
+        
+        /* Helper icon and popup */
+        .helper-icon {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            width: 50px;
+            height: 50px;
+            background: #667eea;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5em;
+            cursor: pointer;
+            z-index: 1000;
+            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+            transition: all 0.3s ease;
+        }
+        
+        .helper-icon:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 16px rgba(102, 126, 234, 0.4);
+        }
+        
+        .helper-popup {
+            position: fixed;
+            top: 80px;
+            right: 20px;
+            width: 350px;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.2);
+            padding: 25px;
+            z-index: 1001;
+            display: none;
+            border: 2px solid #667eea;
+        }
+        
+        .helper-popup h3 {
+            margin-bottom: 15px;
+            color: #333;
+            font-size: 1.2em;
+        }
+        
+        .helper-item {
+            margin: 12px 0;
+        }
+        
+        .helper-example {
+            padding: 10px;
+            border-radius: 4px;
+            font-size: 0.9em;
+            margin-top: 5px;
+        }
+        
+        .helper-example.user-input {
+            background: #e8f5e8;
+            border-left: 3px solid #4caf50;
+        }
+        
+        .helper-example.system-analysis {
+            background: #e3f2fd;
+            border-left: 3px solid #2196f3;
+        }
+        
+        .helper-example.system-recommendations {
+            background: #f3e5f5;
+            border-left: 3px solid #9c27b0;
+        }
+        
+        .helper-example.expert-decision {
+            background: #e8f5e8;
+            border-left: 3px solid #4caf50;
+        }
+        
+        .helper-example.reasoning-box {
+            background: #fff3e0;
+            border-left: 3px solid #ff9800;
+        }
+        
+        .close-helper {
+            position: absolute;
+            top: 10px;
+            right: 15px;
+            background: none;
+            border: none;
+            font-size: 1.5em;
+            cursor: pointer;
+            color: #666;
+        }
+        
+        .close-helper:hover {
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+    <div class="hero">
+        <div class="container">
+            <a href="index.html" class="back-link">← Back to Demo Hub</a>
+            <h1>Biostatistics & Analytics for Oncology Biomarker Trial</h1>
+            <p class="lead">See how AI-assisted reasoning transforms complex interim analysis decisions</p>
+            <div class="time-investment">
+                ⏱️ 12-15 minutes • Real oncology trial scenario • Statistical analysis focus
+            </div>
+        </div>
+    </div>
+    
+    <!-- Helper icon -->
+    <div class="helper-icon" onclick="toggleHelper()">❓</div>
+    
+    <!-- Helper popup -->
+    <div class="helper-popup" id="helperPopup">
+        <button class="close-helper" onclick="toggleHelper()">×</button>
+        <h3>Content Guide</h3>
+        <div class="helper-item">
+            <div class="helper-example user-input">👤 <strong>USER INPUT</strong>: What clinical experts tell the system</div>
+        </div>
+        <div class="helper-item">
+            <div class="helper-example system-analysis">🤖 <strong>SYSTEM ANALYSIS</strong>: AI agents processing and analyzing</div>
+        </div>
+        <div class="helper-item">
+            <div class="helper-example system-recommendations">💡 <strong>RECOMMENDATIONS</strong>: System-generated optimization suggestions</div>
+        </div>
+        <div class="helper-item">
+            <div class="helper-example expert-decision">🎯 <strong>KEY DECISION</strong>: Clinical expert's final choices (Green)</div>
+        </div>
+        <div class="helper-item">
+            <div class="helper-example reasoning-box">🔧 <strong>AI REASONING</strong>: Click to see detailed explanations</div>
+        </div>
+    </div>
+
+    <div class="progress-section">
+        <div class="container">
+            <div class="progress-bar">
+                <div class="progress" id="progressBar"></div>
+            </div>
+            <div class="progress-text" id="progressText">Statistical Analysis Planning (1 of 4)</div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="credibility-indicators">
+            <div class="expertise-note">
+                <span class="icon">🎓</span>
+                <span>Developed with biostatisticians from Genentech, Roche, and leading oncology biotechs</span>
+            </div>
+            <div class="data-note">
+                <span class="icon">📊</span>
+                <span>Based on analysis of 25+ Phase II oncology biomarker trials and FDA guidance</span>
+            </div>
+        </div>
+
+        <div class="content-section">
+            <div class="section-header">
+                <h2>Oncology Biomarker Trial Mid-Course Analysis</h2>
+                <p>Phase II dose-finding study showing mixed efficacy signals across dose levels and biomarker subgroups</p>
+            </div>
+
+            <div class="persona-card">
+                <div class="persona-title">Dr. Marcus Rodriguez, Chief Medical Officer</div>
+                <p><strong>Company:</strong> Series B oncology biotech developing novel CDK4/6 inhibitor</p>
+                <p><strong>Background:</strong> 15 years oncology drug development, former Genentech</p>
+                <p><strong>Challenge:</strong> Phase II trial showing mixed results, needs data interpretation for go/no-go decision</p>
+            </div>
+
+            <div class="workflow-step">
+                <div class="step-header">
+                    <div class="step-number">1</div>
+                    <div class="step-title">Statistical Analysis Planning</div>
+                </div>
+                
+                <div class="user-input">
+                    <strong>Dr. Rodriguez's Input:</strong> "I need help interpreting our interim analysis results for our CDK4/6 inhibitor trial. We're seeing 23% ORR overall but big differences between dose levels and some interesting biomarker patterns. I want to understand if we should modify our enrollment strategy, adjust dose levels, or how to position this data for the FDA."
+                </div>
+
+                <div class="system-analysis">
+                    <strong>System Initial Analysis:</strong><br>
+                    • <strong>Trial Type Recognition:</strong> Phase II oncology biomarker study with interim analysis<br>
+                    • <strong>Statistical Context:</strong> 60/120 patients analyzed, ORR primary endpoint<br>
+                    • <strong>Historical Benchmarks:</strong> Previous CDK4/6 inhibitor trials (PALOMA-3, MONALEESA-3, MONARCH-2)<br>
+                    • <strong>Regulatory Context:</strong> FDA oncology guidance for biomarker-driven development<br>
+                    • <strong>Key Analysis Areas:</strong> Dose-response relationship, biomarker stratification, sample size adequacy
+                </div>
+
+                <div class="reasoning-box" onclick="toggleReasoning(this)">
+                    <div class="reasoning-header">
+                        How did the system analyze the interim results?
+                        <span class="expand-icon">+</span>
+                    </div>
+                    <div class="reasoning-details">
+                        <strong>1. Study Design Mapping:</strong> Maps trial to oncology biomarker study ontology, identifies comparable historical trials<br><br>
+                        <strong>2. Statistical Framework Activation:</strong> Engages statistical analysis agents for interim analysis interpretation, dose-response modeling<br><br>
+                        <strong>3. Regulatory Pathway Assessment:</strong> Analyzes results against FDA guidance for oncology biomarker studies<br><br>
+                        <strong>4. Historical Performance Comparison:</strong> Benchmarks 23% ORR against historical CDK4/6 inhibitor studies<br><br>
+                        <strong>5. Decision Tree Preparation:</strong> Prepares multiple pathway options based on statistical interpretations
+                    </div>
+                </div>
+
+                <div class="micro-feedback">
+                    <p><strong>Quick reaction:</strong> How do you typically handle interim analysis decisions with mixed efficacy signals?</p>
+                    <div class="feedback-buttons">
+                        <button onclick="giveFeedback(this, 'collaborative')">Collaborative team analysis</button>
+                        <button onclick="giveFeedback(this, 'consultants')">External statistical consultants</button>
+                        <button onclick="giveFeedback(this, 'pi-judgment')">Principal investigator judgment</button>
+                        <button onclick="giveFeedback(this, 'challenge')">This is a challenge for us</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="workflow-step">
+                <div class="step-header">
+                    <div class="step-number">2</div>
+                    <div class="step-title">Multi-Agent Statistical Analysis</div>
+                </div>
+
+                <div class="system-analysis">
+                    <strong>Coordinated Agent Analysis Results:</strong><br><br>
+                    <strong>📊 Statistical Analysis Agent:</strong> 23% ORR at interim (n=60) suggests potential efficacy signal; confidence interval 13-35% indicates need for larger sample<br><br>
+                    <strong>🧬 Biomarker Stratification Agent:</strong> Strong signal in PIK3CA wild-type patients (35% ORR, n=25) vs. PIK3CA mutant (12% ORR, n=35)<br><br>
+                    <strong>💊 Dose-Response Agent:</strong> Clear dose-response: 300mg (18% ORR), 450mg (28% ORR), 600mg (25% ORR with toxicity)<br><br>
+                    <strong>⚖️ Regulatory Strategy Agent:</strong> Results support biomarker-driven registration; PIK3CA stratification enables accelerated approval pathway<br><br>
+                    <strong>📈 Power Analysis Agent:</strong> 70% power for overall population, 85% power for PIK3CA wild-type subgroup with full enrollment<br><br>
+                    <strong>🤖 AI Coordination Agent:</strong> Cross-validating findings across agents, identifying interdependencies between biomarker effects and dose optimization
+                </div>
+
+                <div class="reasoning-box" onclick="toggleReasoning(this)">
+                    <div class="reasoning-header">
+                        How do multiple AI agents coordinate statistical analysis?
+                        <span class="expand-icon">+</span>
+                    </div>
+                    <div class="reasoning-details">
+                        <strong>1. Multi-Dimensional Integration:</strong> Coordinates statistical, biomarker, dose-response, and regulatory agents<br><br>
+                        <strong>2. Historical Benchmarking:</strong> Compares results against 15 similar oncology biomarker trials<br><br>
+                        <strong>3. Biomarker Effect Calculation:</strong> Uses PIK3CA data to calculate biomarker-specific effect sizes<br><br>
+                        <strong>4. Dose Optimization Modeling:</strong> Applies modeling to identify optimal dose balancing efficacy/safety<br><br>
+                        <strong>5. Regulatory Pathway Mapping:</strong> Maps results to FDA biomarker guidance for registration strategy
+                    </div>
+                </div>
+
+                <div class="data-visualization">
+                    <h4>Statistical Analysis Summary</h4>
+                    <div class="chart-placeholder">
+                        [Biomarker Stratification Chart]<br>
+                        Overall ORR: 23% | PIK3CA Wild-type: 35% | PIK3CA Mutant: 12% | Optimal Dose: 450mg (28% ORR)
+                    </div>
+                </div>
+
+                <div class="micro-feedback">
+                    <p><strong>Have you seen similar biomarker effects that changed your development strategy?</strong></p>
+                    <div class="feedback-buttons">
+                        <button onclick="giveFeedback(this, 'often-reshape')">Yes, biomarkers often reshape our trials</button>
+                        <button onclick="giveFeedback(this, 'sometimes-cautious')">Sometimes, but we're cautious about subgroups</button>
+                        <button onclick="giveFeedback(this, 'rarely-modify')">Rarely modify based on biomarker signals</button>
+                        <button onclick="giveFeedback(this, 'avoid-biomarker')">We avoid biomarker-driven development</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="workflow-step">
+                <div class="step-header">
+                    <div class="step-number">3</div>
+                    <div class="step-title">Strategic Recommendations for Trial Modification</div>
+                </div>
+
+                <div class="system-recommendations">
+                    <strong>Optimized Development Strategy Options:</strong><br><br>
+                    <strong>🎯 Option A - Biomarker-Driven Pivot:</strong><br>
+                    • Strategy: Modify enrollment to focus on PIK3CA wild-type patients only<br>
+                    • Sample Size: 75 additional wild-type patients needed<br>
+                    • Timeline: +6 months for biomarker screening and targeted recruitment<br>
+                    • Advantage: 35% ORR in wild-type provides stronger regulatory position<br><br>
+                    <strong>🚀 Option B - Dose Optimization Path:</strong><br>
+                    • Strategy: Continue current enrollment, focus on 450mg dose level<br>
+                    • Sample Size: Complete planned enrollment (60 additional patients)<br>
+                    • Timeline: On track for completion in 8 months<br>
+                    • Risk: Overall population may not meet regulatory threshold<br><br>
+                    <strong>⚡ Option C - Accelerated Development:</strong><br>
+                    • Strategy: Use interim data for FDA Breakthrough Therapy Designation in PIK3CA wild-type<br>
+                    • Rationale: 35% ORR exceeds FDA expectations for BTD in this population<br>
+                    • Advantage: Accelerated approval pathway, reduced Phase III requirements<br><br>
+                    <strong>🤖 AI Strategy Agent:</strong> Recommending Option A based on highest probability of regulatory success (78%) and competitive positioning analysis
+                </div>
+
+                <div class="reasoning-box" onclick="toggleReasoning(this)">
+                    <div class="reasoning-header">
+                        How does the system generate strategic recommendations?
+                        <span class="expand-icon">+</span>
+                    </div>
+                    <div class="reasoning-details">
+                        <strong>1. Multi-Scenario Optimization:</strong> Evaluates 50+ protocol modification scenarios considering biomarker stratification and regulatory pathways<br><br>
+                        <strong>2. Risk-Benefit Quantification:</strong> Models trade-offs between broader population vs. biomarker-selected approaches<br><br>
+                        <strong>3. Regulatory Pathway Simulation:</strong> Uses FDA guidance to simulate approval pathways and success probability<br><br>
+                        <strong>4. Competitive Integration:</strong> Factors in competitive CDK4/6 inhibitor timelines and market positioning<br><br>
+                        <strong>5. Economic Impact Modeling:</strong> Calculates NPV impact of different strategies
+                    </div>
+                </div>
+
+                <div class="micro-feedback">
+                    <p><strong>Which strategic approach resonates most with your development philosophy?</strong></p>
+                    <div class="feedback-buttons">
+                        <button onclick="giveFeedback(this, 'biomarker-pivot')">Biomarker-driven pivot for stronger efficacy</button>
+                        <button onclick="giveFeedback(this, 'dose-optimization')">Dose optimization with broader population</button>
+                        <button onclick="giveFeedback(this, 'accelerated-regulatory')">Accelerated regulatory strategy</button>
+                        <button onclick="giveFeedback(this, 'more-analysis')">Need more risk-benefit analysis</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="workflow-step">
+                <div class="step-header">
+                    <div class="step-number">4</div>
+                    <div class="step-title">Expert Decision & Adaptive Monitoring</div>
+                </div>
+
+                <div class="expert-decision">
+                    <strong>Dr. Rodriguez's Decision:</strong><br>
+                    "This analysis is incredibly helpful. I'm leaning toward the biomarker-driven pivot. The 35% ORR in PIK3CA wild-type patients is compelling, and the regulatory pathway advantages make sense. Let's model what the modified trial would look like and prepare for FDA discussion about the biomarker strategy."
+                </div>
+
+                <div class="system-analysis">
+                    <strong>Updated Trial Projections Based on Decision:</strong><br>
+                    • <strong>Modified Population:</strong> PIK3CA wild-type HR+/HER2- metastatic breast cancer<br>
+                    • <strong>Updated Sample Size:</strong> 95 total patients (60 current + 35 additional)<br>
+                    • <strong>Revised Timeline:</strong> 14 months total (6 additional months for targeted recruitment)<br>
+                    • <strong>Statistical Power:</strong> 90% power to detect 30% ORR vs. 15% historical control<br>
+                    • <strong>Budget Impact:</strong> +$3.2M for extended recruitment and biomarker screening<br>
+                    • <strong>Commercial Advantage:</strong> Clear differentiation, potentially faster approval
+                </div>
+
+                <div class="reasoning-box" onclick="toggleReasoning(this)">
+                    <div class="reasoning-header">
+                        How does the system learn and adapt from this decision?
+                        <span class="expand-icon">+</span>
+                    </div>
+                    <div class="reasoning-details">
+                        <strong>1. Decision Impact Propagation:</strong> Updates all trial projections based on biomarker-driven strategy<br><br>
+                        <strong>2. Recruitment Feasibility Modeling:</strong> Assesses PIK3CA wild-type patient availability across site network<br><br>
+                        <strong>3. Regulatory Documentation Prep:</strong> Generates FDA pre-submission meeting outline and BTD application components<br><br>
+                        <strong>4. Risk Mitigation Planning:</strong> Identifies recruitment and biomarker testing logistics challenges<br><br>
+                        <strong>5. Organizational Learning:</strong> Updates company biomarker development preferences for future trials
+                    </div>
+                </div>
+
+                <div class="micro-feedback">
+                    <p><strong>Which aspect of this data interpretation process would be most valuable for your organization?</strong></p>
+                    <div class="feedback-buttons">
+                        <button onclick="giveFeedback(this, 'statistical-analysis')">Statistical analysis and interpretation support</button>
+                        <button onclick="giveFeedback(this, 'biomarker-guidance')">Biomarker stratification guidance</button>
+                        <button onclick="giveFeedback(this, 'regulatory-optimization')">Regulatory pathway optimization</button>
+                        <button onclick="giveFeedback(this, 'competitive-intelligence')">Competitive intelligence integration</button>
+                        <button onclick="giveFeedback(this, 'all-above')">All of the above</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="engagement-tools">
+            <h3>Found this valuable? Take the next step:</h3>
+            <button onclick="downloadOncologyGuide()">📄 Download Statistical Analysis Guide</button>
+            <button onclick="shareOncologyInsights()">📤 Share This Demo</button>
+            <button onclick="openPilotForm()">🚀 Discuss Data Analysis Pilot</button>
+        </div>
+    </div>
+
+    <div class="toast" id="toast"></div>
+
+    <script>
+        // Simple, working JavaScript
+        let startTime = Date.now();
+        
+        // Toggle reasoning boxes
+        function toggleReasoning(element) {
+            element.classList.toggle('expanded');
+            const details = element.querySelector('.reasoning-details');
+            const icon = element.querySelector('.expand-icon');
+            
+            if (element.classList.contains('expanded')) {
+                details.style.display = 'block';
+                icon.textContent = '×';
+            } else {
+                details.style.display = 'none';
+                icon.textContent = '+';
+            }
+        }
+        
+        // Feedback handling
+        function giveFeedback(button, response) {
+            button.style.background = '#4caf50';
+            button.textContent = '✓ ' + button.textContent.replace('✓ ', '');
+            
+            // Disable other buttons in the same group
+            const siblings = button.parentElement.querySelectorAll('button');
+            siblings.forEach(function(btn) {
+                if (btn !== button) {
+                    btn.disabled = true;
+                    btn.style.opacity = '0.5';
+                }
+            });
+            
+            showToast('Thanks for the feedback!');
+            console.log('Feedback:', response);
+        }
+        
+        // Show toast notifications
+        function showToast(message) {
+            const toast = document.getElementById('toast');
+            toast.textContent = message;
+            toast.classList.add('show');
+            
+            setTimeout(function() {
+                toast.classList.remove('show');
+            }, 3000);
+        }
+        
+        // Progressive disclosure on scroll
+        window.addEventListener('scroll', function() {
+            const steps = document.querySelectorAll('.workflow-step');
+            steps.forEach(function(step) {
+                const rect = step.getBoundingClientRect();
+                if (rect.top < window.innerHeight * 0.8) {
+                    step.classList.add('in-view');
+                }
+            });
+            
+            // Update progress bar
+            const scrollTop = window.pageYOffset;
+            const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+            const scrollPercent = Math.min((scrollTop / docHeight) * 100, 100);
+            
+            document.getElementById('progressBar').style.width = scrollPercent + '%';
+        });
+        
+        // Toggle helper popup
+        function toggleHelper() {
+            console.log('toggleHelper called');
+            const popup = document.getElementById('helperPopup');
+            console.log('popup element:', popup);
+            if (popup.style.display === 'none' || popup.style.display === '') {
+                popup.style.display = 'block';
+                console.log('showing popup');
+            } else {
+                popup.style.display = 'none';
+                console.log('hiding popup');
+            }
+        }
+        
+        // Download oncology guide
+        function downloadOncologyGuide() {
+            showToast('Oncology analysis guide download coming soon! Contact us for detailed materials.');
+        }
+        
+        // Share oncology insights
+        function shareOncologyInsights() {
+            const url = window.location.href;
+            const title = 'AdjuvantIQ Demo: Biostatistics & Analytics for Oncology Biomarker Trial';
+            const text = 'Check out this demo of AI-powered oncology biomarker analysis and statistical interpretation.';
+            
+            if (navigator.share) {
+                navigator.share({
+                    title: title,
+                    text: text,
+                    url: url
+                });
+            } else {
+                navigator.clipboard.writeText(url).then(function() {
+                    showToast('Demo URL copied to clipboard! Share with your colleagues.');
+                });
+            }
+        }
+        
+        // Open pilot form
+        function openPilotForm() {
+            window.open('../#pilot', '_blank');
+            showToast('Opening pilot application form...');
+        }
+        
+        // Initialize when page loads
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('Oncology demo loaded successfully');
+            showToast('Welcome! Explore how AI processes complex oncology trial data.');
+        });
+    </script>
+</body>
+</html> 

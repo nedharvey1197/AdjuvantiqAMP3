@@ -1,0 +1,711 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Regulatory Strategy & Submission - AdjuvantIQ Demo</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #f8f9fc;
+        }
+        
+        .hero {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 60px 20px;
+            text-align: center;
+        }
+        
+        .hero h1 {
+            font-size: 2.5em;
+            margin-bottom: 20px;
+        }
+        
+        .hero .lead {
+            font-size: 1.3em;
+            margin-bottom: 30px;
+            opacity: 0.9;
+        }
+        
+        .time-investment {
+            background: rgba(255,255,255,0.1);
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 20px;
+            font-size: 1.1em;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        .progress-section {
+            background: white;
+            padding: 20px;
+            border-bottom: 1px solid #ddd;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        .progress-bar {
+            background: #e0e0e0;
+            height: 6px;
+            border-radius: 3px;
+            overflow: hidden;
+            margin-bottom: 10px;
+        }
+        
+        .progress {
+            background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
+            height: 100%;
+            transition: width 0.3s ease;
+            width: 100%;
+        }
+        
+        .progress-text {
+            font-weight: 600;
+            color: #666;
+        }
+        
+        .user-input {
+            background: #e8f5e8;
+            border-left: 5px solid #4caf50;
+            padding: 20px;
+            margin: 15px 0;
+            border-radius: 6px;
+            position: relative;
+        }
+        
+        .user-input::before {
+            content: "👤 USER INPUT";
+            position: absolute;
+            top: -10px;
+            left: 15px;
+            background: #4caf50;
+            color: white;
+            padding: 4px 8px;
+            font-size: 0.8em;
+            font-weight: bold;
+            border-radius: 3px;
+        }
+        
+        .system-analysis {
+            background: #e3f2fd;
+            border-left: 5px solid #2196f3;
+            padding: 20px;
+            margin: 15px 0;
+            border-radius: 6px;
+            position: relative;
+        }
+        
+        .system-analysis::before {
+            content: "🤖 SYSTEM ANALYSIS";
+            position: absolute;
+            top: -10px;
+            left: 15px;
+            background: #2196f3;
+            color: white;
+            padding: 4px 8px;
+            font-size: 0.8em;
+            font-weight: bold;
+            border-radius: 3px;
+        }
+        
+        .system-recommendations {
+            background: #f3e5f5;
+            border-left: 5px solid #9c27b0;
+            padding: 20px;
+            margin: 15px 0;
+            border-radius: 6px;
+            position: relative;
+        }
+        
+        .system-recommendations::before {
+            content: "💡 RECOMMENDATIONS";
+            position: absolute;
+            top: -10px;
+            left: 15px;
+            background: #9c27b0;
+            color: white;
+            padding: 4px 8px;
+            font-size: 0.8em;
+            font-weight: bold;
+            border-radius: 3px;
+        }
+        
+        .expert-decision {
+            background: #fff8e1;
+            border-left: 5px solid #ff9800;
+            padding: 20px;
+            margin: 15px 0;
+            border-radius: 6px;
+            position: relative;
+        }
+        
+        .expert-decision::before {
+            content: "🧠 EXPERT DECISION";
+            position: absolute;
+            top: -10px;
+            left: 15px;
+            background: #ff9800;
+            color: white;
+            padding: 4px 8px;
+            font-size: 0.8em;
+            font-weight: bold;
+            border-radius: 3px;
+        }
+        
+        .reasoning-box {
+            background: #fff3e0;
+            border: 2px solid #ff9800;
+            padding: 20px;
+            margin: 15px 0;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        
+        .reasoning-box::before {
+            content: "🔧 AI REASONING";
+            position: absolute;
+            top: -10px;
+            left: 15px;
+            background: #ff9800;
+            color: white;
+            padding: 4px 8px;
+            font-size: 0.8em;
+            font-weight: bold;
+            border-radius: 3px;
+        }
+        
+        .reasoning-box:hover {
+            box-shadow: 0 4px 12px rgba(255,152,0,0.2);
+        }
+        
+        .reasoning-box.expanded {
+            background: #fff8e1;
+        }
+        
+        .reasoning-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: bold;
+            color: #e65100;
+        }
+        
+        .expand-icon {
+            font-size: 1.2em;
+            margin-left: auto;
+            transition: transform 0.3s ease;
+        }
+        
+        .reasoning-box.expanded .expand-icon {
+            transform: rotate(45deg);
+        }
+        
+        .reasoning-details {
+            margin-top: 15px;
+            display: none;
+        }
+        
+        .reasoning-box.expanded .reasoning-details {
+            display: block;
+        }
+        
+        .workflow-step {
+            opacity: 0.3;
+            transform: translateY(20px);
+            transition: all 0.5s ease;
+        }
+        
+        .workflow-step.in-view {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .content-section {
+            background: white;
+            margin: 20px 0;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        
+        .section-header {
+            background: #f8f9fc;
+            padding: 30px;
+            border-bottom: 1px solid #e0e6ed;
+        }
+        
+        .persona-card {
+            background: linear-gradient(135deg, #e3f2fd 0%, #f3e5f5 100%);
+            border-left: 5px solid #2196f3;
+            padding: 25px;
+            margin: 20px 0;
+            border-radius: 8px;
+        }
+        
+        .persona-title {
+            font-size: 1.4em;
+            font-weight: bold;
+            color: #1976d2;
+            margin-bottom: 10px;
+        }
+        
+        .workflow-step {
+            padding: 30px;
+            border-bottom: 1px solid #f0f0f0;
+        }
+        
+        .workflow-step:last-child {
+            border-bottom: none;
+        }
+        
+        .step-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        
+        .step-number {
+            background: #2196f3;
+            color: white;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 20px;
+            font-weight: bold;
+            font-size: 1.2em;
+        }
+        
+        .step-title {
+            font-size: 1.3em;
+            font-weight: 600;
+            color: #333;
+        }
+        
+        .credibility-indicators {
+            background: #f8f9fc;
+            padding: 20px;
+            margin: 30px 0;
+            border-radius: 8px;
+            border-left: 4px solid #9c27b0;
+        }
+        
+        .expertise-note, .data-note {
+            display: flex;
+            align-items: center;
+            margin: 10px 0;
+        }
+        
+        .expertise-note .icon, .data-note .icon {
+            font-size: 1.5em;
+            margin-right: 15px;
+        }
+        
+        .micro-feedback {
+            background: #f0f8ff;
+            border: 1px solid #b3d9ff;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 6px;
+            text-align: center;
+        }
+        
+        .feedback-buttons button {
+            background: #2196f3;
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            margin: 5px;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+        
+        .feedback-buttons button:hover {
+            background: #1976d2;
+        }
+        
+        .engagement-tools {
+            background: #e8f5e8;
+            padding: 20px;
+            margin: 30px 0;
+            border-radius: 8px;
+            text-align: center;
+        }
+        
+        .engagement-tools button {
+            background: #4caf50;
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            margin: 5px;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+        
+        .engagement-tools button:hover {
+            background: #45a049;
+        }
+        
+        .toast {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: #4caf50;
+            color: white;
+            padding: 15px 20px;
+            border-radius: 6px;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            z-index: 1001;
+        }
+        
+        .toast.show {
+            opacity: 1;
+        }
+        
+        .back-link {
+            display: inline-block;
+            margin: 20px 0;
+            color: #667eea;
+            text-decoration: none;
+            font-weight: 600;
+            padding: 12px 20px;
+            background: linear-gradient(135deg, #f8f9fc 0%, #e3f2fd 100%);
+            border-radius: 8px;
+            border: 2px solid #667eea;
+            transition: all 0.3s ease;
+            font-size: 1.1em;
+        }
+        
+        .back-link:hover {
+            color: #5a67d8;
+            background: linear-gradient(135deg, #e3f2fd 0%, #f3e5f5 100%);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="hero">
+        <div class="container">
+            <a href="cardiovascular.html" class="back-link">← Back to Trial Overview</a>
+            <h1>Regulatory Strategy & Submission</h1>
+            <p class="lead">See how AI-optimized regulatory strategy accelerates approval pathways and maximizes market access</p>
+            <div class="time-investment">
+                ⏱️ 8-10 minutes • Regulatory pathway optimization • Submission preparation • Advisory committee strategy
+            </div>
+        </div>
+    </div>
+
+    <div class="progress-section">
+        <div class="container">
+            <div class="progress-bar">
+                <div class="progress" id="progressBar"></div>
+            </div>
+            <div class="progress-text" id="progressText">Regulatory Pathway Optimization (4 of 4)</div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="credibility-indicators">
+            <div class="expertise-note">
+                <span class="icon">🎓</span>
+                <span>Developed with regulatory affairs leaders and former FDA reviewers</span>
+            </div>
+            <div class="data-note">
+                <span class="icon">📊</span>
+                <span>Based on analysis of 200+ FDA submissions and regulatory pathway optimization strategies</span>
+            </div>
+        </div>
+
+        <div class="content-section">
+            <div class="section-header">
+                <h2>Optimizing the Pathway to FDA Approval</h2>
+                <p>With trial completion approaching, the focus shifts to optimizing the regulatory submission strategy and preparing for potential advisory committee review.</p>
+            </div>
+
+            <div class="persona-card">
+                <div class="persona-title">Dr. Patricia Kim, Regulatory Affairs Director</div>
+                <p><strong>Company:</strong> Mid-size biotech with promising SGLT2 inhibitor</p>
+                <p><strong>Challenge:</strong> Optimize FDA pathway and prepare for potential advisory committee review</p>
+                <p><strong>Current Status:</strong> Month 40 of 42-month trial, preparing for NDA submission</p>
+            </div>
+
+            <div class="workflow-step">
+                <div class="step-header">
+                    <div class="step-number">1</div>
+                    <div class="step-title">Regulatory Pathway Analysis Request</div>
+                </div>
+                
+                <div class="user-input">
+                    <strong>Dr. Kim's Request:</strong> "Analyze optimal regulatory pathway for SGLT2 inhibitor NDA submission. Consider expedited pathways, potential advisory committee requirements, and post-approval commitments."
+                </div>
+
+                <div class="system-analysis">
+                    <strong>Regulatory Strategy Agent Analysis:</strong><br>
+                    • <strong>Expedited Pathway Eligibility:</strong> Breakthrough Therapy Designation possible based on preliminary data<br>
+                    • <strong>Advisory Committee Probability:</strong> 65% chance based on safety profile and competitive landscape<br>
+                    • <strong>Submission Timeline:</strong> Standard review (10 months) vs. Priority review (6 months)<br>
+                    • <strong>Post-Approval Requirements:</strong> Risk evaluation and mitigation strategy (REMS) likely required
+                </div>
+
+                <div class="reasoning-box" onclick="toggleReasoning(this)">
+                    <div class="reasoning-header">
+                        How does the system analyze regulatory pathways?
+                        <span class="expand-icon">+</span>
+                    </div>
+                    <div class="reasoning-details">
+                        <strong>1. Regulatory Ontology Mapping:</strong> Maps drug characteristics to FDA regulatory pathways and requirements<br><br>
+                        <strong>2. Historical Pattern Analysis:</strong> Analyzes outcomes of similar submissions and regulatory decisions<br><br>
+                        <strong>3. Competitive Intelligence Integration:</strong> Considers impact of competing products and regulatory precedents<br><br>
+                        <strong>4. Risk Assessment Modeling:</strong> Evaluates probability of different regulatory outcomes<br><br>
+                        <strong>5. Timeline Optimization:</strong> Identifies strategies to minimize time to approval
+                    </div>
+                </div>
+
+                <div class="micro-feedback">
+                    <p><strong>Quick reaction:</strong> How do you currently plan regulatory submission strategies?</p>
+                    <div class="feedback-buttons">
+                        <button onclick="giveFeedback(this, 'consultant-analysis')">External consultant analysis</button>
+                        <button onclick="giveFeedback(this, 'internal-expertise')">Internal regulatory expertise</button>
+                        <button onclick="giveFeedback(this, 'precedent-review')">Precedent review</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="workflow-step">
+                <div class="step-header">
+                    <div class="step-number">2</div>
+                    <div class="step-title">Multi-Pathway Optimization Strategy</div>
+                </div>
+
+                <div class="system-analysis">
+                    <strong>Optimized Regulatory Strategy:</strong><br><br>
+                    <strong>🚀 Primary Pathway - Breakthrough Therapy:</strong><br>
+                    • Submit Breakthrough Therapy Designation application<br>
+                    • Request Priority Review designation<br>
+                    • Target 6-month review timeline<br><br>
+                    <strong>📋 Submission Package Optimization:</strong><br>
+                    • Enhanced safety analysis with UTI risk mitigation<br>
+                    • Comparative effectiveness vs. empagliflozin<br>
+                    • Real-world evidence integration<br><br>
+                    <strong>🎯 Advisory Committee Preparation:</strong><br>
+                    • 65% probability of advisory committee review<br>
+                    • Focus on safety profile and risk-benefit analysis<br>
+                    • Prepare for UTI safety concerns
+                </div>
+
+                <div class="reasoning-box" onclick="toggleReasoning(this)">
+                    <div class="reasoning-header">
+                        How does the system optimize regulatory strategy?
+                        <span class="expand-icon">+</span>
+                    </div>
+                    <div class="reasoning-details">
+                        <strong>1. Multi-Objective Optimization:</strong> Balances approval speed, approval probability, and post-approval requirements<br><br>
+                        <strong>2. Scenario Planning:</strong> Develops strategies for different regulatory outcomes<br><br>
+                        <strong>3. Resource Allocation:</strong> Optimizes use of limited regulatory resources<br><br>
+                        <strong>4. Risk Mitigation:</strong> Identifies and addresses potential regulatory concerns<br><br>
+                        <strong>5. Competitive Positioning:</strong> Considers impact on market access and competitive advantage
+                    </div>
+                </div>
+
+                <div class="micro-feedback">
+                    <p><strong>💭 Quick question:</strong> What's your biggest regulatory challenge?</p>
+                    <div class="feedback-buttons">
+                        <button onclick="giveFeedback(this, 'timeline-pressure')">Timeline pressure</button>
+                        <button onclick="giveFeedback(this, 'safety-concerns')">Safety concerns</button>
+                        <button onclick="giveFeedback(this, 'advisory-committee')">Advisory committee</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="workflow-step">
+                <div class="step-header">
+                    <div class="step-number">3</div>
+                    <div class="step-title">Submission Package Preparation</div>
+                </div>
+
+                <div class="system-recommendations">
+                    <strong>Optimized Submission Strategy:</strong><br><br>
+                    <strong>📄 Core Submission Elements:</strong><br>
+                    • Comprehensive safety analysis with UTI risk mitigation<br>
+                    • Comparative effectiveness analysis vs. empagliflozin<br>
+                    • Real-world evidence integration for safety profile<br>
+                    • Enhanced patient-reported outcomes data<br><br>
+                    <strong>🎯 Advisory Committee Preparation:</strong><br>
+                    • Safety profile presentation with risk mitigation strategies<br>
+                    • Comparative effectiveness vs. standard of care<br>
+                    • Patient benefit-risk analysis<br>
+                    • Post-approval safety monitoring plan
+                </div>
+
+                <div class="reasoning-box" onclick="toggleReasoning(this)">
+                    <div class="reasoning-header">
+                        How does the system optimize submission package preparation?
+                        <span class="expand-icon">+</span>
+                    </div>
+                    <div class="reasoning-details">
+                        <strong>1. Regulatory Requirement Mapping:</strong> Maps submission requirements to available data and analyses<br><br>
+                        <strong>2. Gap Analysis:</strong> Identifies missing data or analyses needed for optimal submission<br><br>
+                        <strong>3. Evidence Integration:</strong> Combines clinical trial data with real-world evidence<br><br>
+                        <strong>4. Risk Mitigation Strategy:</strong> Develops comprehensive safety monitoring and risk mitigation plans<br><br>
+                        <strong>5. Advisory Committee Preparation:</strong> Prepares for potential advisory committee questions and concerns
+                    </div>
+                </div>
+            </div>
+
+            <div class="workflow-step">
+                <div class="step-header">
+                    <div class="step-number">4</div>
+                    <div class="step-title">Implementation and Outcome Prediction</div>
+                </div>
+
+                <div class="expert-decision">
+                    <strong>Dr. Kim's Implementation Plan:</strong><br>
+                    "We'll submit the Breakthrough Therapy Designation application immediately and prepare for Priority Review. The enhanced safety analysis will be included in the NDA submission."
+                </div>
+
+                <div class="system-analysis">
+                    <strong>Predicted Regulatory Outcomes:</strong><br>
+                    • <strong>Breakthrough Therapy Designation:</strong> 75% probability of approval<br>
+                    • <strong>Priority Review:</strong> 85% probability of approval<br>
+                    • <strong>Advisory Committee:</strong> 65% probability, 80% chance of positive vote<br>
+                    • <strong>Approval Timeline:</strong> 6-8 months vs. 10-12 months standard review<br>
+                    • <strong>Post-Approval Requirements:</strong> REMS program for UTI monitoring
+                </div>
+
+                <div class="reasoning-box" onclick="toggleReasoning(this)">
+                    <div class="reasoning-header">
+                        How does the system predict regulatory outcomes?
+                        <span class="expand-icon">+</span>
+                    </div>
+                    <div class="reasoning-details">
+                        <strong>1. Historical Pattern Analysis:</strong> Analyzes outcomes of similar submissions and regulatory decisions<br><br>
+                        <strong>2. Bayesian Probability Modeling:</strong> Updates probability estimates based on new information<br><br>
+                        <strong>3. Expert Opinion Integration:</strong> Incorporates insights from regulatory experts and former FDA reviewers<br><br>
+                        <strong>4. Competitive Landscape Analysis:</strong> Considers impact of competing products and regulatory precedents<br><br>
+                        <strong>5. Continuous Learning:</strong> Updates models based on actual regulatory outcomes
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="engagement-tools">
+            <h3>🎉 Congratulations! You've completed the end-to-end trial optimization demo.</h3>
+            <p>This comprehensive demonstration shows how AdjuvantIQ transforms clinical development from planning through approval.</p>
+            <button onclick="window.location.href='cardiovascular.html'">📋 Back to Trial Overview</button>
+            <button onclick="window.location.href='index.html'">🏠 Return to Demo Hub</button>
+            <button onclick="downloadPhaseAnalysis('regulatory-strategy')">📄 Download Complete Case Study</button>
+        </div>
+    </div>
+
+    <div class="toast" id="toast"></div>
+
+    <script>
+        // Toggle reasoning boxes
+        function toggleReasoning(element) {
+            element.classList.toggle('expanded');
+            const details = element.querySelector('.reasoning-details');
+            const icon = element.querySelector('.expand-icon');
+            
+            if (element.classList.contains('expanded')) {
+                details.style.display = 'block';
+                icon.textContent = '×';
+            } else {
+                details.style.display = 'none';
+                icon.textContent = '+';
+            }
+        }
+        
+        // Feedback handling
+        function giveFeedback(button, response) {
+            button.style.background = '#4caf50';
+            button.textContent = '✓ ' + button.textContent.replace('✓ ', '');
+            
+            // Disable other buttons in the same group
+            const siblings = button.parentElement.querySelectorAll('button');
+            siblings.forEach(function(btn) {
+                if (btn !== button) {
+                    btn.disabled = true;
+                    btn.style.opacity = '0.5';
+                }
+            });
+            
+            showToast('Thanks for the feedback!');
+            console.log('Feedback:', response);
+        }
+        
+        // Show toast notifications
+        function showToast(message) {
+            const toast = document.getElementById('toast');
+            toast.textContent = message;
+            toast.classList.add('show');
+            
+            setTimeout(function() {
+                toast.classList.remove('show');
+            }, 3000);
+        }
+        
+        // Progressive disclosure on scroll
+        window.addEventListener('scroll', function() {
+            const steps = document.querySelectorAll('.workflow-step');
+            steps.forEach(function(step) {
+                const rect = step.getBoundingClientRect();
+                if (rect.top < window.innerHeight * 0.8) {
+                    step.classList.add('in-view');
+                }
+            });
+            
+            // Update progress bar
+            const scrollTop = window.pageYOffset;
+            const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+            const scrollPercent = Math.min((scrollTop / docHeight) * 100, 100);
+            
+            document.getElementById('progressBar').style.width = scrollPercent + '%';
+        });
+        
+        // Download phase analysis
+        function downloadPhaseAnalysis(phase) {
+            const phaseNames = {
+                'protocol-design': 'Protocol Design Analysis',
+                'site-selection': 'Site Selection Analysis',
+                'adaptive-modifications': 'Trial Management Analysis',
+                'regulatory-strategy': 'Regulatory Strategy Analysis'
+            };
+            
+            showToast(`${phaseNames[phase]} download coming soon! Contact us for detailed materials.`);
+            // In the future, this could link to specific PDFs for each phase
+        }
+        
+        // Initialize when page loads
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('Regulatory strategy demo loaded successfully');
+            showToast('Welcome! Explore how AI optimizes regulatory pathways to approval.');
+        });
+    </script>
+</body>
+</html> 

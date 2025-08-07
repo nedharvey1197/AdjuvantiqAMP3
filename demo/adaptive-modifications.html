@@ -1,0 +1,698 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Adaptive Trial Management - AdjuvantIQ Demo</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #f8f9fc;
+        }
+        
+        .hero {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 60px 20px;
+            text-align: center;
+        }
+        
+        .hero h1 {
+            font-size: 2.5em;
+            margin-bottom: 20px;
+        }
+        
+        .hero .lead {
+            font-size: 1.3em;
+            margin-bottom: 30px;
+            opacity: 0.9;
+        }
+        
+        .time-investment {
+            background: rgba(255,255,255,0.1);
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 20px;
+            font-size: 1.1em;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        .progress-section {
+            background: white;
+            padding: 20px;
+            border-bottom: 1px solid #ddd;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        .progress-bar {
+            background: #e0e0e0;
+            height: 6px;
+            border-radius: 3px;
+            overflow: hidden;
+            margin-bottom: 10px;
+        }
+        
+        .progress {
+            background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
+            height: 100%;
+            transition: width 0.3s ease;
+            width: 75%;
+        }
+        
+        .progress-text {
+            font-weight: 600;
+            color: #666;
+        }
+        
+        .user-input {
+            background: #e8f5e8;
+            border-left: 5px solid #4caf50;
+            padding: 20px;
+            margin: 15px 0;
+            border-radius: 6px;
+            position: relative;
+        }
+        
+        .user-input::before {
+            content: "👤 USER INPUT";
+            position: absolute;
+            top: -10px;
+            left: 15px;
+            background: #4caf50;
+            color: white;
+            padding: 4px 8px;
+            font-size: 0.8em;
+            font-weight: bold;
+            border-radius: 3px;
+        }
+        
+        .system-analysis {
+            background: #e3f2fd;
+            border-left: 5px solid #2196f3;
+            padding: 20px;
+            margin: 15px 0;
+            border-radius: 6px;
+            position: relative;
+        }
+        
+        .system-analysis::before {
+            content: "🤖 SYSTEM ANALYSIS";
+            position: absolute;
+            top: -10px;
+            left: 15px;
+            background: #2196f3;
+            color: white;
+            padding: 4px 8px;
+            font-size: 0.8em;
+            font-weight: bold;
+            border-radius: 3px;
+        }
+        
+        .system-recommendations {
+            background: #f3e5f5;
+            border-left: 5px solid #9c27b0;
+            padding: 20px;
+            margin: 15px 0;
+            border-radius: 6px;
+            position: relative;
+        }
+        
+        .system-recommendations::before {
+            content: "💡 RECOMMENDATIONS";
+            position: absolute;
+            top: -10px;
+            left: 15px;
+            background: #9c27b0;
+            color: white;
+            padding: 4px 8px;
+            font-size: 0.8em;
+            font-weight: bold;
+            border-radius: 3px;
+        }
+        
+        .expert-decision {
+            background: #fff8e1;
+            border-left: 5px solid #ff9800;
+            padding: 20px;
+            margin: 15px 0;
+            border-radius: 6px;
+            position: relative;
+        }
+        
+        .expert-decision::before {
+            content: "🧠 EXPERT DECISION";
+            position: absolute;
+            top: -10px;
+            left: 15px;
+            background: #ff9800;
+            color: white;
+            padding: 4px 8px;
+            font-size: 0.8em;
+            font-weight: bold;
+            border-radius: 3px;
+        }
+        
+        .reasoning-box {
+            background: #fff3e0;
+            border: 2px solid #ff9800;
+            padding: 20px;
+            margin: 15px 0;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        
+        .reasoning-box::before {
+            content: "🔧 AI REASONING";
+            position: absolute;
+            top: -10px;
+            left: 15px;
+            background: #ff9800;
+            color: white;
+            padding: 4px 8px;
+            font-size: 0.8em;
+            font-weight: bold;
+            border-radius: 3px;
+        }
+        
+        .reasoning-box:hover {
+            box-shadow: 0 4px 12px rgba(255,152,0,0.2);
+        }
+        
+        .reasoning-box.expanded {
+            background: #fff8e1;
+        }
+        
+        .reasoning-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: bold;
+            color: #e65100;
+        }
+        
+        .expand-icon {
+            font-size: 1.2em;
+            margin-left: auto;
+            transition: transform 0.3s ease;
+        }
+        
+        .reasoning-box.expanded .expand-icon {
+            transform: rotate(45deg);
+        }
+        
+        .reasoning-details {
+            margin-top: 15px;
+            display: none;
+        }
+        
+        .reasoning-box.expanded .reasoning-details {
+            display: block;
+        }
+        
+        .workflow-step {
+            opacity: 0.3;
+            transform: translateY(20px);
+            transition: all 0.5s ease;
+        }
+        
+        .workflow-step.in-view {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .content-section {
+            background: white;
+            margin: 20px 0;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        
+        .section-header {
+            background: #f8f9fc;
+            padding: 30px;
+            border-bottom: 1px solid #e0e6ed;
+        }
+        
+        .persona-card {
+            background: linear-gradient(135deg, #e3f2fd 0%, #f3e5f5 100%);
+            border-left: 5px solid #2196f3;
+            padding: 25px;
+            margin: 20px 0;
+            border-radius: 8px;
+        }
+        
+        .persona-title {
+            font-size: 1.4em;
+            font-weight: bold;
+            color: #1976d2;
+            margin-bottom: 10px;
+        }
+        
+        .workflow-step {
+            padding: 30px;
+            border-bottom: 1px solid #f0f0f0;
+        }
+        
+        .workflow-step:last-child {
+            border-bottom: none;
+        }
+        
+        .step-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        
+        .step-number {
+            background: #2196f3;
+            color: white;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 20px;
+            font-weight: bold;
+            font-size: 1.2em;
+        }
+        
+        .step-title {
+            font-size: 1.3em;
+            font-weight: 600;
+            color: #333;
+        }
+        
+        .credibility-indicators {
+            background: #f8f9fc;
+            padding: 20px;
+            margin: 30px 0;
+            border-radius: 8px;
+            border-left: 4px solid #9c27b0;
+        }
+        
+        .expertise-note, .data-note {
+            display: flex;
+            align-items: center;
+            margin: 10px 0;
+        }
+        
+        .expertise-note .icon, .data-note .icon {
+            font-size: 1.5em;
+            margin-right: 15px;
+        }
+        
+        .micro-feedback {
+            background: #f0f8ff;
+            border: 1px solid #b3d9ff;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 6px;
+            text-align: center;
+        }
+        
+        .feedback-buttons button {
+            background: #2196f3;
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            margin: 5px;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+        
+        .feedback-buttons button:hover {
+            background: #1976d2;
+        }
+        
+        .engagement-tools {
+            background: #e8f5e8;
+            padding: 20px;
+            margin: 30px 0;
+            border-radius: 8px;
+            text-align: center;
+        }
+        
+        .engagement-tools button {
+            background: #4caf50;
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            margin: 5px;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+        
+        .engagement-tools button:hover {
+            background: #45a049;
+        }
+        
+        .toast {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: #4caf50;
+            color: white;
+            padding: 15px 20px;
+            border-radius: 6px;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            z-index: 1001;
+        }
+        
+        .toast.show {
+            opacity: 1;
+        }
+        
+        .back-link {
+            display: inline-block;
+            margin: 20px 0;
+            color: #667eea;
+            text-decoration: none;
+            font-weight: 600;
+            padding: 12px 20px;
+            background: linear-gradient(135deg, #f8f9fc 0%, #e3f2fd 100%);
+            border-radius: 8px;
+            border: 2px solid #667eea;
+            transition: all 0.3s ease;
+            font-size: 1.1em;
+        }
+        
+        .back-link:hover {
+            color: #5a67d8;
+            background: linear-gradient(135deg, #e3f2fd 0%, #f3e5f5 100%);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="hero">
+        <div class="container">
+            <a href="cardiovascular.html" class="back-link">← Back to Trial Overview</a>
+            <h1>Adaptive Trial Management</h1>
+            <p class="lead">See how AI-powered real-time monitoring and intelligent intervention optimize trial execution and maintain data integrity</p>
+            <div class="time-investment">
+                ⏱️ 8-10 minutes • Real-time monitoring • Safety signal detection • Adaptive interventions
+            </div>
+        </div>
+    </div>
+
+    <div class="progress-section">
+        <div class="container">
+            <div class="progress-bar">
+                <div class="progress" id="progressBar"></div>
+            </div>
+            <div class="progress-text" id="progressText">Performance Monitoring (3 of 4)</div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="credibility-indicators">
+            <div class="expertise-note">
+                <span class="icon">🎓</span>
+                <span>Developed with study directors and clinical operations leaders from major pharmaceutical companies</span>
+            </div>
+            <div class="data-note">
+                <span class="icon">📊</span>
+                <span>Based on analysis of 100+ active trials and real-time monitoring data from leading CROs</span>
+            </div>
+        </div>
+
+        <div class="content-section">
+            <div class="section-header">
+                <h2>Real-Time Trial Optimization and Risk Management</h2>
+                <p>As the trial progresses, the system continuously monitors performance, detects emerging issues, and provides intelligent recommendations for adaptive modifications.</p>
+            </div>
+
+            <div class="persona-card">
+                <div class="persona-title">Dr. Jennifer Walsh, Study Director</div>
+                <p><strong>Company:</strong> Mid-size biotech with promising SGLT2 inhibitor</p>
+                <p><strong>Challenge:</strong> Manage recruitment delays and emerging safety signals while maintaining trial integrity</p>
+                <p><strong>Current Status:</strong> Month 8 of 42-month trial, 2,400 patients enrolled</p>
+            </div>
+
+            <div class="workflow-step">
+                <div class="step-header">
+                    <div class="step-number">1</div>
+                    <div class="step-title">Automated Performance Monitoring Alert</div>
+                </div>
+                
+                <div class="user-input">
+                    <strong>System Alert:</strong> "Recruitment rate 15% below projection in Northeast region. 3 sites showing significant underperformance. Safety signal detected: increased incidence of urinary tract infections in treatment arm."
+                </div>
+
+                <div class="system-analysis">
+                    <strong>Real-Time Analysis Results:</strong><br>
+                    • <strong>Recruitment Analysis:</strong> 8 sites in Northeast underperforming by 25-40%<br>
+                    • <strong>Safety Signal:</strong> 2.3% UTI rate in treatment vs. 1.1% in placebo (p=0.03)<br>
+                    • <strong>Root Cause Analysis:</strong> Competitive trial launched 3 months ago in same region<br>
+                    • <strong>Impact Assessment:</strong> 3-month delay projected if no intervention
+                </div>
+
+                <div class="reasoning-box" onclick="toggleReasoning(this)">
+                    <div class="reasoning-header">
+                        How does the system detect and analyze these issues?
+                        <span class="expand-icon">+</span>
+                    </div>
+                    <div class="reasoning-details">
+                        <strong>1. Continuous Data Integration:</strong> Real-time feeds from EDC, CTMS, and safety databases<br><br>
+                        <strong>2. Anomaly Detection:</strong> Machine learning models identify deviations from expected patterns<br><br>
+                        <strong>3. Causal Analysis:</strong> Bayesian networks identify root causes of performance issues<br><br>
+                        <strong>4. Predictive Modeling:</strong> Monte Carlo simulations project future impact<br><br>
+                        <strong>5. Multi-Stakeholder Alerting:</strong> Automated notifications to relevant team members
+                    </div>
+                </div>
+
+                <div class="micro-feedback">
+                    <p><strong>Quick reaction:</strong> How do you currently monitor trial performance?</p>
+                    <div class="feedback-buttons">
+                        <button onclick="giveFeedback(this, 'monthly-reports')">Monthly reports</button>
+                        <button onclick="giveFeedback(this, 'real-time-dashboards')">Real-time dashboards</button>
+                        <button onclick="giveFeedback(this, 'manual-tracking')">Manual tracking</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="workflow-step">
+                <div class="step-header">
+                    <div class="step-number">2</div>
+                    <div class="step-title">Multi-Agent Intervention Planning</div>
+                </div>
+
+                <div class="system-analysis">
+                    <strong>Coordinated Agent Recommendations:</strong><br><br>
+                    <strong>📊 Recruitment Agent:</strong> Add 5 new sites in Southeast region, increase site support for underperforming sites<br><br>
+                    <strong>🔬 Safety Agent:</strong> Enhanced monitoring for UTI events, protocol amendment for prophylactic measures<br><br>
+                    <strong>⚖️ Regulatory Agent:</strong> Safety report submission required, protocol amendment review timeline<br><br>
+                    <strong>💰 Budget Agent:</strong> Additional $2.1M required for site expansion and enhanced monitoring
+                </div>
+
+                <div class="reasoning-box" onclick="toggleReasoning(this)">
+                    <div class="reasoning-header">
+                        How do multiple agents coordinate intervention planning?
+                        <span class="expand-icon">+</span>
+                    </div>
+                    <div class="reasoning-details">
+                        <strong>1. Parallel Agent Activation:</strong> System activates specialized agents based on detected issues<br><br>
+                        <strong>2. Constraint Satisfaction:</strong> Agents negotiate solutions that satisfy all regulatory and operational constraints<br><br>
+                        <strong>3. Impact Propagation:</strong> Changes in one area automatically trigger updates in related areas<br><br>
+                        <strong>4. Risk-Benefit Analysis:</strong> Each intervention evaluated for effectiveness vs. implementation cost<br><br>
+                        <strong>5. Timeline Optimization:</strong> Interventions sequenced to minimize trial disruption
+                    </div>
+                </div>
+
+                <div class="micro-feedback">
+                    <p><strong>💭 Quick question:</strong> What's your biggest challenge in managing trial modifications?</p>
+                    <div class="feedback-buttons">
+                        <button onclick="giveFeedback(this, 'regulatory-approval')">Regulatory approval</button>
+                        <button onclick="giveFeedback(this, 'site-coordination')">Site coordination</button>
+                        <button onclick="giveFeedback(this, 'budget-constraints')">Budget constraints</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="workflow-step">
+                <div class="step-header">
+                    <div class="step-number">3</div>
+                    <div class="step-title">Adaptive Protocol Modification</div>
+                </div>
+
+                <div class="system-recommendations">
+                    <strong>Recommended Interventions:</strong><br><br>
+                    <strong>🎯 Immediate Actions (Week 1):</strong><br>
+                    • Enhanced site support for 8 underperforming sites<br>
+                    • Safety monitoring protocol update for UTI events<br><br>
+                    <strong>📋 Protocol Amendments (Month 1):</strong><br>
+                    • Add 5 new sites in Southeast region<br>
+                    • Implement prophylactic UTI prevention measures<br>
+                    • Increase monitoring frequency for high-risk patients
+                </div>
+
+                <div class="reasoning-box" onclick="toggleReasoning(this)">
+                    <div class="reasoning-header">
+                        How does the system optimize intervention timing and sequencing?
+                        <span class="expand-icon">+</span>
+                    </div>
+                    <div class="reasoning-details">
+                        <strong>1. Critical Path Analysis:</strong> Identifies interventions that can be implemented immediately vs. those requiring approval<br><br>
+                        <strong>2. Resource Optimization:</strong> Allocates limited resources to highest-impact interventions<br><br>
+                        <strong>3. Risk Mitigation:</strong> Balances intervention benefits against implementation risks<br><br>
+                        <strong>4. Stakeholder Coordination:</strong> Sequences interventions to minimize disruption to ongoing operations<br><br>
+                        <strong>5. Success Probability Modeling:</strong> Estimates likelihood of intervention success based on historical data
+                    </div>
+                </div>
+            </div>
+
+            <div class="workflow-step">
+                <div class="step-header">
+                    <div class="step-number">4</div>
+                    <div class="step-title">Implementation and Continuous Optimization</div>
+                </div>
+
+                <div class="expert-decision">
+                    <strong>Dr. Walsh's Implementation Plan:</strong><br>
+                    "We'll implement the enhanced site support immediately and submit the protocol amendment for the new sites. The safety monitoring update will be implemented within 2 weeks."
+                </div>
+
+                <div class="system-analysis">
+                    <strong>Updated Projections After Interventions:</strong><br>
+                    • <strong>Recruitment recovery:</strong> Expected to reach target by Month 10<br>
+                    • <strong>Safety monitoring:</strong> Enhanced UTI detection and prevention<br>
+                    • <strong>Timeline impact:</strong> Minimal delay (1 month vs. 3 months without intervention)<br>
+                    • <strong>Budget impact:</strong> Additional $2.1M, still within contingency
+                </div>
+
+                <div class="reasoning-box" onclick="toggleReasoning(this)">
+                    <div class="reasoning-header">
+                        How does the system learn from intervention outcomes?
+                        <span class="expand-icon">+</span>
+                    </div>
+                    <div class="reasoning-details">
+                        <strong>1. Outcome Tracking:</strong> Monitors actual vs. predicted intervention effectiveness<br><br>
+                        <strong>2. Pattern Recognition:</strong> Identifies which intervention types work best in different scenarios<br><br>
+                        <strong>3. Model Refinement:</strong> Updates predictive models based on real-world outcomes<br><br>
+                        <strong>4. Knowledge Transfer:</strong> Applies learnings to future trials and similar situations<br><br>
+                        <strong>5. Continuous Improvement:</strong> Iteratively improves intervention recommendations
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="engagement-tools">
+            <h3>Ready to explore the final phase?</h3>
+            <button onclick="window.location.href='regulatory-strategy.html'">📋 Continue to Regulatory Strategy</button>
+            <button onclick="window.location.href='cardiovascular.html'">📋 Back to Trial Overview</button>
+            <button onclick="downloadPhaseAnalysis('adaptive-modifications')">📄 Download Management Analysis</button>
+        </div>
+    </div>
+
+    <div class="toast" id="toast"></div>
+
+    <script>
+        // Toggle reasoning boxes
+        function toggleReasoning(element) {
+            element.classList.toggle('expanded');
+            const details = element.querySelector('.reasoning-details');
+            const icon = element.querySelector('.expand-icon');
+            
+            if (element.classList.contains('expanded')) {
+                details.style.display = 'block';
+                icon.textContent = '×';
+            } else {
+                details.style.display = 'none';
+                icon.textContent = '+';
+            }
+        }
+        
+        // Feedback handling
+        function giveFeedback(button, response) {
+            button.style.background = '#4caf50';
+            button.textContent = '✓ ' + button.textContent.replace('✓ ', '');
+            
+            // Disable other buttons in the same group
+            const siblings = button.parentElement.querySelectorAll('button');
+            siblings.forEach(function(btn) {
+                if (btn !== button) {
+                    btn.disabled = true;
+                    btn.style.opacity = '0.5';
+                }
+            });
+            
+            showToast('Thanks for the feedback!');
+            console.log('Feedback:', response);
+        }
+        
+        // Show toast notifications
+        function showToast(message) {
+            const toast = document.getElementById('toast');
+            toast.textContent = message;
+            toast.classList.add('show');
+            
+            setTimeout(function() {
+                toast.classList.remove('show');
+            }, 3000);
+        }
+        
+        // Progressive disclosure on scroll
+        window.addEventListener('scroll', function() {
+            const steps = document.querySelectorAll('.workflow-step');
+            steps.forEach(function(step) {
+                const rect = step.getBoundingClientRect();
+                if (rect.top < window.innerHeight * 0.8) {
+                    step.classList.add('in-view');
+                }
+            });
+            
+            // Update progress bar
+            const scrollTop = window.pageYOffset;
+            const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+            const scrollPercent = Math.min((scrollTop / docHeight) * 100, 100);
+            
+            document.getElementById('progressBar').style.width = scrollPercent + '%';
+        });
+        
+        // Download phase analysis
+        function downloadPhaseAnalysis(phase) {
+            const phaseNames = {
+                'protocol-design': 'Protocol Design Analysis',
+                'site-selection': 'Site Selection Analysis',
+                'adaptive-modifications': 'Trial Management Analysis',
+                'regulatory-strategy': 'Regulatory Strategy Analysis'
+            };
+            
+            showToast(`${phaseNames[phase]} download coming soon! Contact us for detailed materials.`);
+            // In the future, this could link to specific PDFs for each phase
+        }
+        
+        // Initialize when page loads
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('Adaptive trial management demo loaded successfully');
+            showToast('Welcome! Explore how AI optimizes trial execution in real-time.');
+        });
+    </script>
+</body>
+</html> 

@@ -1,0 +1,830 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Protocol Design & Optimization - AdjuvantIQ Demo</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #f8f9fc;
+        }
+        
+        .hero {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 60px 20px;
+            text-align: center;
+        }
+        
+        .hero h1 {
+            font-size: 2.5em;
+            margin-bottom: 20px;
+        }
+        
+        .hero .lead {
+            font-size: 1.3em;
+            margin-bottom: 30px;
+            opacity: 0.9;
+        }
+        
+        .time-investment {
+            background: rgba(255,255,255,0.1);
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 20px;
+            font-size: 1.1em;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        .progress-section {
+            background: white;
+            padding: 20px;
+            border-bottom: 1px solid #ddd;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        .progress-bar {
+            background: #e0e0e0;
+            height: 6px;
+            border-radius: 3px;
+            overflow: hidden;
+            margin-bottom: 10px;
+        }
+        
+        .progress {
+            background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
+            height: 100%;
+            transition: width 0.3s ease;
+            width: 25%;
+        }
+        
+        .progress-text {
+            font-weight: 600;
+            color: #666;
+        }
+        
+        .user-input {
+            background: #e8f5e8;
+            border-left: 5px solid #4caf50;
+            padding: 20px;
+            margin: 15px 0;
+            border-radius: 6px;
+            position: relative;
+        }
+        
+        .user-input::before {
+            content: "👤 USER INPUT";
+            position: absolute;
+            top: -10px;
+            left: 15px;
+            background: #4caf50;
+            color: white;
+            padding: 4px 8px;
+            font-size: 0.8em;
+            font-weight: bold;
+            border-radius: 3px;
+        }
+        
+        .system-analysis {
+            background: #e3f2fd;
+            border-left: 5px solid #2196f3;
+            padding: 20px;
+            margin: 15px 0;
+            border-radius: 6px;
+            position: relative;
+        }
+        
+        .system-analysis::before {
+            content: "🤖 SYSTEM ANALYSIS";
+            position: absolute;
+            top: -10px;
+            left: 15px;
+            background: #2196f3;
+            color: white;
+            padding: 4px 8px;
+            font-size: 0.8em;
+            font-weight: bold;
+            border-radius: 3px;
+        }
+        
+        .system-recommendations {
+            background: #f3e5f5;
+            border-left: 5px solid #9c27b0;
+            padding: 20px;
+            margin: 15px 0;
+            border-radius: 6px;
+            position: relative;
+        }
+        
+        .system-recommendations::before {
+            content: "💡 RECOMMENDATIONS";
+            position: absolute;
+            top: -10px;
+            left: 15px;
+            background: #9c27b0;
+            color: white;
+            padding: 4px 8px;
+            font-size: 0.8em;
+            font-weight: bold;
+            border-radius: 3px;
+        }
+        
+        .expert-decision {
+            background: #fff8e1;
+            border-left: 5px solid #ff9800;
+            padding: 20px;
+            margin: 15px 0;
+            border-radius: 6px;
+            position: relative;
+        }
+        
+        .expert-decision::before {
+            content: "🎯 KEY DECISION";
+            position: absolute;
+            top: -10px;
+            left: 15px;
+            background: #ff9800;
+            color: white;
+            padding: 4px 8px;
+            font-size: 0.8em;
+            font-weight: bold;
+            border-radius: 3px;
+        }
+        
+        .reasoning-box {
+            background: #fff3e0;
+            border: 2px solid #ff9800;
+            padding: 20px;
+            margin: 15px 0;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        
+        .reasoning-box::before {
+            content: "🔧 AI REASONING";
+            position: absolute;
+            top: -10px;
+            left: 15px;
+            background: #ff9800;
+            color: white;
+            padding: 4px 8px;
+            font-size: 0.8em;
+            font-weight: bold;
+            border-radius: 3px;
+        }
+        
+        .reasoning-box:hover {
+            box-shadow: 0 4px 12px rgba(255,152,0,0.2);
+        }
+        
+        .reasoning-box.expanded {
+            background: #fff8e1;
+        }
+        
+        .reasoning-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: bold;
+            color: #e65100;
+        }
+        
+        .expand-icon {
+            font-size: 1.2em;
+            margin-left: auto;
+            transition: transform 0.3s ease;
+        }
+        
+        .reasoning-box.expanded .expand-icon {
+            transform: rotate(45deg);
+        }
+        
+        .reasoning-details {
+            margin-top: 15px;
+            display: none;
+        }
+        
+        .reasoning-box.expanded .reasoning-details {
+            display: block;
+        }
+        
+        .workflow-step {
+            opacity: 0.3;
+            transform: translateY(20px);
+            transition: all 0.5s ease;
+        }
+        
+        .workflow-step.in-view {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .content-section {
+            background: white;
+            margin: 20px 0;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        
+        .section-header {
+            background: #f8f9fc;
+            padding: 30px;
+            border-bottom: 1px solid #e0e6ed;
+        }
+        
+        .persona-card {
+            background: linear-gradient(135deg, #e3f2fd 0%, #f3e5f5 100%);
+            border-left: 5px solid #2196f3;
+            padding: 25px;
+            margin: 20px 0;
+            border-radius: 8px;
+        }
+        
+        .persona-title {
+            font-size: 1.4em;
+            font-weight: bold;
+            color: #1976d2;
+            margin-bottom: 10px;
+        }
+        
+        .workflow-step {
+            padding: 30px;
+            border-bottom: 1px solid #f0f0f0;
+        }
+        
+        .workflow-step:last-child {
+            border-bottom: none;
+        }
+        
+        .step-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        
+        .step-number {
+            background: #2196f3;
+            color: white;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 20px;
+            font-weight: bold;
+            font-size: 1.2em;
+        }
+        
+        .step-title {
+            font-size: 1.3em;
+            font-weight: 600;
+            color: #333;
+        }
+        
+        .credibility-indicators {
+            background: #f8f9fc;
+            padding: 20px;
+            margin: 30px 0;
+            border-radius: 8px;
+            border-left: 4px solid #9c27b0;
+        }
+        
+        .expertise-note, .data-note {
+            display: flex;
+            align-items: center;
+            margin: 10px 0;
+        }
+        
+        .expertise-note .icon, .data-note .icon {
+            font-size: 1.5em;
+            margin-right: 15px;
+        }
+        
+        .micro-feedback {
+            background: #f0f8ff;
+            border: 1px solid #b3d9ff;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 6px;
+            text-align: center;
+        }
+        
+        .feedback-buttons button {
+            background: #2196f3;
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            margin: 5px;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+        
+        .feedback-buttons button:hover {
+            background: #1976d2;
+        }
+        
+        .engagement-tools {
+            background: #e8f5e8;
+            padding: 20px;
+            margin: 30px 0;
+            border-radius: 8px;
+            text-align: center;
+        }
+        
+        .engagement-tools button {
+            background: #4caf50;
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            margin: 5px;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+        
+        .engagement-tools button:hover {
+            background: #45a049;
+        }
+        
+        .toast {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: #4caf50;
+            color: white;
+            padding: 15px 20px;
+            border-radius: 6px;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            z-index: 1001;
+        }
+        
+        .toast.show {
+            opacity: 1;
+        }
+        
+        .back-link {
+            display: inline-block;
+            margin: 20px 0;
+            color: #667eea;
+            text-decoration: none;
+            font-weight: 600;
+            padding: 12px 20px;
+            background: linear-gradient(135deg, #f8f9fc 0%, #e3f2fd 100%);
+            border-radius: 8px;
+            border: 2px solid #667eea;
+            transition: all 0.3s ease;
+            font-size: 1.1em;
+        }
+        
+        .back-link:hover {
+            color: #5a67d8;
+            background: linear-gradient(135deg, #e3f2fd 0%, #f3e5f5 100%);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+            text-decoration: none;
+        }
+        
+
+        
+        .helper-icon {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            width: 50px;
+            height: 50px;
+            background: #667eea;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-size: 1.5em;
+            z-index: 1000;
+            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+            transition: all 0.3s ease;
+        }
+        
+        .helper-icon:hover {
+            background: #5a6fd8;
+            transform: scale(1.1);
+        }
+        
+        .helper-popup {
+            position: fixed;
+            top: 80px;
+            right: 20px;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+            padding: 25px;
+            z-index: 1001;
+            max-width: 350px;
+            display: none;
+            border-left: 4px solid #9c27b0;
+        }
+        
+        .helper-content h4 {
+            margin-bottom: 15px;
+            color: #333;
+            font-size: 1.2em;
+        }
+        
+        .helper-item {
+            margin: 10px 0;
+        }
+        
+        .helper-example {
+            padding: 10px;
+            border-radius: 6px;
+            font-size: 0.9em;
+        }
+        
+        .helper-example.user-input {
+            background: #e8f5e8;
+            border-left: 3px solid #4caf50;
+        }
+        
+        .helper-example.system-analysis {
+            background: #e3f2fd;
+            border-left: 3px solid #2196f3;
+        }
+        
+        .helper-example.system-recommendations {
+            background: #f3e5f5;
+            border-left: 3px solid #9c27b0;
+        }
+        
+        .helper-example.expert-decision {
+            background: #e8f5e8;
+            border-left: 3px solid #4caf50;
+        }
+        
+        .helper-example.reasoning-box {
+            background: #fff3e0;
+            border-left: 3px solid #ff9800;
+        }
+        
+        .close-helper {
+            background: #667eea;
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 6px;
+            cursor: pointer;
+            margin-top: 15px;
+            font-weight: 500;
+        }
+        
+        .close-helper:hover {
+            background: #5a6fd8;
+        }
+    </style>
+</head>
+<body>
+    <div class="hero">
+        <div class="container">
+            <a href="cardiovascular.html" class="back-link">← Back to Trial Overview</a>
+            <h1>Protocol Design & Optimization</h1>
+            <p class="lead">See how AI-assisted reasoning transforms complex protocol decisions and solves interdependent optimization challenges</p>
+            <div class="time-investment">
+                ⏱️ 8-10 minutes • Strategic trial planning • Multi-agent optimization • Industry pain points
+            </div>
+        </div>
+    </div>
+
+    <div class="progress-section">
+        <div class="container">
+            <div class="progress-bar">
+                <div class="progress" id="progressBar"></div>
+            </div>
+            <div class="progress-text" id="progressText">Initial Protocol Concept (1 of 4)</div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="credibility-indicators">
+            <div class="expertise-note">
+                <span class="icon">🎓</span>
+                <span>Developed with clinical development leaders from Pfizer, Novartis, and leading biotech companies</span>
+            </div>
+            <div class="data-note">
+                <span class="icon">📊</span>
+                <span>Based on analysis of EMPA-REG OUTCOME, CANVAS, DECLARE-TIMI 58, and 40+ similar cardiovascular outcomes trials</span>
+            </div>
+        </div>
+
+        <div class="helper-icon" onclick="toggleHelper()" title="Content Guide">
+            <span>❓</span>
+        </div>
+        
+        <div class="helper-popup" id="helperPopup">
+            <div class="helper-content">
+                <h4>Content Guide - What Each Box Contains</h4>
+                <div class="helper-item">
+                    <div class="helper-example user-input">👤 <strong>USER INPUT</strong>: What clinical experts tell the system</div>
+                </div>
+                <div class="helper-item">
+                    <div class="helper-example system-analysis">🤖 <strong>SYSTEM ANALYSIS</strong>: AI agents processing and analyzing</div>
+                </div>
+                <div class="helper-item">
+                    <div class="helper-example system-recommendations">💡 <strong>RECOMMENDATIONS</strong>: System-generated optimization suggestions</div>
+                </div>
+                <div class="helper-item">
+                    <div class="helper-example expert-decision">🎯 <strong>KEY DECISION</strong>: Clinical expert's final choices (Green)</div>
+                </div>
+                <div class="helper-item">
+                    <div class="helper-example reasoning-box">🔧 <strong>AI REASONING</strong>: Click to see how the system works (expandable)</div>
+                </div>
+                <button onclick="toggleHelper()" class="close-helper">Close</button>
+            </div>
+        </div>
+
+
+
+        <div class="content-section">
+            <div class="section-header">
+                <h2>Next-Generation SGLT2 Inhibitor Trial Design</h2>
+                <p>Building on the success of EMPA-REG OUTCOME, your team is designing a Phase III cardiovascular outcomes trial for a novel SGLT2 inhibitor with potential superior HF benefits.</p>
+            </div>
+
+            <div class="persona-card">
+                <div class="persona-title">Dr. Sarah Chen, VP Clinical Development</div>
+                <p><strong>Company:</strong> Mid-size biotech with promising SGLT2 inhibitor</p>
+                <p><strong>Challenge:</strong> Design Phase III CV outcomes trial that improves on EMPA-REG timeline (37 months) while maintaining regulatory strength</p>
+                <p><strong>Competitive Pressure:</strong> Two competitors in similar development stages</p>
+            </div>
+
+            <div class="workflow-step">
+                <div class="step-header">
+                    <div class="step-number">1</div>
+                    <div class="step-title">Initial Protocol Concept Input</div>
+                </div>
+                
+                <div class="user-input">
+                    <strong>Dr. Chen's Input:</strong> "Phase III cardiovascular outcomes study, novel SGLT2 inhibitor, diabetic patients with heart failure, primary endpoint MACE reduction, targeting superior efficacy vs. empagliflozin"
+                </div>
+
+                <div class="system-analysis">
+                    <strong>System Initial Analysis:</strong><br>
+                    • <strong>Pattern Recognition:</strong> Mapping to SGLT2 inhibitor cardiovascular outcomes precedents<br>
+                    • <strong>Historical Context:</strong> EMPA-REG OUTCOME (7,020 patients, 37 months, 590 sites globally)<br>
+                    • <strong>Competitive Landscape:</strong> 2 similar trials identified (NCT04560043, NCT04566497)<br>
+                    • <strong>Key Interdependencies Flagged:</strong> Endpoint ↔ Population ↔ Sample Size ↔ Sites ↔ Regulatory pathway
+                </div>
+
+                <div class="reasoning-box" onclick="toggleReasoning(this)">
+                    <div class="reasoning-header">
+                        How did the system analyze Dr. Chen's input?
+                        <span class="expand-icon">+</span>
+                    </div>
+                    <div class="reasoning-details">
+                        <strong>1. Natural Language Processing:</strong> LLM extracts key concepts: "Phase III" → clinical trial phase, "SGLT2 inhibitor" → drug class, "cardiovascular outcomes" → trial type<br><br>
+                        <strong>2. Historical Pattern Matching:</strong> System queries database of cardiovascular outcomes trials, identifies EMPA-REG, CANVAS, DECLARE-TIMI 58 as most relevant precedents<br><br>
+                        <strong>3. Competitive Intelligence:</strong> Automated scan of ClinicalTrials.gov using drug class and indication filters identifies 2 active competing trials<br><br>
+                        <strong>4. Interdependency Mapping:</strong> Trial design framework identifies 12 critical relationships between protocol elements that will need optimization<br><br>
+                        <strong>5. Agent Routing Preparation:</strong> System prepares to activate Statistical Power, Recruitment, Regulatory, and Site Selection agents for detailed analysis
+                    </div>
+                </div>
+
+                <div class="micro-feedback">
+                    <p><strong>Quick reaction:</strong> Does this type of precedent analysis match how you approach trial design?</p>
+                    <div class="feedback-buttons">
+                        <button onclick="giveFeedback(this, 'yes-precedent')">Yes, we do similar analysis</button>
+                        <button onclick="giveFeedback(this, 'partial-precedent')">We do some of this</button>
+                        <button onclick="giveFeedback(this, 'no-precedent')">We rely more on intuition</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="workflow-step">
+                <div class="step-header">
+                    <div class="step-number">2</div>
+                    <div class="step-title">Systematic Interdependency Analysis</div>
+                </div>
+
+                <div class="system-analysis">
+                    <strong>Coordinated Agent Analysis Results:</strong><br><br>
+                    <strong>📊 Statistical Power Agent:</strong> MACE endpoint requires 11,500-14,000 patients for 15% relative risk reduction<br><br>
+                    <strong>👥 Recruitment Agent:</strong> HF + diabetes population yields ~280 eligible patients per site<br><br>
+                    <strong>⚖️ Regulatory Agent:</strong> FDA cardiovascular guidance mandates 3P-MACE definition, independent adjudication<br><br>
+                    <strong>🏥 Site Selection Agent:</strong> Academic centers: superior expertise but slower recruitment
+                </div>
+
+                <div class="reasoning-box" onclick="toggleReasoning(this)">
+                    <div class="reasoning-header">
+                        How do multiple AI agents coordinate this analysis?
+                        <span class="expand-icon">+</span>
+                    </div>
+                    <div class="reasoning-details">
+                        <strong>1. Parallel Agent Activation:</strong> System simultaneously queries 5 specialized agents, each with access to relevant historical data and regulatory requirements<br><br>
+                        <strong>2. Cross-Agent Validation:</strong> Statistical Power calculation cross-checked against Recruitment Agent's site capacity estimates<br><br>
+                        <strong>3. Regulatory Compliance Layer:</strong> All agent recommendations filtered through FDA cardiovascular guidance requirements<br><br>
+                        <strong>4. Historical Benchmarking:</strong> Each agent's projections calibrated against actual trial performance data
+                    </div>
+                </div>
+
+                <div class="micro-feedback">
+                    <p><strong>💭 Quick question:</strong> How do you currently handle these types of interdependent optimization decisions?</p>
+                    <div class="feedback-buttons">
+                        <button onclick="giveFeedback(this, 'expert-meetings')">Expert team meetings</button>
+                        <button onclick="giveFeedback(this, 'consultant-help')">External consultants</button>
+                        <button onclick="giveFeedback(this, 'sequential-decisions')">Make decisions sequentially</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="workflow-step">
+                <div class="step-header">
+                    <div class="step-number">3</div>
+                    <div class="step-title">System Optimization Recommendations</div>
+                </div>
+
+                <div class="system-recommendations">
+                    <strong>Optimized Protocol Options:</strong><br><br>
+                    <strong>🎯 Option A - "EMPA-REG Plus" Approach:</strong><br>
+                    • Sample size: 12,000 patients<br>
+                    • Timeline: 42 months<br>
+                    • Budget: $47M estimated<br><br>
+                    <strong>🚀 Option B - "Accelerated Timeline" Approach:</strong><br>
+                    • Sample size: 14,000 patients<br>
+                    • Timeline: 36 months<br>
+                    • Budget: $52M estimated
+                </div>
+
+                <div class="reasoning-box" onclick="toggleReasoning(this)">
+                    <div class="reasoning-header">
+                        How does the system generate these optimization recommendations?
+                        <span class="expand-icon">+</span>
+                    </div>
+                    <div class="reasoning-details">
+                        <strong>1. Multi-Objective Optimization:</strong> System balances conflicting objectives: minimize timeline, minimize cost, maximize success probability<br><br>
+                        <strong>2. Scenario Generation:</strong> Monte Carlo simulation generates 500+ protocol variations<br><br>
+                        <strong>3. Historical Performance Modeling:</strong> Each scenario evaluated against actual performance data<br><br>
+                        <strong>4. Risk-Adjusted Analysis:</strong> Incorporates competitive timeline pressure and regulatory uncertainty
+                    </div>
+                </div>
+            </div>
+
+            <div class="workflow-step">
+                <div class="step-header">
+                    <div class="step-number">4</div>
+                    <div class="step-title">Expert Decision & System Learning</div>
+                </div>
+
+                <div class="expert-decision">
+                    <strong>Dr. Chen's Final Decision:</strong><br>
+                    "We'll proceed with Option A - the EMPA-REG Plus approach. Given our company's development stage and resource constraints, the lower-risk path makes strategic sense."
+                </div>
+
+                <div class="system-analysis">
+                    <strong>Updated System Projections:</strong><br>
+                    • <strong>Final sample size:</strong> 12,000 patients<br>
+                    • <strong>Timeline:</strong> 42 months total<br>
+                    • <strong>Success probability:</strong> 78% based on historical data<br>
+                    • <strong>Budget:</strong> $47M total
+                </div>
+
+                <div class="reasoning-box" onclick="toggleReasoning(this)">
+                    <div class="reasoning-header">
+                        How does the system learn from Dr. Chen's decision?
+                        <span class="expand-icon">+</span>
+                    </div>
+                    <div class="reasoning-details">
+                        <strong>1. Decision Pattern Learning:</strong> System identifies pattern: "mid-stage biotech + resource constraints → risk-averse optimization preference"<br><br>
+                        <strong>2. Organizational Profile Update:</strong> Company profile updated with decision-making patterns and risk tolerance<br><br>
+                        <strong>3. Cascade Recalculation:</strong> All downstream projections automatically recalculated<br><br>
+                        <strong>4. Continuous Monitoring Setup:</strong> System configured to track actual trial performance vs. projections
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="engagement-tools">
+            <h3>Ready to explore the next phase?</h3>
+            <button onclick="window.location.href='site-selection.html'">🏥 Continue to Site Selection</button>
+            <button onclick="window.location.href='cardiovascular.html'">📋 Back to Trial Overview</button>
+            <button onclick="downloadPhaseAnalysis('protocol-design')">📄 Download Protocol Analysis</button>
+        </div>
+    </div>
+
+    <div class="toast" id="toast"></div>
+
+    <script>
+        // Toggle reasoning boxes
+        function toggleReasoning(element) {
+            element.classList.toggle('expanded');
+            const details = element.querySelector('.reasoning-details');
+            const icon = element.querySelector('.expand-icon');
+            
+            if (element.classList.contains('expanded')) {
+                details.style.display = 'block';
+                icon.textContent = '×';
+            } else {
+                details.style.display = 'none';
+                icon.textContent = '+';
+            }
+        }
+        
+        // Feedback handling
+        function giveFeedback(button, response) {
+            button.style.background = '#4caf50';
+            button.textContent = '✓ ' + button.textContent.replace('✓ ', '');
+            
+            // Disable other buttons in the same group
+            const siblings = button.parentElement.querySelectorAll('button');
+            siblings.forEach(function(btn) {
+                if (btn !== button) {
+                    btn.disabled = true;
+                    btn.style.opacity = '0.5';
+                }
+            });
+            
+            showToast('Thanks for the feedback!');
+            console.log('Feedback:', response);
+        }
+        
+        // Show toast notifications
+        function showToast(message) {
+            const toast = document.getElementById('toast');
+            toast.textContent = message;
+            toast.classList.add('show');
+            
+            setTimeout(function() {
+                toast.classList.remove('show');
+            }, 3000);
+        }
+        
+        // Progressive disclosure on scroll
+        window.addEventListener('scroll', function() {
+            const steps = document.querySelectorAll('.workflow-step');
+            steps.forEach(function(step) {
+                const rect = step.getBoundingClientRect();
+                if (rect.top < window.innerHeight * 0.8) {
+                    step.classList.add('in-view');
+                }
+            });
+            
+            // Update progress bar
+            const scrollTop = window.pageYOffset;
+            const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+            const scrollPercent = Math.min((scrollTop / docHeight) * 100, 100);
+            
+            document.getElementById('progressBar').style.width = scrollPercent + '%';
+        });
+        
+        // Toggle helper popup
+        function toggleHelper() {
+            const popup = document.getElementById('helperPopup');
+            if (popup.style.display === 'none' || popup.style.display === '') {
+                popup.style.display = 'block';
+            } else {
+                popup.style.display = 'none';
+            }
+        }
+        
+        // Download phase analysis
+        function downloadPhaseAnalysis(phase) {
+            const phaseNames = {
+                'protocol-design': 'Protocol Design Analysis',
+                'site-selection': 'Site Selection Analysis',
+                'adaptive-modifications': 'Trial Management Analysis',
+                'regulatory-strategy': 'Regulatory Strategy Analysis'
+            };
+            
+            showToast(`${phaseNames[phase]} download coming soon! Contact us for detailed materials.`);
+            // In the future, this could link to specific PDFs for each phase
+        }
+        
+        // Initialize when page loads
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('Protocol design demo loaded successfully');
+            showToast('Welcome! Explore how AI optimizes protocol design decisions.');
+        });
+    </script>
+</body>
+</html> 

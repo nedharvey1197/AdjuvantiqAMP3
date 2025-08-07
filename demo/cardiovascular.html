@@ -1,0 +1,845 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>End-to-End Trial Optimization - AdjuvantIQ Demo</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #f8f9fc;
+        }
+        
+        .hero {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 80px 20px;
+            text-align: center;
+        }
+        
+        .hero h1 {
+            font-size: 3em;
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+        
+        .hero .lead {
+            font-size: 1.4em;
+            margin-bottom: 30px;
+            opacity: 0.9;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .time-investment {
+            background: rgba(255,255,255,0.1);
+            padding: 20px;
+            border-radius: 8px;
+            margin-top: 30px;
+            font-size: 1.1em;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        .back-link {
+            display: inline-block;
+            margin: 20px 0;
+            color: #667eea;
+            text-decoration: none;
+            font-weight: 600;
+            padding: 12px 20px;
+            background: linear-gradient(135deg, #f8f9fc 0%, #e3f2fd 100%);
+            border-radius: 8px;
+            border: 2px solid #667eea;
+            transition: all 0.3s ease;
+            font-size: 1.1em;
+        }
+        
+        .back-link:hover {
+            color: #5a67d8;
+            background: linear-gradient(135deg, #e3f2fd 0%, #f3e5f5 100%);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+            text-decoration: none;
+        }
+        
+
+        
+        .trial-overview {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            overflow: hidden;
+            margin: 40px 0;
+        }
+        
+        .overview-header {
+            background: linear-gradient(135deg, #e3f2fd 0%, #f3e5f5 100%);
+            padding: 25px;
+            text-align: center;
+        }
+        
+        .overview-header h2 {
+            font-size: 1.8em;
+            color: #1976d2;
+            margin-bottom: 10px;
+        }
+        
+        .overview-header p {
+            font-size: 1.1em;
+            margin-bottom: 20px;
+        }
+        
+        .trial-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+        
+        .stat-card {
+            background: white;
+            padding: 15px;
+            border-radius: 8px;
+            text-align: center;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        .stat-number {
+            font-size: 2em;
+            font-weight: bold;
+            color: #1976d2;
+            margin-bottom: 5px;
+        }
+        
+        .stat-label {
+            color: #666;
+            font-size: 0.8em;
+        }
+        
+        .team-section {
+            background: white;
+            margin: 40px 0;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        
+        .section-header {
+            background: #f8f9fc;
+            padding: 30px;
+            border-bottom: 1px solid #e0e6ed;
+        }
+        
+        .section-header h3 {
+            font-size: 1.8em;
+            color: #333;
+            margin-bottom: 10px;
+        }
+        
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            padding: 30px;
+        }
+        
+        .team-member {
+            background: #f8f9fc;
+            border-radius: 8px;
+            padding: 25px;
+            border-left: 4px solid #2196f3;
+        }
+        
+        .member-name {
+            font-size: 1.3em;
+            font-weight: bold;
+            color: #1976d2;
+            margin-bottom: 5px;
+        }
+        
+        .member-role {
+            color: #666;
+            font-size: 0.9em;
+            margin-bottom: 15px;
+        }
+        
+        .member-challenge {
+            background: #fff3e0;
+            border-left: 3px solid #ff9800;
+            padding: 15px;
+            margin-top: 15px;
+            border-radius: 4px;
+        }
+        
+        .phase-navigation {
+            background: white;
+            margin: 40px 0;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        
+        .phase-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            padding: 30px;
+        }
+        
+        .phase-card {
+            background: linear-gradient(135deg, #f8f9fc 0%, #e3f2fd 100%);
+            border-radius: 12px;
+            padding: 30px;
+            border: 2px solid transparent;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .phase-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+            border-color: #2196f3;
+        }
+        
+        .phase-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
+        }
+        
+        .phase-number {
+            background: #2196f3;
+            color: white;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+        
+        .phase-title {
+            font-size: 1.4em;
+            font-weight: bold;
+            color: #1976d2;
+            margin-bottom: 10px;
+        }
+        
+        .phase-subtitle {
+            color: #666;
+            margin-bottom: 20px;
+        }
+        
+        .phase-features {
+            list-style: none;
+            margin: 20px 0;
+        }
+        
+        .phase-features li {
+            padding: 8px 0;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        
+        .phase-features li:last-child {
+            border-bottom: none;
+        }
+        
+        .phase-features li:before {
+            content: "✓";
+            color: #4caf50;
+            font-weight: bold;
+            margin-right: 10px;
+        }
+        
+        .phase-button {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 12px 25px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 500;
+            display: inline-block;
+            margin-top: 15px;
+            transition: all 0.3s ease;
+        }
+        
+        .phase-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+        }
+        
+        .pain-points {
+            background: white;
+            margin: 40px 0;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        
+        .pain-points-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            padding: 30px;
+        }
+        
+        .pain-point {
+            background: #fff3e0;
+            border-left: 4px solid #ff9800;
+            padding: 20px;
+            border-radius: 6px;
+        }
+        
+        .pain-point-title {
+            font-weight: bold;
+            color: #e65100;
+            margin-bottom: 10px;
+        }
+        
+        .credibility-indicators {
+            background: #f8f9fc;
+            padding: 20px;
+            margin: 30px 0;
+            border-radius: 8px;
+            border-left: 4px solid #9c27b0;
+        }
+        
+        .expertise-note, .data-note {
+            display: flex;
+            align-items: center;
+            margin: 10px 0;
+        }
+        
+        .expertise-note .icon, .data-note .icon {
+            font-size: 1.5em;
+            margin-right: 15px;
+        }
+        
+        .engagement-tools {
+            background: #e8f5e8;
+            padding: 30px;
+            margin: 40px 0;
+            border-radius: 8px;
+            text-align: center;
+        }
+        
+        .engagement-tools button {
+            background: #4caf50;
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            margin: 5px;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+        
+        .engagement-tools button:hover {
+            background: #45a049;
+        }
+        
+        .toast {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: #4caf50;
+            color: white;
+            padding: 15px 20px;
+            border-radius: 6px;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            z-index: 1001;
+        }
+        
+        .toast.show {
+            opacity: 1;
+        }
+        
+        .tutorial-box {
+            background: white;
+            margin: 40px 0;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            border-left: 4px solid #9c27b0;
+            overflow: hidden;
+        }
+        
+        .tutorial-header {
+            background: linear-gradient(135deg, #f8f9fc 0%, #e3f2fd 100%);
+            padding: 20px 30px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: background 0.3s ease;
+        }
+        
+        .tutorial-header:hover {
+            background: linear-gradient(135deg, #e3f2fd 0%, #f3e5f5 100%);
+        }
+        
+        .tutorial-header h3 {
+            margin: 0;
+            color: #333;
+            font-size: 1.3em;
+        }
+        
+        .tutorial-toggle {
+            font-size: 1.2em;
+            color: #667eea;
+            transition: transform 0.3s ease;
+        }
+        
+        .tutorial-content {
+            padding: 30px;
+            display: block;
+        }
+        
+        .tutorial-content.collapsed {
+            display: none;
+        }
+        
+        .tutorial-tips {
+            background: #f8f9fc;
+            padding: 20px;
+            border-radius: 8px;
+            margin-top: 20px;
+        }
+        
+        .tutorial-tips h4 {
+            margin-bottom: 15px;
+            color: #333;
+        }
+        
+        .tutorial-tips ul {
+            margin: 0;
+            padding-left: 20px;
+        }
+        
+        .tutorial-tips li {
+            margin: 8px 0;
+            color: #555;
+        }
+        
+        .guide-item {
+            margin: 15px 0;
+        }
+        
+        .guide-example {
+            padding: 15px;
+            border-radius: 6px;
+            position: relative;
+            display: flex;
+            align-items: center;
+        }
+        
+        .guide-example.user-input {
+            background: #e8f5e8;
+            border-left: 5px solid #4caf50;
+        }
+        
+        .guide-example.system-analysis {
+            background: #e3f2fd;
+            border-left: 5px solid #2196f3;
+        }
+        
+        .guide-example.system-recommendations {
+            background: #f3e5f5;
+            border-left: 5px solid #9c27b0;
+        }
+        
+        .guide-example.expert-decision {
+            background: #e8f5e8;
+            border-left: 5px solid #4caf50;
+        }
+        
+        .guide-example.reasoning-box {
+            background: #fff3e0;
+            border-left: 5px solid #ff9800;
+        }
+        
+        .guide-icon {
+            font-size: 1.5em;
+            margin-right: 15px;
+        }
+        
+        .guide-content {
+            flex: 1;
+        }
+    </style>
+</head>
+<body>
+    <div class="hero">
+        <div class="container">
+            <a href="index.html" class="back-link">← Back to Demo Hub</a>
+            <h1>End-to-End Trial Optimization</h1>
+            <p class="lead">See how AdjuvantIQ transforms clinical development from initial planning through regulatory submission, solving the most critical pain points that cost billions in lost value.</p>
+            <div class="time-investment">
+                ⏱️ 20-30 minutes • Complete trial lifecycle • Real industry pain points • Multi-stakeholder perspectives
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="credibility-indicators">
+            <div class="expertise-note">
+                <span class="icon">🎓</span>
+                <span>Developed with clinical development leaders from Pfizer, Novartis, Genentech, and leading biotech companies</span>
+            </div>
+            <div class="data-note">
+                <span class="icon">📊</span>
+                <span>Based on analysis of 50+ cardiovascular outcomes trials and $2.3B in documented development delays</span>
+            </div>
+        </div>
+
+        <div class="tutorial-box" id="tutorialBox">
+            <div class="tutorial-header" onclick="toggleTutorial()">
+                <h3>📚 Quick Tutorial: AdjuvantIQ's Demo Format</h3>
+                <span class="tutorial-toggle">▼</span>
+            </div>
+            <div class="tutorial-content" id="tutorialContent">
+                <p><strong>How the demos work:</strong> Each demo shows how AdjuvantIQ's AI system processes clinical trial decisions. You'll see different colored boxes representing different types of information and AI processes.</p>
+                
+                <h4>Color-Coded Information Types:</h4>
+                <div class="guide-item">
+                    <div class="guide-example user-input">
+                        <div class="guide-icon">👤</div>
+                        <div class="guide-content">
+                            <strong>USER INPUT</strong><br>
+                            What clinical experts tell the system - their requests, challenges, and initial thoughts.
+                        </div>
+                    </div>
+                </div>
+                <div class="guide-item">
+                    <div class="guide-example system-analysis">
+                        <div class="guide-icon">🤖</div>
+                        <div class="guide-content">
+                            <strong>SYSTEM ANALYSIS</strong><br>
+                            AI agents processing and analyzing the input using historical data and optimization algorithms.
+                        </div>
+                    </div>
+                </div>
+                <div class="guide-item">
+                    <div class="guide-example system-recommendations">
+                        <div class="guide-icon">💡</div>
+                        <div class="guide-content">
+                            <strong>RECOMMENDATIONS</strong><br>
+                            System-generated optimization suggestions based on multi-agent analysis and historical patterns.
+                        </div>
+                    </div>
+                </div>
+                <div class="guide-item">
+                    <div class="guide-example expert-decision">
+                        <div class="guide-icon">🎯</div>
+                        <div class="guide-content">
+                                                    <strong>KEY DECISION</strong><br>
+                        Clinical expert's final choices and rationale - the human decision that follows AI analysis. (Green)
+                        </div>
+                    </div>
+                </div>
+                <div class="guide-item">
+                    <div class="guide-example reasoning-box">
+                        <div class="guide-icon">🔧</div>
+                        <div class="guide-content">
+                            <strong>AI REASONING</strong><br>
+                            Click to see how the system arrived at its analysis (expandable explanations).
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="tutorial-tips">
+                    <h4>💡 Demo Tips:</h4>
+                    <ul>
+                        <li><strong>Click on AI Reasoning boxes</strong> to see detailed explanations of how the system works</li>
+                        <li><strong>Provide feedback</strong> using the buttons to help improve the system</li>
+                        <li><strong>Follow the workflow</strong> from user input through final decision</li>
+                        <li><strong>Look for the ❓ icon</strong> on individual demo pages for quick help</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="trial-overview">
+            <div class="overview-header">
+                <h2>The SGLT2 Inhibitor Cardiovascular Outcomes Trial</h2>
+                <p>A comprehensive demonstration of how AI-assisted reasoning optimizes every phase of clinical development</p>
+                
+                <div class="trial-stats">
+                    <div class="stat-card">
+                        <div class="stat-number">$47M</div>
+                        <div class="stat-label">Development Budget</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">12,000</div>
+                        <div class="stat-label">Patients</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">42</div>
+                        <div class="stat-label">Months Timeline</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">67</div>
+                        <div class="stat-label">Sites</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="team-section">
+            <div class="section-header">
+                <h3>Meet the Team</h3>
+                <p>Follow these key stakeholders as they navigate critical decisions throughout the trial lifecycle</p>
+            </div>
+            
+            <div class="team-grid">
+                <div class="team-member">
+                    <div class="member-name">Dr. Sarah Chen</div>
+                    <div class="member-role">VP Clinical Development</div>
+                    <p>Leading the trial design and strategic planning. Former Genentech, 15 years oncology experience.</p>
+                    <div class="member-challenge">
+                        <strong>Challenge:</strong> Design Phase III CV outcomes trial that improves on EMPA-REG timeline while maintaining regulatory strength
+                    </div>
+                </div>
+                
+                <div class="team-member">
+                    <div class="member-name">Michael Rodriguez</div>
+                    <div class="member-role">Director of Clinical Operations</div>
+                    <p>Managing site selection, recruitment, and trial execution. Expert in global trial management.</p>
+                    <div class="member-challenge">
+                        <strong>Challenge:</strong> Optimize site portfolio for maximum recruitment efficiency and data quality
+                    </div>
+                </div>
+                
+                <div class="team-member">
+                    <div class="member-name">Dr. Jennifer Walsh</div>
+                    <div class="member-role">Study Director</div>
+                    <p>Overseeing day-to-day trial execution and adaptive modifications. Former FDA reviewer.</p>
+                    <div class="member-challenge">
+                        <strong>Challenge:</strong> Manage recruitment delays and emerging safety signals while maintaining trial integrity
+                    </div>
+                </div>
+                
+                <div class="team-member">
+                    <div class="member-name">Dr. Patricia Kim</div>
+                    <div class="member-role">Regulatory Affairs Director</div>
+                    <p>Leading regulatory strategy and submission preparation. 20 years regulatory experience.</p>
+                    <div class="member-challenge">
+                        <strong>Challenge:</strong> Optimize FDA pathway and prepare for potential advisory committee review
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="pain-points">
+            <div class="section-header">
+                <h3>Critical Pain Points We Solve</h3>
+                <p>These challenges cost the industry billions annually in delays, failed trials, and lost value</p>
+            </div>
+            
+            <div class="pain-points-grid">
+                <div class="pain-point">
+                    <div class="pain-point-title">📊 Interdependent Decision Making</div>
+                    <p>Protocol changes cascade through recruitment, regulatory, and statistical requirements - often discovered too late</p>
+                </div>
+                
+                <div class="pain-point">
+                    <div class="pain-point-title">⏰ Timeline Delays</div>
+                    <p>Average 12-month delays due to poor site selection, recruitment issues, and regulatory misalignment</p>
+                </div>
+                
+                <div class="pain-point">
+                    <div class="pain-point-title">💰 Cost Overruns</div>
+                    <p>Unplanned protocol amendments and site additions cost $2-5M per trial on average</p>
+                </div>
+                
+                <div class="pain-point">
+                    <div class="pain-point-title">🎯 Regulatory Risk</div>
+                    <p>Poor alignment with FDA guidance leads to submission delays and advisory committee requirements</p>
+                </div>
+                
+                <div class="pain-point">
+                    <div class="pain-point-title">👥 Stakeholder Silos</div>
+                    <p>Clinical, regulatory, and operations teams work in isolation, missing critical interdependencies</p>
+                </div>
+                
+                <div class="pain-point">
+                    <div class="pain-point-title">📈 Data Quality Issues</div>
+                    <p>Site performance variability and poor monitoring lead to data integrity problems</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="phase-navigation">
+            <div class="section-header">
+                <h3>Explore Each Phase</h3>
+                <p>Click on any phase to see how AdjuvantIQ's AI system optimizes critical decisions and solves industry pain points</p>
+            </div>
+            
+            <div class="phase-grid">
+                <div class="phase-card" onclick="window.location.href='protocol-design.html'">
+                    <div class="phase-number">1</div>
+                    <div class="phase-title">Protocol Design & Optimization</div>
+                    <div class="phase-subtitle">Strategic trial planning with AI-assisted interdependency analysis</div>
+                    
+                    <ul class="phase-features">
+                        <li>Multi-agent optimization of protocol parameters</li>
+                        <li>Historical precedent analysis and benchmarking</li>
+                        <li>Regulatory pathway alignment</li>
+                        <li>Competitive intelligence integration</li>
+                        <li>Risk-adjusted scenario modeling</li>
+                    </ul>
+                    
+                    <a href="protocol-design.html" class="phase-button">Explore Protocol Design</a>
+                </div>
+                
+                <div class="phase-card" onclick="window.location.href='site-selection.html'">
+                    <div class="phase-number">2</div>
+                    <div class="phase-title">Site Selection & Portfolio Optimization</div>
+                    <div class="phase-subtitle">Data-driven site selection with performance prediction</div>
+                    
+                    <ul class="phase-features">
+                        <li>Performance-based site tiering</li>
+                        <li>Geographic optimization and diversity</li>
+                        <li>Competitive trial impact assessment</li>
+                        <li>Recruitment timeline modeling</li>
+                        <li>Risk mitigation strategies</li>
+                    </ul>
+                    
+                    <a href="site-selection.html" class="phase-button">Explore Site Selection</a>
+                </div>
+                
+                <div class="phase-card" onclick="window.location.href='adaptive-modifications.html'">
+                    <div class="phase-number">3</div>
+                    <div class="phase-title">Adaptive Trial Management</div>
+                    <div class="phase-subtitle">Real-time monitoring and intelligent intervention</div>
+                    
+                    <ul class="phase-features">
+                        <li>Automated performance monitoring</li>
+                        <li>Safety signal detection and analysis</li>
+                        <li>Multi-stakeholder decision support</li>
+                        <li>Intervention impact modeling</li>
+                        <li>Continuous optimization</li>
+                    </ul>
+                    
+                    <a href="adaptive-modifications.html" class="phase-button">Explore Trial Management</a>
+                </div>
+                
+                <div class="phase-card" onclick="window.location.href='regulatory-strategy.html'">
+                    <div class="phase-number">4</div>
+                    <div class="phase-title">Regulatory Strategy & Submission</div>
+                    <div class="phase-subtitle">Optimized pathway to approval</div>
+                    
+                    <ul class="phase-features">
+                        <li>Regulatory pathway optimization</li>
+                        <li>Submission package preparation</li>
+                        <li>Advisory committee preparation</li>
+                        <li>Global registration strategy</li>
+                        <li>Post-approval planning</li>
+                    </ul>
+                    
+                    <a href="regulatory-strategy.html" class="phase-button">Explore Regulatory Strategy</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="engagement-tools">
+            <h3>Ready to Transform Your Clinical Development?</h3>
+            <p>This demo showcases just a fraction of AdjuvantIQ's capabilities. Contact us to discuss how our AI system can optimize your specific clinical trial challenges.</p>
+            <button onclick="downloadCaseStudy()">📄 Download Complete Case Study</button>
+            <button onclick="shareWithColleagues()">📤 Share with Colleagues</button>
+            <button onclick="openPilotForm()">🚀 Discuss Pilot Implementation</button>
+        </div>
+    </div>
+
+    <div class="toast" id="toast"></div>
+
+    <script>
+        // Show toast notifications
+        function showToast(message) {
+            const toast = document.getElementById('toast');
+            toast.textContent = message;
+            toast.classList.add('show');
+            
+            setTimeout(function() {
+                toast.classList.remove('show');
+            }, 3000);
+        }
+        
+        // Toggle tutorial
+        function toggleTutorial() {
+            const content = document.getElementById('tutorialContent');
+            const toggle = document.querySelector('.tutorial-toggle');
+            
+            if (content.classList.contains('collapsed')) {
+                content.classList.remove('collapsed');
+                toggle.textContent = '▼';
+            } else {
+                content.classList.add('collapsed');
+                toggle.textContent = '▶';
+            }
+        }
+        
+        // Download case study (placeholder for now)
+        function downloadCaseStudy() {
+            showToast('Case study download coming soon! Contact us for detailed materials.');
+            // In the future, this could link to a PDF or open a download modal
+        }
+        
+        // Share with colleagues
+        function shareWithColleagues() {
+            const url = window.location.href;
+            const title = 'AdjuvantIQ Demo: End-to-End Trial Optimization';
+            const text = 'Check out this comprehensive demo of how AI transforms clinical development from planning through execution.';
+            
+            if (navigator.share) {
+                navigator.share({
+                    title: title,
+                    text: text,
+                    url: url
+                });
+            } else {
+                // Fallback: copy to clipboard
+                navigator.clipboard.writeText(url).then(function() {
+                    showToast('Demo URL copied to clipboard! Share with your colleagues.');
+                });
+            }
+        }
+        
+        // Open pilot form
+        function openPilotForm() {
+            // Navigate to the main site's pilot form
+            window.open('../#pilot', '_blank');
+            showToast('Opening pilot application form...');
+        }
+        
+        // Initialize when page loads
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('Primary demo loaded successfully');
+            showToast('Welcome! Explore how AI transforms clinical development end-to-end.');
+        });
+    </script>
+</body>
+</html> 

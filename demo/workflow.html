@@ -1,0 +1,880 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Workflow Exploration - AdjuvantIQ Demo</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #f8f9fc;
+        }
+        
+        .hero {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 60px 20px;
+            text-align: center;
+        }
+        
+        .hero h1 {
+            font-size: 2.5em;
+            margin-bottom: 20px;
+        }
+        
+        .hero .lead {
+            font-size: 1.3em;
+            margin-bottom: 30px;
+            opacity: 0.9;
+        }
+        
+        .time-investment {
+            background: rgba(255,255,255,0.1);
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 20px;
+            font-size: 1.1em;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        .progress-section {
+            background: white;
+            padding: 20px;
+            border-bottom: 1px solid #ddd;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        .progress-bar {
+            background: #e0e0e0;
+            height: 6px;
+            border-radius: 3px;
+            overflow: hidden;
+            margin-bottom: 10px;
+        }
+        
+        .progress {
+            background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
+            height: 100%;
+            transition: width 0.3s ease;
+            width: 25%;
+        }
+        
+        .progress-text {
+            font-weight: 600;
+            color: #666;
+        }
+        
+        .user-input {
+            background: #e8f5e8;
+            border-left: 5px solid #4caf50;
+            padding: 20px;
+            margin: 15px 0;
+            border-radius: 6px;
+            position: relative;
+        }
+        
+        .user-input::before {
+            content: "👤 USER INPUT";
+            position: absolute;
+            top: -10px;
+            left: 15px;
+            background: #4caf50;
+            color: white;
+            padding: 4px 8px;
+            font-size: 0.8em;
+            font-weight: bold;
+            border-radius: 3px;
+        }
+        
+        .system-analysis {
+            background: #e3f2fd;
+            border-left: 5px solid #2196f3;
+            padding: 20px;
+            margin: 15px 0;
+            border-radius: 6px;
+            position: relative;
+        }
+        
+        .system-analysis::before {
+            content: "🤖 SYSTEM ANALYSIS";
+            position: absolute;
+            top: -10px;
+            left: 15px;
+            background: #2196f3;
+            color: white;
+            padding: 4px 8px;
+            font-size: 0.8em;
+            font-weight: bold;
+            border-radius: 3px;
+        }
+        
+        .system-recommendations {
+            background: #f3e5f5;
+            border-left: 5px solid #9c27b0;
+            padding: 20px;
+            margin: 15px 0;
+            border-radius: 6px;
+            position: relative;
+        }
+        
+        .system-recommendations::before {
+            content: "💡 RECOMMENDATIONS";
+            position: absolute;
+            top: -10px;
+            left: 15px;
+            background: #9c27b0;
+            color: white;
+            padding: 4px 8px;
+            font-size: 0.8em;
+            font-weight: bold;
+            border-radius: 3px;
+        }
+        
+        .expert-decision {
+            background: #fff8e1;
+            border-left: 5px solid #ff9800;
+            padding: 20px;
+            margin: 15px 0;
+            border-radius: 6px;
+            position: relative;
+        }
+        
+        .expert-decision::before {
+            content: "🧠 EXPERT DECISION";
+            position: absolute;
+            top: -10px;
+            left: 15px;
+            background: #ff9800;
+            color: white;
+            padding: 4px 8px;
+            font-size: 0.8em;
+            font-weight: bold;
+            border-radius: 3px;
+        }
+        
+        .reasoning-box {
+            background: #fff3e0;
+            border: 2px solid #ff9800;
+            padding: 20px;
+            margin: 15px 0;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        
+        .reasoning-box::before {
+            content: "🔧 AI REASONING";
+            position: absolute;
+            top: -10px;
+            left: 15px;
+            background: #ff9800;
+            color: white;
+            padding: 4px 8px;
+            font-size: 0.8em;
+            font-weight: bold;
+            border-radius: 3px;
+        }
+        
+        .reasoning-box:hover {
+            box-shadow: 0 4px 12px rgba(255,152,0,0.2);
+        }
+        
+        .reasoning-box.expanded {
+            background: #fff8e1;
+        }
+        
+        .reasoning-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: bold;
+            color: #e65100;
+        }
+        
+        .expand-icon {
+            font-size: 1.2em;
+            margin-left: auto;
+            transition: transform 0.3s ease;
+        }
+        
+        .reasoning-box.expanded .expand-icon {
+            transform: rotate(45deg);
+        }
+        
+        .reasoning-details {
+            margin-top: 15px;
+            display: none;
+        }
+        
+        .reasoning-box.expanded .reasoning-details {
+            display: block;
+        }
+        
+        .workflow-step {
+            opacity: 0.3;
+            transform: translateY(20px);
+            transition: all 0.5s ease;
+        }
+        
+        .workflow-step.in-view {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .content-section {
+            background: white;
+            margin: 20px 0;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        
+        .section-header {
+            background: #f8f9fc;
+            padding: 30px;
+            border-bottom: 1px solid #e0e6ed;
+        }
+        
+        .persona-card {
+            background: linear-gradient(135deg, #e3f2fd 0%, #f3e5f5 100%);
+            border-left: 5px solid #2196f3;
+            padding: 25px;
+            margin: 20px 0;
+            border-radius: 8px;
+        }
+        
+        .persona-title {
+            font-size: 1.4em;
+            font-weight: bold;
+            color: #1976d2;
+            margin-bottom: 10px;
+        }
+        
+        .workflow-step {
+            padding: 30px;
+            border-bottom: 1px solid #f0f0f0;
+        }
+        
+        .workflow-step:last-child {
+            border-bottom: none;
+        }
+        
+        .step-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        
+        .step-number {
+            background: #2196f3;
+            color: white;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 20px;
+            font-weight: bold;
+            font-size: 1.2em;
+        }
+        
+        .step-title {
+            font-size: 1.3em;
+            font-weight: 600;
+            color: #333;
+        }
+        
+        .credibility-indicators {
+            background: #f8f9fc;
+            padding: 20px;
+            margin: 30px 0;
+            border-radius: 8px;
+            border-left: 4px solid #9c27b0;
+        }
+        
+        .expertise-note, .data-note {
+            display: flex;
+            align-items: center;
+            margin: 10px 0;
+        }
+        
+        .expertise-note .icon, .data-note .icon {
+            font-size: 1.5em;
+            margin-right: 15px;
+        }
+        
+        .micro-feedback {
+            background: #f0f8ff;
+            border: 1px solid #b3d9ff;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 6px;
+            text-align: center;
+        }
+        
+        .feedback-buttons button {
+            background: #2196f3;
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            margin: 5px;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+        
+        .feedback-buttons button:hover {
+            background: #1976d2;
+        }
+        
+        .engagement-tools {
+            background: #e8f5e8;
+            padding: 20px;
+            margin: 30px 0;
+            border-radius: 8px;
+            text-align: center;
+        }
+        
+        .engagement-tools button {
+            background: #4caf50;
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            margin: 5px;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+        
+        .engagement-tools button:hover {
+            background: #45a049;
+        }
+        
+        .toast {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: #4caf50;
+            color: white;
+            padding: 15px 20px;
+            border-radius: 6px;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            z-index: 1001;
+        }
+        
+        .toast.show {
+            opacity: 1;
+        }
+        
+        .back-link {
+            display: inline-block;
+            margin: 20px 0;
+            color: #667eea;
+            text-decoration: none;
+            font-weight: 500;
+        }
+        
+        .back-link:hover {
+            text-decoration: underline;
+        }
+        
+        .tabs {
+            display: flex;
+            background: #f8f9fa;
+            border-radius: 8px 8px 0 0;
+            border-bottom: 1px solid #dee2e6;
+            margin: 20px 0 0 0;
+        }
+        
+        .tab {
+            padding: 15px 25px;
+            cursor: pointer;
+            border-bottom: 3px solid transparent;
+            transition: all 0.3s;
+            flex: 1;
+            text-align: center;
+        }
+        
+        .tab.active {
+            background: white;
+            border-bottom-color: #007bff;
+            color: #007bff;
+            font-weight: bold;
+        }
+        
+        .tab-content {
+            display: none;
+            padding: 25px;
+            background: white;
+            border-radius: 0 0 8px 8px;
+        }
+        
+        .tab-content.active {
+            display: block;
+        }
+        
+        .interface-mockup {
+            background: #f8f9fa;
+            border: 2px dashed #dee2e6;
+            padding: 20px;
+            margin: 15px 0;
+            border-radius: 8px;
+            text-align: center;
+            color: #666;
+        }
+    </style>
+</head>
+<body>
+    <div class="hero">
+        <div class="container">
+            <a href="index.html" class="back-link">← Back to Demo Hub</a>
+            <h1>User Workflow Exploration</h1>
+            <p class="lead">Explore the complete user workflow system with detailed AI reasoning explanations</p>
+            <div class="time-investment">
+                ⏱️ 15-20 minutes • Complete workflow demonstration • Multi-stakeholder perspectives
+            </div>
+        </div>
+    </div>
+
+    <div class="progress-section">
+        <div class="container">
+            <div class="progress-bar">
+                <div class="progress" id="progressBar"></div>
+            </div>
+            <div class="progress-text" id="progressText">Adaptive Modifications (1 of 4)</div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="credibility-indicators">
+            <div class="expertise-note">
+                <span class="icon">🎓</span>
+                <span>Developed with clinical development leaders and regulatory experts</span>
+            </div>
+            <div class="data-note">
+                <span class="icon">📊</span>
+                <span>Based on analysis of 50+ adaptive trials and regulatory submission strategies</span>
+            </div>
+        </div>
+
+        <div class="content-section">
+            <div class="section-header">
+                <h2>Complete User Workflow System</h2>
+                <p>Explore how AdjuvantIQ's ontological AI system supports clinical trial optimization across the entire development lifecycle.</p>
+            </div>
+
+            <div class="tabs">
+                <div class="tab active" onclick="showTab('adaptive-modifications')">Adaptive Modifications</div>
+                <div class="tab" onclick="showTab('regulatory-strategy')">Regulatory Strategy</div>
+            </div>
+
+            <div id="adaptive-modifications" class="tab-content active">
+                <div class="persona-card">
+                    <div class="persona-title">Study Director - Dr. Jennifer Walsh</div>
+                    <p><strong>Context:</strong> Managing ongoing cardiovascular outcomes trial, Month 18 of recruitment</p>
+                    <p><strong>Challenge:</strong> Recruitment below target, emerging safety signal requires protocol evaluation</p>
+                </div>
+
+                <div class="workflow-step">
+                    <div class="step-header">
+                        <div class="step-number">1</div>
+                        <div class="step-title">Performance Monitoring Alert</div>
+                    </div>
+                    
+                    <div class="system-analysis">
+                        <strong>Automated Alert:</strong><br>
+                        • <strong>Recruitment:</strong> 65% of target enrollment (should be 75% at Month 18)<br>
+                        • <strong>Safety Signal:</strong> Increased UTI reports in treatment arm (15% vs 8% placebo)<br>
+                        • <strong>Geographic Pattern:</strong> Northeastern sites underperforming expectations<br>
+                        • <strong>Competitive Intelligence:</strong> New SGLT2 inhibitor trial launched by competitor
+                    </div>
+
+                    <div class="reasoning-box" onclick="toggleReasoning(this)">
+                        <div class="reasoning-header">
+                            How does the system detect and analyze these alerts?
+                            <span class="expand-icon">+</span>
+                        </div>
+                        <div class="reasoning-details">
+                            <strong>1. Real-Time Performance Monitoring:</strong> Continuous monitoring agents compare actual EDC data against ontological performance baselines<br><br>
+                            <strong>2. Safety Signal Detection:</strong> Safety Monitoring Agent uses Adverse Event Ontology to categorize UTI reports and compare against historical SGLT2 inhibitor safety profiles<br><br>
+                            <strong>3. Geographic Pattern Analysis:</strong> Site Performance Ontology integration with real-time data identifies underperformance patterns<br><br>
+                            <strong>4. Competitive Intelligence Integration:</strong> Automated scanning of ClinicalTrials.gov using ontological similarity matching identifies new competing trials<br><br>
+                            <strong>5. Alert Prioritization:</strong> LLM orchestrator uses Alert Prioritization Ontology to rank multiple signals and present integrated alert with causal relationship analysis
+                        </div>
+                    </div>
+
+                    <div class="micro-feedback">
+                        <p><strong>Quick reaction:</strong> How do you currently monitor trial performance and detect issues?</p>
+                        <div class="feedback-buttons">
+                            <button onclick="giveFeedback(this, 'automated-monitoring')">Automated monitoring systems</button>
+                            <button onclick="giveFeedback(this, 'manual-review')">Manual review processes</button>
+                            <button onclick="giveFeedback(this, 'external-vendors')">External vendor reports</button>
+                            <button onclick="giveFeedback(this, 'ad-hoc-analysis')">Ad-hoc analysis as needed</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="workflow-step">
+                    <div class="step-header">
+                        <div class="step-number">2</div>
+                        <div class="step-title">Systematic Impact Analysis</div>
+                    </div>
+
+                    <div class="system-analysis">
+                        <strong>Projection Analysis:</strong><br>
+                        • <strong>Current trajectory:</strong> 54-month recruitment (12 months delay)<br>
+                        • <strong>UTI safety signal:</strong> Expected for SGLT2 inhibitor class, within manageable range<br>
+                        • <strong>Competitive impact:</strong> 20% reduction in available patient pool<br><br>
+                        <strong>Intervention Options:</strong><br>
+                        • Site optimization: Add 8 high-performing sites<br>
+                        • Geographic expansion: International sites (Canada, EU)<br>
+                        • Protocol modification: Adjust inclusion criteria or add sites
+                    </div>
+
+                    <div class="reasoning-box" onclick="toggleReasoning(this)">
+                        <div class="reasoning-header">
+                            How does the system model intervention impacts?
+                            <span class="expand-icon">+</span>
+                        </div>
+                        <div class="reasoning-details">
+                            <strong>1. Predictive Trajectory Modeling:</strong> Recruitment Agent uses current performance data + Site Performance Ontology to project recruitment completion<br><br>
+                            <strong>2. Safety Signal Contextualization:</strong> Safety Monitoring Agent queries Drug Class Safety Ontology for SGLT2 inhibitor UTI rates<br><br>
+                            <strong>3. Competitive Impact Quantification:</strong> Patient Population Ontology overlays with competitor trial criteria to calculate patient pool reduction<br><br>
+                            <strong>4. Intervention Scenario Generation:</strong> Uses Trial Design Interdependency Ontology to model intervention options<br><br>
+                            <strong>5. Multi-Agent Optimization:</strong> Orchestrator coordinates multiple agents to evaluate intervention trade-offs and timeline implications
+                        </div>
+                    </div>
+                </div>
+
+                <div class="workflow-step">
+                    <div class="step-header">
+                        <div class="step-number">3</div>
+                        <div class="step-title">Multi-Stakeholder Decision Support</div>
+                    </div>
+
+                    <div class="system-recommendations">
+                        <strong>Tailored Analysis for Different Stakeholders:</strong><br><br>
+                        <strong>For Study Team:</strong> Detailed site performance analysis and recruitment optimization<br><br>
+                        <strong>For Medical Affairs:</strong> Safety signal assessment and regulatory notification requirements<br><br>
+                        <strong>For Regulatory:</strong> Protocol amendment impact and approval timeline<br><br>
+                        <strong>For Finance:</strong> Cost implications of timeline extension vs. protocol modifications
+                    </div>
+
+                    <div class="reasoning-box" onclick="toggleReasoning(this)">
+                        <div class="reasoning-header">
+                            How does the system customize analysis for different stakeholders?
+                            <span class="expand-icon">+</span>
+                        </div>
+                        <div class="reasoning-details">
+                            <strong>1. Stakeholder Role-Based Filtering:</strong> LLM uses Organizational Role Ontology to customize analysis for each stakeholder<br><br>
+                            <strong>2. Domain-Specific Ontology Activation:</strong> Different agents activated per stakeholder: Safety Monitoring Agent for Medical Affairs, Regulatory Agent for regulatory team<br><br>
+                            <strong>3. Context-Appropriate Detail Level:</strong> Uses Stakeholder Communication Ontology to adjust technical depth<br><br>
+                            <strong>4. Decision Authority Mapping:</strong> Organizational Decision Ontology identifies which stakeholders have authority for different intervention types<br><br>
+                            <strong>5. Collaborative Decision Framework:</strong> LLM orchestrates multi-stakeholder decision process using formal decision-making workflows
+                        </div>
+                    </div>
+                </div>
+
+                <div class="workflow-step">
+                    <div class="step-header">
+                        <div class="step-number">4</div>
+                        <div class="step-title">Adaptive Protocol Implementation</div>
+                    </div>
+
+                    <div class="expert-decision">
+                        <strong>Implementation Plan:</strong><br>
+                        • Added 6 Canadian sites (regulatory pre-approved pathway)<br>
+                        • Enhanced UTI monitoring protocol (no inclusion criteria change needed)<br>
+                        • Competitive response strategy: improved site support and incentives<br>
+                        • System continues monitoring with monthly optimization reviews
+                    </div>
+
+                    <div class="reasoning-box" onclick="toggleReasoning(this)">
+                        <div class="reasoning-header">
+                            How does the system support implementation and monitoring?
+                            <span class="expand-icon">+</span>
+                        </div>
+                        <div class="reasoning-details">
+                            <strong>1. Implementation Plan Generation:</strong> Uses Implementation Planning Ontology to create step-by-step execution plan<br><br>
+                            <strong>2. Change Impact Propagation:</strong> Trial Design Interdependency Ontology updates cascade through all agents<br><br>
+                            <strong>3. Protocol Amendment Optimization:</strong> Regulatory Agent determines amendment requirements and optimizes approval timeline<br><br>
+                            <strong>4. Competitive Response Formalization:</strong> Updates Competitive Intelligence Ontology with response strategy<br><br>
+                            <strong>5. Continuous Monitoring Setup:</strong> Establishes automated monitoring with updated Alert Threshold Ontology
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="regulatory-strategy" class="tab-content">
+                <div class="persona-card">
+                    <div class="persona-title">Regulatory Affairs Director - Dr. Patricia Kim</div>
+                    <p><strong>Context:</strong> Preparing regulatory submission strategy for cardiovascular outcomes trial</p>
+                    <p><strong>Challenge:</strong> Optimizing FDA pathway, managing international harmonization, preparing for advisory committee</p>
+                </div>
+
+                <div class="workflow-step">
+                    <div class="step-header">
+                        <div class="step-number">1</div>
+                        <div class="step-title">Regulatory Pathway Optimization</div>
+                    </div>
+                    
+                    <div class="system-analysis">
+                        <strong>Regulatory Agent Analysis:</strong><br>
+                        • <strong>FDA Cardiovascular Guidance compliance:</strong> 98% aligned<br>
+                        • <strong>EMA Scientific Advice precedents:</strong> 12 similar trials, 8 positive outcomes<br>
+                        • <strong>Advisory Committee probability:</strong> 65% based on safety signal and competitive landscape<br>
+                        • <strong>International harmonization:</strong> ICH E1 requirements satisfied for major markets
+                    </div>
+
+                    <div class="reasoning-box" onclick="toggleReasoning(this)">
+                        <div class="reasoning-header">
+                            How does the system analyze regulatory pathways?
+                            <span class="expand-icon">+</span>
+                        </div>
+                        <div class="reasoning-details">
+                            <strong>1. Regulatory Guidance Mapping:</strong> Regulatory Agent queries FDA Cardiovascular Guidance Ontology to assess trial design compliance<br><br>
+                            <strong>2. Precedent Analysis:</strong> Uses EMA Scientific Advice Database with ontological similarity matching to identify comparable trials<br><br>
+                            <strong>3. Advisory Committee Risk Assessment:</strong> Advisory Committee Prediction Model uses Safety Signal Ontology + Competitive Landscape Ontology<br><br>
+                            <strong>4. International Harmonization Validation:</strong> ICH Compliance Ontology validates trial design against ICH guidelines<br><br>
+                            <strong>5. Regulatory Strategy Synthesis:</strong> LLM orchestrator integrates all regulatory analysis into coherent strategic recommendations
+                        </div>
+                    </div>
+                </div>
+
+                <div class="workflow-step">
+                    <div class="step-header">
+                        <div class="step-number">2</div>
+                        <div class="step-title">Submission Package Optimization</div>
+                    </div>
+
+                    <div class="system-recommendations">
+                        <strong>Strategic Recommendations:</strong><br><br>
+                        <strong>Primary efficacy:</strong> 18% MACE reduction (HR 0.82, CI 0.71-0.95, p=0.008)<br><br>
+                        <strong>Safety focus:</strong> UTI management strategy and patient education<br><br>
+                        <strong>Subgroup analyses:</strong> Particularly strong effect in HFrEF patients<br><br>
+                        <strong>Comparator positioning:</strong> Differentiation from existing SGLT2 inhibitors
+                    </div>
+
+                    <div class="reasoning-box" onclick="toggleReasoning(this)">
+                        <div class="reasoning-header">
+                            How does the system optimize submission packages?
+                            <span class="expand-icon">+</span>
+                        </div>
+                        <div class="reasoning-details">
+                            <strong>1. Efficacy Data Optimization:</strong> Statistical Power Agent validates 18% MACE reduction against original power calculation using STATO ontological framework<br><br>
+                            <strong>2. Safety Narrative Construction:</strong> Safety Monitoring Agent uses Adverse Event Ontology to contextualize UTI rate within SGLT2 inhibitor class<br><br>
+                            <strong>3. Subgroup Analysis Prioritization:</strong> Uses Patient Population Ontology to identify clinically meaningful subgroups<br><br>
+                            <strong>4. Competitive Differentiation Analysis:</strong> Drug Class Ontology comparison with existing SGLT2 inhibitors identifies unique positioning<br><br>
+                            <strong>5. Regulatory Submission Optimization:</strong> Integrates all analyses using FDA Submission Requirements Ontology to optimize data presentation
+                        </div>
+                    </div>
+                </div>
+
+                <div class="workflow-step">
+                    <div class="step-header">
+                        <div class="step-number">3</div>
+                        <div class="step-title">Advisory Committee Preparation</div>
+                    </div>
+
+                    <div class="system-recommendations">
+                        <strong>Key Issues Identification:</strong><br>
+                        • UTI safety signal management and labeling implications<br>
+                        • Clinical meaningfulness of 18% relative risk reduction<br>
+                        • Positioning vs. existing cardiovascular therapies<br><br>
+                        <strong>Response Strategy:</strong><br>
+                        • Real-world evidence on UTI management in clinical practice<br>
+                        • Economic modeling of cardiovascular event prevention<br>
+                        • Physician survey data on treatment preferences and unmet needs
+                    </div>
+
+                    <div class="reasoning-box" onclick="toggleReasoning(this)">
+                        <div class="reasoning-header">
+                            How does the system prepare for advisory committees?
+                            <span class="expand-icon">+</span>
+                        </div>
+                        <div class="reasoning-details">
+                            <strong>1. Advisory Committee Issue Prediction:</strong> Advisory Committee Historical Ontology analyzes past SGLT2 inhibitor and cardiovascular outcome reviews<br><br>
+                            <strong>2. Evidence Gap Analysis:</strong> Uses Regulatory Evidence Requirements Ontology to identify additional evidence needed<br><br>
+                            <strong>3. Response Strategy Formulation:</strong> Integrates Real-World Evidence Ontology with Economic Modeling Ontology to construct comprehensive response strategy<br><br>
+                            <strong>4. Stakeholder Perspective Modeling:</strong> Advisory Committee Member Profile Ontology predicts likely questions and concerns from different committee member backgrounds<br><br>
+                            <strong>5. Presentation Optimization:</strong> LLM orchestrator uses Communication Strategy Ontology to optimize presentation flow and data visualization
+                        </div>
+                    </div>
+                </div>
+
+                <div class="workflow-step">
+                    <div class="step-header">
+                        <div class="step-number">4</div>
+                        <div class="step-title">Global Registration Strategy</div>
+                    </div>
+
+                    <div class="expert-decision">
+                        <strong>Implementation Plan:</strong><br>
+                        • <strong>FDA submission:</strong> Priority review requested, expedited pathway<br>
+                        • <strong>EMA submission:</strong> Parallel scientific advice and MAA preparation<br>
+                        • <strong>International:</strong> Staged submissions based on systematic priority analysis<br>
+                        • <strong>Post-approval:</strong> Real-world evidence studies for lifecycle management
+                    </div>
+
+                    <div class="reasoning-box" onclick="toggleReasoning(this)">
+                        <div class="reasoning-header">
+                            How does the system coordinate global registration?
+                            <span class="expand-icon">+</span>
+                        </div>
+                        <div class="reasoning-details">
+                            <strong>1. Global Regulatory Pathway Optimization:</strong> International Regulatory Harmonization Ontology coordinates submission strategies across multiple authorities<br><br>
+                            <strong>2. Priority Review Qualification:</strong> FDA Priority Review Criteria Ontology validates qualification criteria<br><br>
+                            <strong>3. Parallel Processing Strategy:</strong> Uses Regulatory Timeline Ontology to optimize parallel FDA/EMA submissions<br><br>
+                            <strong>4. Market Prioritization Analysis:</strong> Commercial Value Ontology integrates market size, competitive landscape, and regulatory complexity<br><br>
+                            <strong>5. Lifecycle Management Integration:</strong> Post-Approval Study Ontology defines real-world evidence generation strategy
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="interface-mockup">
+            <h3>Interface Design Concepts</h3>
+            <p><strong>Dashboard View - Trial Optimization Summary</strong></p>
+            <p>• Real-time trial performance metrics vs. systematic predictions</p>
+            <p>• Traffic light system for key performance indicators</p>
+            <p>• One-click access to detailed agent recommendations</p>
+            <p>• Collaborative decision audit trail and rationale capture</p>
+        </div>
+
+        <div class="interface-mockup">
+            <h3>Natural Language Query Interface</h3>
+            <p><strong>Conversational AI Interface</strong></p>
+            <p><em>User:</em> "What would happen if we changed the primary endpoint to time-to-first-event instead of composite MACE?"</p>
+            <p><em>System:</em> "Analyzing protocol modification impact... This would reduce sample size by 35% but decrease regulatory precedent alignment. Statistical Power Agent estimates 80% power achievable with 8,200 patients. Regulatory Agent flags potential FDA discussion requirements. Would you like detailed feasibility analysis?"</p>
+        </div>
+
+        <div class="interface-mockup">
+            <h3>Collaborative Decision Workspace</h3>
+            <p><strong>Multi-User Collaboration Platform</strong></p>
+            <p>• Simultaneous protocol editing with systematic optimization suggestions</p>
+            <p>• Role-based views for different stakeholders (clinical, regulatory, operations)</p>
+            <p>• Decision rationale capture and stakeholder consensus tracking</p>
+            <p>• Integration with existing trial management and regulatory systems</p>
+        </div>
+
+        <div class="engagement-tools">
+            <h3>Found this valuable? Take the next step:</h3>
+            <button onclick="showToast('PDF download started')">📄 Download Workflow Guide</button>
+            <button onclick="showToast('Opening LinkedIn share...')">📤 Share Workflow Insights</button>
+            <button onclick="showToast('Pilot form opening...')">🚀 Discuss Workflow Pilot</button>
+        </div>
+    </div>
+
+    <div class="toast" id="toast"></div>
+
+    <script>
+        // Tab switching functionality
+        function showTab(tabName) {
+            // Hide all tab contents
+            document.querySelectorAll('.tab-content').forEach(content => {
+                content.classList.remove('active');
+            });
+            
+            // Remove active class from all tabs
+            document.querySelectorAll('.tab').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            
+            // Show selected tab content
+            document.getElementById(tabName).classList.add('active');
+            
+            // Add active class to clicked tab
+            event.target.classList.add('active');
+        }
+        
+        // Toggle reasoning boxes
+        function toggleReasoning(element) {
+            element.classList.toggle('expanded');
+            const details = element.querySelector('.reasoning-details');
+            const icon = element.querySelector('.expand-icon');
+            
+            if (element.classList.contains('expanded')) {
+                details.style.display = 'block';
+                icon.textContent = '×';
+            } else {
+                details.style.display = 'none';
+                icon.textContent = '+';
+            }
+        }
+        
+        // Feedback handling
+        function giveFeedback(button, response) {
+            button.style.background = '#4caf50';
+            button.textContent = '✓ ' + button.textContent.replace('✓ ', '');
+            
+            // Disable other buttons in the same group
+            const siblings = button.parentElement.querySelectorAll('button');
+            siblings.forEach(function(btn) {
+                if (btn !== button) {
+                    btn.disabled = true;
+                    btn.style.opacity = '0.5';
+                }
+            });
+            
+            showToast('Thanks for the feedback!');
+            console.log('Feedback:', response);
+        }
+        
+        // Show toast notifications
+        function showToast(message) {
+            const toast = document.getElementById('toast');
+            toast.textContent = message;
+            toast.classList.add('show');
+            
+            setTimeout(function() {
+                toast.classList.remove('show');
+            }, 3000);
+        }
+        
+        // Progressive disclosure on scroll
+        window.addEventListener('scroll', function() {
+            const steps = document.querySelectorAll('.workflow-step');
+            steps.forEach(function(step) {
+                const rect = step.getBoundingClientRect();
+                if (rect.top < window.innerHeight * 0.8) {
+                    step.classList.add('in-view');
+                }
+            });
+            
+            // Update progress bar
+            const scrollTop = window.pageYOffset;
+            const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+            const scrollPercent = Math.min((scrollTop / docHeight) * 100, 100);
+            
+            document.getElementById('progressBar').style.width = scrollPercent + '%';
+        });
+        
+        // Initialize when page loads
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('Workflow demo loaded successfully');
+            showToast('Welcome! Explore the complete user workflow system.');
+        });
+    </script>
+</body>
+</html> 

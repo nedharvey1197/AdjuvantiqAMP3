@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AdjuvantIQ Demo | Interactive Clinical Trial Intelligence</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #f8f9fc;
+        }
+        
+        .hero {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 60px 20px;
+            text-align: center;
+        }
+        
+        .hero h1 {
+            font-size: 2.5em;
+            margin-bottom: 20px;
+        }
+        
+        .hero .lead {
+            font-size: 1.3em;
+            margin-bottom: 30px;
+            opacity: 0.9;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        .demo-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            margin: 40px 0;
+        }
+        
+        .demo-card {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .demo-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+        }
+        
+        .demo-card-header {
+            background: linear-gradient(135deg, #e3f2fd 0%, #f3e5f5 100%);
+            padding: 25px;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        
+        .demo-card-title {
+            font-size: 1.4em;
+            font-weight: bold;
+            color: #1976d2;
+            margin-bottom: 10px;
+        }
+        
+        .demo-card-subtitle {
+            color: #666;
+            font-size: 0.95em;
+        }
+        
+        .demo-card-content {
+            padding: 25px;
+        }
+        
+        .demo-features {
+            list-style: none;
+            margin: 15px 0;
+        }
+        
+        .demo-features li {
+            padding: 8px 0;
+            border-bottom: 1px solid #f0f0f0;
+        }
+        
+        .demo-features li:last-child {
+            border-bottom: none;
+        }
+        
+        .demo-features li:before {
+            content: "✓";
+            color: #4caf50;
+            font-weight: bold;
+            margin-right: 10px;
+        }
+        
+        .demo-button {
+            display: inline-block;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 12px 25px;
+            text-decoration: none;
+            border-radius: 6px;
+            font-weight: 500;
+            transition: background 0.3s ease;
+        }
+        
+        .demo-button:hover {
+            background: linear-gradient(135deg, #5a6fd8 0%, #6a4190 100%);
+        }
+        
+        .primary-demo {
+            border: 3px solid #667eea !important;
+            background: linear-gradient(135deg, #f8f9fc 0%, #e3f2fd 100%) !important;
+        }
+        
+        .back-link {
+            display: inline-block;
+            margin: 20px 0;
+            color: #667eea;
+            text-decoration: none;
+            font-weight: 600;
+            padding: 12px 20px;
+            background: linear-gradient(135deg, #f8f9fc 0%, #e3f2fd 100%);
+            border-radius: 8px;
+            border: 2px solid #667eea;
+            transition: all 0.3s ease;
+            font-size: 1.1em;
+        }
+        
+        .back-link:hover {
+            color: #5a67d8;
+            background: linear-gradient(135deg, #e3f2fd 0%, #f3e5f5 100%);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+            text-decoration: none;
+        }
+        
+        .credibility-section {
+            background: #f8f9fc;
+            padding: 30px;
+            margin: 30px 0;
+            border-radius: 8px;
+            border-left: 4px solid #9c27b0;
+        }
+        
+        .credibility-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+        
+        .credibility-item {
+            display: flex;
+            align-items: center;
+            padding: 15px;
+            background: white;
+            border-radius: 6px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+        
+        .credibility-icon {
+            font-size: 1.5em;
+            margin-right: 15px;
+        }
+    </style>
+</head>
+<body>
+    <div class="hero">
+        <div class="container">
+            <a href="../" class="back-link">← Back to AdjuvantIQ</a>
+            <h1>Interactive Demo Experience</h1>
+            <p class="lead">Experience how AI-assisted reasoning transforms clinical trial optimization</p>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="credibility-section">
+            <h2>Why These Demos Matter</h2>
+            <p>These interactive scenarios demonstrate how AdjuvantIQ's ontological AI system processes complex clinical trial decisions, providing real-time optimization recommendations while collecting valuable user feedback.</p>
+            
+            <div class="credibility-grid">
+                <div class="credibility-item">
+                    <span class="credibility-icon">🎓</span>
+                    <div>
+                        <strong>Expert-Developed</strong><br>
+                        Created with clinical development leaders
+                    </div>
+                </div>
+                <div class="credibility-item">
+                    <span class="credibility-icon">📊</span>
+                    <div>
+                        <strong>Data-Driven</strong><br>
+                        Based on 40+ real clinical trials
+                    </div>
+                </div>
+                <div class="credibility-item">
+                    <span class="credibility-icon">⚡</span>
+                    <div>
+                        <strong>Interactive</strong><br>
+                        Real-time feedback and optimization
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="demo-grid">
+            <div class="demo-card primary-demo">
+                <div class="demo-card-header">
+                    <div class="demo-card-title">🎯 Complex Trial Orchestration & Optimization</div>
+                    <div class="demo-card-subtitle">End-to-end clinical development transformation</div>
+                </div>
+                <div class="demo-card-content">
+                    <p>Our comprehensive demonstration showing how AdjuvantIQ transforms clinical development from initial planning through regulatory submission, solving the most critical pain points that cost billions in lost value.</p>
+                    
+                    <ul class="demo-features">
+                        <li>Complete trial lifecycle demonstration</li>
+                        <li>Multi-stakeholder perspectives</li>
+                        <li>Industry pain points addressed</li>
+                        <li>Real-time optimization examples</li>
+                        <li>End-to-end value proposition</li>
+                    </ul>
+                    
+                    <a href="cardiovascular.html" class="demo-button">Start Complex Trial Demo</a>
+                </div>
+            </div>
+
+            <div class="demo-card">
+                <div class="demo-card-header">
+                    <div class="demo-card-title">📊 Biostatistics & Analytics for Oncology Biomarker Trial</div>
+                    <div class="demo-card-subtitle">Statistical analysis and data interpretation</div>
+                </div>
+                <div class="demo-card-content">
+                    <p>Experience how AI processes complex interim analysis results for a Phase II oncology trial with mixed efficacy signals across biomarker subgroups.</p>
+                    
+                    <ul class="demo-features">
+                        <li>Statistical power analysis</li>
+                        <li>Biomarker stratification</li>
+                        <li>Regulatory pathway optimization</li>
+                        <li>Multi-agent coordination</li>
+                        <li>Real-time feedback collection</li>
+                    </ul>
+                    
+                    <a href="oncology.html" class="demo-button">Start Biostatistics Demo</a>
+                </div>
+            </div>
+        </div>
+
+        <div style="text-align: center; margin: 40px 0; padding: 30px; background: #e8f5e8; border-radius: 8px;">
+            <h3>Ready to Transform Your Clinical Development?</h3>
+            <p>These demos showcase just a fraction of AdjuvantIQ's capabilities. Contact us to discuss how our AI system can optimize your specific clinical trial challenges.</p>
+            <a href="../#pilot" class="demo-button" style="margin-top: 15px;">Request Pilot Program</a>
+        </div>
+    </div>
+</body>
+</html> 

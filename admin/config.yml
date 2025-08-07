@@ -1,0 +1,127 @@
+backend:
+  name: git-gateway
+  branch: main # Change to 'master' if that's your default branch
+
+media_folder: "images"
+public_folder: "/images"
+
+collections:
+  - name: "site_settings"
+    label: "Site Settings"
+    files:
+      - label: "Hero Section"
+        name: "hero"
+        file: "content/hero.json"
+        fields:
+          - {label: "Main Title", name: "title", widget: "string", default: "Unlocking Billions in Lost Drug Development Investment"}
+          - {label: "Subtitle", name: "subtitle", widget: "string", default: "One Trial at a Time"}
+          - {label: "Tagline", name: "tagline", widget: "string", default: "The Operating System for Trial Cognition"}
+          - {label: "Primary Button Text", name: "primary_button", widget: "string", default: "Start Your Pilot"}
+          - {label: "Secondary Button Text", name: "secondary_button", widget: "string", default: "Learn More"}
+
+      - label: "Problem Section"
+        name: "problem"
+        file: "content/problem.json"
+        fields:
+          - {label: "Section Title", name: "title", widget: "string", default: "An 'Analog' Process Needing a Digital Intelligence Upgrade"}
+          - {label: "Section Subtitle", name: "subtitle", widget: "text", default: "Clinical trials are plagued by inefficiencies that cost billions and delay life-saving treatments"}
+          - label: "Problem Cards"
+            name: "cards"
+            widget: "list"
+            fields:
+              - {label: "Number", name: "number", widget: "string"}
+              - {label: "Title", name: "title", widget: "string"}
+              - {label: "Description", name: "description", widget: "text"}
+
+      - label: "Solution Section"
+        name: "solution"
+        file: "content/solution.json"
+        fields:
+          - {label: "Section Title", name: "title", widget: "string", default: "Purpose Built to Integrate Workflow & Process Understanding"}
+          - {label: "Section Subtitle", name: "subtitle", widget: "text", default: "An operating system for trial cognition - bringing tech leadership and agentic intelligence to the clinical trial industry"}
+          - label: "Solution Cards"
+            name: "cards"
+            widget: "list"
+            fields:
+              - {label: "Title", name: "title", widget: "string"}
+              - {label: "Description", name: "description", widget: "text"}
+
+      - label: "Platform Section"
+        name: "platform"
+        file: "content/platform.json"
+        fields:
+          - {label: "Section Title", name: "title", widget: "string", default: "24/7 Expert Agents Providing Limitless Impact"}
+          - {label: "Section Subtitle", name: "subtitle", widget: "text", default: "Multi-agent collaboration with built-in governance and perspective-aware reasoning"}
+          - label: "Agent Cards"
+            name: "agents"
+            widget: "list"
+            fields:
+              - {label: "Agent Name", name: "name", widget: "string"}
+              - {label: "Description", name: "description", widget: "text"}
+
+      - label: "Team Section"
+        name: "team"
+        file: "content/team.json"
+        fields:
+          - {label: "Section Title", name: "title", widget: "string", default: "Experienced Founders with an Outside Perspective"}
+          - {label: "Section Subtitle", name: "subtitle", widget: "text", default: "A proven leadership combination of strategic execution and technical innovation"}
+          - label: "Team Members"
+            name: "members"
+            widget: "list"
+            fields:
+              - {label: "Name", name: "name", widget: "string"}
+              - {label: "Role", name: "role", widget: "string"}
+              - {label: "Initials", name: "initials", widget: "string"}
+              - {label: "Bio", name: "bio", widget: "text"}
+
+      - label: "Pilot Program"
+        name: "pilot"
+        file: "content/pilot.json"
+        fields:
+          - {label: "Section Title", name: "title", widget: "string", default: "Join the Founding Cohort of Agentic Biotech Leaders"}
+          - {label: "Section Subtitle", name: "subtitle", widget: "text", default: "Be among the first sponsor companies to transform protocol development from months to hours"}
+          - label: "Benefits"
+            name: "benefits"
+            widget: "list"
+            fields:
+              - {label: "Icon", name: "icon", widget: "string"}
+              - {label: "Title", name: "title", widget: "string"}
+              - {label: "Description", name: "description", widget: "text"}
+          - {label: "Form Action URL", name: "form_action", widget: "string", default: "https://formspree.io/f/xjkoorgk"}
+
+      - label: "Contact Information"
+        name: "contact"
+        file: "content/contact.json"
+        fields:
+          - {label: "Investment Email", name: "invest_email", widget: "string", default: "invest@adjuvantiq.com"}
+          - {label: "Pilot Email", name: "pilot_email", widget: "string", default: "pilot@adjuvantiq.com"}
+          - {label: "Phone Number", name: "phone", widget: "string", default: "+1 303-885-7143"}
+          - {label: "Website", name: "website", widget: "string", default: "www.adjuvantiq.com"}
+
+      - label: "Company Stats"
+        name: "stats"
+        file: "content/stats.json"
+        fields:
+          - {label: "Year 5 ARR", name: "arr", widget: "string", default: "$75-120M"}
+          - {label: "Target Market Size", name: "market_size", widget: "string", default: "~6,400"}
+          - {label: "LTV/CAC Ratio", name: "ltv_cac", widget: "string", default: "15-20x"}
+          - {label: "Partner Limit", name: "partner_limit", widget: "string", default: "25"}
+
+      - label: "SEO Settings"
+        name: "seo"
+        file: "content/seo.json"
+        fields:
+          - {label: "Page Title", name: "title", widget: "string", default: "AdjuvantIQ | The Operating System for Trial Cognition"}
+          - {label: "Meta Description", name: "description", widget: "text", default: "Transform clinical trial design with AI-powered cognition. Join biotech leaders using AdjuvantIQ to unlock billions in lost drug development investment."}
+          - {label: "Keywords", name: "keywords", widget: "string", default: "clinical trials, AI, biotech, drug development, trial design"}
+
+  - name: "pages"
+    label: "Pages"
+    files:
+      - label: "Logo & Branding"
+        name: "branding"
+        file: "content/branding.json"
+        fields:
+          - {label: "Company Logo", name: "logo", widget: "image", default: "AdjuvantIQ.jpg"}
+          - {label: "Company Name", name: "company_name", widget: "string", default: "AdjuvantIQ"}
+          - {label: "Company Tagline", name: "tagline", widget: "string", default: "Unlocking Billions in Lost Drug Development Value – One Trial at a Time"}

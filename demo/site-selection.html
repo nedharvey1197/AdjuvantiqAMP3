@@ -1,0 +1,828 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Site Selection & Portfolio Optimization - AdjuvantIQ Demo</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #f8f9fc;
+        }
+        
+        .hero {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 60px 20px;
+            text-align: center;
+        }
+        
+        .hero h1 {
+            font-size: 2.5em;
+            margin-bottom: 20px;
+        }
+        
+        .hero .lead {
+            font-size: 1.3em;
+            margin-bottom: 30px;
+            opacity: 0.9;
+        }
+        
+        .time-investment {
+            background: rgba(255,255,255,0.1);
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 20px;
+            font-size: 1.1em;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        .progress-section {
+            background: white;
+            padding: 20px;
+            border-bottom: 1px solid #ddd;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        .progress-bar {
+            background: #e0e0e0;
+            height: 6px;
+            border-radius: 3px;
+            overflow: hidden;
+            margin-bottom: 10px;
+        }
+        
+        .progress {
+            background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
+            height: 100%;
+            transition: width 0.3s ease;
+            width: 50%;
+        }
+        
+        .progress-text {
+            font-weight: 600;
+            color: #666;
+        }
+        
+        .user-input {
+            background: #e8f5e8;
+            border-left: 5px solid #4caf50;
+            padding: 20px;
+            margin: 15px 0;
+            border-radius: 6px;
+            position: relative;
+        }
+        
+        .user-input::before {
+            content: "👤 USER INPUT";
+            position: absolute;
+            top: -10px;
+            left: 15px;
+            background: #4caf50;
+            color: white;
+            padding: 4px 8px;
+            font-size: 0.8em;
+            font-weight: bold;
+            border-radius: 3px;
+        }
+        
+        .system-analysis {
+            background: #e3f2fd;
+            border-left: 5px solid #2196f3;
+            padding: 20px;
+            margin: 15px 0;
+            border-radius: 6px;
+            position: relative;
+        }
+        
+        .system-analysis::before {
+            content: "🤖 SYSTEM ANALYSIS";
+            position: absolute;
+            top: -10px;
+            left: 15px;
+            background: #2196f3;
+            color: white;
+            padding: 4px 8px;
+            font-size: 0.8em;
+            font-weight: bold;
+            border-radius: 3px;
+        }
+        
+        .system-recommendations {
+            background: #f3e5f5;
+            border-left: 5px solid #9c27b0;
+            padding: 20px;
+            margin: 15px 0;
+            border-radius: 6px;
+            position: relative;
+        }
+        
+        .system-recommendations::before {
+            content: "💡 RECOMMENDATIONS";
+            position: absolute;
+            top: -10px;
+            left: 15px;
+            background: #9c27b0;
+            color: white;
+            padding: 4px 8px;
+            font-size: 0.8em;
+            font-weight: bold;
+            border-radius: 3px;
+        }
+        
+        .expert-decision {
+            background: #fff8e1;
+            border-left: 5px solid #ff9800;
+            padding: 20px;
+            margin: 15px 0;
+            border-radius: 6px;
+            position: relative;
+        }
+        
+        .expert-decision::before {
+            content: "🎯 KEY DECISION";
+            position: absolute;
+            top: -10px;
+            left: 15px;
+            background: #ff9800;
+            color: white;
+            padding: 4px 8px;
+            font-size: 0.8em;
+            font-weight: bold;
+            border-radius: 3px;
+        }
+        
+        .reasoning-box {
+            background: #fff3e0;
+            border: 2px solid #ff9800;
+            padding: 20px;
+            margin: 15px 0;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        
+        .reasoning-box::before {
+            content: "🔧 AI REASONING";
+            position: absolute;
+            top: -10px;
+            left: 15px;
+            background: #ff9800;
+            color: white;
+            padding: 4px 8px;
+            font-size: 0.8em;
+            font-weight: bold;
+            border-radius: 3px;
+        }
+        
+        .reasoning-box:hover {
+            box-shadow: 0 4px 12px rgba(255,152,0,0.2);
+        }
+        
+        .reasoning-box.expanded {
+            background: #fff8e1;
+        }
+        
+        .reasoning-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: bold;
+            color: #e65100;
+        }
+        
+        .expand-icon {
+            font-size: 1.2em;
+            margin-left: auto;
+            transition: transform 0.3s ease;
+        }
+        
+        .reasoning-box.expanded .expand-icon {
+            transform: rotate(45deg);
+        }
+        
+        .reasoning-details {
+            margin-top: 15px;
+            display: none;
+        }
+        
+        .reasoning-box.expanded .reasoning-details {
+            display: block;
+        }
+        
+        .workflow-step {
+            opacity: 0.3;
+            transform: translateY(20px);
+            transition: all 0.5s ease;
+        }
+        
+        .workflow-step.in-view {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .content-section {
+            background: white;
+            margin: 20px 0;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        
+        .section-header {
+            background: #f8f9fc;
+            padding: 30px;
+            border-bottom: 1px solid #e0e6ed;
+        }
+        
+        .persona-card {
+            background: linear-gradient(135deg, #e3f2fd 0%, #f3e5f5 100%);
+            border-left: 5px solid #2196f3;
+            padding: 25px;
+            margin: 20px 0;
+            border-radius: 8px;
+        }
+        
+        .persona-title {
+            font-size: 1.4em;
+            font-weight: bold;
+            color: #1976d2;
+            margin-bottom: 10px;
+        }
+        
+        .workflow-step {
+            padding: 30px;
+            border-bottom: 1px solid #f0f0f0;
+        }
+        
+        .workflow-step:last-child {
+            border-bottom: none;
+        }
+        
+        .step-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        
+        .step-number {
+            background: #2196f3;
+            color: white;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 20px;
+            font-weight: bold;
+            font-size: 1.2em;
+        }
+        
+        .step-title {
+            font-size: 1.3em;
+            font-weight: 600;
+            color: #333;
+        }
+        
+        .credibility-indicators {
+            background: #f8f9fc;
+            padding: 20px;
+            margin: 30px 0;
+            border-radius: 8px;
+            border-left: 4px solid #9c27b0;
+        }
+        
+        .expertise-note, .data-note {
+            display: flex;
+            align-items: center;
+            margin: 10px 0;
+        }
+        
+        .expertise-note .icon, .data-note .icon {
+            font-size: 1.5em;
+            margin-right: 15px;
+        }
+        
+        .micro-feedback {
+            background: #f0f8ff;
+            border: 1px solid #b3d9ff;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 6px;
+            text-align: center;
+        }
+        
+        .feedback-buttons button {
+            background: #2196f3;
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            margin: 5px;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+        
+        .feedback-buttons button:hover {
+            background: #1976d2;
+        }
+        
+        .engagement-tools {
+            background: #e8f5e8;
+            padding: 20px;
+            margin: 30px 0;
+            border-radius: 8px;
+            text-align: center;
+        }
+        
+        .engagement-tools button {
+            background: #4caf50;
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            margin: 5px;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+        
+        .engagement-tools button:hover {
+            background: #45a049;
+        }
+        
+        .toast {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: #4caf50;
+            color: white;
+            padding: 15px 20px;
+            border-radius: 6px;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            z-index: 1001;
+        }
+        
+        .toast.show {
+            opacity: 1;
+        }
+        
+        .back-link {
+            display: inline-block;
+            margin: 20px 0;
+            color: #667eea;
+            text-decoration: none;
+            font-weight: 600;
+            padding: 12px 20px;
+            background: linear-gradient(135deg, #f8f9fc 0%, #e3f2fd 100%);
+            border-radius: 8px;
+            border: 2px solid #667eea;
+            transition: all 0.3s ease;
+            font-size: 1.1em;
+        }
+        
+        .back-link:hover {
+            color: #5a67d8;
+            background: linear-gradient(135deg, #e3f2fd 0%, #f3e5f5 100%);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+            text-decoration: none;
+        }
+        
+        .helper-icon {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            width: 50px;
+            height: 50px;
+            background: #667eea;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-size: 1.5em;
+            z-index: 1000;
+            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+            transition: all 0.3s ease;
+        }
+        
+        .helper-icon:hover {
+            background: #5a6fd8;
+            transform: scale(1.1);
+        }
+        
+        .helper-popup {
+            position: fixed;
+            top: 80px;
+            right: 20px;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+            padding: 25px;
+            z-index: 1001;
+            max-width: 350px;
+            display: none;
+            border-left: 4px solid #9c27b0;
+        }
+        
+        .helper-content h4 {
+            margin-bottom: 15px;
+            color: #333;
+            font-size: 1.2em;
+        }
+        
+        .helper-item {
+            margin: 10px 0;
+        }
+        
+        .helper-example {
+            padding: 10px;
+            border-radius: 6px;
+            font-size: 0.9em;
+        }
+        
+        .helper-example.user-input {
+            background: #e8f5e8;
+            border-left: 3px solid #4caf50;
+        }
+        
+        .helper-example.system-analysis {
+            background: #e3f2fd;
+            border-left: 3px solid #2196f3;
+        }
+        
+        .helper-example.system-recommendations {
+            background: #f3e5f5;
+            border-left: 3px solid #9c27b0;
+        }
+        
+        .helper-example.expert-decision {
+            background: #e8f5e8;
+            border-left: 3px solid #4caf50;
+        }
+        
+        .helper-example.reasoning-box {
+            background: #fff3e0;
+            border-left: 3px solid #ff9800;
+        }
+        
+        .close-helper {
+            background: #667eea;
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 6px;
+            cursor: pointer;
+            margin-top: 15px;
+            font-weight: 500;
+        }
+        
+        .close-helper:hover {
+            background: #5a6fd8;
+        }
+    </style>
+</head>
+<body>
+    <div class="hero">
+        <div class="container">
+            <a href="cardiovascular.html" class="back-link">← Back to Trial Overview</a>
+            <h1>Site Selection & Portfolio Optimization</h1>
+            <p class="lead">See how AI-driven site selection optimizes recruitment efficiency and data quality across global trial networks</p>
+            <div class="time-investment">
+                ⏱️ 8-10 minutes • Data-driven site selection • Performance prediction • Risk mitigation
+            </div>
+        </div>
+    </div>
+
+    <div class="progress-section">
+        <div class="container">
+            <div class="progress-bar">
+                <div class="progress" id="progressBar"></div>
+            </div>
+            <div class="progress-text" id="progressText">Site Performance Analysis (2 of 4)</div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="credibility-indicators">
+            <div class="expertise-note">
+                <span class="icon">🎓</span>
+                <span>Developed with clinical operations leaders from Pfizer, Novartis, and leading CROs</span>
+            </div>
+            <div class="data-note">
+                <span class="icon">📊</span>
+                <span>Based on analysis of 1,200+ cardiology sites and 50+ cardiovascular outcomes trials</span>
+            </div>
+        </div>
+
+        <div class="helper-icon" onclick="toggleHelper()" title="Content Guide">
+            <span>❓</span>
+        </div>
+        
+        <div class="helper-popup" id="helperPopup">
+            <div class="helper-content">
+                <h4>Content Guide - What Each Box Contains</h4>
+                <div class="helper-item">
+                    <div class="helper-example user-input">👤 <strong>USER INPUT</strong>: What clinical experts tell the system</div>
+                </div>
+                <div class="helper-item">
+                    <div class="helper-example system-analysis">🤖 <strong>SYSTEM ANALYSIS</strong>: AI agents processing and analyzing</div>
+                </div>
+                <div class="helper-item">
+                    <div class="helper-example system-recommendations">💡 <strong>RECOMMENDATIONS</strong>: System-generated optimization suggestions</div>
+                </div>
+                <div class="helper-item">
+                    <div class="helper-example expert-decision">🎯 <strong>KEY DECISION</strong>: Clinical expert's final choices (Green)</div>
+                </div>
+                <div class="helper-item">
+                    <div class="helper-example reasoning-box">🔧 <strong>AI REASONING</strong>: Click to see how the system works (expandable)</div>
+                </div>
+                <button onclick="toggleHelper()" class="close-helper">Close</button>
+            </div>
+        </div>
+
+
+
+        <div class="content-section">
+            <div class="section-header">
+                <h2>Optimizing Site Portfolio for Maximum Recruitment Efficiency</h2>
+                <p>With the protocol finalized, the focus shifts to identifying and selecting the optimal mix of sites to meet recruitment targets while ensuring data quality and regulatory compliance.</p>
+            </div>
+
+            <div class="persona-card">
+                <div class="persona-title">Michael Rodriguez, Director of Clinical Operations</div>
+                <p><strong>Company:</strong> Mid-size biotech with promising SGLT2 inhibitor</p>
+                <p><strong>Challenge:</strong> Optimize site portfolio for maximum recruitment efficiency and data quality</p>
+                <p><strong>Target:</strong> 67 sites to recruit 12,000 patients over 42 months</p>
+            </div>
+
+            <div class="workflow-step">
+                <div class="step-header">
+                    <div class="step-number">1</div>
+                    <div class="step-title">Site Performance Analysis Request</div>
+                </div>
+                
+                <div class="user-input">
+                    <strong>Michael Rodriguez's Request:</strong> "Identify optimal sites for cardiovascular outcomes trial, target 65 sites, need 190 patients per site over 42 months"
+                </div>
+
+                <div class="system-analysis">
+                    <strong>Site Selection Agent Analysis:</strong><br>
+                    • Historical performance database: 1,200+ cardiology sites<br>
+                    • Filters applied: HF experience, diabetes patient populations, GCP compliance<br>
+                    • Performance metrics: enrollment rate, retention rate, data quality scores
+                </div>
+
+                <div class="reasoning-box" onclick="toggleReasoning(this)">
+                    <div class="reasoning-header">
+                        How does the system analyze site performance?
+                        <span class="expand-icon">+</span>
+                    </div>
+                    <div class="reasoning-details">
+                        <strong>1. Query Ontological Mapping:</strong> Maps "cardiovascular outcomes trial" to formal CTO concepts and retrieves protocol parameters<br><br>
+                        <strong>2. Site Performance Ontology Activation:</strong> Accesses structured representations of site capabilities and performance history<br><br>
+                        <strong>3. Multi-Criteria Filtering:</strong> Applies ontological reasoning to filter sites using formal criteria<br><br>
+                        <strong>4. Performance Metric Integration:</strong> Standardizes performance metrics across different data sources<br><br>
+                        <strong>5. Contextual Enrichment:</strong> Enriches site data with protocol-specific context
+                    </div>
+                </div>
+
+                <div class="micro-feedback">
+                    <p><strong>Quick reaction:</strong> How do you currently identify and evaluate potential trial sites?</p>
+                    <div class="feedback-buttons">
+                        <button onclick="giveFeedback(this, 'database-search')">Internal database search</button>
+                        <button onclick="giveFeedback(this, 'cro-recommendations')">CRO recommendations</button>
+                        <button onclick="giveFeedback(this, 'investigator-network')">Investigator network</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="workflow-step">
+                <div class="step-header">
+                    <div class="step-number">2</div>
+                    <div class="step-title">Multi-Criteria Optimization</div>
+                </div>
+
+                <div class="system-analysis">
+                    <strong>Optimization Results:</strong><br>
+                    • <strong>Tier 1 Sites (Academic):</strong> 25 sites, high data quality, slower recruitment<br>
+                    • <strong>Tier 2 Sites (Community Cardiology):</strong> 30 sites, faster recruitment, standard quality<br>
+                    • <strong>Tier 3 Sites (Primary Care Networks):</strong> 10 sites, geographic coverage, screening focus<br>
+                    • <strong>Geographic distribution:</strong> Ensures regulatory compliance and population diversity
+                </div>
+
+                <div class="reasoning-box" onclick="toggleReasoning(this)">
+                    <div class="reasoning-header">
+                        How does the system optimize site selection?
+                        <span class="expand-icon">+</span>
+                    </div>
+                    <div class="reasoning-details">
+                        <strong>1. Multi-Objective Optimization Setup:</strong> Defines optimization problem using ontological constraints<br><br>
+                        <strong>2. Site Clustering Analysis:</strong> Classifies sites into tiers based on formal characteristics<br><br>
+                        <strong>3. Trade-off Modeling:</strong> Models performance trade-offs using causal relationships<br><br>
+                        <strong>4. Portfolio Optimization:</strong> Uses mathematical optimization with ontological constraints<br><br>
+                        <strong>5. Regulatory Validation:</strong> Cross-references with regulatory requirements
+                    </div>
+                </div>
+
+                <div class="micro-feedback">
+                    <p><strong>💭 Quick question:</strong> What's your biggest challenge in site selection?</p>
+                    <div class="feedback-buttons">
+                        <button onclick="giveFeedback(this, 'recruitment-speed')">Recruitment speed</button>
+                        <button onclick="giveFeedback(this, 'data-quality')">Data quality</button>
+                        <button onclick="giveFeedback(this, 'geographic-balance')">Geographic balance</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="workflow-step">
+                <div class="step-header">
+                    <div class="step-number">3</div>
+                    <div class="step-title">Risk Assessment and Mitigation</div>
+                </div>
+
+                <div class="system-recommendations">
+                    <strong>Risk Analysis:</strong><br>
+                    • 15% of proposed sites have competing trials in same population<br>
+                    • 3 high-volume sites have recent GCP audit findings<br>
+                    • Geographic clustering in Northeast may limit population diversity<br><br>
+                    <strong>Mitigation Recommendations:</strong><br>
+                    • Alternative sites identified for high-competition areas<br>
+                    • Enhanced monitoring plan for sites with audit history<br>
+                    • Targeted recruitment in underrepresented regions
+                </div>
+
+                <div class="reasoning-box" onclick="toggleReasoning(this)">
+                    <div class="reasoning-header">
+                        How does the system assess and mitigate risks?
+                        <span class="expand-icon">+</span>
+                    </div>
+                    <div class="reasoning-details">
+                        <strong>1. Risk Ontology Activation:</strong> Accesses formal risk categories with associated probability models<br><br>
+                        <strong>2. Competitive Intelligence Integration:</strong> Queries clinical trial database to identify competing trials<br><br>
+                        <strong>3. Compliance History Analysis:</strong> Assesses audit findings severity and recency<br><br>
+                        <strong>4. Geographic Diversity Validation:</strong> Applies population diversity requirements<br><br>
+                        <strong>5. Mitigation Strategy Generation:</strong> Uses causal reasoning to generate mitigation strategies
+                    </div>
+                </div>
+            </div>
+
+            <div class="workflow-step">
+                <div class="step-header">
+                    <div class="step-number">4</div>
+                    <div class="step-title">Site Selection Decision</div>
+                </div>
+
+                <div class="expert-decision">
+                    <strong>Final Selection:</strong> 67 sites selected (65 primary + 2 backup), balanced across tiers and regions. System prediction: 95% probability of meeting recruitment timeline with selected site portfolio
+                </div>
+
+                <div class="system-analysis">
+                    <strong>Updated System Projections:</strong><br>
+                    • <strong>Expected enrollment rate:</strong> 8.2 patients per site per month<br>
+                    • <strong>Timeline confidence:</strong> 95% probability of meeting 42-month target<br>
+                    • <strong>Data quality score:</strong> 4.7/5.0 across selected sites<br>
+                    • <strong>Geographic diversity:</strong> 85% of FDA regions covered
+                </div>
+
+                <div class="reasoning-box" onclick="toggleReasoning(this)">
+                    <div class="reasoning-header">
+                        How does the system validate the final selection?
+                        <span class="expand-icon">+</span>
+                    </div>
+                    <div class="reasoning-details">
+                        <strong>1. Decision Integration:</strong> Captures site selections and maps them back to Site Performance Ontology<br><br>
+                        <strong>2. Portfolio Validation:</strong> Uses Monte Carlo simulation to predict recruitment timeline probability<br><br>
+                        <strong>3. Constraint Satisfaction Verification:</strong> Validates final selection meets all ontological constraints<br><br>
+                        <strong>4. Predictive Model Generation:</strong> Generates confidence prediction using ensemble models<br><br>
+                        <strong>5. Operational Handoff:</strong> Updates Trial Design Interdependency Ontology for downstream optimization
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="engagement-tools">
+            <h3>Ready to explore the next phase?</h3>
+            <button onclick="window.location.href='adaptive-modifications.html'">🔄 Continue to Trial Management</button>
+            <button onclick="window.location.href='cardiovascular.html'">📋 Back to Trial Overview</button>
+            <button onclick="downloadPhaseAnalysis('site-selection')">📄 Download Site Analysis</button>
+        </div>
+    </div>
+
+    <div class="toast" id="toast"></div>
+
+    <script>
+        // Toggle reasoning boxes
+        function toggleReasoning(element) {
+            element.classList.toggle('expanded');
+            const details = element.querySelector('.reasoning-details');
+            const icon = element.querySelector('.expand-icon');
+            
+            if (element.classList.contains('expanded')) {
+                details.style.display = 'block';
+                icon.textContent = '×';
+            } else {
+                details.style.display = 'none';
+                icon.textContent = '+';
+            }
+        }
+        
+        // Feedback handling
+        function giveFeedback(button, response) {
+            button.style.background = '#4caf50';
+            button.textContent = '✓ ' + button.textContent.replace('✓ ', '');
+            
+            // Disable other buttons in the same group
+            const siblings = button.parentElement.querySelectorAll('button');
+            siblings.forEach(function(btn) {
+                if (btn !== button) {
+                    btn.disabled = true;
+                    btn.style.opacity = '0.5';
+                }
+            });
+            
+            showToast('Thanks for the feedback!');
+            console.log('Feedback:', response);
+        }
+        
+        // Show toast notifications
+        function showToast(message) {
+            const toast = document.getElementById('toast');
+            toast.textContent = message;
+            toast.classList.add('show');
+            
+            setTimeout(function() {
+                toast.classList.remove('show');
+            }, 3000);
+        }
+        
+        // Progressive disclosure on scroll
+        window.addEventListener('scroll', function() {
+            const steps = document.querySelectorAll('.workflow-step');
+            steps.forEach(function(step) {
+                const rect = step.getBoundingClientRect();
+                if (rect.top < window.innerHeight * 0.8) {
+                    step.classList.add('in-view');
+                }
+            });
+            
+            // Update progress bar
+            const scrollTop = window.pageYOffset;
+            const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+            const scrollPercent = Math.min((scrollTop / docHeight) * 100, 100);
+            
+            document.getElementById('progressBar').style.width = scrollPercent + '%';
+        });
+        
+        // Toggle helper popup
+        function toggleHelper() {
+            const popup = document.getElementById('helperPopup');
+            if (popup.style.display === 'none' || popup.style.display === '') {
+                popup.style.display = 'block';
+            } else {
+                popup.style.display = 'none';
+            }
+        }
+        
+        // Download phase analysis
+        function downloadPhaseAnalysis(phase) {
+            const phaseNames = {
+                'protocol-design': 'Protocol Design Analysis',
+                'site-selection': 'Site Selection Analysis',
+                'adaptive-modifications': 'Trial Management Analysis',
+                'regulatory-strategy': 'Regulatory Strategy Analysis'
+            };
+            
+            showToast(`${phaseNames[phase]} download coming soon! Contact us for detailed materials.`);
+            // In the future, this could link to specific PDFs for each phase
+        }
+        
+        // Initialize when page loads
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('Site selection demo loaded successfully');
+            showToast('Welcome! Explore how AI optimizes site selection decisions.');
+        });
+    </script>
+</body>
+</html> 
