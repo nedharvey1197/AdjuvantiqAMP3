@@ -4,138 +4,16 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>AdjuvantIQ Content Manager</title>
-  <style>
-    body {
-      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-      margin: 0;
-      padding: 20px;
-      background: #f5f5f5;
-    }
-    .container {
-      max-width: 1200px;
-      margin: 0 auto;
-      background: white;
-      padding: 30px;
-      border-radius: 8px;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-    }
-    h1 {
-      color: #333;
-      margin-bottom: 30px;
-    }
-    .content-section {
-      margin-bottom: 30px;
-      padding: 20px;
-      border: 1px solid #e1e5e9;
-      border-radius: 6px;
-    }
-    .content-section h3 {
-      color: #2d3748;
-      margin-top: 0;
-    }
-    .content-item {
-      margin-bottom: 15px;
-      padding: 10px;
-      background: #f8f9fa;
-      border-radius: 4px;
-    }
-    .content-item strong {
-      color: #4a5568;
-    }
-    .edit-link {
-      display: inline-block;
-      background: #667eea;
-      color: white;
-      padding: 8px 16px;
-      text-decoration: none;
-      border-radius: 4px;
-      font-size: 14px;
-      margin-top: 10px;
-    }
-    .edit-link:hover {
-      background: #5a6fd8;
-    }
-    .note {
-      background: #fff3cd;
-      border: 1px solid #ffeaa7;
-      padding: 15px;
-      border-radius: 4px;
-      margin-bottom: 20px;
-    }
-  </style>
 </head>
 <body>
-  <div class="container">
-    <h1>AdjuvantIQ Content Manager</h1>
-    
-    <div class="note">
-      <strong>Note:</strong> This is a simplified content manager for development. 
-      To edit content, you'll need to edit the JSON files directly in your GitHub repository.
-    </div>
-
-    <div class="content-section">
-      <h3>Site Settings</h3>
-      <div class="content-item">
-        <strong>Hero Section:</strong> Main title, subtitle, buttons
-        <br><a href="https://github.com/nedharvey1197/AdjuvantiqAMP3/edit/main/content/hero.json" class="edit-link" target="_blank">Edit Hero Content</a>
-      </div>
-      <div class="content-item">
-        <strong>Problem Section:</strong> Problem cards and descriptions
-        <br><a href="https://github.com/nedharvey1197/AdjuvantiqAMP3/edit/main/content/problem.json" class="edit-link" target="_blank">Edit Problem Content</a>
-      </div>
-      <div class="content-item">
-        <strong>Solution Section:</strong> Solution cards and descriptions
-        <br><a href="https://github.com/nedharvey1197/AdjuvantiqAMP3/edit/main/content/solution.json" class="edit-link" target="_blank">Edit Solution Content</a>
-      </div>
-      <div class="content-item">
-        <strong>Platform Section:</strong> Agent information
-        <br><a href="https://github.com/nedharvey1197/AdjuvantiqAMP3/edit/main/content/platform.json" class="edit-link" target="_blank">Edit Platform Content</a>
-      </div>
-      <div class="content-item">
-        <strong>Team Section:</strong> Team member details
-        <br><a href="https://github.com/nedharvey1197/AdjuvantiqAMP3/edit/main/content/team.json" class="edit-link" target="_blank">Edit Team Content</a>
-      </div>
-      <div class="content-item">
-        <strong>Pilot Program:</strong> Pilot benefits
-        <br><a href="https://github.com/nedharvey1197/AdjuvantiqAMP3/edit/main/content/pilot.json" class="edit-link" target="_blank">Edit Pilot Content</a>
-      </div>
-      <div class="content-item">
-        <strong>Contact Information:</strong> Email, phone, website
-        <br><a href="https://github.com/nedharvey1197/AdjuvantiqAMP3/edit/main/content/contact.json" class="edit-link" target="_blank">Edit Contact Info</a>
-      </div>
-      <div class="content-item">
-        <strong>Company Stats:</strong> ARR, market size, etc.
-        <br><a href="https://github.com/nedharvey1197/AdjuvantiqAMP3/edit/main/content/stats.json" class="edit-link" target="_blank">Edit Company Stats</a>
-      </div>
-      <div class="content-item">
-        <strong>SEO Settings:</strong> Page title, meta description
-        <br><a href="https://github.com/nedharvey1197/AdjuvantiqAMP3/edit/main/content/seo.json" class="edit-link" target="_blank">Edit SEO Settings</a>
-      </div>
-    </div>
-
-    <div class="content-section">
-      <h3>Demo Management</h3>
-      <div class="content-item">
-        <strong>Create New Demo:</strong> Add new interactive demos
-        <br><a href="https://github.com/nedharvey1197/AdjuvantiqAMP3/new/main/content/demos" class="edit-link" target="_blank">Create New Demo</a>
-      </div>
-      <div class="content-item">
-        <strong>Create New Phase:</strong> Add phases for multi-phase demos
-        <br><a href="https://github.com/nedharvey1197/AdjuvantiqAMP3/new/main/content/demo-phases" class="edit-link" target="_blank">Create New Phase</a>
-      </div>
-    </div>
-
-    <div class="content-section">
-      <h3>Repository Management</h3>
-      <div class="content-item">
-        <strong>View All Files:</strong> Browse all content files
-        <br><a href="https://github.com/nedharvey1197/AdjuvantiqAMP3/tree/main/content" class="edit-link" target="_blank">Browse Content Files</a>
-      </div>
-      <div class="content-item">
-        <strong>Build Status:</strong> Check deployment status
-        <br><a href="https://app.netlify.com" class="edit-link" target="_blank">Check Netlify Builds</a>
-      </div>
-    </div>
-  </div>
+  <script src="https://unpkg.com/netlify-cms@^2.0.0/dist/netlify-cms.js"></script>
+  
+  <!-- Auth0 configuration -->
+  <script>
+    // Auth0 configuration
+    window.AUTH0_DOMAIN = 'dev-oey8js2dmzcfsrky.us.auth0.com';
+    window.AUTH0_CLIENT_ID = '58Hz6ez6M8xWBRQUh79XSd7DEsc2UFWg';
+    window.AUTH0_AUDIENCE = 'https://dev-oey8js2dmzcfsrky.us.auth0.com/api/v2/';
+  </script>
 </body>
 </html>

@@ -1,1 +1,26 @@
-{} 
+{
+  "title": "An 'Analog' Process Needing a Digital Intelligence Upgrade",
+  "subtitle": "Clinical trials are plagued by inefficiencies that cost billions and delay life-saving treatments",
+  "cards": [
+    {
+      "number": "1",
+      "title": "Manual Protocol Design",
+      "description": "Months of back-and-forth between teams, leading to delays and inconsistencies"
+    },
+    {
+      "number": "2", 
+      "title": "Inefficient Site Selection",
+      "description": "Poor site performance and recruitment challenges costing millions in delays"
+    },
+    {
+      "number": "3",
+      "title": "Reactive Trial Management",
+      "description": "Late-stage modifications and protocol amendments increasing costs and timelines"
+    },
+    {
+      "number": "4",
+      "title": "Regulatory Uncertainty",
+      "description": "Unclear pathways and submission strategies leading to approval delays"
+    }
+  ]
+} 

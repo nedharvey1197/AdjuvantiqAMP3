@@ -1,1 +1,24 @@
-{} 
+{
+  "title": "Experienced Founders with an Outside Perspective",
+  "subtitle": "A proven leadership combination of strategic execution and technical innovation",
+  "members": [
+    {
+      "name": "Dr. Sarah Chen",
+      "role": "CEO & Co-Founder",
+      "initials": "SC",
+      "bio": "Former VP Clinical Development at Genentech with 15+ years in oncology drug development. Led multiple Phase III trials to successful FDA approval."
+    },
+    {
+      "name": "Michael Rodriguez",
+      "role": "CTO & Co-Founder", 
+      "initials": "MR",
+      "bio": "Former Director of Clinical Operations with expertise in global trial management and site optimization. Built clinical systems at top 10 pharma."
+    },
+    {
+      "name": "Dr. Jennifer Walsh",
+      "role": "Chief Medical Officer",
+      "initials": "JW", 
+      "bio": "Former FDA reviewer with deep regulatory expertise. Led clinical strategy for multiple successful drug approvals across therapeutic areas."
+    }
+  ]
+} 

@@ -1,1 +1,22 @@
-{} 
+{
+  "title": "Purpose Built to Integrate Workflow & Process Understanding",
+  "subtitle": "An operating system for trial cognition - bringing tech leadership and agentic intelligence to the clinical trial industry",
+  "cards": [
+    {
+      "title": "AI-Powered Protocol Design",
+      "description": "Intelligent protocol optimization that considers all interdependencies and regulatory requirements"
+    },
+    {
+      "title": "Predictive Site Selection",
+      "description": "Data-driven site portfolio optimization for maximum recruitment efficiency and data quality"
+    },
+    {
+      "title": "Proactive Trial Management",
+      "description": "Real-time monitoring and adaptive modifications to prevent costly delays and amendments"
+    },
+    {
+      "title": "Strategic Regulatory Planning",
+      "description": "Optimized submission strategies and pathway planning for faster approvals"
+    }
+  ]
+} 
