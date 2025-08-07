@@ -3,13 +3,14 @@ frontend:
   phases:
     preBuild:
       commands:
-        - echo "No preBuild commands"
+        - npm install
     build:
       commands:
-        - echo "Building static site"
+        - npm run generate-demos
   artifacts:
     baseDirectory: /
     files:
       - '**/*'
   cache:
-    paths: []
+    paths:
+      - node_modules/**/*
