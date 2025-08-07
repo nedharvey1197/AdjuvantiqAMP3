@@ -24,114 +24,26 @@
 <body>
   <div id="loading" class="loading">
     <h2>AdjuvantIQ CMS</h2>
-    <p>Loading authentication...</p>
+    <p>Loading...</p>
   </div>
 
   <div id="cms-container" class="cms-container" style="display: none;">
     <!-- Netlify CMS will be loaded here -->
   </div>
 
-  <!-- Auth0 Lock Widget -->
-  <script src="https://cdn.auth0.com/js/lock/11.30/lock.min.js"></script>
-  
   <!-- Netlify CMS -->
   <script src="https://unpkg.com/netlify-cms@^2.0.0/dist/netlify-cms.js"></script>
   
   <script>
-    // Initialize Auth0 configuration after loading environment variables
-    async function initializeAuth0() {
-      try {
-        // Fetch environment variables from Netlify function
-        const response = await fetch('/.netlify/functions/get-auth-config');
-        const config = await response.json();
-        
-        if (!config.clientId || !config.domain) {
-          throw new Error('Auth0 configuration not found');
-        }
-        
-        // Initialize Auth0 Lock
-        const lock = new Auth0Lock(
-          config.clientId,
-          config.domain,
-          {
-            auth: {
-              redirectUrl: 'https://adjuvantiq.netlify.app/admin',
-              responseType: 'token id_token',
-              params: {
-                scope: 'openid profile email'
-              }
-            },
-            socialButtonStyle: 'big',
-            theme: {
-              logo: 'https://adjuvantiq.netlify.app/assets/images/logos/AdjuvantIQ_Logo_teal_trans.svg',
-              primaryColor: '#4285f4'
-            },
-            languageDictionary: {
-              title: 'AdjuvantIQ CMS'
-            },
-            allowSignUp: false,
-            allowForgotPassword: false,
-            closable: false,
-            social: {
-              google: {
-                connection: 'google-oauth2'
-              },
-              github: {
-                connection: 'github'
-              }
-            }
-          }
-        );
-        
-        // Check if user is already authenticated
-        const token = localStorage.getItem('auth0_token');
-        const user = JSON.parse(localStorage.getItem('auth0_user') || 'null');
-        
-        if (token && user) {
-          // User is already authenticated, show CMS
-          showCMS();
-        } else {
-          // Show Auth0 login
-          lock.show();
-        }
-        
-        // Handle authentication
-        lock.on('authenticated', function(authResult) {
-          lock.getUserInfo(authResult.accessToken, function(error, user) {
-            if (error) {
-              console.error('Error getting user info:', error);
-              return;
-            }
-            
-            localStorage.setItem('auth0_token', authResult.accessToken);
-            localStorage.setItem('auth0_user', JSON.stringify(user));
-            
-            showCMS();
-          });
-        });
-        
-      } catch (error) {
-        console.error('Failed to initialize Auth0:', error);
-        document.getElementById('loading').innerHTML = 'Authentication service unavailable. Please try again later.';
-      }
-    }
-    
-    function showCMS() {
+    // Simple CMS initialization
+    document.addEventListener('DOMContentLoaded', function() {
+      // Hide loading and show CMS container
       document.getElementById('loading').style.display = 'none';
       document.getElementById('cms-container').style.display = 'block';
       
-      // Initialize Netlify CMS directly (Auth0 handles authentication)
-      const cmsScript = document.createElement('script');
-      cmsScript.src = 'https://unpkg.com/netlify-cms@^2.0.0/dist/netlify-cms.js';
-      cmsScript.onload = function() {
-        // CMS should initialize automatically
-        console.log('Netlify CMS loaded');
-      };
-      document.getElementById('cms-container').appendChild(cmsScript);
-    }
-    
-    // Initialize when page loads
-    initializeAuth0();
+      // Netlify CMS will handle authentication automatically with GitHub OAuth
+      console.log('Netlify CMS loading...');
+    });
   </script>
 </body>
 </html>

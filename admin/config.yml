@@ -1,5 +1,6 @@
 backend:
-  name: git-gateway
+  name: github
+  repo: nedharvey/AsdjuvanIQ_AMP3
   branch: main
 
 # Auth0 integration for Netlify CMS
