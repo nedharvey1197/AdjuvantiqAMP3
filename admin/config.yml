@@ -12,10 +12,12 @@ public_folder: "/images"
 
 collections:
   - name: "demos"
-    label: "Demo Management"
+    label: "Demo Pages"
     folder: "content/demos"
     create: true
     slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    format: json
+    extension: json
     fields:
       - {label: "Demo Title", name: "title", widget: "string"}
       - {label: "Demo Slug", name: "slug", widget: "string", hint: "URL-friendly name (e.g., 'cardiovascular-trial')"}
@@ -77,6 +79,8 @@ collections:
     folder: "content/demo-phases"
     create: true
     slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    format: json
+    extension: json
     fields:
       - {label: "Phase Title", name: "title", widget: "string"}
       - {label: "Phase Slug", name: "slug", widget: "string", hint: "URL-friendly name (e.g., 'protocol-design')"}
@@ -133,7 +137,7 @@ collections:
       - {label: "Published", name: "published", widget: "boolean", default: false}
 
   - name: "site_settings"
-    label: "Site Settings"
+    label: "Main Page"
     files:
       - label: "Hero Section"
         name: "hero"
