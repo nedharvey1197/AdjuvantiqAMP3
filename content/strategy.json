@@ -1,0 +1,18 @@
+{
+  "title": "The Strategic Play: Build Where Others Can't Compete",
+  "winner_zone": {
+    "label": "🏆 WHERE WINNERS BUILD",
+    "title": "Application Layer",
+    "company_name": "AdjuvantIQ",
+    "description": "Domain expertise + Regulatory knowledge = Unbeatable moat"
+  },
+  "commodity_zone": {
+    "label": "📦 COMMODITIZING FAST",
+    "title": "Infrastructure Layer",
+    "technologies": "ChatGPT • Claude • LangChain • AutoGPT"
+  },
+  "insight": {
+    "title": "💡 The Insight",
+    "description": "While everyone fights over generic AI infrastructure, biotech sponsors win by owning purpose-built applications that competitors can't replicate"
+  }
+}

@@ -16,13 +16,15 @@ class SiteGenerator {
             'hero.json',
             'problem.json', 
             'solution.json',
+            'strategy.json',
             'platform.json',
             'team.json',
             'pilot.json',
             'contact.json',
             'stats.json',
             'seo.json',
-            'theme.json'
+            'theme.json',
+            'navigation.json'
         ];
 
         contentFiles.forEach(file => {
@@ -48,6 +50,11 @@ class SiteGenerator {
 
         let html = fs.readFileSync(indexPath, 'utf8');
 
+        // Update navigation
+        if (content.navigation) {
+            html = this.updateNavigation(html, content.navigation);
+        }
+
         // Update hero section
         if (content.hero) {
             html = this.updateHeroSection(html, content.hero);
@@ -61,6 +68,11 @@ class SiteGenerator {
         // Update solution section
         if (content.solution) {
             html = this.updateSolutionSection(html, content.solution);
+        }
+
+        // Update strategy section
+        if (content.strategy) {
+            html = this.updateStrategySection(html, content.strategy);
         }
 
         // Update platform section
@@ -102,6 +114,44 @@ class SiteGenerator {
         console.log('Updated main site with CMS content');
     }
 
+    // Update navigation
+    updateNavigation(html, navigation) {
+        // Update logo text
+        if (navigation.logo_text) {
+            html = html.replace(/<div[^>]*class="[^"]*logo[^"]*"[^>]*>.*?<\/div>/s, `<div class="logo">${navigation.logo_text}</div>`);
+        }
+
+        // Update navigation links
+        if (Array.isArray(navigation.nav_links)) {
+            const navLinksHtml = navigation.nav_links.map(link => 
+                `<a href="${link.href}">${link.text}</a>`
+            ).join('');
+
+            html = html.replace(
+                /<div[^>]*class="[^"]*nav-links[^"]*"[^>]*>[\s\S]*?<\/div>/s,
+                `<div class="nav-links">${navLinksHtml}</div>`
+            );
+        }
+
+        // Update demo button
+        if (navigation.demo_button) {
+            html = html.replace(
+                /<a[^>]*class="[^"]*demo-link[^"]*"[^>]*>.*?<\/a>/s,
+                `<a href="${navigation.demo_button.href}" class="demo-link">${navigation.demo_button.text}</a>`
+            );
+        }
+
+        // Update pilot button
+        if (navigation.pilot_button) {
+            html = html.replace(
+                /<a[^>]*class="[^"]*cta-button[^"]*"[^>]*>.*?<\/a>/s,
+                `<a href="${navigation.pilot_button.href}" class="cta-button">${navigation.pilot_button.text}</a>`
+            );
+        }
+
+        return html;
+    }
+
     // Update hero section
     updateHeroSection(html, hero) {
         if (hero.title) {
@@ -138,6 +188,58 @@ class SiteGenerator {
         return html;
     }
 
+    // Update strategy section
+    updateStrategySection(html, strategy) {
+        if (strategy.title) {
+            html = html.replace(/<h2[^>]*class="[^"]*section-title[^"]*"[^>]*>.*?<\/h2>/s, `<h2 class="section-title">${strategy.title}</h2>`);
+        }
+        
+        // Update winner zone
+        if (strategy.winner_zone) {
+            const winnerZone = strategy.winner_zone;
+            html = html.replace(
+                /<div class="zone winner-zone">[\s\S]*?<\/div>/s,
+                `<div class="zone winner-zone">
+                    <div class="zone-label">${winnerZone.label}</div>
+                    <div class="zone-title">${winnerZone.title}</div>
+                    <div class="solution-highlight">
+                        <strong>${winnerZone.company_name}</strong>
+                        <p>${winnerZone.description}</p>
+                    </div>
+                </div>`
+            );
+        }
+        
+        // Update commodity zone
+        if (strategy.commodity_zone) {
+            const commodityZone = strategy.commodity_zone;
+            html = html.replace(
+                /<div class="zone commodity-zone">[\s\S]*?<\/div>/s,
+                `<div class="zone commodity-zone">
+                    <div class="zone-label">${commodityZone.label}</div>
+                    <div class="zone-title">${commodityZone.title}</div>
+                    <p style="font-size: 1.1rem; color: rgba(255, 255, 255, 0.8);">
+                        ${commodityZone.technologies}
+                    </p>
+                </div>`
+            );
+        }
+        
+        // Update insight
+        if (strategy.insight) {
+            const insight = strategy.insight;
+            html = html.replace(
+                /<div class="fade-in" style="background: linear-gradient\(135deg, #3498db 0%, #2980b9 100%\); border-radius: 15px; padding: 2rem; text-align: center; color: white; margin-top: 3rem;">[\s\S]*?<\/div>/s,
+                `<div class="fade-in" style="background: linear-gradient(135deg, #3498db 0%, #2980b9 100%); border-radius: 15px; padding: 2rem; text-align: center; color: white; margin-top: 3rem;">
+                <h3 style="margin-bottom: 1rem;">${insight.title}</h3>
+                <p style="font-size: 1.2rem; line-height: 1.6;">${insight.description}</p>
+            </div>`
+            );
+        }
+        
+        return html;
+    }
+
     // Update platform section
     updatePlatformSection(html, platform) {
         if (platform.title) {
@@ -151,16 +253,8 @@ class SiteGenerator {
 
     // Update team section
     updateTeamSection(html, team) {
-        // Update headings
-        if (team.title) {
-            html = html.replace(/<h2[^>]*class="[^"]*section-title[^"]*"[^>]*>.*?<\/h2>/s, `<h2 class="section-title">${team.title}<\/h2>`);
-        }
-        if (team.subtitle) {
-            html = html.replace(/<p[^>]*class="[^"]*section-subtitle[^"]*"[^>]*>.*?<\/p>/s, `<p class="section-subtitle">${team.subtitle}<\/p>`);
-        }
-
-        // If members provided, replace the team grid contents
-        if (Array.isArray(team.members) && team.members.length > 0) {
+        // Replace the entire team section to avoid duplication
+        if (team.title && team.subtitle && Array.isArray(team.members) && team.members.length > 0) {
             const membersHtml = team.members.map(m => {
                 const initials = (m.initials || (m.name || '')
                     .split(/\s+/)
@@ -173,9 +267,21 @@ class SiteGenerator {
                 return `\n                <div class="team-card fade-in">\n                    <div class="team-photo">${initials}</div>\n                    <h3>${name}</h3>\n                    <p class="team-role">${role}</p>\n                    <p class="team-bio">${bio}</p>\n                </div>`;
             }).join('');
 
+            const teamSectionHtml = `    <!-- Team Section -->
+    <section class="team" id="team">
+        <div class="container">
+            <div class="section-header fade-in">
+                <h2 class="section-title" style="color: #333;">${team.title}</h2>
+                <p class="section-subtitle" style="color: #666;">${team.subtitle}</p>
+            </div>
+            <div class="team-grid">${membersHtml}
+            </div>
+        </div>
+    </section>`;
+
             html = html.replace(
-                /(<div[^>]*class=\"[^\"<>]*team-grid[^\"<>]*\"[^>]*>)([\s\S]*?)(<\/div>)/,
-                (_, startTag, _inner, endTag) => `${startTag}${membersHtml}\n${endTag}`
+                /<!-- Team Section -->[\s\S]*?<!-- Contact Form Section -->/s,
+                teamSectionHtml + '\n\n    <!-- Contact Form Section -->'
             );
         }
 

@@ -139,6 +139,30 @@ collections:
   - name: "site_settings"
     label: "Main Page"
     files:
+      - label: "Navigation"
+        name: "navigation"
+        file: "content/navigation.json"
+        fields:
+          - {label: "Logo Text", name: "logo_text", widget: "string", default: "AdjuvantIQ"}
+          - label: "Navigation Links"
+            name: "nav_links"
+            widget: "list"
+            fields:
+              - {label: "Link Text", name: "text", widget: "string"}
+              - {label: "Link URL", name: "href", widget: "string"}
+          - label: "Demo Button"
+            name: "demo_button"
+            widget: "object"
+            fields:
+              - {label: "Button Text", name: "text", widget: "string", default: "Interactive Demo"}
+              - {label: "Button URL", name: "href", widget: "string", default: "/demo"}
+          - label: "Pilot Button"
+            name: "pilot_button"
+            widget: "object"
+            fields:
+              - {label: "Button Text", name: "text", widget: "string", default: "Join Pilot Program"}
+              - {label: "Button URL", name: "href", widget: "string", default: "#pilot"}
+
       - label: "Hero Section"
         name: "hero"
         file: "content/hero.json"
@@ -175,6 +199,33 @@ collections:
             fields:
               - {label: "Title", name: "title", widget: "string"}
               - {label: "Description", name: "description", widget: "text"}
+
+      - label: "Strategy Section"
+        name: "strategy"
+        file: "content/strategy.json"
+        fields:
+          - {label: "Section Title", name: "title", widget: "string", default: "The Strategic Play: Build Where Others Can't Compete"}
+          - label: "Winner Zone"
+            name: "winner_zone"
+            widget: "object"
+            fields:
+              - {label: "Label", name: "label", widget: "string", default: "🏆 WHERE WINNERS BUILD"}
+              - {label: "Title", name: "title", widget: "string", default: "Application Layer"}
+              - {label: "Company Name", name: "company_name", widget: "string", default: "AdjuvantIQ"}
+              - {label: "Description", name: "description", widget: "text", default: "Domain expertise + Regulatory knowledge = Unbeatable moat"}
+          - label: "Commodity Zone"
+            name: "commodity_zone"
+            widget: "object"
+            fields:
+              - {label: "Label", name: "label", widget: "string", default: "📦 COMMODITIZING FAST"}
+              - {label: "Title", name: "title", widget: "string", default: "Infrastructure Layer"}
+              - {label: "Technologies", name: "technologies", widget: "string", default: "ChatGPT • Claude • LangChain • AutoGPT"}
+          - label: "Insight"
+            name: "insight"
+            widget: "object"
+            fields:
+              - {label: "Title", name: "title", widget: "string", default: "💡 The Insight"}
+              - {label: "Description", name: "description", widget: "text", default: "While everyone fights over generic AI infrastructure, biotech sponsors win by owning purpose-built applications that competitors can't replicate"}
 
       - label: "Platform Section"
         name: "platform"

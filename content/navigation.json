@@ -1,0 +1,29 @@
+{
+  "logo_text": "AdjuvantIQ",
+  "nav_links": [
+    {
+      "text": "The Problem",
+      "href": "#problem"
+    },
+    {
+      "text": "Our Solution", 
+      "href": "#solution"
+    },
+    {
+      "text": "Platform",
+      "href": "#platform"
+    },
+    {
+      "text": "Team",
+      "href": "#team"
+    }
+  ],
+  "demo_button": {
+    "text": "Interactive Demo",
+    "href": "/demo"
+  },
+  "pilot_button": {
+    "text": "Join Pilot Program",
+    "href": "#pilot"
+  }
+}
