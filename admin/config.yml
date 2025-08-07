@@ -6,6 +6,127 @@ media_folder: "images"
 public_folder: "/images"
 
 collections:
+  - name: "demos"
+    label: "Demo Management"
+    folder: "content/demos"
+    create: true
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    fields:
+      - {label: "Demo Title", name: "title", widget: "string"}
+      - {label: "Demo Slug", name: "slug", widget: "string", hint: "URL-friendly name (e.g., 'cardiovascular-trial')"}
+      - {label: "Demo Type", name: "type", widget: "select", options: ["primary", "specialized"], default: "specialized"}
+      - {label: "Icon", name: "icon", widget: "string", hint: "Emoji or icon (e.g., '🎯', '📊')"}
+      - {label: "Subtitle", name: "subtitle", widget: "string"}
+      - {label: "Description", name: "description", widget: "text"}
+      - label: "Features"
+        name: "features"
+        widget: "list"
+        fields:
+          - {label: "Feature", name: "feature", widget: "string"}
+      - label: "Workflow Steps"
+        name: "workflow_steps"
+        widget: "list"
+        fields:
+          - {label: "Step Number", name: "step_number", widget: "number"}
+          - {label: "Step Title", name: "step_title", widget: "string"}
+          - {label: "Persona", name: "persona", widget: "object", fields: [
+              {label: "Name", name: "name", widget: "string"},
+              {label: "Role", name: "role", widget: "string"},
+              {label: "Bio", name: "bio", widget: "text"}
+            ]}
+          - label: "User Input"
+            name: "user_input"
+            widget: "object"
+            fields:
+              - {label: "Title", name: "title", widget: "string"}
+              - {label: "Content", name: "content", widget: "text"}
+          - label: "System Analysis"
+            name: "system_analysis"
+            widget: "object"
+            fields:
+              - {label: "Title", name: "title", widget: "string"}
+              - {label: "Content", name: "content", widget: "text"}
+          - label: "System Recommendations"
+            name: "system_recommendations"
+            widget: "object"
+            fields:
+              - {label: "Title", name: "title", widget: "string"}
+              - {label: "Content", name: "content", widget: "text"}
+          - label: "Key Decision"
+            name: "key_decision"
+            widget: "object"
+            fields:
+              - {label: "Title", name: "title", widget: "string"}
+              - {label: "Content", name: "content", widget: "text"}
+          - label: "AI Reasoning"
+            name: "ai_reasoning"
+            widget: "object"
+            fields:
+              - {label: "Title", name: "title", widget: "string"}
+              - {label: "Content", name: "content", widget: "text"}
+      - {label: "Published", name: "published", widget: "boolean", default: false}
+      - {label: "Order", name: "order", widget: "number", default: 1}
+
+  - name: "demo_phases"
+    label: "Demo Phases"
+    folder: "content/demo-phases"
+    create: true
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    fields:
+      - {label: "Phase Title", name: "title", widget: "string"}
+      - {label: "Phase Slug", name: "slug", widget: "string", hint: "URL-friendly name (e.g., 'protocol-design')"}
+      - {label: "Parent Demo", name: "parent_demo", widget: "string", hint: "Slug of the main demo this phase belongs to"}
+      - {label: "Phase Number", name: "phase_number", widget: "number"}
+      - {label: "Total Phases", name: "total_phases", widget: "number"}
+      - {label: "Description", name: "description", widget: "text"}
+      - label: "Persona"
+        name: "persona"
+        widget: "object"
+        fields:
+          - {label: "Name", name: "name", widget: "string"}
+          - {label: "Role", name: "role", widget: "string"}
+          - {label: "Bio", name: "bio", widget: "text"}
+          - {label: "Challenge", name: "challenge", widget: "text"}
+      - label: "Workflow Steps"
+        name: "workflow_steps"
+        widget: "list"
+        fields:
+          - {label: "Step Number", name: "step_number", widget: "number"}
+          - {label: "Step Title", name: "step_title", widget: "string"}
+          - label: "User Input"
+            name: "user_input"
+            widget: "object"
+            fields:
+              - {label: "Title", name: "title", widget: "string"}
+              - {label: "Content", name: "content", widget: "text"}
+          - label: "System Analysis"
+            name: "system_analysis"
+            widget: "object"
+            fields:
+              - {label: "Title", name: "title", widget: "string"}
+              - {label: "Content", name: "content", widget: "text"}
+          - label: "System Recommendations"
+            name: "system_recommendations"
+            widget: "object"
+            fields:
+              - {label: "Title", name: "title", widget: "string"}
+              - {label: "Content", name: "content", widget: "text"}
+          - label: "Key Decision"
+            name: "key_decision"
+            widget: "object"
+            fields:
+              - {label: "Title", name: "title", widget: "string"}
+              - {label: "Content", name: "content", widget: "text"}
+          - label: "AI Reasoning"
+            name: "ai_reasoning"
+            widget: "object"
+            fields:
+              - {label: "Title", name: "title", widget: "string"}
+              - {label: "Content", name: "content", widget: "text"}
+      - {label: "Next Phase", name: "next_phase", widget: "string", hint: "Slug of the next phase (optional)"}
+      - {label: "Previous Phase", name: "prev_phase", widget: "string", hint: "Slug of the previous phase (optional)"}
+      - {label: "Published", name: "published", widget: "boolean", default: false}
+
   - name: "site_settings"
     label: "Site Settings"
     files:

@@ -1,0 +1,29 @@
+{
+  "name": "adjuvantiq-website",
+  "version": "1.0.0",
+  "description": "AdjuvantIQ website with Netlify CMS and demo generation",
+  "main": "index.html",
+  "scripts": {
+    "dev": "python3 -m http.server 8000",
+    "generate-demos": "node tools/cms-integration/demo-generator.js generate-all",
+    "generate-demo": "node tools/cms-integration/demo-generator.js generate-demo",
+    "generate-phase": "node tools/cms-integration/demo-generator.js generate-phase",
+    "generate-hub": "node tools/cms-integration/demo-generator.js generate-hub",
+    "build": "npm run generate-demos"
+  },
+  "dependencies": {
+    "handlebars": "^4.7.8"
+  },
+  "devDependencies": {
+    "netlify-cli": "^17.0.0"
+  },
+  "keywords": [
+    "clinical-trials",
+    "ai",
+    "biotech",
+    "netlify-cms",
+    "demo-generation"
+  ],
+  "author": "AdjuvantIQ",
+  "license": "MIT"
+} 
