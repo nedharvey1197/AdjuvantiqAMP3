@@ -245,8 +245,8 @@ class SiteGenerator {
         // Update CSS variables in :root
         if (theme.primary_color || theme.accent_color || theme.white || theme.warm_gray || theme.light_gray) {
             const cssVars = [];
-            if (theme.primary_color) cssVars.push(`--primary-color: ${theme.primary_color}`);
-            if (theme.accent_color) cssVars.push(`--accent-color: ${theme.accent_color}`);
+            if (theme.primary_color) cssVars.push(`--navy: ${theme.primary_color}`);
+            if (theme.accent_color) cssVars.push(`--teal: ${theme.accent_color}`);
             if (theme.white) cssVars.push(`--white: ${theme.white}`);
             if (theme.warm_gray) cssVars.push(`--warm-gray: ${theme.warm_gray}`);
             if (theme.light_gray) cssVars.push(`--light-gray: ${theme.light_gray}`);
