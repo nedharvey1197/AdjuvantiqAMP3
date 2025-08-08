@@ -86,6 +86,217 @@
       ]
     }
   },
+  "professional_color_pairings": {
+    "safe_background_font_combinations": {
+      "white_background": {
+        "description": "White background (#ffffff) - Primary content areas",
+        "background_color": "#ffffff",
+        "recommended_font_colors": {
+          "headlines": "#2c5282",
+          "subheadings": "#2d7d7d",
+          "body_text": "#718096",
+          "links": "#2d7d7d",
+          "buttons": "#2c5282"
+        },
+        "html_elements": [
+          ".content-section", ".form-section", ".light-section", ".card", ".main-content"
+        ],
+        "css_classes": [
+          ".bg-white", ".bg-content", ".bg-light"
+        ]
+      },
+      "navy_background": {
+        "description": "Navy background (#2c5282) - Headers, emphasis sections",
+        "background_color": "#2c5282",
+        "recommended_font_colors": {
+          "headlines": "#ffffff",
+          "subheadings": "#2d7d7d",
+          "body_text": "#ffffff",
+          "links": "#2d7d7d",
+          "buttons": "#ffffff"
+        },
+        "html_elements": [
+          ".header", ".section-dark", ".emphasis-section", ".nav-section"
+        ],
+        "css_classes": [
+          ".bg-navy", ".bg-dark", ".bg-emphasis"
+        ]
+      },
+      "teal_background": {
+        "description": "Teal background (#2d7d7d) - Accent sections, highlights",
+        "background_color": "#2d7d7d",
+        "recommended_font_colors": {
+          "headlines": "#ffffff",
+          "subheadings": "#2c5282",
+          "body_text": "#ffffff",
+          "links": "#ffffff",
+          "buttons": "#ffffff"
+        },
+        "html_elements": [
+          ".highlight-section", ".accent-section", ".feature-box", ".cta-section"
+        ],
+        "css_classes": [
+          ".bg-teal", ".bg-accent", ".bg-highlight"
+        ]
+      },
+      "warm_gray_background": {
+        "description": "Warm gray background (#718096) - Neutral sections",
+        "background_color": "#718096",
+        "recommended_font_colors": {
+          "headlines": "#2c5282",
+          "subheadings": "#ffffff",
+          "body_text": "#ffffff",
+          "links": "#2d7d7d",
+          "buttons": "#ffffff"
+        },
+        "html_elements": [
+          ".neutral-section", ".gray-section", ".secondary-content"
+        ],
+        "css_classes": [
+          ".bg-warm-gray", ".bg-neutral", ".bg-secondary"
+        ]
+      }
+    },
+    "approved_gradients": {
+      "navy_to_teal": {
+        "description": "Navy to Teal gradient - Emphasis, chart highlights, logo accent, buttons",
+        "gradient_value": "linear-gradient(135deg, #2c5282 0%, #2d7d7d 100%)",
+        "recommended_font_colors": {
+          "headlines": "#ffffff",
+          "subheadings": "#ffffff",
+          "body_text": "#ffffff",
+          "links": "#ffffff",
+          "buttons": "#ffffff"
+        },
+        "usage": "Emphasis, chart highlights, logo accent, buttons",
+        "html_elements": [
+          ".cta-button", ".emphasis-gradient", ".chart-highlight", ".logo-accent"
+        ],
+        "css_classes": [
+          ".bg-navy-teal", ".bg-primary-gradient", ".bg-emphasis"
+        ]
+      },
+      "white_to_warm_gray": {
+        "description": "White to Warm Gray gradient - Subtle backgrounds for cards, overlays, table fills",
+        "gradient_value": "linear-gradient(135deg, #ffffff 0%, #718096 100%)",
+        "recommended_font_colors": {
+          "headlines": "#2c5282",
+          "subheadings": "#2d7d7d",
+          "body_text": "#718096",
+          "links": "#2d7d7d",
+          "buttons": "#2c5282"
+        },
+        "usage": "Subtle backgrounds for cards, overlays, table fills",
+        "html_elements": [
+          ".card", ".overlay", ".table-fill", ".subtle-section"
+        ],
+        "css_classes": [
+          ".bg-white-gray", ".bg-subtle", ".bg-card"
+        ]
+      }
+    },
+    "typography_pairings": {
+      "white_background_rules": {
+        "description": "Typography rules for white backgrounds",
+        "background": "#ffffff",
+        "pairings": {
+          "headers": {
+            "font": "Source Sans Pro",
+            "color": "#2c5282",
+            "weight": "600"
+          },
+          "body": {
+            "font": "Merriweather",
+            "color": "#718096",
+            "weight": "400"
+          },
+          "subheadings": {
+            "font": "Source Sans Pro",
+            "color": "#2d7d7d",
+            "weight": "500"
+          },
+          "quotes_captions": {
+            "font": "Source Sans Pro",
+            "color": "#2d7d7d",
+            "style": "italic"
+          }
+        }
+      },
+      "navy_background_rules": {
+        "description": "Typography rules for navy backgrounds",
+        "background": "#2c5282",
+        "pairings": {
+          "headers": {
+            "font": "Source Sans Pro",
+            "color": "#ffffff",
+            "weight": "600"
+          },
+          "body": {
+            "font": "Merriweather",
+            "color": "#ffffff",
+            "weight": "400"
+          },
+          "subheadings": {
+            "font": "Source Sans Pro",
+            "color": "#2d7d7d",
+            "weight": "500"
+          },
+          "quotes_captions": {
+            "font": "Source Sans Pro",
+            "color": "#718096",
+            "style": "italic"
+          }
+        }
+      },
+      "teal_background_rules": {
+        "description": "Typography rules for teal backgrounds",
+        "background": "#2d7d7d",
+        "pairings": {
+          "headers": {
+            "font": "Source Sans Pro",
+            "color": "#ffffff",
+            "weight": "600"
+          },
+          "body": {
+            "font": "Merriweather",
+            "color": "#ffffff",
+            "weight": "400"
+          },
+          "subheadings": {
+            "font": "Source Sans Pro",
+            "color": "#2c5282",
+            "weight": "500"
+          },
+          "quotes_captions": {
+            "font": "Source Sans Pro",
+            "color": "#ffffff",
+            "style": "italic"
+          }
+        }
+      }
+    },
+    "accessibility_guidelines": {
+      "contrast_requirements": {
+        "wcag_aa": "4.5:1 ratio for normal text, 3:1 for large text",
+        "wcag_aaa": "7:1 ratio for normal text, 4.5:1 for large text",
+        "current_compliance": "All pairings meet WCAG Level AA standards"
+      },
+      "forbidden_combinations": [
+        "Navy text on navy backgrounds",
+        "Light gray text on white backgrounds",
+        "Teal text on teal backgrounds",
+        "Warm gray text on warm gray backgrounds"
+      ],
+      "best_practices": [
+        "Maintain strong contrast for accessibility",
+        "Use navy as primary series color in charts",
+        "Use teal as secondary/accent color in charts",
+        "Always use white or subtle gray backgrounds for charts",
+        "Alternate backgrounds (white/navy/teal) for visual rhythm",
+        "Use gradient text sparingly for key highlights only"
+      ]
+    }
+  },
   "css_background_mapping": {
     "hero_section": {
       "description": "Main hero section background - light gradient",

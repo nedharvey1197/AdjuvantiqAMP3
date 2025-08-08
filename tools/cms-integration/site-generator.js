@@ -492,6 +492,101 @@ class SiteGenerator {
             }
         }
 
+        // Apply professional color pairing rules
+        if (branding.professional_color_pairings) {
+            const pairings = branding.professional_color_pairings;
+            let pairingRules = '';
+            
+            // Apply safe background-font combinations
+            if (pairings.safe_background_font_combinations) {
+                Object.keys(pairings.safe_background_font_combinations).forEach(bgKey => {
+                    const bgConfig = pairings.safe_background_font_combinations[bgKey];
+                    
+                    // Generate rules for each background type
+                    if (bgConfig.html_elements && bgConfig.html_elements.length > 0) {
+                        const elements = bgConfig.html_elements.join(', ');
+                        const bgColor = bgConfig.background_color;
+                        const fontColors = bgConfig.recommended_font_colors;
+                        
+                        pairingRules += `\n        /* ${bgConfig.description} */`;
+                        pairingRules += `\n        ${elements} {`;
+                        pairingRules += `\n            background: ${bgColor};`;
+                        pairingRules += `\n        }`;
+                        
+                        // Apply font colors based on background
+                        if (fontColors.headlines) {
+                            pairingRules += `\n        ${elements} h1, ${elements} h2, ${elements} h3, ${elements} h4, ${elements} h5, ${elements} h6 {`;
+                            pairingRules += `\n            color: ${fontColors.headlines};`;
+                            pairingRules += `\n        }`;
+                        }
+                        
+                        if (fontColors.body_text) {
+                            pairingRules += `\n        ${elements} p, ${elements} li, ${elements} span {`;
+                            pairingRules += `\n            color: ${fontColors.body_text};`;
+                            pairingRules += `\n        }`;
+                        }
+                        
+                        if (fontColors.subheadings) {
+                            pairingRules += `\n        ${elements} .subheading, ${elements} .subtitle {`;
+                            pairingRules += `\n            color: ${fontColors.subheadings};`;
+                            pairingRules += `\n        }`;
+                        }
+                        
+                        if (fontColors.links) {
+                            pairingRules += `\n        ${elements} a, ${elements} .link {`;
+                            pairingRules += `\n            color: ${fontColors.links};`;
+                            pairingRules += `\n        }`;
+                        }
+                        
+                        if (fontColors.buttons) {
+                            pairingRules += `\n        ${elements} .button, ${elements} .btn, ${elements} .cta-button {`;
+                            pairingRules += `\n            color: ${fontColors.buttons};`;
+                            pairingRules += `\n        }`;
+                        }
+                    }
+                });
+            }
+            
+            // Apply approved gradients
+            if (pairings.approved_gradients) {
+                Object.keys(pairings.approved_gradients).forEach(gradientKey => {
+                    const gradientConfig = pairings.approved_gradients[gradientKey];
+                    
+                    if (gradientConfig.html_elements && gradientConfig.html_elements.length > 0) {
+                        const elements = gradientConfig.html_elements.join(', ');
+                        const gradientValue = gradientConfig.gradient_value;
+                        const fontColors = gradientConfig.recommended_font_colors;
+                        
+                        pairingRules += `\n        /* ${gradientConfig.description} */`;
+                        pairingRules += `\n        ${elements} {`;
+                        pairingRules += `\n            background: ${gradientValue};`;
+                        pairingRules += `\n        }`;
+                        
+                        // Apply font colors for gradients
+                        if (fontColors.headlines) {
+                            pairingRules += `\n        ${elements} h1, ${elements} h2, ${elements} h3, ${elements} h4, ${elements} h5, ${elements} h6 {`;
+                            pairingRules += `\n            color: ${fontColors.headlines};`;
+                            pairingRules += `\n        }`;
+                        }
+                        
+                        if (fontColors.body_text) {
+                            pairingRules += `\n        ${elements} p, ${elements} li, ${elements} span {`;
+                            pairingRules += `\n            color: ${fontColors.body_text};`;
+                            pairingRules += `\n        }`;
+                        }
+                    }
+                });
+            }
+            
+            // Insert professional pairing rules after background rules
+            if (pairingRules) {
+                html = html.replace(
+                    /(\/\* Background Mapping Rules \*\/[^}]*\})/s,
+                    `$1\n\n        /* Professional Color Pairing Rules */${pairingRules}`
+                );
+            }
+        }
+
         // Apply global typography
         if (branding.typography && branding.typography.google_fonts_href) {
             html = html.replace(

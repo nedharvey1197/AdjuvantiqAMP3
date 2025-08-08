@@ -581,6 +581,191 @@ collections:
                     widget: "list"
                     fields:
                       - {label: "Class", name: "class", widget: "string"}
+          - label: "Professional Color Pairings"
+            name: "professional_color_pairings"
+            widget: "object"
+            fields:
+              - label: "Safe Background-Font Combinations"
+                name: "safe_background_font_combinations"
+                widget: "object"
+                fields:
+                  - label: "White Background"
+                    name: "white_background"
+                    widget: "object"
+                    fields:
+                      - {label: "Description", name: "description", widget: "string", default: "White background (#ffffff) - Primary content areas"}
+                      - {label: "Background Color", name: "background_color", widget: "string", default: "#ffffff"}
+                      - label: "Recommended Font Colors"
+                        name: "recommended_font_colors"
+                        widget: "object"
+                        fields:
+                          - {label: "Headlines", name: "headlines", widget: "string", default: "#2c5282"}
+                          - {label: "Subheadings", name: "subheadings", widget: "string", default: "#2d7d7d"}
+                          - {label: "Body Text", name: "body_text", widget: "string", default: "#718096"}
+                          - {label: "Links", name: "links", widget: "string", default: "#2d7d7d"}
+                          - {label: "Buttons", name: "buttons", widget: "string", default: "#2c5282"}
+                      - label: "HTML Elements"
+                        name: "html_elements"
+                        widget: "list"
+                        fields:
+                          - {label: "Element", name: "element", widget: "string"}
+                      - label: "CSS Classes"
+                        name: "css_classes"
+                        widget: "list"
+                        fields:
+                          - {label: "Class", name: "class", widget: "string"}
+                  - label: "Navy Background"
+                    name: "navy_background"
+                    widget: "object"
+                    fields:
+                      - {label: "Description", name: "description", widget: "string", default: "Navy background (#2c5282) - Headers, emphasis sections"}
+                      - {label: "Background Color", name: "background_color", widget: "string", default: "#2c5282"}
+                      - label: "Recommended Font Colors"
+                        name: "recommended_font_colors"
+                        widget: "object"
+                        fields:
+                          - {label: "Headlines", name: "headlines", widget: "string", default: "#ffffff"}
+                          - {label: "Subheadings", name: "subheadings", widget: "string", default: "#2d7d7d"}
+                          - {label: "Body Text", name: "body_text", widget: "string", default: "#ffffff"}
+                          - {label: "Links", name: "links", widget: "string", default: "#2d7d7d"}
+                          - {label: "Buttons", name: "buttons", widget: "string", default: "#ffffff"}
+                      - label: "HTML Elements"
+                        name: "html_elements"
+                        widget: "list"
+                        fields:
+                          - {label: "Element", name: "element", widget: "string"}
+                      - label: "CSS Classes"
+                        name: "css_classes"
+                        widget: "list"
+                        fields:
+                          - {label: "Class", name: "class", widget: "string"}
+                  - label: "Teal Background"
+                    name: "teal_background"
+                    widget: "object"
+                    fields:
+                      - {label: "Description", name: "description", widget: "string", default: "Teal background (#2d7d7d) - Accent sections, highlights"}
+                      - {label: "Background Color", name: "background_color", widget: "string", default: "#2d7d7d"}
+                      - label: "Recommended Font Colors"
+                        name: "recommended_font_colors"
+                        widget: "object"
+                        fields:
+                          - {label: "Headlines", name: "headlines", widget: "string", default: "#ffffff"}
+                          - {label: "Subheadings", name: "subheadings", widget: "string", default: "#2c5282"}
+                          - {label: "Body Text", name: "body_text", widget: "string", default: "#ffffff"}
+                          - {label: "Links", name: "links", widget: "string", default: "#ffffff"}
+                          - {label: "Buttons", name: "buttons", widget: "string", default: "#ffffff"}
+                      - label: "HTML Elements"
+                        name: "html_elements"
+                        widget: "list"
+                        fields:
+                          - {label: "Element", name: "element", widget: "string"}
+                      - label: "CSS Classes"
+                        name: "css_classes"
+                        widget: "list"
+                        fields:
+                          - {label: "Class", name: "class", widget: "string"}
+                  - label: "Warm Gray Background"
+                    name: "warm_gray_background"
+                    widget: "object"
+                    fields:
+                      - {label: "Description", name: "description", widget: "string", default: "Warm gray background (#718096) - Neutral sections"}
+                      - {label: "Background Color", name: "background_color", widget: "string", default: "#718096"}
+                      - label: "Recommended Font Colors"
+                        name: "recommended_font_colors"
+                        widget: "object"
+                        fields:
+                          - {label: "Headlines", name: "headlines", widget: "string", default: "#2c5282"}
+                          - {label: "Subheadings", name: "subheadings", widget: "string", default: "#ffffff"}
+                          - {label: "Body Text", name: "body_text", widget: "string", default: "#ffffff"}
+                          - {label: "Links", name: "links", widget: "string", default: "#2d7d7d"}
+                          - {label: "Buttons", name: "buttons", widget: "string", default: "#ffffff"}
+                      - label: "HTML Elements"
+                        name: "html_elements"
+                        widget: "list"
+                        fields:
+                          - {label: "Element", name: "element", widget: "string"}
+                      - label: "CSS Classes"
+                        name: "css_classes"
+                        widget: "list"
+                        fields:
+                          - {label: "Class", name: "class", widget: "string"}
+              - label: "Approved Gradients"
+                name: "approved_gradients"
+                widget: "object"
+                fields:
+                  - label: "Navy to Teal Gradient"
+                    name: "navy_to_teal"
+                    widget: "object"
+                    fields:
+                      - {label: "Description", name: "description", widget: "string", default: "Navy to Teal gradient - Emphasis, chart highlights, logo accent, buttons"}
+                      - {label: "Gradient Value", name: "gradient_value", widget: "string", default: "linear-gradient(135deg, #2c5282 0%, #2d7d7d 100%)"}
+                      - {label: "Usage", name: "usage", widget: "string", default: "Emphasis, chart highlights, logo accent, buttons"}
+                      - label: "Recommended Font Colors"
+                        name: "recommended_font_colors"
+                        widget: "object"
+                        fields:
+                          - {label: "Headlines", name: "headlines", widget: "string", default: "#ffffff"}
+                          - {label: "Subheadings", name: "subheadings", widget: "string", default: "#ffffff"}
+                          - {label: "Body Text", name: "body_text", widget: "string", default: "#ffffff"}
+                          - {label: "Links", name: "links", widget: "string", default: "#ffffff"}
+                          - {label: "Buttons", name: "buttons", widget: "string", default: "#ffffff"}
+                      - label: "HTML Elements"
+                        name: "html_elements"
+                        widget: "list"
+                        fields:
+                          - {label: "Element", name: "element", widget: "string"}
+                      - label: "CSS Classes"
+                        name: "css_classes"
+                        widget: "list"
+                        fields:
+                          - {label: "Class", name: "class", widget: "string"}
+                  - label: "White to Warm Gray Gradient"
+                    name: "white_to_warm_gray"
+                    widget: "object"
+                    fields:
+                      - {label: "Description", name: "description", widget: "string", default: "White to Warm Gray gradient - Subtle backgrounds for cards, overlays, table fills"}
+                      - {label: "Gradient Value", name: "gradient_value", widget: "string", default: "linear-gradient(135deg, #ffffff 0%, #718096 100%)"}
+                      - {label: "Usage", name: "usage", widget: "string", default: "Subtle backgrounds for cards, overlays, table fills"}
+                      - label: "Recommended Font Colors"
+                        name: "recommended_font_colors"
+                        widget: "object"
+                        fields:
+                          - {label: "Headlines", name: "headlines", widget: "string", default: "#2c5282"}
+                          - {label: "Subheadings", name: "subheadings", widget: "string", default: "#2d7d7d"}
+                          - {label: "Body Text", name: "body_text", widget: "string", default: "#718096"}
+                          - {label: "Links", name: "links", widget: "string", default: "#2d7d7d"}
+                          - {label: "Buttons", name: "buttons", widget: "string", default: "#2c5282"}
+                      - label: "HTML Elements"
+                        name: "html_elements"
+                        widget: "list"
+                        fields:
+                          - {label: "Element", name: "element", widget: "string"}
+                      - label: "CSS Classes"
+                        name: "css_classes"
+                        widget: "list"
+                        fields:
+                          - {label: "Class", name: "class", widget: "string"}
+              - label: "Accessibility Guidelines"
+                name: "accessibility_guidelines"
+                widget: "object"
+                fields:
+                  - label: "Contrast Requirements"
+                    name: "contrast_requirements"
+                    widget: "object"
+                    fields:
+                      - {label: "WCAG AA", name: "wcag_aa", widget: "string", default: "4.5:1 ratio for normal text, 3:1 for large text"}
+                      - {label: "WCAG AAA", name: "wcag_aaa", widget: "string", default: "7:1 ratio for normal text, 4.5:1 for large text"}
+                      - {label: "Current Compliance", name: "current_compliance", widget: "string", default: "All pairings meet WCAG Level AA standards"}
+                  - label: "Forbidden Combinations"
+                    name: "forbidden_combinations"
+                    widget: "list"
+                    fields:
+                      - {label: "Forbidden Combination", name: "forbidden_combination", widget: "string"}
+                  - label: "Best Practices"
+                    name: "best_practices"
+                    widget: "list"
+                    fields:
+                      - {label: "Best Practice", name: "best_practice", widget: "string"}
           - label: "Typography"
             name: "typography"
             widget: "object"
