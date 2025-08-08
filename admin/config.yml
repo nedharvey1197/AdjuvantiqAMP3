@@ -246,14 +246,15 @@ collections:
         fields:
           - {label: "Section Title", name: "title", widget: "string", default: "Experienced Founders with an Outside Perspective"}
           - {label: "Section Subtitle", name: "subtitle", widget: "text", default: "A proven leadership combination of strategic execution and technical innovation"}
-          - label: "Team Members"
-            name: "members"
-            widget: "list"
-            fields:
-              - {label: "Name", name: "name", widget: "string"}
-              - {label: "Role", name: "role", widget: "string"}
-              - {label: "Initials", name: "initials", widget: "string"}
-              - {label: "Bio", name: "bio", widget: "text"}
+                        - label: "Team Members"
+                name: "members"
+                widget: "list"
+                fields:
+                  - {label: "Name", name: "name", widget: "string"}
+                  - {label: "Role", name: "role", widget: "string"}
+                  - {label: "Initials", name: "initials", widget: "string", hint: "Used as fallback if no photo is uploaded"}
+                  - {label: "Profile Photo", name: "profile_photo", widget: "image", allow_multiple: false, hint: "Upload a square photo (recommended: 400x400px). Will be displayed as a circle."}
+                  - {label: "Bio", name: "bio", widget: "text"}
 
       - label: "Pilot Program"
         name: "pilot"

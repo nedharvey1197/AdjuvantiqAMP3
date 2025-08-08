@@ -6,12 +6,14 @@
       "name": "Doug Henston",
       "role": "CEO & Co-Founder",
       "initials": "DH",
+      "profile_photo": "",
       "bio": "Serial company builder with 25+ years scaling frontier innovations from lab to market. Yale biophysics, Harvard MBA, Naval Aviator, and Goldman Sachs veteran who raised $400M+ for regulated ventures. Disciplined risk management and institutional funding expertise."
     },
     {
       "name": "Ned Harvey",
       "role": "Head of Product & Co-Founder", 
       "initials": "NH",
+      "profile_photo": "",
       "bio": "Engineering innovator and Harvard MBA with 20+ years pioneering data-driven solutions. Former Naval Submariner, Digital Gaia co-founder, and RMI Climate Intelligence architect. Specializes in translating complex systems into market-ready products."
     }
   ]

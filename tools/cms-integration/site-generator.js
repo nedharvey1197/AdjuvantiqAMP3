@@ -270,7 +270,14 @@ class SiteGenerator {
                 const name = m.name || '';
                 const role = m.role || '';
                 const bio = m.bio || '';
-                return `\n                <div class="team-card fade-in">\n                    <div class="team-photo">${initials}</div>\n                    <h3>${name}</h3>\n                    <p class="team-role">${role}</p>\n                    <p class="team-bio">${bio}</p>\n                </div>`;
+                const profilePhoto = m.profile_photo || '';
+                
+                // Create photo element - use image if available, otherwise use initials
+                const photoElement = profilePhoto 
+                    ? `<img src="${profilePhoto}" alt="${name}" class="team-photo-img" />`
+                    : `<div class="team-photo-initials">${initials}</div>`;
+                
+                return `\n                <div class="team-card fade-in">\n                    <div class="team-photo">${photoElement}</div>\n                    <h3>${name}</h3>\n                    <p class="team-role">${role}</p>\n                    <p class="team-bio">${bio}</p>\n                </div>`;
             }).join('');
 
             const teamSectionHtml = `    <!-- Team Section -->
