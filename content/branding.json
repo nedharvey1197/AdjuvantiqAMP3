@@ -99,7 +99,7 @@
           "buttons": "#2c5282"
         },
         "html_elements": [
-          ".content-section", ".form-section", ".light-section", ".card", ".main-content"
+          ".content-section", ".form-section", ".light-section", ".card", ".main-content", ".hero", ".section-header", ".credibility-section"
         ],
         "css_classes": [
           ".bg-white", ".bg-content", ".bg-light"
@@ -116,7 +116,7 @@
           "buttons": "#ffffff"
         },
         "html_elements": [
-          ".header", ".section-dark", ".emphasis-section", ".nav-section"
+          ".header", ".section-dark", ".emphasis-section", ".nav-section", ".cta-section"
         ],
         "css_classes": [
           ".bg-navy", ".bg-dark", ".bg-emphasis"
@@ -133,7 +133,7 @@
           "buttons": "#ffffff"
         },
         "html_elements": [
-          ".highlight-section", ".accent-section", ".feature-box", ".cta-section"
+          ".highlight-section", ".accent-section", ".feature-box", ".demo-link"
         ],
         "css_classes": [
           ".bg-teal", ".bg-accent", ".bg-highlight"

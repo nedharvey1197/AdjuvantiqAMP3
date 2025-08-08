@@ -515,7 +515,7 @@ class SiteGenerator {
                         
                         // Apply font colors based on background
                         if (fontColors.headlines) {
-                            pairingRules += `\n        ${elements} h1, ${elements} h2, ${elements} h3, ${elements} h4, ${elements} h5, ${elements} h6 {`;
+                            pairingRules += `\n        ${elements} h1, ${elements} h2, ${elements} h3, ${elements} h4, ${elements} h5, ${elements} h6, ${elements} .section-title {`;
                             pairingRules += `\n            color: ${fontColors.headlines};`;
                             pairingRules += `\n        }`;
                         }
@@ -527,7 +527,7 @@ class SiteGenerator {
                         }
                         
                         if (fontColors.subheadings) {
-                            pairingRules += `\n        ${elements} .subheading, ${elements} .subtitle {`;
+                            pairingRules += `\n        ${elements} .subheading, ${elements} .subtitle, ${elements} .section-subtitle {`;
                             pairingRules += `\n            color: ${fontColors.subheadings};`;
                             pairingRules += `\n        }`;
                         }
