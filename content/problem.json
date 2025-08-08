@@ -4,28 +4,28 @@
   "cards": [
     {
       "number": "01",
-      "title": "Slow",
-      "description": "Manual iteration and resource-intensive workload. Critical data buried in massive information volumes."
+      "title": "Catastrophically Slow",
+      "description": "Catastrophically Slow\n\nTrapped in manual processes, losing 12-18 months per trial to unnecessary planning & operational delays.  Delays cost millions (Avg $40K/day in Phase 3)."
     },
     {
-      "number": "02", 
-      "title": "Costly",
-      "description": "Average cost to get a drug to market: $2.6B. Delays cost millions (Avg $40K/day in Phase 3)."
+      "number": "02",
+      "title": "Wastefully Expensive",
+      "description": "Wastefully Expensive\n\nInefficient trial execution contributes to $2.6B cost per approved drug. "
     },
     {
       "number": "03",
-      "title": "Opaque",
-      "description": "Black-box decision making without audit trails. Volume of information means research isn't exhaustive."
+      "title": "Operationally Blind ",
+      "description": "Increasing trial complexity & overwhelming literature volume overtakes critical insights"
     },
     {
       "number": "04",
-      "title": "Risky",
-      "description": "Bias leading to regulatory and commercial failures. Design complexity causes failures and delays."
+      "title": "Coordination Chaos",
+      "description": "Coordination Chaos\n\nDrowning in 15+ disconnected stakeholders with no central coordination - designs do not get the necessary inputs for feasibility"
     },
     {
       "number": "05",
-      "title": "Siloed",
-      "description": "Complex workflows that don't engage ALL stakeholders lead to designs that can't be executed."
+      "title": "Opaque",
+      "description": "Black-box decision making without audit trails. Volume of information means research isn't exhaustive."
     }
   ]
-} 
+}
