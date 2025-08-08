@@ -296,24 +296,361 @@ collections:
           - {label: "Meta Description", name: "description", widget: "text", default: "Transform clinical trial design with AI-powered cognition. Join biotech leaders using AdjuvantIQ to unlock billions in lost drug development investment."}
           - {label: "Keywords", name: "keywords", widget: "string", default: "clinical trials, AI, biotech, drug development, trial design"}
 
-      - label: "Theme"
+      - label: "Page Theme (Overrides Global Branding)"
         name: "theme"
         file: "content/theme.json"
         fields:
-          - {label: "Primary Color", name: "primary_color", widget: "string", default: "#2c5282", hint: "Main brand color (navy)"}
-          - {label: "Accent Color", name: "accent_color", widget: "string", default: "#2d7d7d", hint: "Secondary brand color (teal)"}
-          - {label: "White", name: "white", widget: "string", default: "#ffffff", hint: "White color"}
-          - {label: "Warm Gray", name: "warm_gray", widget: "string", default: "#718096", hint: "Warm gray color"}
-          - {label: "Light Gray", name: "light_gray", widget: "string", default: "rgba(113, 128, 150, 0.1)", hint: "Light gray with transparency"}
-          - {label: "Google Fonts URL", name: "google_fonts_href", widget: "string", default: "https://fonts.googleapis.com/css2?family=Source+Sans+Pro:ital,wght@0,300;0,400;0,600;0,700;1,400&family=Merriweather:ital,wght@0,300;0,400;0,700;1,300;1,400&display=swap", hint: "Google Fonts stylesheet URL"}
+          - {label: "Primary Color", name: "primary_color", widget: "string", default: "#2c5282", hint: "Main brand color (navy) - overrides global branding"}
+          - {label: "Accent Color", name: "accent_color", widget: "string", default: "#2d7d7d", hint: "Secondary brand color (teal) - overrides global branding"}
+          - {label: "White", name: "white", widget: "string", default: "#ffffff", hint: "White color - overrides global branding"}
+          - {label: "Warm Gray", name: "warm_gray", widget: "string", default: "#718096", hint: "Warm gray color - overrides global branding"}
+          - {label: "Light Gray", name: "light_gray", widget: "string", default: "rgba(113, 128, 150, 0.1)", hint: "Light gray with transparency - overrides global branding"}
+          - {label: "Google Fonts URL", name: "google_fonts_href", widget: "string", default: "https://fonts.googleapis.com/css2?family=Source+Sans+Pro:ital,wght@0,300;0,400;0,600;0,700;1,400&family=Merriweather:ital,wght@0,300;0,400;0,700;1,300;1,400&display=swap", hint: "Google Fonts stylesheet URL - overrides global branding"}
 
   - name: "pages"
     label: "Pages"
     files:
-      - label: "Logo & Branding"
+      - label: "Global Brand Identity"
         name: "branding"
         file: "content/branding.json"
         fields:
           - {label: "Company Logo", name: "logo", widget: "image", default: "AdjuvantIQ.jpg"}
           - {label: "Company Name", name: "company_name", widget: "string", default: "AdjuvantIQ"}
-          - {label: "Company Tagline", name: "tagline", widget: "string", default: "Unlocking Billions in Lost Drug Development Value – One Trial at a Time"}
+          - {label: "Company Tagline", name: "company_tagline", widget: "string", default: "Unlocking Billions in Lost Drug Development Value – One Trial at a Time"}
+          - label: "Brand Foundation"
+            name: "brand_foundation"
+            widget: "object"
+            fields:
+              - {label: "Mission", name: "mission", widget: "text", default: "Deliver immediate, measurable business value through rigorous, agentic AI solutions that orchestrate every aspect of clinical trials for biotech and pharma innovators."}
+              - {label: "Vision", name: "vision", widget: "text", default: "To be the AI-powered operating system, trusted by life sciences organizations to navigate and optimize clinical trials from start to finish."}
+              - {label: "Brand Promise", name: "brand_promise", widget: "string", default: "Where Rigor Meets Orchestration."}
+              - label: "Core Values"
+                name: "core_values"
+                widget: "list"
+                fields:
+                  - {label: "Value", name: "value", widget: "string"}
+          - label: "Brand Voice"
+            name: "brand_voice"
+            widget: "object"
+            fields:
+              - {label: "Primary Archetype", name: "archetype_primary", widget: "string", default: "The Sage (wisdom, knowledge, trusted advisor)"}
+              - {label: "Secondary Archetype", name: "archetype_secondary", widget: "string", default: "The Navigator/Guide (direction, orchestration)"}
+              - label: "Voice Characteristics"
+                name: "voice_characteristics"
+                widget: "list"
+                fields:
+                  - {label: "Characteristic", name: "characteristic", widget: "string"}
+          - label: "Brand Colors"
+            name: "brand_colors"
+            widget: "object"
+            fields:
+              - {label: "Primary Color", name: "primary", widget: "string", default: "#2c5282"}
+              - {label: "Accent Color", name: "accent", widget: "string", default: "#2d7d7d"}
+              - {label: "White", name: "white", widget: "string", default: "#ffffff"}
+              - {label: "Warm Gray", name: "warm_gray", widget: "string", default: "#718096"}
+              - {label: "Light Gray", name: "light_gray", widget: "string", default: "rgba(113, 128, 150, 0.1)"}
+          - label: "CSS Color Mapping"
+            name: "css_color_mapping"
+            widget: "object"
+            fields:
+              - label: "Primary Navy"
+                name: "primary_navy"
+                widget: "object"
+                fields:
+                  - {label: "Description", name: "description", widget: "string", default: "Primary brand color for headers, main text, and important elements"}
+                  - {label: "Color Value", name: "color_value", widget: "string", default: "var(--navy)"}
+                  - label: "HTML Elements"
+                    name: "html_elements"
+                    widget: "list"
+                    fields:
+                      - {label: "Element", name: "element", widget: "string"}
+                  - label: "CSS Classes"
+                    name: "css_classes"
+                    widget: "list"
+                    fields:
+                      - {label: "Class", name: "class", widget: "string"}
+              - label: "Accent Teal"
+                name: "accent_teal"
+                widget: "object"
+                fields:
+                  - {label: "Description", name: "description", widget: "string", default: "Accent color for links, buttons, highlights, and interactive elements"}
+                  - {label: "Color Value", name: "color_value", widget: "string", default: "var(--teal)"}
+                  - label: "HTML Elements"
+                    name: "html_elements"
+                    widget: "list"
+                    fields:
+                      - {label: "Element", name: "element", widget: "string"}
+                  - label: "CSS Classes"
+                    name: "css_classes"
+                    widget: "list"
+                    fields:
+                      - {label: "Class", name: "class", widget: "string"}
+              - label: "Warm Gray"
+                name: "warm_gray"
+                widget: "object"
+                fields:
+                  - {label: "Description", name: "description", widget: "string", default: "Secondary text color for body content and less prominent elements"}
+                  - {label: "Color Value", name: "color_value", widget: "string", default: "var(--warm-gray)"}
+                  - label: "HTML Elements"
+                    name: "html_elements"
+                    widget: "list"
+                    fields:
+                      - {label: "Element", name: "element", widget: "string"}
+                  - label: "CSS Classes"
+                    name: "css_classes"
+                    widget: "list"
+                    fields:
+                      - {label: "Class", name: "class", widget: "string"}
+              - label: "White"
+                name: "white"
+                widget: "object"
+                fields:
+                  - {label: "Description", name: "description", widget: "string", default: "White color for backgrounds, contrast text, and light elements"}
+                  - {label: "Color Value", name: "color_value", widget: "string", default: "var(--white)"}
+                  - label: "HTML Elements"
+                    name: "html_elements"
+                    widget: "list"
+                    fields:
+                      - {label: "Element", name: "element", widget: "string"}
+                  - label: "CSS Classes"
+                    name: "css_classes"
+                    widget: "list"
+                    fields:
+                      - {label: "Class", name: "class", widget: "string"}
+              - label: "Light Gray"
+                name: "light_gray"
+                widget: "object"
+                fields:
+                  - {label: "Description", name: "description", widget: "string", default: "Light gray for subtle backgrounds, borders, and dividers"}
+                  - {label: "Color Value", name: "color_value", widget: "string", default: "var(--light-gray)"}
+                  - label: "HTML Elements"
+                    name: "html_elements"
+                    widget: "list"
+                    fields:
+                      - {label: "Element", name: "element", widget: "string"}
+                  - label: "CSS Classes"
+                    name: "css_classes"
+                    widget: "list"
+                    fields:
+                      - {label: "Class", name: "class", widget: "string"}
+          - label: "CSS Background Mapping"
+            name: "css_background_mapping"
+            widget: "object"
+            fields:
+              - label: "Hero Section"
+                name: "hero_section"
+                widget: "object"
+                fields:
+                  - {label: "Description", name: "description", widget: "string", default: "Main hero section background - light gradient"}
+                  - {label: "Background Value", name: "background_value", widget: "string", default: "linear-gradient(135deg, var(--white) 0%, #f8fafc 50%, #e2e8f0 100%)"}
+                  - label: "HTML Elements"
+                    name: "html_elements"
+                    widget: "list"
+                    fields:
+                      - {label: "Element", name: "element", widget: "string"}
+                  - label: "CSS Classes"
+                    name: "css_classes"
+                    widget: "list"
+                    fields:
+                      - {label: "Class", name: "class", widget: "string"}
+              - label: "Header Background"
+                name: "header_background"
+                widget: "object"
+                fields:
+                  - {label: "Description", name: "description", widget: "string", default: "Header background - semi-transparent white with blur"}
+                  - {label: "Background Value", name: "background_value", widget: "string", default: "rgba(255, 255, 255, 0.95)"}
+                  - label: "HTML Elements"
+                    name: "html_elements"
+                    widget: "list"
+                    fields:
+                      - {label: "Element", name: "element", widget: "string"}
+                  - label: "CSS Classes"
+                    name: "css_classes"
+                    widget: "list"
+                    fields:
+                      - {label: "Class", name: "class", widget: "string"}
+              - label: "Primary Gradient"
+                name: "primary_gradient"
+                widget: "object"
+                fields:
+                  - {label: "Description", name: "description", widget: "string", default: "Primary brand gradient - navy to teal"}
+                  - {label: "Background Value", name: "background_value", widget: "string", default: "linear-gradient(135deg, var(--navy) 0%, var(--teal) 100%)"}
+                  - label: "HTML Elements"
+                    name: "html_elements"
+                    widget: "list"
+                    fields:
+                      - {label: "Element", name: "element", widget: "string"}
+                  - label: "CSS Classes"
+                    name: "css_classes"
+                    widget: "list"
+                    fields:
+                      - {label: "Class", name: "class", widget: "string"}
+              - label: "Accent Gradient"
+                name: "accent_gradient"
+                widget: "object"
+                fields:
+                  - {label: "Description", name: "description", widget: "string", default: "Accent gradient - teal to navy"}
+                  - {label: "Background Value", name: "background_value", widget: "string", default: "linear-gradient(135deg, var(--teal) 0%, var(--navy) 100%)"}
+                  - label: "HTML Elements"
+                    name: "html_elements"
+                    widget: "list"
+                    fields:
+                      - {label: "Element", name: "element", widget: "string"}
+                  - label: "CSS Classes"
+                    name: "css_classes"
+                    widget: "list"
+                    fields:
+                      - {label: "Class", name: "class", widget: "string"}
+              - label: "Teal Solid"
+                name: "teal_solid"
+                widget: "object"
+                fields:
+                  - {label: "Description", name: "description", widget: "string", default: "Solid teal background for buttons and highlights"}
+                  - {label: "Background Value", name: "background_value", widget: "string", default: "var(--teal)"}
+                  - label: "HTML Elements"
+                    name: "html_elements"
+                    widget: "list"
+                    fields:
+                      - {label: "Element", name: "element", widget: "string"}
+                  - label: "CSS Classes"
+                    name: "css_classes"
+                    widget: "list"
+                    fields:
+                      - {label: "Class", name: "class", widget: "string"}
+              - label: "White Solid"
+                name: "white_solid"
+                widget: "object"
+                fields:
+                  - {label: "Description", name: "description", widget: "string", default: "Solid white background for content sections"}
+                  - {label: "Background Value", name: "background_value", widget: "string", default: "var(--white)"}
+                  - label: "HTML Elements"
+                    name: "html_elements"
+                    widget: "list"
+                    fields:
+                      - {label: "Element", name: "element", widget: "string"}
+                  - label: "CSS Classes"
+                    name: "css_classes"
+                    widget: "list"
+                    fields:
+                      - {label: "Class", name: "class", widget: "string"}
+              - label: "Light Gray Solid"
+                name: "light_gray_solid"
+                widget: "object"
+                fields:
+                  - {label: "Description", name: "description", widget: "string", default: "Light gray background for subtle sections"}
+                  - {label: "Background Value", name: "background_value", widget: "string", default: "var(--light-gray)"}
+                  - label: "HTML Elements"
+                    name: "html_elements"
+                    widget: "list"
+                    fields:
+                      - {label: "Element", name: "element", widget: "string"}
+                  - label: "CSS Classes"
+                    name: "css_classes"
+                    widget: "list"
+                    fields:
+                      - {label: "Class", name: "class", widget: "string"}
+              - label: "Dark Gradient"
+                name: "dark_gradient"
+                widget: "object"
+                fields:
+                  - {label: "Description", name: "description", widget: "string", default: "Dark gradient for footer and dark sections"}
+                  - {label: "Background Value", name: "background_value", widget: "string", default: "linear-gradient(135deg, var(--navy) 0%, #1e293b 100%)"}
+                  - label: "HTML Elements"
+                    name: "html_elements"
+                    widget: "list"
+                    fields:
+                      - {label: "Element", name: "element", widget: "string"}
+                  - label: "CSS Classes"
+                    name: "css_classes"
+                    widget: "list"
+                    fields:
+                      - {label: "Class", name: "class", widget: "string"}
+              - label: "Warm Gray Gradient"
+                name: "warm_gray_gradient"
+                widget: "object"
+                fields:
+                  - {label: "Description", name: "description", widget: "string", default: "Warm gray gradient for neutral sections"}
+                  - {label: "Background Value", name: "background_value", widget: "string", default: "linear-gradient(135deg, var(--warm-gray) 0%, #95a5a6 100%)"}
+                  - label: "HTML Elements"
+                    name: "html_elements"
+                    widget: "list"
+                    fields:
+                      - {label: "Element", name: "element", widget: "string"}
+                  - label: "CSS Classes"
+                    name: "css_classes"
+                    widget: "list"
+                    fields:
+                      - {label: "Class", name: "class", widget: "string"}
+          - label: "Typography"
+            name: "typography"
+            widget: "object"
+            fields:
+              - {label: "Google Fonts URL", name: "google_fonts_href", widget: "string", default: "https://fonts.googleapis.com/css2?family=Source+Sans+Pro:ital,wght@0,300;0,400;0,600;0,700;1,400&family=Merriweather:ital,wght@0,300;0,400;0,700;1,300;1,400&display=swap"}
+              - {label: "Heading Font", name: "heading_font", widget: "string", default: "Source Sans Pro"}
+              - {label: "Body Font", name: "body_font", widget: "string", default: "Merriweather"}
+              - label: "Font Usage Guidelines"
+                name: "font_usage"
+                widget: "object"
+                fields:
+                  - {label: "Headers/Titles", name: "headers_titles", widget: "string", default: "Source Sans Pro (Regular/Semi-Bold/Bold)"}
+                  - {label: "Body Text", name: "body_text", widget: "string", default: "Merriweather (Regular/Medium)"}
+                  - {label: "Captions/Quotes", name: "captions_quotes", widget: "string", default: "Source Sans Pro Italic"}
+                  - {label: "Numbers/Data", name: "numbers_data", widget: "string", default: "Source Sans Pro Semi-Bold"}
+              - label: "CSS Font Mapping"
+                name: "css_font_mapping"
+                widget: "object"
+                fields:
+                  - label: "Source Sans Pro Elements"
+                    name: "source_sans_pro"
+                    widget: "object"
+                    fields:
+                      - {label: "Description", name: "description", widget: "string", default: "Headers, titles, navigation, buttons, form elements"}
+                      - {label: "Font Family", name: "font_family", widget: "string", default: "'Source Sans Pro', sans-serif"}
+                      - label: "HTML Elements"
+                        name: "html_elements"
+                        widget: "list"
+                        fields:
+                          - {label: "Element", name: "element", widget: "string"}
+                      - label: "CSS Classes"
+                        name: "css_classes"
+                        widget: "list"
+                        fields:
+                          - {label: "Class", name: "class", widget: "string"}
+                  - label: "Merriweather Elements"
+                    name: "merriweather"
+                    widget: "object"
+                    fields:
+                      - {label: "Description", name: "description", widget: "string", default: "Body text, paragraphs, general content"}
+                      - {label: "Font Family", name: "font_family", widget: "string", default: "'Merriweather', serif"}
+                      - label: "HTML Elements"
+                        name: "html_elements"
+                        widget: "list"
+                        fields:
+                          - {label: "Element", name: "element", widget: "string"}
+                      - label: "CSS Classes"
+                        name: "css_classes"
+                        widget: "list"
+                        fields:
+                          - {label: "Class", name: "class", widget: "string"}
+          - label: "Key Messaging"
+            name: "key_messaging"
+            widget: "object"
+            fields:
+              - label: "Value Propositions"
+                name: "value_propositions"
+                widget: "list"
+                fields:
+                  - {label: "Proposition", name: "proposition", widget: "string"}
+              - label: "Differentiators"
+                name: "differentiators"
+                widget: "list"
+                fields:
+                  - {label: "Differentiator", name: "differentiator", widget: "string"}
+          - label: "Contact Information"
+            name: "contact_info"
+            widget: "object"
+            fields:
+              - {label: "Investment Email", name: "invest_email", widget: "string", default: "invest@adjuvantiq.com"}
+              - {label: "Pilot Email", name: "pilot_email", widget: "string", default: "pilot@adjuvantiq.com"}
+              - {label: "Phone Number", name: "phone", widget: "string", default: "+1 303-885-7143"}
+              - {label: "Website", name: "website", widget: "string", default: "www.adjuvantiq.com"}

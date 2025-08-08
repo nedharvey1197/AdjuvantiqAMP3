@@ -24,7 +24,8 @@ class SiteGenerator {
             'stats.json',
             'seo.json',
             'theme.json',
-            'navigation.json'
+            'navigation.json',
+            'branding.json'
         ];
 
         contentFiles.forEach(file => {
@@ -49,6 +50,11 @@ class SiteGenerator {
         }
 
         let html = fs.readFileSync(indexPath, 'utf8');
+
+        // Update global branding (applies to all pages)
+        if (content.branding) {
+            html = this.updateGlobalBranding(html, content.branding);
+        }
 
         // Update navigation
         if (content.navigation) {
@@ -344,18 +350,80 @@ class SiteGenerator {
         return html;
     }
 
-    // Update theme (colors and fonts)
-    updateTheme(html, theme) {
-        if (!theme) return html;
+    // Update global branding (applies to all pages)
+    updateGlobalBranding(html, branding) {
+        if (!branding) return html;
 
-        // Update CSS variables in :root
-        if (theme.primary_color || theme.accent_color || theme.white || theme.warm_gray || theme.light_gray) {
+        // Update company name in various places
+        if (branding.company_name) {
+            html = html.replace(/AdjuvantIQ/g, branding.company_name);
+        }
+
+        // Update company tagline in footer
+        if (branding.company_tagline) {
+            html = html.replace(
+                /"Unlocking Billions in Lost Drug Development Value – One Trial at a Time"/g,
+                `"${branding.company_tagline}"`
+            );
+        }
+
+        // Update brand foundation elements
+        if (branding.brand_foundation) {
+            const foundation = branding.brand_foundation;
+            
+            // Update mission statement
+            if (foundation.mission) {
+                // This would need specific HTML elements to target
+                // For now, we'll store it in a data attribute for potential use
+                html = html.replace(
+                    /<body([^>]*)>/,
+                    `<body$1 data-brand-mission="${foundation.mission}">`
+                );
+            }
+
+            // Update vision statement
+            if (foundation.vision) {
+                html = html.replace(
+                    /<body([^>]*)>/,
+                    `<body$1 data-brand-vision="${foundation.vision}">`
+                );
+            }
+
+            // Update brand promise
+            if (foundation.brand_promise) {
+                html = html.replace(
+                    /<body([^>]*)>/,
+                    `<body$1 data-brand-promise="${foundation.brand_promise}">`
+                );
+            }
+        }
+
+        // Update contact information from branding
+        if (branding.contact_info) {
+            const contact = branding.contact_info;
+            if (contact.invest_email) {
+                html = html.replace(/invest@adjuvantiq\.com/g, contact.invest_email);
+            }
+            if (contact.pilot_email) {
+                html = html.replace(/pilot@adjuvantiq\.com/g, contact.pilot_email);
+            }
+            if (contact.phone) {
+                html = html.replace(/\+1 303-885-7143/g, contact.phone);
+            }
+            if (contact.website) {
+                html = html.replace(/www\.adjuvantiq\.com/g, contact.website);
+            }
+        }
+
+        // Apply global brand colors (these can be overridden by local theme)
+        if (branding.brand_colors) {
+            const colors = branding.brand_colors;
             const cssVars = [];
-            if (theme.primary_color) cssVars.push(`--navy: ${theme.primary_color}`);
-            if (theme.accent_color) cssVars.push(`--teal: ${theme.accent_color}`);
-            if (theme.white) cssVars.push(`--white: ${theme.white}`);
-            if (theme.warm_gray) cssVars.push(`--warm-gray: ${theme.warm_gray}`);
-            if (theme.light_gray) cssVars.push(`--light-gray: ${theme.light_gray}`);
+            if (colors.primary) cssVars.push(`--navy: ${colors.primary}`);
+            if (colors.accent) cssVars.push(`--teal: ${colors.accent}`);
+            if (colors.white) cssVars.push(`--white: ${colors.white}`);
+            if (colors.warm_gray) cssVars.push(`--warm-gray: ${colors.warm_gray}`);
+            if (colors.light_gray) cssVars.push(`--light-gray: ${colors.light_gray}`);
 
             if (cssVars.length > 0) {
                 const cssVarsString = cssVars.join('; ');
@@ -366,7 +434,147 @@ class SiteGenerator {
             }
         }
 
-        // Update Google Fonts link
+        // Apply color mapping rules
+        if (branding.css_color_mapping) {
+            const colorMapping = branding.css_color_mapping;
+            let colorRules = '';
+            
+            // Generate CSS rules for each color mapping
+            Object.keys(colorMapping).forEach(colorKey => {
+                const colorConfig = colorMapping[colorKey];
+                
+                // HTML element rules
+                if (colorConfig.html_elements && colorConfig.html_elements.length > 0) {
+                    colorRules += `\n        ${colorConfig.html_elements.join(', ')} {\n            color: ${colorConfig.color_value};\n        }`;
+                }
+                
+                // CSS class rules
+                if (colorConfig.css_classes && colorConfig.css_classes.length > 0) {
+                    colorRules += `\n        ${colorConfig.css_classes.join(', ')} {\n            color: ${colorConfig.color_value};\n        }`;
+                }
+            });
+            
+            // Insert color mapping rules after existing CSS
+            if (colorRules) {
+                html = html.replace(
+                    /(\/\* Font Mapping Rules \*\/[^}]*\})/s,
+                    `$1\n\n        /* Color Mapping Rules */${colorRules}`
+                );
+            }
+        }
+
+        // Apply background color mapping rules
+        if (branding.css_background_mapping) {
+            const bgMapping = branding.css_background_mapping;
+            let bgRules = '';
+            
+            // Generate CSS rules for each background mapping
+            Object.keys(bgMapping).forEach(bgKey => {
+                const bgConfig = bgMapping[bgKey];
+                
+                // HTML element rules
+                if (bgConfig.html_elements && bgConfig.html_elements.length > 0) {
+                    bgRules += `\n        ${bgConfig.html_elements.join(', ')} {\n            background: ${bgConfig.background_value};\n        }`;
+                }
+                
+                // CSS class rules
+                if (bgConfig.css_classes && bgConfig.css_classes.length > 0) {
+                    bgRules += `\n        ${bgConfig.css_classes.join(', ')} {\n            background: ${bgConfig.background_value};\n        }`;
+                }
+            });
+            
+            // Insert background mapping rules after color rules
+            if (bgRules) {
+                html = html.replace(
+                    /(\/\* Color Mapping Rules \*\/[^}]*\})/s,
+                    `$1\n\n        /* Background Mapping Rules */${bgRules}`
+                );
+            }
+        }
+
+        // Apply global typography
+        if (branding.typography && branding.typography.google_fonts_href) {
+            html = html.replace(
+                /<link[^>]*href="[^"]*fonts\.googleapis\.com[^"]*"[^>]*>/s,
+                `<link rel="preconnect" href="https://fonts.googleapis.com">\n    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>\n    <link href="${branding.typography.google_fonts_href}" rel="stylesheet">`
+            );
+        }
+
+        // Apply font mapping rules
+        if (branding.typography && branding.typography.css_font_mapping) {
+            const mapping = branding.typography.css_font_mapping;
+            
+            // Find the existing CSS section and add font mapping rules
+            if (mapping.source_sans_pro) {
+                const sourceSansRules = mapping.source_sans_pro.html_elements.join(', ') + ' {\n            font-family: ' + mapping.source_sans_pro.font_family + ';\n        }';
+                
+                // Add CSS classes for manual font control
+                const sourceSansClasses = mapping.source_sans_pro.css_classes.join(', ') + ' {\n            font-family: ' + mapping.source_sans_pro.font_family + ';\n        }';
+                
+                // Insert font mapping rules after existing typography section
+                html = html.replace(
+                    /(\/\* Typography \*\/\s*body\s*\{[^}]*\})/s,
+                    `$1\n\n        /* Font Mapping Rules */\n        ${sourceSansRules}\n        ${sourceSansClasses}`
+                );
+            }
+            
+            if (mapping.merriweather) {
+                const merriweatherRules = mapping.merriweather.html_elements.join(', ') + ' {\n            font-family: ' + mapping.merriweather.font_family + ';\n        }';
+                
+                const merriweatherClasses = mapping.merriweather.css_classes.join(', ') + ' {\n            font-family: ' + mapping.merriweather.font_family + ';\n        }';
+                
+                // Add Merriweather rules
+                html = html.replace(
+                    /(\/\* Font Mapping Rules \*\/[^}]*\})/s,
+                    `$1\n        ${merriweatherRules}\n        ${merriweatherClasses}`
+                );
+            }
+        }
+
+        // Store key messaging for potential use in content generation
+        if (branding.key_messaging) {
+            const messaging = branding.key_messaging;
+            if (messaging.value_propositions && messaging.value_propositions.length > 0) {
+                html = html.replace(
+                    /<body([^>]*)>/,
+                    `<body$1 data-value-propositions='${JSON.stringify(messaging.value_propositions)}'>`
+                );
+            }
+            if (messaging.differentiators && messaging.differentiators.length > 0) {
+                html = html.replace(
+                    /<body([^>]*)>/,
+                    `<body$1 data-differentiators='${JSON.stringify(messaging.differentiators)}'>`
+                );
+            }
+        }
+
+        return html;
+    }
+
+    // Update theme (colors and fonts) - now overrides global branding
+    updateTheme(html, theme) {
+        if (!theme) return html;
+
+        // Update CSS variables in :root (overrides global branding)
+        if (theme.primary_color || theme.accent_color || theme.white || theme.warm_gray || theme.light_gray) {
+            const cssVars = [];
+            if (theme.primary_color) cssVars.push(`--navy: ${theme.primary_color}`);
+            if (theme.accent_color) cssVars.push(`--teal: ${theme.accent_color}`);
+            if (theme.white) cssVars.push(`--white: ${theme.white}`);
+            if (theme.warm_gray) cssVars.push(`--warm-gray: ${theme.warm_gray}`);
+            if (theme.light_gray) cssVars.push(`--light-gray: ${theme.light_gray}`);
+
+            if (cssVars.length > 0) {
+                const cssVarsString = cssVars.join('; ');
+                // This will override the global branding colors
+                html = html.replace(
+                    /:root\s*\{[^}]*\}/s,
+                    `:root {\n        ${cssVarsString};\n    }`
+                );
+            }
+        }
+
+        // Update Google Fonts link (overrides global branding)
         if (theme.google_fonts_href) {
             html = html.replace(
                 /<link[^>]*href="[^"]*fonts\.googleapis\.com[^"]*"[^>]*>/s,
