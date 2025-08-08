@@ -4,19 +4,19 @@
   "cards": [
     {
       "title": "Integrated End-to-End Platform",
-      "description": "Unifying clinical development and clinical operations in one comprehensive system that streamlines complex collaboration."
+      "description": "End-to-end solution unifying clinical development and operations (planning through site practice patterns)"
     },
     {
-      "title": "Streamlined Communication & Workflows",
-      "description": "Breaking down silos between stakeholders with intelligent workflow automation and real-time collaboration tools."
+      "title": "Intelligent Collaboration",
+      "description": "Streamlines complex communications and workflows between stakeholders. Breaking down silos with intelligent workflow automation and real-time collaboration tools."
     },
     {
-      "title": "Strategic Planning & Intelligent Design",
-      "description": "Catalyzing coordinated execution through AI-powered insights and perspective-aware decision making."
+      "title": "Strategic Intelligence ",
+      "description": "Catalyzes intelligent design and coordinated execution through AI-powered insights and perspective-aware decision making."
     },
     {
-      "title": "Empowering All Stakeholders",
-      "description": "Maximizing trial success by ensuring every voice is heard and every perspective is considered in the design process."
+      "title": "Measurable Impact",
+      "description": "Systematic orchestration delivers quantified improvements: cost reduction, faster timelines, higher success rate"
     }
   ]
-} 
+}
