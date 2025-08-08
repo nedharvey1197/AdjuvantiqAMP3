@@ -6,7 +6,7 @@
       "href": "#problem"
     },
     {
-      "text": "Our Solution", 
+      "text": "Our Solution",
       "href": "#solution"
     },
     {
@@ -23,7 +23,7 @@
     "href": "/demo"
   },
   "pilot_button": {
-    "text": "Join Pilot Program",
+    "text": "Join Our Development Cohort",
     "href": "#pilot"
   }
 }
