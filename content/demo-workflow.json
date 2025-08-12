@@ -1,0 +1,59 @@
+{
+  "hero": {
+    "title": "User Workflow Exploration",
+    "subtitle": "Explore the complete user workflow system with detailed AI reasoning explanations",
+    "time_investment": "⏱️ 15-20 minutes • Complete workflow demonstration • Multi-stakeholder perspectives"
+  },
+  "workflow_overview": {
+    "title": "Complete User Workflow System",
+    "description": "Explore how AdjuvantIQ's ontological AI system supports clinical trial optimization across the entire development lifecycle.",
+    "tabs": [
+      {
+        "id": "adaptive-modifications",
+        "title": "Adaptive Modifications",
+        "active": true
+      },
+      {
+        "id": "regulatory-strategy", 
+        "title": "Regulatory Strategy",
+        "active": false
+      }
+    ]
+  },
+  "persona": {
+    "title": "Study Director - Dr. Jennifer Walsh",
+    "context": "Managing ongoing cardiovascular outcomes trial, Month 18 of recruitment",
+    "challenge": "Recruitment below target, emerging safety signal requires protocol evaluation"
+  },
+  "workflow_steps": [
+    {
+      "step_number": "1",
+      "title": "Performance Monitoring Alert",
+      "system_analysis": {
+        "recruitment": "65% of target enrollment (should be 75% at Month 18)",
+        "safety_signal": "Increased UTI reports in treatment arm (15% vs 8% placebo)",
+        "geographic_pattern": "Northeastern sites underperforming expectations",
+        "competitive_intelligence": "New SGLT2 inhibitor trial launched by competitor"
+      }
+    },
+    {
+      "step_number": "2", 
+      "title": "Systematic Impact Analysis",
+      "system_analysis": {
+        "projection_analysis": "Recruitment delay impact on study completion",
+        "safety_assessment": "UTI signal clinical significance evaluation",
+        "competitive_impact": "Market positioning and enrollment competition"
+      }
+    }
+  ],
+  "credibility_indicators": [
+    {
+      "icon": "🎓",
+      "text": "Developed with clinical development leaders and regulatory experts"
+    },
+    {
+      "icon": "📊",
+      "text": "Based on analysis of 50+ adaptive trials and regulatory submission strategies"
+    }
+  ]
+}

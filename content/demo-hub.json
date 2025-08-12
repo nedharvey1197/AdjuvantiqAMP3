@@ -1,0 +1,63 @@
+{
+  "hero": {
+    "title": "Interactive Demo Experience",
+    "subtitle": "Experience how AI-assisted reasoning transforms clinical trial optimization"
+  },
+  "credibility_section": {
+    "title": "Why These Demos Matter",
+    "description": "These interactive scenarios demonstrate how AdjuvantIQ's ontological AI system processes complex clinical trial decisions, providing real-time optimization recommendations while collecting valuable user feedback.",
+    "credibility_items": [
+      {
+        "icon": "🎓",
+        "title": "Expert-Developed",
+        "description": "Created with clinical development leaders"
+      },
+      {
+        "icon": "📊",
+        "title": "Data-Driven",
+        "description": "Based on 40+ real clinical trials"
+      },
+      {
+        "icon": "⚡",
+        "title": "Interactive",
+        "description": "Real-time feedback and optimization"
+      }
+    ]
+  },
+  "demo_cards": [
+    {
+      "title": "🎯 Complex Trial Orchestration & Optimization",
+      "subtitle": "End-to-end clinical development transformation",
+      "description": "Our comprehensive demonstration showing how AdjuvantIQ transforms clinical development from initial planning through regulatory submission, solving the most critical pain points that cost billions in lost value.",
+      "features": [
+        "Complete trial lifecycle demonstration",
+        "Multi-stakeholder perspectives",
+        "Industry pain points addressed",
+        "Real-time optimization examples",
+        "End-to-end value proposition"
+      ],
+      "button_text": "Start Complex Trial Demo",
+      "button_link": "cardiovascular.html"
+    },
+    {
+      "title": "📊 Biostatistics & Analytics for Oncology Biomarker Trial",
+      "subtitle": "Statistical analysis and data interpretation",
+      "description": "Experience how AI processes complex interim analysis results for a Phase II oncology trial with mixed efficacy signals across biomarker subgroups.",
+      "features": [
+        "Statistical power analysis",
+        "Biomarker stratification",
+        "Regulatory pathway optimization",
+        "Multi-agent coordination",
+        "Real-time feedback collection"
+      ],
+      "button_text": "Start Biostatistics Demo",
+      "button_link": "oncology.html"
+    }
+  ],
+  "cta_section": {
+    "title": "Ready to Transform Your Clinical Development?",
+    "description": "These demos showcase just a fraction of AdjuvantIQ's capabilities. Contact us to discuss how our AI system can optimize your specific clinical trial challenges.",
+    "button_text": "Request Pilot Program",
+    "button_link": "../#pilot"
+  }
+}

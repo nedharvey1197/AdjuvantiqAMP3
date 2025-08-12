@@ -25,7 +25,11 @@ class SiteGenerator {
             'seo.json',
             'theme.json',
             'navigation.json',
-            'branding.json'
+            'branding.json',
+            'demo-hub.json',
+            'demo-cardiovascular.json',
+            'demo-oncology.json',
+            'demo-workflow.json'
         ];
 
         contentFiles.forEach(file => {

@@ -1,0 +1,46 @@
+{
+  "hero": {
+    "title": "Oncology Interim Analysis",
+    "subtitle": "AI-powered statistical analysis and biomarker stratification",
+    "time_investment": "⏱️ 15-20 minutes • Statistical analysis • Biomarker insights"
+  },
+  "trial_overview": {
+    "title": "Phase II Oncology Biomarker Trial",
+    "subtitle": "Novel Immunotherapy with Biomarker Stratification",
+    "description": "Experience how AI processes complex interim analysis results for a Phase II oncology trial with mixed efficacy signals across biomarker subgroups.",
+    "key_metrics": [
+      "Target Enrollment: 200 patients",
+      "Duration: 24 months", 
+      "Primary Endpoint: Progression-free survival",
+      "Biomarker: PD-L1 expression levels"
+    ]
+  },
+  "analysis_phases": [
+    {
+      "title": "Interim Analysis Results",
+      "description": "AI processing of complex efficacy signals across biomarker subgroups"
+    },
+    {
+      "title": "Statistical Power Analysis",
+      "description": "Optimization of sample size and statistical power"
+    },
+    {
+      "title": "Biomarker Stratification",
+      "description": "Identification of predictive biomarkers and patient subgroups"
+    },
+    {
+      "title": "Regulatory Pathway Optimization",
+      "description": "Strategic planning for regulatory submission and approval"
+    }
+  ],
+  "credibility_indicators": [
+    {
+      "icon": "🎓",
+      "text": "Developed with biostatisticians and oncology experts"
+    },
+    {
+      "icon": "📊",
+      "text": "Based on analysis of 40+ oncology trials and biomarker studies"
+    }
+  ]
+}

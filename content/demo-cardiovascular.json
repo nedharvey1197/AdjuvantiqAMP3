@@ -1,0 +1,54 @@
+{
+  "hero": {
+    "title": "End-to-End Trial Optimization",
+    "subtitle": "Experience how AdjuvantIQ transforms clinical development from initial planning through regulatory submission",
+    "time_investment": "⏱️ 20-25 minutes • Complete trial lifecycle • Multi-stakeholder perspectives"
+  },
+  "trial_overview": {
+    "title": "Cardiovascular Outcomes Trial",
+    "subtitle": "Phase III SGLT2 Inhibitor Study",
+    "description": "A comprehensive demonstration of AdjuvantIQ's capabilities across the entire clinical development lifecycle, from initial protocol design through regulatory submission.",
+    "key_metrics": [
+      "Target Enrollment: 8,000 patients",
+      "Duration: 36 months",
+      "Primary Endpoint: Cardiovascular death or hospitalization",
+      "Regulatory Pathway: FDA Breakthrough Therapy Designation"
+    ]
+  },
+  "workflow_phases": [
+    {
+      "title": "Protocol Design & Optimization",
+      "description": "AI-assisted protocol development with stakeholder alignment",
+      "link": "protocol-design.html",
+      "icon": "📋"
+    },
+    {
+      "title": "Site Selection & Portfolio Optimization", 
+      "description": "Intelligent site selection and geographic optimization",
+      "link": "site-selection.html",
+      "icon": "🏥"
+    },
+    {
+      "title": "Adaptive Trial Management",
+      "description": "Real-time monitoring and adaptive modifications",
+      "link": "adaptive-modifications.html",
+      "icon": "🔄"
+    },
+    {
+      "title": "Regulatory Strategy & Submission",
+      "description": "Regulatory pathway optimization and submission preparation",
+      "link": "regulatory-strategy.html",
+      "icon": "📋"
+    }
+  ],
+  "credibility_indicators": [
+    {
+      "icon": "🎓",
+      "text": "Developed with clinical development leaders and regulatory experts"
+    },
+    {
+      "icon": "📊", 
+      "text": "Based on analysis of 50+ cardiovascular trials and regulatory submissions"
+    }
+  ]
+}
