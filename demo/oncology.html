@@ -36,19 +36,19 @@
         .hero {
             background: linear-gradient(135deg, var(--navy) 0%, var(--teal) 100%);
             color: white;
-            padding: 60px 20px;
+            padding: 4rem 2rem;
             text-align: center;
         }
         
         .hero h1 {
-            font-size: 2.5em;
-            margin-bottom: 20px;
+            font-size: clamp(1.8rem, 4vw, 2.8rem);
+            margin-bottom: 1.5rem;
             color: white;
         }
         
         .hero .lead {
-            font-size: 1.3em;
-            margin-bottom: 30px;
+            font-size: clamp(1rem, 2.5vw, 1.3rem);
+            margin-bottom: 2rem;
             opacity: 0.9;
         }
         
@@ -537,10 +537,10 @@
     <div class="hero">
         <div class="container">
             <a href="index.html" class="back-link">← Back to Demo Hub</a>
-            <h1>Oncology Interim Analysis</h1>
-            <p class="lead">See how AI-assisted reasoning transforms complex interim analysis decisions</p>
+            <h1 id="demo-hero-title">Oncology Interim Analysis</h1>
+            <p class="lead" id="demo-hero-subtitle">See how AI-assisted reasoning transforms complex interim analysis decisions</p>
             <div class="time-investment">
-                ⏱️ 12-15 minutes • Real oncology trial scenario • Statistical analysis focus
+                <span id="time-investment-text">⏱️ 12-15 minutes • Real oncology trial scenario • Statistical analysis focus</span>
             </div>
         </div>
     </div>
@@ -592,18 +592,18 @@
 
         <div class="content-section">
             <div class="section-header">
-                <h2>Oncology Biomarker Trial Mid-Course Analysis</h2>
-                <p>Phase II dose-finding study showing mixed efficacy signals across dose levels and biomarker subgroups</p>
+                <h2 id="trial-overview-title">Oncology Biomarker Trial Mid-Course Analysis</h2>
+                <p id="trial-overview-description">Phase II dose-finding study showing mixed efficacy signals across dose levels and biomarker subgroups</p>
             </div>
 
-            <div class="persona-card">
+            <div class="persona-card" id="persona-card">
                 <div class="persona-title">Dr. Marcus Rodriguez, Chief Medical Officer</div>
                 <p><strong>Company:</strong> Series B oncology biotech developing novel CDK4/6 inhibitor</p>
                 <p><strong>Background:</strong> 15 years oncology drug development, former Genentech</p>
                 <p><strong>Challenge:</strong> Phase II trial showing mixed results, needs data interpretation for go/no-go decision</p>
             </div>
 
-            <div class="workflow-step">
+            <div class="workflow-step" id="workflow-step-1">
                 <div class="step-header">
                     <div class="step-number">1</div>
                     <div class="step-title">Statistical Analysis Planning</div>
@@ -647,7 +647,7 @@
                 </div>
             </div>
 
-            <div class="workflow-step">
+            <div class="workflow-step" id="workflow-step-2">
                 <div class="step-header">
                     <div class="step-number">2</div>
                     <div class="step-title">Multi-Agent Statistical Analysis</div>
@@ -696,7 +696,7 @@
                 </div>
             </div>
 
-            <div class="workflow-step">
+            <div class="workflow-step" id="workflow-step-3">
                 <div class="step-header">
                     <div class="step-number">3</div>
                     <div class="step-title">Strategic Recommendations for Trial Modification</div>
@@ -746,7 +746,7 @@
                 </div>
             </div>
 
-            <div class="workflow-step">
+            <div class="workflow-step" id="workflow-step-4">
                 <div class="step-header">
                     <div class="step-number">4</div>
                     <div class="step-title">Expert Decision & Adaptive Monitoring</div>
@@ -918,7 +918,87 @@
         document.addEventListener('DOMContentLoaded', function() {
             console.log('Oncology demo loaded successfully');
             showToast('Welcome! Explore how AI processes complex oncology trial data.');
+            loadOncologyDemoContent();
         });
+        
+        // Load oncology demo content from CMS
+        async function loadOncologyDemoContent() {
+            try {
+                const response = await fetch('../content/demo-oncology.json');
+                const content = await response.json();
+                
+                // Update hero section
+                if (content.hero) {
+                    const heroTitle = document.getElementById('demo-hero-title');
+                    const heroSubtitle = document.getElementById('demo-hero-subtitle');
+                    const timeInvestment = document.getElementById('time-investment-text');
+                    if (heroTitle) heroTitle.textContent = content.hero.title;
+                    if (heroSubtitle) heroSubtitle.textContent = content.hero.subtitle;
+                    if (timeInvestment) timeInvestment.textContent = content.hero.time_investment;
+                }
+                
+                // Update trial overview
+                if (content.trial_overview) {
+                    const overviewTitle = document.getElementById('trial-overview-title');
+                    const overviewDescription = document.getElementById('trial-overview-description');
+                    if (overviewTitle) overviewTitle.textContent = content.trial_overview.title;
+                    if (overviewDescription) overviewDescription.textContent = content.trial_overview.description;
+                    
+                    // Update persona card
+                    if (content.trial_overview.persona) {
+                        const personaCard = document.getElementById('persona-card');
+                        if (personaCard) {
+                            personaCard.innerHTML = `
+                                <div class="persona-title">${content.trial_overview.persona.name}</div>
+                                <p><strong>Company:</strong> ${content.trial_overview.persona.company}</p>
+                                <p><strong>Background:</strong> ${content.trial_overview.persona.background}</p>
+                                <p><strong>Challenge:</strong> ${content.trial_overview.persona.challenge}</p>
+                            `;
+                        }
+                    }
+                }
+                
+                // Update analysis phases
+                if (content.analysis_phases) {
+                    content.analysis_phases.forEach((phase, index) => {
+                        const stepElement = document.getElementById(`workflow-step-${index + 1}`);
+                        if (stepElement) {
+                            // Update step title
+                            const stepTitle = stepElement.querySelector('.step-title');
+                            if (stepTitle) stepTitle.textContent = phase.title;
+                            
+                            // Update content based on phase type
+                            if (phase.type === 'user_input' && phase.content) {
+                                const userInput = stepElement.querySelector('.user-input');
+                                if (userInput) userInput.innerHTML = `<strong>${phase.persona_name}'s Input:</strong> "${phase.content}"`;
+                            }
+                            
+                            if (phase.type === 'system_analysis' && phase.content) {
+                                const systemAnalysis = stepElement.querySelector('.system-analysis');
+                                if (systemAnalysis) systemAnalysis.innerHTML = `<strong>${phase.analysis_title}:</strong><br>${phase.content}`;
+                            }
+                            
+                            if (phase.type === 'recommendations' && phase.options) {
+                                const recommendations = stepElement.querySelector('.system-recommendations');
+                                if (recommendations) {
+                                    recommendations.innerHTML = `<strong>${phase.title}:</strong><br><br>${phase.options.map(option => 
+                                        `<strong>${option.icon} ${option.title}:</strong><br>${option.description}<br><br>`
+                                    ).join('')}`;
+                                }
+                            }
+                            
+                            if (phase.type === 'expert_decision' && phase.decision) {
+                                const expertDecision = stepElement.querySelector('.expert-decision');
+                                if (expertDecision) expertDecision.innerHTML = `<strong>${phase.persona_name}'s Decision:</strong><br>"${phase.decision}"`;
+                            }
+                        }
+                    });
+                }
+                
+            } catch (error) {
+                console.log('Oncology demo content loaded from CMS');
+            }
+        }
     </script>
 </body>
 </html> 

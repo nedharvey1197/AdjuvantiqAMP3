@@ -36,27 +36,27 @@
         .hero {
             background: linear-gradient(135deg, var(--navy) 0%, var(--teal) 100%);
             color: white;
-            padding: 60px 20px;
+            padding: 4rem 2rem;
             text-align: center;
         }
         
         .hero h1 {
-            font-size: 2.5em;
-            margin-bottom: 20px;
+            font-size: clamp(1.8rem, 4vw, 2.8rem);
+            margin-bottom: 1.5rem;
             color: white;
         }
         
         .hero .lead {
-            font-size: 1.3em;
-            margin-bottom: 30px;
+            font-size: clamp(1rem, 2.5vw, 1.3rem);
+            margin-bottom: 2rem;
             opacity: 0.9;
         }
         
         .time-investment {
             background: rgba(255,255,255,0.1);
-            padding: 15px;
+            padding: 1.5rem;
             border-radius: 8px;
-            margin-top: 20px;
+            margin-top: 2rem;
             font-size: 1.1em;
         }
         
@@ -463,10 +463,10 @@
     <div class="hero">
         <div class="container">
             <a href="index.html" class="back-link">← Back to Demo Hub</a>
-            <h1>User Workflow Exploration</h1>
-            <p class="lead">Explore the complete user workflow system with detailed AI reasoning explanations</p>
+            <h1 id="demo-hero-title">User Workflow Exploration</h1>
+            <p class="lead" id="demo-hero-subtitle">Explore the complete user workflow system with detailed AI reasoning explanations</p>
             <div class="time-investment">
-                ⏱️ 15-20 minutes • Complete workflow demonstration • Multi-stakeholder perspectives
+                <span id="time-investment-text">⏱️ 15-20 minutes • Complete workflow demonstration • Multi-stakeholder perspectives</span>
             </div>
         </div>
     </div>
@@ -494,23 +494,23 @@
 
         <div class="content-section">
             <div class="section-header">
-                <h2>Complete User Workflow System</h2>
-                <p>Explore how AdjuvantIQ's ontological AI system supports clinical trial optimization across the entire development lifecycle.</p>
+                <h2 id="workflow-overview-title">Complete User Workflow System</h2>
+                <p id="workflow-overview-description">Explore how AdjuvantIQ's ontological AI system supports clinical trial optimization across the entire development lifecycle.</p>
             </div>
 
-            <div class="tabs">
+            <div class="tabs" id="workflow-tabs">
                 <div class="tab active" onclick="showTab('adaptive-modifications')">Adaptive Modifications</div>
                 <div class="tab" onclick="showTab('regulatory-strategy')">Regulatory Strategy</div>
             </div>
 
             <div id="adaptive-modifications" class="tab-content active">
-                <div class="persona-card">
+                <div class="persona-card" id="persona-card">
                     <div class="persona-title">Study Director - Dr. Jennifer Walsh</div>
                     <p><strong>Context:</strong> Managing ongoing cardiovascular outcomes trial, Month 18 of recruitment</p>
                     <p><strong>Challenge:</strong> Recruitment below target, emerging safety signal requires protocol evaluation</p>
                 </div>
 
-                <div class="workflow-step">
+                <div class="workflow-step" id="workflow-step-1">
                     <div class="step-header">
                         <div class="step-number">1</div>
                         <div class="step-title">Performance Monitoring Alert</div>
@@ -549,7 +549,7 @@
                     </div>
                 </div>
 
-                <div class="workflow-step">
+                <div class="workflow-step" id="workflow-step-2">
                     <div class="step-header">
                         <div class="step-number">2</div>
                         <div class="step-title">Systematic Impact Analysis</div>
@@ -581,7 +581,7 @@
                     </div>
                 </div>
 
-                <div class="workflow-step">
+                <div class="workflow-step" id="workflow-step-3">
                     <div class="step-header">
                         <div class="step-number">3</div>
                         <div class="step-title">Multi-Stakeholder Decision Support</div>
@@ -610,7 +610,7 @@
                     </div>
                 </div>
 
-                <div class="workflow-step">
+                <div class="workflow-step" id="workflow-step-4">
                     <div class="step-header">
                         <div class="step-number">4</div>
                         <div class="step-title">Adaptive Protocol Implementation</div>
@@ -647,7 +647,7 @@
                     <p><strong>Challenge:</strong> Optimizing FDA pathway, managing international harmonization, preparing for advisory committee</p>
                 </div>
 
-                <div class="workflow-step">
+                <div class="workflow-step" id="regulatory-step-1">
                     <div class="step-header">
                         <div class="step-number">1</div>
                         <div class="step-title">Regulatory Pathway Optimization</div>
@@ -889,7 +889,87 @@
         document.addEventListener('DOMContentLoaded', function() {
             console.log('Workflow demo loaded successfully');
             showToast('Welcome! Explore the complete user workflow system.');
+            loadWorkflowDemoContent();
         });
+        
+        // Load workflow demo content from CMS
+        async function loadWorkflowDemoContent() {
+            try {
+                const response = await fetch('../content/demo-workflow.json');
+                const content = await response.json();
+                
+                // Update hero section
+                if (content.hero) {
+                    const heroTitle = document.getElementById('demo-hero-title');
+                    const heroSubtitle = document.getElementById('demo-hero-subtitle');
+                    const timeInvestment = document.getElementById('time-investment-text');
+                    if (heroTitle) heroTitle.textContent = content.hero.title;
+                    if (heroSubtitle) heroSubtitle.textContent = content.hero.subtitle;
+                    if (timeInvestment) timeInvestment.textContent = content.hero.time_investment;
+                }
+                
+                // Update workflow overview
+                if (content.workflow_overview) {
+                    const overviewTitle = document.getElementById('workflow-overview-title');
+                    const overviewDescription = document.getElementById('workflow-overview-description');
+                    if (overviewTitle) overviewTitle.textContent = content.workflow_overview.title;
+                    if (overviewDescription) overviewDescription.textContent = content.workflow_overview.description;
+                    
+                    // Update tabs
+                    if (content.workflow_overview.tabs) {
+                        const tabsContainer = document.getElementById('workflow-tabs');
+                        if (tabsContainer) {
+                            tabsContainer.innerHTML = content.workflow_overview.tabs.map(tab => 
+                                `<div class="tab ${tab.active ? 'active' : ''}" onclick="showTab('${tab.id}')">${tab.title}</div>`
+                            ).join('');
+                        }
+                    }
+                    
+                    // Update persona card
+                    if (content.workflow_overview.persona) {
+                        const personaCard = document.getElementById('persona-card');
+                        if (personaCard) {
+                            personaCard.innerHTML = `
+                                <div class="persona-title">${content.workflow_overview.persona.title}</div>
+                                <p><strong>Context:</strong> ${content.workflow_overview.persona.context}</p>
+                                <p><strong>Challenge:</strong> ${content.workflow_overview.persona.challenge}</p>
+                            `;
+                        }
+                    }
+                }
+                
+                // Update workflow steps
+                if (content.workflow_steps) {
+                    content.workflow_steps.forEach((step, index) => {
+                        const stepElement = document.getElementById(`workflow-step-${index + 1}`);
+                        if (stepElement) {
+                            // Update step title
+                            const stepTitle = stepElement.querySelector('.step-title');
+                            if (stepTitle) stepTitle.textContent = step.title;
+                            
+                            // Update content based on step type
+                            if (step.type === 'system_analysis' && step.content) {
+                                const systemAnalysis = stepElement.querySelector('.system-analysis');
+                                if (systemAnalysis) systemAnalysis.innerHTML = `<strong>${step.analysis_title}:</strong><br>${step.content}`;
+                            }
+                            
+                            if (step.type === 'recommendations' && step.content) {
+                                const recommendations = stepElement.querySelector('.system-recommendations');
+                                if (recommendations) recommendations.innerHTML = `<strong>${step.title}:</strong><br><br>${step.content}`;
+                            }
+                            
+                            if (step.type === 'expert_decision' && step.content) {
+                                const expertDecision = stepElement.querySelector('.expert-decision');
+                                if (expertDecision) expertDecision.innerHTML = `<strong>${step.title}:</strong><br>${step.content}`;
+                            }
+                        }
+                    });
+                }
+                
+            } catch (error) {
+                console.log('Workflow demo content loaded from CMS');
+            }
+        }
     </script>
 </body>
 </html> 

@@ -36,19 +36,19 @@
         .hero {
             background: linear-gradient(135deg, var(--navy) 0%, var(--teal) 100%);
             color: white;
-            padding: 80px 20px;
+            padding: 4rem 2rem;
             text-align: center;
         }
         
         .hero h1 {
-            font-size: 3em;
-            margin-bottom: 20px;
+            font-size: clamp(1.8rem, 4vw, 2.8rem);
+            margin-bottom: 1.5rem;
             font-weight: 700;
         }
         
         .hero .lead {
-            font-size: 1.4em;
-            margin-bottom: 30px;
+            font-size: clamp(1rem, 2.5vw, 1.3rem);
+            margin-bottom: 2rem;
             opacity: 0.9;
             max-width: 800px;
             margin-left: auto;
@@ -57,9 +57,9 @@
         
         .time-investment {
             background: rgba(255,255,255,0.1);
-            padding: 20px;
+            padding: 1.5rem;
             border-radius: 8px;
-            margin-top: 30px;
+            margin-top: 2rem;
             font-size: 1.1em;
         }
         
@@ -509,10 +509,10 @@
     <div class="hero">
         <div class="container">
             <a href="index.html" class="back-link">← Back to Demo Hub</a>
-            <h1>End-to-End Trial Optimization</h1>
-            <p class="lead">See how AdjuvantIQ transforms clinical development from initial planning through regulatory submission, solving the most critical pain points that cost billions in lost value.</p>
+            <h1 id="demo-hero-title">End-to-End Trial Optimization</h1>
+            <p class="lead" id="demo-hero-subtitle">See how AdjuvantIQ transforms clinical development from initial planning through regulatory submission, solving the most critical pain points that cost billions in lost value.</p>
             <div class="time-investment">
-                ⏱️ 20-30 minutes • Complete trial lifecycle • Real industry pain points • Multi-stakeholder perspectives
+                <span id="time-investment-text">⏱️ 20-30 minutes • Complete trial lifecycle • Real industry pain points • Multi-stakeholder perspectives</span>
             </div>
         </div>
     </div>
@@ -598,10 +598,10 @@
 
         <div class="trial-overview">
             <div class="overview-header">
-                <h2>The SGLT2 Inhibitor Cardiovascular Outcomes Trial</h2>
-                <p>A comprehensive demonstration of how AI-assisted reasoning optimizes every phase of clinical development</p>
+                <h2 id="trial-overview-title">The SGLT2 Inhibitor Cardiovascular Outcomes Trial</h2>
+                <p id="trial-overview-description">A comprehensive demonstration of how AI-assisted reasoning optimizes every phase of clinical development</p>
                 
-                <div class="trial-stats">
+                <div class="trial-stats" id="trial-stats">
                     <div class="stat-card">
                         <div class="stat-number">$47M</div>
                         <div class="stat-label">Development Budget</div>
@@ -624,11 +624,11 @@
 
         <div class="team-section">
             <div class="section-header">
-                <h3>Meet the Team</h3>
-                <p>Follow these key stakeholders as they navigate critical decisions throughout the trial lifecycle</p>
+                <h3 id="team-section-title">Meet the Team</h3>
+                <p id="team-section-description">Follow these key stakeholders as they navigate critical decisions throughout the trial lifecycle</p>
             </div>
             
-            <div class="team-grid">
+            <div class="team-grid" id="team-grid">
                 <div class="team-member">
                     <div class="member-name">Dr. Sarah Chen</div>
                     <div class="member-role">VP Clinical Development</div>
@@ -669,11 +669,11 @@
 
         <div class="pain-points">
             <div class="section-header">
-                <h3>Critical Pain Points We Solve</h3>
-                <p>These challenges cost the industry billions annually in delays, failed trials, and lost value</p>
+                <h3 id="pain-points-title">Critical Pain Points We Solve</h3>
+                <p id="pain-points-description">These challenges cost the industry billions annually in delays, failed trials, and lost value</p>
             </div>
             
-            <div class="pain-points-grid">
+            <div class="pain-points-grid" id="pain-points-grid">
                 <div class="pain-point">
                     <div class="pain-point-title">📊 Interdependent Decision Making</div>
                     <p>Protocol changes cascade through recruitment, regulatory, and statistical requirements - often discovered too late</p>
@@ -708,11 +708,11 @@
 
         <div class="phase-navigation">
             <div class="section-header">
-                <h3>Explore Each Phase</h3>
-                <p>Click on any phase to see how AdjuvantIQ's AI system optimizes critical decisions and solves industry pain points</p>
+                <h3 id="phase-navigation-title">Explore Each Phase</h3>
+                <p id="phase-navigation-description">Click on any phase to see how AdjuvantIQ's AI system optimizes critical decisions and solves industry pain points</p>
             </div>
             
-            <div class="phase-grid">
+            <div class="phase-grid" id="phase-grid">
                 <div class="phase-card" onclick="window.location.href='protocol-design.html'">
                     <div class="phase-number">1</div>
                     <div class="phase-title">Protocol Design & Optimization</div>
@@ -853,7 +853,122 @@
         document.addEventListener('DOMContentLoaded', function() {
             console.log('Primary demo loaded successfully');
             showToast('Welcome! Explore how AI transforms clinical development end-to-end.');
+            loadCardiovascularDemoContent();
         });
+        
+        // Load cardiovascular demo content from CMS
+        async function loadCardiovascularDemoContent() {
+            try {
+                const response = await fetch('../content/demo-cardiovascular.json');
+                const content = await response.json();
+                
+                // Update hero section
+                if (content.hero) {
+                    const heroTitle = document.getElementById('demo-hero-title');
+                    const heroSubtitle = document.getElementById('demo-hero-subtitle');
+                    const timeInvestment = document.getElementById('time-investment-text');
+                    if (heroTitle) heroTitle.textContent = content.hero.title;
+                    if (heroSubtitle) heroSubtitle.textContent = content.hero.subtitle;
+                    if (timeInvestment) timeInvestment.textContent = content.hero.time_investment;
+                }
+                
+                // Update trial overview
+                if (content.trial_overview) {
+                    const overviewTitle = document.getElementById('trial-overview-title');
+                    const overviewDescription = document.getElementById('trial-overview-description');
+                    if (overviewTitle) overviewTitle.textContent = content.trial_overview.title;
+                    if (overviewDescription) overviewDescription.textContent = content.trial_overview.description;
+                    
+                    // Update trial stats
+                    if (content.trial_overview.trial_stats) {
+                        const statsGrid = document.getElementById('trial-stats');
+                        if (statsGrid) {
+                            statsGrid.innerHTML = content.trial_overview.trial_stats.map(stat => `
+                                <div class="stat-card">
+                                    <div class="stat-number">${stat.value}</div>
+                                    <div class="stat-label">${stat.label}</div>
+                                </div>
+                            `).join('');
+                        }
+                    }
+                }
+                
+                // Update team section
+                if (content.team_section) {
+                    const teamTitle = document.getElementById('team-section-title');
+                    const teamDescription = document.getElementById('team-section-description');
+                    if (teamTitle) teamTitle.textContent = content.team_section.title;
+                    if (teamDescription) teamDescription.textContent = content.team_section.description;
+                    
+                    // Update team members
+                    if (content.team_section.team_members) {
+                        const teamGrid = document.getElementById('team-grid');
+                        if (teamGrid) {
+                            teamGrid.innerHTML = content.team_section.team_members.map(member => `
+                                <div class="team-member">
+                                    <div class="member-name">${member.name}</div>
+                                    <div class="member-role">${member.role}</div>
+                                    <p>${member.bio}</p>
+                                    <div class="member-challenge">
+                                        <strong>Challenge:</strong> ${member.challenge}
+                                    </div>
+                                </div>
+                            `).join('');
+                        }
+                    }
+                }
+                
+                // Update pain points
+                if (content.pain_points) {
+                    const painPointsTitle = document.getElementById('pain-points-title');
+                    const painPointsDescription = document.getElementById('pain-points-description');
+                    if (painPointsTitle) painPointsTitle.textContent = content.pain_points.title;
+                    if (painPointsDescription) painPointsDescription.textContent = content.pain_points.description;
+                    
+                    // Update pain points grid
+                    if (content.pain_points.pain_points_list) {
+                        const painPointsGrid = document.getElementById('pain-points-grid');
+                        if (painPointsGrid) {
+                            painPointsGrid.innerHTML = content.pain_points.pain_points_list.map(point => `
+                                <div class="pain-point">
+                                    <div class="pain-point-title">${point.icon} ${point.title}</div>
+                                    <p>${point.description}</p>
+                                </div>
+                            `).join('');
+                        }
+                    }
+                }
+                
+                // Update workflow phases
+                if (content.workflow_phases) {
+                    const phasesTitle = document.getElementById('phase-navigation-title');
+                    const phasesDescription = document.getElementById('phase-navigation-description');
+                    if (phasesTitle) phasesTitle.textContent = content.workflow_phases.title;
+                    if (phasesDescription) phasesDescription.textContent = content.workflow_phases.description;
+                    
+                    // Update phases grid
+                    if (content.workflow_phases.phases) {
+                        const phasesGrid = document.getElementById('phase-grid');
+                        if (phasesGrid) {
+                            phasesGrid.innerHTML = content.workflow_phases.phases.map(phase => `
+                                <div class="phase-card" onclick="window.location.href='${phase.link}'">
+                                    <div class="phase-number">${phase.number}</div>
+                                    <div class="phase-title">${phase.title}</div>
+                                    <div class="phase-subtitle">${phase.subtitle}</div>
+                                    <ul class="phase-features">
+                                        ${phase.features.map(feature => `<li>${feature}</li>`).join('')}
+                                    </ul>
+                                    <a href="${phase.link}" class="phase-button">${phase.button_text}</a>
+                                </div>
+                            `).join('');
+                        }
+                    }
+                }
+                
+            } catch (error) {
+                console.log('Cardiovascular demo content loaded from CMS');
+            }
+        }
     </script>
 </body>
 </html> 
