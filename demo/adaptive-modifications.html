@@ -20,29 +20,33 @@
         }
         
         .hero {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(135deg, #2c5282 0%, #2d7d7d 100%);
             color: white;
-            padding: 60px 20px;
+            padding: 2.5rem 1.5rem;
             text-align: center;
         }
         
         .hero h1 {
-            font-size: 2.5em;
-            margin-bottom: 20px;
+            font-size: clamp(1.6rem, 3.5vw, 2.4rem);
+            margin-bottom: 1rem;
+            font-weight: 700;
         }
         
         .hero .lead {
-            font-size: 1.3em;
-            margin-bottom: 30px;
+            font-size: clamp(0.95rem, 2.2vw, 1.15rem);
+            margin-bottom: 1.5rem;
             opacity: 0.9;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
         }
         
         .time-investment {
             background: rgba(255,255,255,0.1);
-            padding: 15px;
+            padding: 1.25rem;
             border-radius: 8px;
-            margin-top: 20px;
-            font-size: 1.1em;
+            margin-top: 1.5rem;
+            font-size: 1em;
         }
         
         .container {
@@ -169,63 +173,65 @@
             border-radius: 3px;
         }
         
+        /* Enhanced AI Reasoning box styling with EXPAND/COLLAPSE */
         .reasoning-box {
-            background: #fff3e0;
-            border: 2px solid #ff9800;
-            padding: 20px;
-            margin: 15px 0;
-            border-radius: 8px;
+            background: linear-gradient(135deg, #f7fafc 0%, #edf2f7 100%);
+            border: 2px solid #2d7d7d;
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
             cursor: pointer;
             transition: all 0.3s ease;
             position: relative;
+            box-shadow: 0 4px 6px rgba(45, 125, 125, 0.1);
         }
-        
-        .reasoning-box::before {
-            content: "🔧 AI REASONING";
-            position: absolute;
-            top: -10px;
-            left: 15px;
-            background: #ff9800;
-            color: white;
-            padding: 4px 8px;
-            font-size: 0.8em;
-            font-weight: bold;
-            border-radius: 3px;
-        }
-        
+
         .reasoning-box:hover {
-            box-shadow: 0 4px 12px rgba(255,152,0,0.2);
+            box-shadow: 0 8px 15px rgba(45, 125, 125, 0.2);
+            transform: translateY(-2px);
         }
-        
-        .reasoning-box.expanded {
-            background: #fff8e1;
-        }
-        
+
         .reasoning-header {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            font-weight: bold;
-            color: #e65100;
+            font-weight: 600;
+            color: #2c5282;
+            margin-bottom: 0;
         }
-        
+
+        .section-toggle-container {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: #2d7d7d;
+        }
+
         .expand-icon {
-            font-size: 1.2em;
-            margin-left: auto;
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: #2d7d7d;
             transition: transform 0.3s ease;
         }
-        
+
         .reasoning-box.expanded .expand-icon {
             transform: rotate(45deg);
         }
-        
+
         .reasoning-details {
-            margin-top: 15px;
-            display: none;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease, opacity 0.3s ease;
+            opacity: 0;
+            margin-top: 0;
         }
-        
+
         .reasoning-box.expanded .reasoning-details {
-            display: block;
+            max-height: 500px;
+            opacity: 1;
+            margin-top: 1rem;
         }
         
         .workflow-step {
@@ -241,7 +247,7 @@
         
         .content-section {
             background: white;
-            margin: 20px 0;
+            margin: 1rem 0;
             border-radius: 12px;
             box-shadow: 0 4px 6px rgba(0,0,0,0.1);
             overflow: hidden;
@@ -249,27 +255,27 @@
         
         .section-header {
             background: #f8f9fc;
-            padding: 30px;
+            padding: 1.5rem;
             border-bottom: 1px solid #e0e6ed;
         }
         
         .persona-card {
             background: linear-gradient(135deg, #e3f2fd 0%, #f3e5f5 100%);
             border-left: 5px solid #2196f3;
-            padding: 25px;
-            margin: 20px 0;
+            padding: 1.25rem;
+            margin: 1rem 0;
             border-radius: 8px;
         }
         
         .persona-title {
-            font-size: 1.4em;
+            font-size: 1.25em;
             font-weight: bold;
             color: #1976d2;
-            margin-bottom: 10px;
+            margin-bottom: 8px;
         }
         
         .workflow-step {
-            padding: 30px;
+            padding: 1.5rem;
             border-bottom: 1px solid #f0f0f0;
         }
         
@@ -280,19 +286,19 @@
         .step-header {
             display: flex;
             align-items: center;
-            margin-bottom: 20px;
+            margin-bottom: 1rem;
         }
         
         .step-number {
             background: #2196f3;
             color: white;
             border-radius: 50%;
-            width: 40px;
-            height: 40px;
+            width: 36px;
+            height: 36px;
             display: flex;
             align-items: center;
             justify-content: center;
-            margin-right: 20px;
+            margin-right: 1rem;
             font-weight: bold;
             font-size: 1.2em;
         }
@@ -322,13 +328,54 @@
             margin-right: 15px;
         }
         
+        /* Enhanced micro-feedback styling */
         .micro-feedback {
-            background: #f0f8ff;
-            border: 1px solid #b3d9ff;
-            padding: 15px;
-            margin: 20px 0;
-            border-radius: 6px;
-            text-align: center;
+            background: linear-gradient(135deg, #fff5f5 0%, #fed7d7 100%);
+            border: 2px solid #e53e3e;
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            position: relative;
+            box-shadow: 0 4px 8px rgba(229, 62, 62, 0.2);
+        }
+
+        .micro-feedback::before {
+            content: '💬';
+            position: absolute;
+            top: -10px;
+            left: 20px;
+            background: white;
+            padding: 0 8px;
+            font-size: 1.2rem;
+        }
+
+        .micro-feedback p {
+            color: #c53030;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        .micro-feedback .feedback-buttons {
+            gap: 0.5rem;
+        }
+
+        .micro-feedback .feedback-buttons button {
+            background: linear-gradient(135deg, #e53e3e 0%, #c53030 100%);
+            color: white;
+            border: none;
+            padding: 0.6rem 1.2rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 4px rgba(229, 62, 62, 0.3);
+        }
+
+        .micro-feedback .feedback-buttons button:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 4px 8px rgba(229, 62, 62, 0.4);
+            background: linear-gradient(135deg, #c53030 0%, #a52a2a 100%);
         }
         
         .feedback-buttons button {
@@ -388,16 +435,16 @@
         
         .back-link {
             display: inline-block;
-            margin: 20px 0;
+            margin: 15px 0;
             color: #667eea;
             text-decoration: none;
             font-weight: 600;
-            padding: 12px 20px;
+            padding: 10px 16px;
             background: linear-gradient(135deg, #f8f9fc 0%, #e3f2fd 100%);
-            border-radius: 8px;
+            border-radius: 6px;
             border: 2px solid #667eea;
             transition: all 0.3s ease;
-            font-size: 1.1em;
+            font-size: 1em;
         }
         
         .back-link:hover {
@@ -406,6 +453,196 @@
             transform: translateY(-2px);
             box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
             text-decoration: none;
+        }
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+            padding: 1.5rem;
+            max-width: 100%;
+        }
+        
+        .team-member {
+            background: #f8f9fc;
+            border-radius: 8px;
+            padding: 1rem;
+            border-left: 4px solid #2196f3;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .team-member:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(33, 150, 243, 0.2);
+        }
+        
+        .team-member.expanded {
+            grid-column: span 2;
+            background: linear-gradient(135deg, #f8f9fc 0%, #e3f2fd 100%);
+        }
+        
+        .member-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 8px;
+        }
+        
+        .member-name {
+            font-size: 1.1em;
+            font-weight: bold;
+            color: #1976d2;
+            margin-bottom: 4px;
+        }
+        
+        .expand-toggle {
+            background: #2196f3;
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 24px;
+            height: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-size: 0.8em;
+            transition: all 0.3s ease;
+        }
+        
+        .expand-toggle:hover {
+            background: #1976d2;
+            transform: scale(1.1);
+        }
+        
+        .expand-toggle.expanded {
+            transform: rotate(45deg);
+        }
+        
+        .member-role {
+            color: #666;
+            font-size: 0.8em;
+            margin-bottom: 8px;
+        }
+        
+        .member-bio {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+            margin-top: 8px;
+            color: #555;
+            font-size: 0.9em;
+            line-height: 1.4;
+        }
+        
+        .team-member.expanded .member-bio {
+            max-height: 200px;
+        }
+        
+        .workflow-step {
+            opacity: 0.7;
+            transform: translateY(20px) scale(0.95);
+            transition: all 0.5s ease;
+            padding: 1.25rem;
+            border-bottom: 1px solid #f0f0f0;
+        }
+        
+        .workflow-step.in-view {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+        }
+        
+        .workflow-step.expanded {
+            background: linear-gradient(135deg, #f8f9fc 0%, #e3f2fd 100%);
+            transform: scale(1.02);
+        }
+        /* Enhanced feedback box styling with red arrows and glow */
+        .feedback-section {
+            position: relative;
+            margin: 2rem 0;
+            padding: 2rem;
+            background: linear-gradient(135deg, #fff5f5 0%, #fed7d7 100%);
+            border-radius: 12px;
+            border: 3px solid #e53e3e;
+            box-shadow: 0 0 20px rgba(229, 62, 62, 0.3);
+            animation: feedbackGlow 2s ease-in-out infinite alternate;
+        }
+        
+        @keyframes feedbackGlow {
+            0% {
+                box-shadow: 0 0 20px rgba(229, 62, 62, 0.3);
+            }
+            100% {
+                box-shadow: 0 0 30px rgba(229, 62, 62, 0.6);
+            }
+        }
+        
+        .feedback-section::before,
+        .feedback-section::after {
+            content: "→";
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 2rem;
+            color: #e53e3e;
+            font-weight: bold;
+            animation: arrowPulse 1.5s ease-in-out infinite;
+        }
+        
+        .feedback-section::before {
+            left: -30px;
+        }
+        
+        .feedback-section::after {
+            right: -30px;
+            transform: translateY(-50%) rotate(180deg);
+        }
+        
+        @keyframes arrowPulse {
+            0%, 100% {
+                opacity: 0.7;
+                transform: translateY(-50%) scale(1);
+            }
+            50% {
+                opacity: 1;
+                transform: translateY(-50%) scale(1.2);
+            }
+        }
+        
+        .feedback-title {
+            text-align: center;
+            font-size: 1.5em;
+            color: #c53030;
+            margin-bottom: 1rem;
+            font-weight: bold;
+        }
+        
+        .feedback-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            justify-content: center;
+            margin-top: 1.5rem;
+        }
+        
+        .feedback-button {
+            background: #e53e3e;
+            color: white;
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 8px rgba(229, 62, 62, 0.3);
+        }
+        
+        .feedback-button:hover {
+            background: #c53030;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(229, 62, 62, 0.4);
         }
     </style>
 </head>
@@ -476,7 +713,10 @@
                 <div class="reasoning-box" onclick="toggleReasoning(this)">
                     <div class="reasoning-header">
                         How does the system detect and analyze these issues?
-                        <span class="expand-icon">+</span>
+                        <div class="section-toggle-container">
+                            <span>EXPAND</span>
+                            <span class="expand-icon">+</span>
+                        </div>
                     </div>
                     <div class="reasoning-details">
                         <strong>1. Continuous Data Integration:</strong> Real-time feeds from EDC, CTMS, and safety databases<br><br>
@@ -514,7 +754,10 @@
                 <div class="reasoning-box" onclick="toggleReasoning(this)">
                     <div class="reasoning-header">
                         How do multiple agents coordinate intervention planning?
-                        <span class="expand-icon">+</span>
+                        <div class="section-toggle-container">
+                            <span>EXPAND</span>
+                            <span class="expand-icon">+</span>
+                        </div>
                     </div>
                     <div class="reasoning-details">
                         <strong>1. Parallel Agent Activation:</strong> System activates specialized agents based on detected issues<br><br>
@@ -555,7 +798,10 @@
                 <div class="reasoning-box" onclick="toggleReasoning(this)">
                     <div class="reasoning-header">
                         How does the system optimize intervention timing and sequencing?
-                        <span class="expand-icon">+</span>
+                        <div class="section-toggle-container">
+                            <span>EXPAND</span>
+                            <span class="expand-icon">+</span>
+                        </div>
                     </div>
                     <div class="reasoning-details">
                         <strong>1. Critical Path Analysis:</strong> Identifies interventions that can be implemented immediately vs. those requiring approval<br><br>
@@ -589,7 +835,10 @@
                 <div class="reasoning-box" onclick="toggleReasoning(this)">
                     <div class="reasoning-header">
                         How does the system learn from intervention outcomes?
-                        <span class="expand-icon">+</span>
+                        <div class="section-toggle-container">
+                            <span>EXPAND</span>
+                            <span class="expand-icon">+</span>
+                        </div>
                     </div>
                     <div class="reasoning-details">
                         <strong>1. Outcome Tracking:</strong> Monitors actual vs. predicted intervention effectiveness<br><br>
@@ -599,6 +848,38 @@
                         <strong>5. Continuous Improvement:</strong> Iteratively improves intervention recommendations
                     </div>
                 </div>
+            </div>
+        </div>
+
+        <!-- Enhanced Feedback Section with Email Collection -->
+        <div class="feedback-section">
+            <div class="feedback-title">💬 Share Your Experience</div>
+            <p style="text-align: center; color: #c53030; margin-bottom: 1rem;">
+                Help us improve by sharing your thoughts on this demo
+            </p>
+            <div class="feedback-buttons">
+                <button class="feedback-button" onclick="giveFeedback(this, 'very-helpful')">Very Helpful</button>
+                <button class="feedback-button" onclick="giveFeedback(this, 'somewhat-helpful')">Somewhat Helpful</button>
+                <button class="feedback-button" onclick="giveFeedback(this, 'not-helpful')">Not Helpful</button>
+                <button class="feedback-button" onclick="giveFeedback(this, 'suggest-improvement')">Suggest Improvement</button>
+            </div>
+            
+            <!-- Email Collection Form -->
+            <div class="email-collection" id="emailCollection" style="display: none; margin-top: 2rem; padding-top: 2rem; border-top: 2px solid #e53e3e;">
+                <h4 style="color: #c53030; text-align: center; margin-bottom: 1rem;">📧 Get Demo Insights & Updates</h4>
+                <p style="text-align: center; color: #c53030; margin-bottom: 1.5rem; font-size: 0.9rem;">
+                    Share your email to receive detailed analysis reports and stay updated on AdjuvantIQ developments
+                </p>
+                <div style="display: flex; gap: 1rem; justify-content: center; align-items: center; flex-wrap: wrap;">
+                    <input type="email" id="feedbackEmail" placeholder="Enter your email address" 
+                           style="padding: 0.8rem 1rem; border: 2px solid #e53e3e; border-radius: 8px; font-size: 1rem; min-width: 250px;">
+                    <button onclick="submitEmailFeedback()" class="feedback-button" style="margin: 0;">
+                        📧 Submit & Get Report
+                    </button>
+                </div>
+                <p style="text-align: center; color: #666; font-size: 0.8rem; margin-top: 1rem;">
+                    We'll send you a comprehensive analysis report and keep you updated on AdjuvantIQ developments
+                </p>
             </div>
         </div>
 
@@ -616,22 +897,24 @@
         // Toggle reasoning boxes
         function toggleReasoning(element) {
             element.classList.toggle('expanded');
-            const details = element.querySelector('.reasoning-details');
             const icon = element.querySelector('.expand-icon');
+            const textSpan = element.querySelector('.section-toggle-container span:first-child');
             
             if (element.classList.contains('expanded')) {
-                details.style.display = 'block';
-                icon.textContent = '×';
+                icon.textContent = '−';
+                textSpan.textContent = 'COLLAPSE';
             } else {
-                details.style.display = 'none';
                 icon.textContent = '+';
+                textSpan.textContent = 'EXPAND';
             }
         }
         
-        // Feedback handling
-        function giveFeedback(button, response) {
-            button.style.background = '#4caf50';
-            button.textContent = '✓ ' + button.textContent.replace('✓ ', '');
+        // Enhanced feedback functionality with logging
+        function giveFeedback(button, feedbackType) {
+            // Visual feedback
+            button.style.background = 'linear-gradient(135deg, #4caf50 0%, #45a049 100%)';
+            button.style.transform = 'scale(1.05)';
+            button.textContent = '✓ Thank you!';
             
             // Disable other buttons in the same group
             const siblings = button.parentElement.querySelectorAll('button');
@@ -642,8 +925,95 @@
                 }
             });
             
-            showToast('Thanks for the feedback!');
-            console.log('Feedback:', response);
+            // Log feedback with timestamp and page info
+            const feedbackData = {
+                type: feedbackType,
+                page: 'adaptive-modifications',
+                timestamp: new Date().toISOString(),
+                userAgent: navigator.userAgent,
+                url: window.location.href
+            };
+            
+            console.log('Feedback logged:', feedbackData);
+            
+            // Store feedback in localStorage for retrieval
+            const existingFeedback = JSON.parse(localStorage.getItem('adjuvantiq_feedback') || '[]');
+            existingFeedback.push(feedbackData);
+            localStorage.setItem('adjuvantiq_feedback', JSON.stringify(existingFeedback));
+            
+            showToast('Thank you for your feedback! We appreciate your input.');
+            
+            // Show email collection form after feedback
+            setTimeout(() => {
+                document.getElementById('emailCollection').style.display = 'block';
+            }, 1000);
+            
+            // Reset button after delay
+            setTimeout(() => {
+                button.style.background = '';
+                button.style.transform = '';
+                button.textContent = button.getAttribute('data-original-text') || 'Feedback';
+            }, 3000);
+        }
+        
+        // Submit email feedback
+        function submitEmailFeedback() {
+            const email = document.getElementById('feedbackEmail').value.trim();
+            
+            if (!email || !email.includes('@')) {
+                showToast('Please enter a valid email address');
+                return;
+            }
+            
+            // Get all feedback for this session
+            const allFeedback = JSON.parse(localStorage.getItem('adjuvantiq_feedback') || '[]');
+            
+            // Create comprehensive feedback report
+            const feedbackReport = {
+                email: email,
+                timestamp: new Date().toISOString(),
+                page: 'adaptive-modifications',
+                feedback: allFeedback,
+                sessionId: generateSessionId()
+            };
+            
+            console.log('Feedback report with email:', feedbackReport);
+            
+            // Store email with feedback
+            localStorage.setItem('adjuvantiq_feedback_email', email);
+            localStorage.setItem('adjuvantiq_feedback_report', JSON.stringify(feedbackReport));
+            
+            // Show success message
+            showToast('Thank you! We\'ll send you detailed insights and updates.');
+            
+            // Hide email form
+            document.getElementById('emailCollection').style.display = 'none';
+            
+            // Clear email input
+            document.getElementById('feedbackEmail').value = '';
+        }
+        
+        // Generate session ID for tracking
+        function generateSessionId() {
+            return 'session_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9);
+        }
+        
+        // Function to retrieve all feedback (for admin use)
+        function retrieveAllFeedback() {
+            const feedback = localStorage.getItem('adjuvantiq_feedback');
+            const email = localStorage.getItem('adjuvantiq_feedback_email');
+            const report = localStorage.getItem('adjuvantiq_feedback_report');
+            
+            console.log('=== FEEDBACK RETRIEVAL ===');
+            console.log('All Feedback:', JSON.parse(feedback || '[]'));
+            console.log('Email:', email);
+            console.log('Complete Report:', JSON.parse(report || '{}'));
+            
+            return {
+                feedback: JSON.parse(feedback || '[]'),
+                email: email,
+                report: JSON.parse(report || '{}')
+            };
         }
         
         // Show toast notifications
@@ -688,10 +1058,55 @@
             // In the future, this could link to specific PDFs for each phase
         }
         
-        // Initialize when page loads
+        // Toggle member details
+        function toggleMemberDetails(button) {
+            const member = button.closest('.team-member');
+            const bio = member.querySelector('.member-bio');
+            const expandToggle = button;
+
+            if (bio.style.maxHeight === '0px' || bio.style.maxHeight === '') {
+                bio.style.maxHeight = '200px'; // Show full bio
+                expandToggle.textContent = '▲';
+                expandToggle.classList.add('expanded');
+                member.classList.add('expanded');
+            } else {
+                bio.style.maxHeight = '0px'; // Hide full bio
+                expandToggle.textContent = '▼';
+                expandToggle.classList.remove('expanded');
+                member.classList.remove('expanded');
+            }
+        }
+        
+        // Auto-collapse sections when scrolling
+        let autoCollapseTimer;
+        
+        function setupAutoCollapse() {
+            // Auto-collapse team members after 3 seconds of inactivity
+            document.addEventListener('scroll', () => {
+                clearTimeout(autoCollapseTimer);
+                autoCollapseTimer = setTimeout(() => {
+                    autoCollapseAll();
+                }, 3000);
+            });
+        }
+        
+        function autoCollapseAll() {
+            // Collapse all expanded team members
+            document.querySelectorAll('.team-member.expanded').forEach(member => {
+                const bio = member.querySelector('.member-bio');
+                const expandToggle = member.querySelector('.expand-toggle');
+                if (bio && expandToggle) {
+                    bio.style.maxHeight = '0px';
+                    expandToggle.textContent = '▼';
+                    expandToggle.classList.remove('expanded');
+                    member.classList.remove('expanded');
+                }
+            });
+        }
+        
+        // Initialize auto-collapse
         document.addEventListener('DOMContentLoaded', function() {
-            console.log('Adaptive trial management demo loaded successfully');
-            showToast('Welcome! Explore how AI optimizes trial execution in real-time.');
+            setupAutoCollapse();
         });
     </script>
 </body>
