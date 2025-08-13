@@ -961,326 +961,325 @@ collections:
 
   - name: "demo_components"
     label: "Demo Component Styling"
-    file: "content/demo-components.json"
-    fields:
-      - label: "AI Reasoning Boxes"
-        name: "reasoning_boxes"
-        widget: "object"
+    files:
+      - label: "Demo Component Styling"
+        name: "demo_components"
+        file: "content/demo-components.json"
         fields:
-          - {label: "Background Color", name: "background", widget: "string", default: "#fff3e0"}
-          - {label: "Border", name: "border", widget: "string", default: "2px solid #ff9800"}
-          - {label: "Border Left", name: "border_left", widget: "string", default: "5px solid #ff9800"}
-          - {label: "Padding", name: "padding", widget: "string", default: "20px"}
-          - {label: "Margin", name: "margin", widget: "string", default: "15px 0"}
-          - {label: "Border Radius", name: "border_radius", widget: "string", default: "8px"}
-          - {label: "Cursor", name: "cursor", widget: "string", default: "pointer"}
-          - {label: "Transition", name: "transition", widget: "string", default: "all 0.3s ease"}
-          - {label: "Position", name: "position", widget: "string", default: "relative"}
-          - label: "Hover Effects"
-            name: "hover_effects"
+          - label: "AI Reasoning Boxes"
+            name: "reasoning_boxes"
             widget: "object"
             fields:
-              - {label: "Box Shadow", name: "box_shadow", widget: "string", default: "0 4px 12px rgba(255,152,0,0.2)"}
-          - label: "Expanded State"
-            name: "expanded"
-            widget: "object"
-            fields:
-              - {label: "Background", name: "background", widget: "string", default: "#fff8e1"}
-          - label: "Typography"
-            name: "typography"
-            widget: "object"
-            fields:
-              - label: "Header"
-                name: "header"
-                widget: "object"
-                fields:
-                  - {label: "Font Weight", name: "font_weight", widget: "string", default: "bold"}
-                  - {label: "Color", name: "color", widget: "string", default: "#e65100"}
-                  - {label: "Display", name: "display", widget: "string", default: "flex"}
-                  - {label: "Justify Content", name: "justify_content", widget: "string", default: "space-between"}
-                  - {label: "Align Items", name: "align_items", widget: "string", default: "center"}
-              - label: "Expand Icon"
-                name: "expand_icon"
-                widget: "object"
-                fields:
-                  - {label: "Font Size", name: "font_size", widget: "string", default: "1.2em"}
-                  - {label: "Margin Left", name: "margin_left", widget: "string", default: "auto"}
-                  - {label: "Transition", name: "transition", widget: "string", default: "transform 0.3s ease"}
-                  - {label: "Expanded Transform", name: "expanded_transform", widget: "string", default: "rotate(45deg)"}
-              - label: "Details"
-                name: "details"
-                widget: "object"
-                fields:
-                  - {label: "Margin Top", name: "margin_top", widget: "string", default: "15px"}
-                  - {label: "Display", name: "display", widget: "string", default: "none"}
-                  - {label: "Expanded Display", name: "expanded_display", widget: "string", default: "block"}
-          - label: "Before Content"
-            name: "before_content"
-            widget: "object"
-            fields:
-              - {label: "Content", name: "content", widget: "string", default: "\"🔧 AI REASONING\""}
-              - {label: "Position", name: "position", widget: "string", default: "absolute"}
-              - {label: "Top", name: "top", widget: "string", default: "-10px"}
-              - {label: "Left", name: "left", widget: "string", default: "15px"}
-              - {label: "Background", name: "background", widget: "string", default: "#ff9800"}
-              - {label: "Color", name: "color", widget: "string", default: "white"}
-              - {label: "Padding", name: "padding", widget: "string", default: "4px 8px"}
-              - {label: "Font Size", name: "font_size", widget: "string", default: "0.8em"}
-              - {label: "Font Weight", name: "font_weight", widget: "string", default: "bold"}
-              - {label: "Border Radius", name: "border_radius", widget: "string", default: "3px"}
-
-      - label: "Feedback System"
-        name: "feedback_system"
-        widget: "object"
-        fields:
-          - {label: "Position", name: "position", widget: "string", default: "relative"}
-          - {label: "Margin", name: "margin", widget: "string", default: "2rem 0"}
-          - {label: "Padding", name: "padding", widget: "string", default: "2rem"}
-          - {label: "Background", name: "background", widget: "string", default: "linear-gradient(135deg, #fff5f5 0%, #fed7d7 100%)"}
-          - {label: "Border Radius", name: "border_radius", widget: "string", default: "12px"}
-          - {label: "Border", name: "border", widget: "string", default: "3px solid #e53e3e"}
-          - {label: "Box Shadow", name: "box_shadow", widget: "string", default: "0 0 20px rgba(229, 62, 62, 0.3)"}
-          - {label: "Animation", name: "animation", widget: "string", default: "feedbackGlow 2s ease-in-out infinite alternate"}
-          - label: "Typography"
-            name: "typography"
-            widget: "object"
-            fields:
-              - label: "Title"
-                name: "title"
-                widget: "object"
-                fields:
-                  - {label: "Text Align", name: "text_align", widget: "string", default: "center"}
-                  - {label: "Font Size", name: "font_size", widget: "string", default: "1.5em"}
-                  - {label: "Color", name: "color", widget: "string", default: "#c53030"}
-                  - {label: "Margin Bottom", name: "margin_bottom", widget: "string", default: "1rem"}
-                  - {label: "Font Weight", name: "font_weight", widget: "string", default: "bold"}
-          - label: "Buttons"
-            name: "buttons"
-            widget: "object"
-            fields:
-              - {label: "Display", name: "display", widget: "string", default: "flex"}
-              - {label: "Flex Wrap", name: "flex_wrap", widget: "string", default: "wrap"}
-              - {label: "Gap", name: "gap", widget: "string", default: "1rem"}
-              - {label: "Justify Content", name: "justify_content", widget: "string", default: "center"}
-              - {label: "Margin Top", name: "margin_top", widget: "string", default: "1.5rem"}
-          - label: "Button"
-            name: "button"
-            widget: "object"
-            fields:
-              - {label: "Background", name: "background", widget: "string", default: "#e53e3e"}
-              - {label: "Color", name: "color", widget: "string", default: "white"}
-              - {label: "Border", name: "border", widget: "string", default: "none"}
-              - {label: "Padding", name: "padding", widget: "string", default: "0.75rem 1.5rem"}
+              - {label: "Background Color", name: "background", widget: "string", default: "#fff3e0"}
+              - {label: "Border", name: "border", widget: "string", default: "2px solid #ff9800"}
+              - {label: "Border Left", name: "border_left", widget: "string", default: "5px solid #ff9800"}
+              - {label: "Padding", name: "padding", widget: "string", default: "20px"}
+              - {label: "Margin", name: "margin", widget: "string", default: "15px 0"}
               - {label: "Border Radius", name: "border_radius", widget: "string", default: "8px"}
-              - {label: "Font Weight", name: "font_weight", widget: "string", default: "600"}
               - {label: "Cursor", name: "cursor", widget: "string", default: "pointer"}
               - {label: "Transition", name: "transition", widget: "string", default: "all 0.3s ease"}
-              - {label: "Box Shadow", name: "box_shadow", widget: "string", default: "0 4px 8px rgba(229, 62, 62, 0.3)"}
-              - label: "Hover"
-                name: "hover"
+              - {label: "Position", name: "position", widget: "string", default: "relative"}
+              - label: "Hover Effects"
+                name: "hover_effects"
                 widget: "object"
                 fields:
-                  - {label: "Background", name: "background", widget: "string", default: "#c53030"}
-                  - {label: "Transform", name: "transform", widget: "string", default: "translateY(-2px)"}
-                  - {label: "Box Shadow", name: "box_shadow", widget: "string", default: "0 6px 12px rgba(229, 62, 62, 0.4)"}
-          - label: "Arrows"
-            name: "arrows"
-            widget: "object"
-            fields:
-              - {label: "Content", name: "content", widget: "string", default: "\"→\""}
-              - {label: "Position", name: "position", widget: "string", default: "absolute"}
-              - {label: "Top", name: "top", widget: "string", default: "50%"}
-              - {label: "Transform", name: "transform", widget: "string", default: "translateY(-50%)"}
-              - {label: "Font Size", name: "font_size", widget: "string", default: "2rem"}
-              - {label: "Color", name: "color", widget: "string", default: "#e53e3e"}
-              - {label: "Font Weight", name: "font_weight", widget: "string", default: "bold"}
-              - {label: "Animation", name: "animation", widget: "string", default: "arrowPulse 1.5s ease-in-out infinite"}
-              - label: "Before"
-                name: "before"
-                widget: "object"
-                fields:
-                  - {label: "Left", name: "left", widget: "string", default: "-30px"}
-              - label: "After"
-                name: "after"
-                widget: "object"
-                fields:
-                  - {label: "Right", name: "right", widget: "string", default: "-30px"}
-                  - {label: "Transform", name: "transform", widget: "string", default: "translateY(-50%) rotate(180deg)"}
-
-      - label: "Progressive Disclosure"
-        name: "progressive_disclosure"
-        widget: "object"
-        fields:
-          - label: "Workflow Step"
-            name: "workflow_step"
-            widget: "object"
-            fields:
-              - label: "Initial State"
-                name: "initial_state"
-                widget: "object"
-                fields:
-                  - {label: "Opacity", name: "opacity", widget: "string", default: "0.7"}
-                  - {label: "Transform", name: "transform", widget: "string", default: "translateY(20px) scale(0.95)"}
-                  - {label: "Transition", name: "transition", widget: "string", default: "all 0.5s ease"}
-              - label: "In View State"
-                name: "in_view_state"
-                widget: "object"
-                fields:
-                  - {label: "Opacity", name: "opacity", widget: "string", default: "1"}
-                  - {label: "Transform", name: "transform", widget: "string", default: "translateY(0) scale(1)"}
+                  - {label: "Box Shadow", name: "box_shadow", widget: "string", default: "0 4px 12px rgba(255,152,0,0.2)"}
               - label: "Expanded State"
-                name: "expanded_state"
+                name: "expanded"
                 widget: "object"
                 fields:
-                  - {label: "Background", name: "background", widget: "string", default: "linear-gradient(135deg, #f8f9fc 0%, #e3f2fd 100%)"}
-                  - {label: "Transform", name: "transform", widget: "string", default: "scale(1.02)"}
-          - label: "Phase Card"
-            name: "phase_card"
-            widget: "object"
-            fields:
-              - label: "Initial State"
-                name: "initial_state"
-                widget: "object"
-                fields:
-                  - {label: "Opacity", name: "opacity", widget: "string", default: "0.7"}
-                  - {label: "Transform", name: "transform", widget: "string", default: "translateY(20px) scale(0.95)"}
-                  - {label: "Transition", name: "transition", widget: "string", default: "all 0.5s ease"}
-              - label: "In View State"
-                name: "in_view_state"
-                widget: "object"
-                fields:
-                  - {label: "Opacity", name: "opacity", widget: "string", default: "1"}
-                  - {label: "Transform", name: "transform", widget: "string", default: "translateY(0) scale(1)"}
-              - label: "Expanded State"
-                name: "expanded_state"
-                widget: "object"
-                fields:
-                  - {label: "Grid Column", name: "grid_column", widget: "string", default: "span 2"}
-                  - {label: "Background", name: "background", widget: "string", default: "linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%)"}
-                  - {label: "Transform", name: "transform", widget: "string", default: "scale(1.02)"}
-
-      - label: "Collapsible Sections"
-        name: "collapsible_sections"
-        widget: "object"
-        fields:
-          - {label: "Margin", name: "margin", widget: "string", default: "2rem 0"}
-          - {label: "Border Radius", name: "border_radius", widget: "string", default: "12px"}
-          - {label: "Box Shadow", name: "box_shadow", widget: "string", default: "0 4px 6px rgba(0,0,0,0.1)"}
-          - {label: "Overflow", name: "overflow", widget: "string", default: "hidden"}
-          - {label: "Background", name: "background", widget: "string", default: "white"}
-          - label: "Header"
-            name: "header"
-            widget: "object"
-            fields:
-              - {label: "Background", name: "background", widget: "string", default: "#f8f9fc"}
-              - {label: "Padding", name: "padding", widget: "string", default: "1.5rem"}
-              - {label: "Border Bottom", name: "border_bottom", widget: "string", default: "1px solid #e0e6ed"}
-              - {label: "Cursor", name: "cursor", widget: "string", default: "pointer"}
-              - {label: "Display", name: "display", widget: "string", default: "flex"}
-              - {label: "Justify Content", name: "justify_content", widget: "string", default: "space-between"}
-              - {label: "Align Items", name: "align_items", widget: "string", default: "center"}
-              - {label: "Transition", name: "transition", widget: "string", default: "background 0.3s ease"}
-              - label: "Hover"
-                name: "hover"
-                widget: "object"
-                fields:
-                  - {label: "Background", name: "background", widget: "string", default: "#e3f2fd"}
+                  - {label: "Background", name: "background", widget: "string", default: "#fff8e1"}
               - label: "Typography"
                 name: "typography"
                 widget: "object"
                 fields:
-                  - {label: "Font Size", name: "font_size", widget: "string", default: "1.5em"}
-                  - {label: "Color", name: "color", widget: "string", default: "#333"}
-                  - {label: "Margin", name: "margin", widget: "string", default: "0"}
-          - label: "Toggle Container"
-            name: "toggle_container"
-            widget: "object"
-            fields:
-              - {label: "Display", name: "display", widget: "string", default: "flex"}
-              - {label: "Align Items", name: "align_items", widget: "string", default: "center"}
-              - {label: "Gap", name: "gap", widget: "string", default: "0.5rem"}
-              - {label: "Font Size", name: "font_size", widget: "string", default: "0.85em"}
-              - {label: "Color", name: "color", widget: "string", default: "#2196f3"}
-              - {label: "Font Weight", name: "font_weight", widget: "string", default: "500"}
-          - label: "Toggle"
-            name: "toggle"
-            widget: "object"
-            fields:
-              - {label: "Background", name: "background", widget: "string", default: "#2196f3"}
-              - {label: "Color", name: "color", widget: "string", default: "white"}
-              - {label: "Border", name: "border", widget: "string", default: "none"}
-              - {label: "Border Radius", name: "border_radius", widget: "string", default: "50%"}
-              - {label: "Width", name: "width", widget: "string", default: "32px"}
-              - {label: "Height", name: "height", widget: "string", default: "32px"}
-              - {label: "Display", name: "display", widget: "string", default: "flex"}
-              - {label: "Align Items", name: "align_items", widget: "string", default: "center"}
-              - {label: "Justify Content", name: "justify_content", widget: "string", default: "center"}
-              - {label: "Cursor", name: "cursor", widget: "string", default: "pointer"}
-              - {label: "Font Size", name: "font_size", widget: "string", default: "1em"}
-              - {label: "Transition", name: "transition", widget: "string", default: "all 0.3s ease"}
-              - label: "Hover"
-                name: "hover"
+                  - label: "Header"
+                    name: "header"
+                    widget: "object"
+                    fields:
+                      - {label: "Font Weight", name: "font_weight", widget: "string", default: "bold"}
+                      - {label: "Color", name: "color", widget: "string", default: "#e65100"}
+                      - {label: "Display", name: "display", widget: "string", default: "flex"}
+                      - {label: "Justify Content", name: "justify_content", widget: "string", default: "space-between"}
+                      - {label: "Align Items", name: "align_items", widget: "string", default: "center"}
+                  - label: "Expand Icon"
+                    name: "expand_icon"
+                    widget: "object"
+                    fields:
+                      - {label: "Font Size", name: "font_size", widget: "string", default: "1.2em"}
+                      - {label: "Margin Left", name: "margin_left", widget: "string", default: "auto"}
+                      - {label: "Transition", name: "transition", widget: "string", default: "transform 0.3s ease"}
+                      - {label: "Expanded Transform", name: "expanded_transform", widget: "string", default: "rotate(45deg)"}
+                  - label: "Details"
+                    name: "details"
+                    widget: "object"
+                    fields:
+                      - {label: "Margin Top", name: "margin_top", widget: "string", default: "15px"}
+                      - {label: "Display", name: "display", widget: "string", default: "none"}
+                      - {label: "Expanded Display", name: "expanded_display", widget: "string", default: "block"}
+              - label: "Before Content"
+                name: "before_content"
                 widget: "object"
                 fields:
-                  - {label: "Background", name: "background", widget: "string", default: "#1976d2"}
-                  - {label: "Transform", name: "transform", widget: "string", default: "scale(1.1)"}
-              - label: "Collapsed"
-                name: "collapsed"
-                widget: "object"
-                fields:
-                  - {label: "Transform", name: "transform", widget: "string", default: "rotate(180deg)"}
-          - label: "Content"
-            name: "content"
+                  - {label: "Content", name: "content", widget: "string", default: "🔧 AI REASONING"}
+                  - {label: "Position", name: "position", widget: "string", default: "absolute"}
+                  - {label: "Top", name: "top", widget: "string", default: "-10px"}
+                  - {label: "Left", name: "left", widget: "string", default: "15px"}
+                  - {label: "Background", name: "background", widget: "string", default: "#ff9800"}
+                  - {label: "Color", name: "color", widget: "string", default: "white"}
+                  - {label: "Padding", name: "padding", widget: "string", default: "4px 8px"}
+                  - {label: "Font Size", name: "font_size", widget: "string", default: "0.8em"}
+                  - {label: "Font Weight", name: "font_weight", widget: "string", default: "bold"}
+                  - {label: "Border Radius", name: "border_radius", widget: "string", default: "3px"}
+          - label: "Feedback System"
+            name: "feedback_system"
             widget: "object"
             fields:
-              - {label: "Max Height", name: "max_height", widget: "string", default: "2000px"}
+              - {label: "Position", name: "position", widget: "string", default: "relative"}
+              - {label: "Margin", name: "margin", widget: "string", default: "2rem 0"}
+              - {label: "Padding", name: "padding", widget: "string", default: "2rem"}
+              - {label: "Background", name: "background", widget: "string", default: "linear-gradient(135deg, #fff5f5 0%, #fed7d7 100%)"}
+              - {label: "Border Radius", name: "border_radius", widget: "string", default: "12px"}
+              - {label: "Border", name: "border", widget: "string", default: "3px solid #e53e3e"}
+              - {label: "Box Shadow", name: "box_shadow", widget: "string", default: "0 0 20px rgba(229, 62, 62, 0.3)"}
+              - {label: "Animation", name: "animation", widget: "string", default: "feedbackGlow 2s ease-in-out infinite alternate"}
+              - label: "Typography"
+                name: "typography"
+                widget: "object"
+                fields:
+                  - label: "Title"
+                    name: "title"
+                    widget: "object"
+                    fields:
+                      - {label: "Text Align", name: "text_align", widget: "string", default: "center"}
+                      - {label: "Font Size", name: "font_size", widget: "string", default: "1.5em"}
+                      - {label: "Color", name: "color", widget: "string", default: "#c53030"}
+                      - {label: "Margin Bottom", name: "margin_bottom", widget: "string", default: "1rem"}
+                      - {label: "Font Weight", name: "font_weight", widget: "string", default: "bold"}
+              - label: "Buttons"
+                name: "buttons"
+                widget: "object"
+                fields:
+                  - {label: "Display", name: "display", widget: "string", default: "flex"}
+                  - {label: "Flex Wrap", name: "flex_wrap", widget: "string", default: "wrap"}
+                  - {label: "Gap", name: "gap", widget: "string", default: "1rem"}
+                  - {label: "Justify Content", name: "justify_content", widget: "string", default: "center"}
+                  - {label: "Margin Top", name: "margin_top", widget: "string", default: "1.5rem"}
+              - label: "Button"
+                name: "button"
+                widget: "object"
+                fields:
+                  - {label: "Background", name: "background", widget: "string", default: "#e53e3e"}
+                  - {label: "Color", name: "color", widget: "string", default: "white"}
+                  - {label: "Border", name: "border", widget: "string", default: "none"}
+                  - {label: "Padding", name: "padding", widget: "string", default: "0.75rem 1.5rem"}
+                  - {label: "Border Radius", name: "border_radius", widget: "string", default: "8px"}
+                  - {label: "Font Weight", name: "font_weight", widget: "string", default: "600"}
+                  - {label: "Cursor", name: "cursor", widget: "string", default: "pointer"}
+                  - {label: "Transition", name: "transition", widget: "string", default: "all 0.3s ease"}
+                  - {label: "Box Shadow", name: "box_shadow", widget: "string", default: "0 4px 8px rgba(229, 62, 62, 0.3)"}
+                  - label: "Hover"
+                    name: "hover"
+                    widget: "object"
+                    fields:
+                      - {label: "Background", name: "background", widget: "string", default: "#c53030"}
+                      - {label: "Transform", name: "transform", widget: "string", default: "translateY(-2px)"}
+                      - {label: "Box Shadow", name: "box_shadow", widget: "string", default: "0 6px 12px rgba(229, 62, 62, 0.4)"}
+              - label: "Arrows"
+                name: "arrows"
+                widget: "object"
+                fields:
+                  - {label: "Content", name: "content", widget: "string", default: "→"}
+                  - {label: "Position", name: "position", widget: "string", default: "absolute"}
+                  - {label: "Top", name: "top", widget: "string", default: "50%"}
+                  - {label: "Transform", name: "transform", widget: "string", default: "translateY(-50%)"}
+                  - {label: "Font Size", name: "font_size", widget: "string", default: "2rem"}
+                  - {label: "Color", name: "color", widget: "string", default: "#e53e3e"}
+                  - {label: "Font Weight", name: "font_weight", widget: "string", default: "bold"}
+                  - {label: "Animation", name: "animation", widget: "string", default: "arrowPulse 1.5s ease-in-out infinite"}
+                  - label: "Before"
+                    name: "before"
+                    widget: "object"
+                    fields:
+                      - {label: "Left", name: "left", widget: "string", default: "-30px"}
+                  - label: "After"
+                    name: "after"
+                    widget: "object"
+                    fields:
+                      - {label: "Right", name: "right", widget: "string", default: "-30px"}
+                      - {label: "Transform", name: "transform", widget: "string", default: "translateY(-50%) rotate(180deg)"}
+          - label: "Progressive Disclosure"
+            name: "progressive_disclosure"
+            widget: "object"
+            fields:
+              - label: "Workflow Step"
+                name: "workflow_step"
+                widget: "object"
+                fields:
+                  - label: "Initial State"
+                    name: "initial_state"
+                    widget: "object"
+                    fields:
+                      - {label: "Opacity", name: "opacity", widget: "string", default: "0.7"}
+                      - {label: "Transform", name: "transform", widget: "string", default: "translateY(20px) scale(0.95)"}
+                      - {label: "Transition", name: "transition", widget: "string", default: "all 0.5s ease"}
+                  - label: "In View State"
+                    name: "in_view_state"
+                    widget: "object"
+                    fields:
+                      - {label: "Opacity", name: "opacity", widget: "string", default: "1"}
+                      - {label: "Transform", name: "transform", widget: "string", default: "translateY(0) scale(1)"}
+                  - label: "Expanded State"
+                    name: "expanded_state"
+                    widget: "object"
+                    fields:
+                      - {label: "Background", name: "background", widget: "string", default: "linear-gradient(135deg, #f8f9fc 0%, #e3f2fd 100%)"}
+                      - {label: "Transform", name: "transform", widget: "string", default: "scale(1.02)"}
+              - label: "Phase Card"
+                name: "phase_card"
+                widget: "object"
+                fields:
+                  - label: "Initial State"
+                    name: "initial_state"
+                    widget: "object"
+                    fields:
+                      - {label: "Opacity", name: "opacity", widget: "string", default: "0.7"}
+                      - {label: "Transform", name: "transform", widget: "string", default: "translateY(20px) scale(0.95)"}
+                      - {label: "Transition", name: "transition", widget: "string", default: "all 0.5s ease"}
+                  - label: "In View State"
+                    name: "in_view_state"
+                    widget: "object"
+                    fields:
+                      - {label: "Opacity", name: "opacity", widget: "string", default: "1"}
+                      - {label: "Transform", name: "transform", widget: "string", default: "translateY(0) scale(1)"}
+                  - label: "Expanded State"
+                    name: "expanded_state"
+                    widget: "object"
+                    fields:
+                      - {label: "Grid Column", name: "grid_column", widget: "string", default: "span 2"}
+                      - {label: "Background", name: "background", widget: "string", default: "linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%)"}
+                      - {label: "Transform", name: "transform", widget: "string", default: "scale(1.02)"}
+          - label: "Collapsible Sections"
+            name: "collapsible_sections"
+            widget: "object"
+            fields:
+              - {label: "Margin", name: "margin", widget: "string", default: "2rem 0"}
+              - {label: "Border Radius", name: "border_radius", widget: "string", default: "12px"}
+              - {label: "Box Shadow", name: "box_shadow", widget: "string", default: "0 4px 6px rgba(0,0,0,0.1)"}
               - {label: "Overflow", name: "overflow", widget: "string", default: "hidden"}
-              - {label: "Transition", name: "transition", widget: "string", default: "max-height 0.5s ease"}
-              - label: "Collapsed"
-                name: "collapsed"
+              - {label: "Background", name: "background", widget: "string", default: "white"}
+              - label: "Header"
+                name: "header"
                 widget: "object"
                 fields:
-                  - {label: "Max Height", name: "max_height", widget: "string", default: "0"}
-          - label: "List"
-            name: "list"
+                  - {label: "Background", name: "background", widget: "string", default: "#f8f9fc"}
+                  - {label: "Padding", name: "padding", widget: "string", default: "1.5rem"}
+                  - {label: "Border Bottom", name: "border_bottom", widget: "string", default: "1px solid #e0e6ed"}
+                  - {label: "Cursor", name: "cursor", widget: "string", default: "pointer"}
+                  - {label: "Display", name: "display", widget: "string", default: "flex"}
+                  - {label: "Justify Content", name: "justify_content", widget: "string", default: "space-between"}
+                  - {label: "Align Items", name: "align_items", widget: "string", default: "center"}
+                  - {label: "Transition", name: "transition", widget: "string", default: "background 0.3s ease"}
+                  - label: "Hover"
+                    name: "hover"
+                    widget: "object"
+                    fields:
+                      - {label: "Background", name: "background", widget: "string", default: "#e3f2fd"}
+                  - label: "Typography"
+                    name: "typography"
+                    widget: "object"
+                    fields:
+                      - {label: "Font Size", name: "font_size", widget: "string", default: "1.5em"}
+                      - {label: "Color", name: "color", widget: "string", default: "#333"}
+                      - {label: "Margin", name: "margin", widget: "string", default: "0"}
+              - label: "Toggle Container"
+                name: "toggle_container"
+                widget: "object"
+                fields:
+                  - {label: "Display", name: "display", widget: "string", default: "flex"}
+                  - {label: "Align Items", name: "align_items", widget: "string", default: "center"}
+                  - {label: "Gap", name: "gap", widget: "string", default: "0.5rem"}
+                  - {label: "Font Size", name: "font_size", widget: "string", default: "0.85em"}
+                  - {label: "Color", name: "color", widget: "string", default: "#2196f3"}
+                  - {label: "Font Weight", name: "font_weight", widget: "string", default: "500"}
+              - label: "Toggle"
+                name: "toggle"
+                widget: "object"
+                fields:
+                  - {label: "Background", name: "background", widget: "string", default: "#2196f3"}
+                  - {label: "Color", name: "color", widget: "string", default: "white"}
+                  - {label: "Border", name: "border", widget: "string", default: "none"}
+                  - {label: "Border Radius", name: "border_radius", widget: "string", default: "50%"}
+                  - {label: "Width", name: "width", widget: "string", default: "32px"}
+                  - {label: "Height", name: "height", widget: "string", default: "32px"}
+                  - {label: "Display", name: "display", widget: "string", default: "flex"}
+                  - {label: "Align Items", name: "align_items", widget: "string", default: "center"}
+                  - {label: "Justify Content", name: "justify_content", widget: "string", default: "center"}
+                  - {label: "Cursor", name: "cursor", widget: "string", default: "pointer"}
+                  - {label: "Font Size", name: "font_size", widget: "string", default: "1em"}
+                  - {label: "Transition", name: "transition", widget: "string", default: "all 0.3s ease"}
+                  - label: "Hover"
+                    name: "hover"
+                    widget: "object"
+                    fields:
+                      - {label: "Background", name: "background", widget: "string", default: "#1976d2"}
+                      - {label: "Transform", name: "transform", widget: "string", default: "scale(1.1)"}
+                  - label: "Collapsed"
+                    name: "collapsed"
+                    widget: "object"
+                    fields:
+                      - {label: "Transform", name: "transform", widget: "string", default: "rotate(180deg)"}
+              - label: "Content"
+                name: "content"
+                widget: "object"
+                fields:
+                  - {label: "Max Height", name: "max_height", widget: "string", default: "2000px"}
+                  - {label: "Overflow", name: "overflow", widget: "string", default: "hidden"}
+                  - {label: "Transition", name: "transition", widget: "string", default: "max-height 0.5s ease"}
+                  - label: "Collapsed"
+                    name: "collapsed"
+                    widget: "object"
+                    fields:
+                      - {label: "Max Height", name: "max_height", widget: "string", default: "0"}
+              - label: "List"
+                name: "list"
+                widget: "object"
+                fields:
+                  - {label: "Padding", name: "padding", widget: "string", default: "1rem"}
+                  - {label: "Background", name: "background", widget: "string", default: "#f8f9fc"}
+                  - {label: "Border Top", name: "border_top", widget: "string", default: "1px solid #e0e6ed"}
+          - label: "Animations"
+            name: "animations"
             widget: "object"
             fields:
-              - {label: "Padding", name: "padding", widget: "string", default: "1rem"}
-              - {label: "Background", name: "background", widget: "string", default: "#f8f9fc"}
-              - {label: "Border Top", name: "border_top", widget: "string", default: "1px solid #e0e6ed"}
-
-      - label: "Animations"
-        name: "animations"
-        widget: "object"
-        fields:
-          - label: "Feedback Glow"
-            name: "feedbackGlow"
-            widget: "object"
-            fields:
-              - label: "0%"
-                name: "0%"
+              - label: "Feedback Glow"
+                name: "feedbackGlow"
                 widget: "object"
                 fields:
-                  - {label: "Box Shadow", name: "box_shadow", widget: "string", default: "0 0 20px rgba(229, 62, 62, 0.3)"}
-              - label: "100%"
-                name: "100%"
+                  - label: "0%"
+                    name: "0%"
+                    widget: "object"
+                    fields:
+                      - {label: "Box Shadow", name: "box_shadow", widget: "string", default: "0 0 20px rgba(229, 62, 62, 0.3)"}
+                  - label: "100%"
+                    name: "100%"
+                    widget: "object"
+                    fields:
+                      - {label: "Box Shadow", name: "box_shadow", widget: "string", default: "0 0 30px rgba(229, 62, 62, 0.6)"}
+              - label: "Arrow Pulse"
+                name: "arrowPulse"
                 widget: "object"
                 fields:
-                  - {label: "Box Shadow", name: "box_shadow", widget: "string", default: "0 0 30px rgba(229, 62, 62, 0.6)"}
-          - label: "Arrow Pulse"
-            name: "arrowPulse"
-            widget: "object"
-            fields:
-              - label: "0%, 100%"
-                name: "0%, 100%"
-                widget: "object"
-                fields:
-                  - {label: "Opacity", name: "opacity", widget: "string", default: "0.7"}
-                  - {label: "Transform", name: "transform", widget: "string", default: "translateY(-50%) scale(1)"}
-              - label: "50%"
-                name: "50%"
-                widget: "object"
-                fields:
-                  - {label: "Opacity", name: "opacity", widget: "string", default: "1"}
-                  - {label: "Transform", name: "transform", widget: "string", default: "translateY(-50%) scale(1.2)"}
+                  - label: "0%, 100%"
+                    name: "0%, 100%"
+                    widget: "object"
+                    fields:
+                      - {label: "Opacity", name: "opacity", widget: "string", default: "0.7"}
+                      - {label: "Transform", name: "transform", widget: "string", default: "translateY(-50%) scale(1)"}
+                  - label: "50%"
+                    name: "50%"
+                    widget: "object"
+                    fields:
+                      - {label: "Opacity", name: "opacity", widget: "string", default: "1"}
+                      - {label: "Transform", name: "transform", widget: "string", default: "translateY(-50%) scale(1.2)"}
 
