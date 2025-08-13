@@ -851,37 +851,7 @@
             </div>
         </div>
 
-        <!-- Enhanced Feedback Section with Email Collection -->
-        <div class="feedback-section">
-            <div class="feedback-title">💬 Share Your Experience</div>
-            <p style="text-align: center; color: #c53030; margin-bottom: 1rem;">
-                Help us improve by sharing your thoughts on this demo
-            </p>
-            <div class="feedback-buttons">
-                <button class="feedback-button" onclick="giveFeedback(this, 'very-helpful')">Very Helpful</button>
-                <button class="feedback-button" onclick="giveFeedback(this, 'somewhat-helpful')">Somewhat Helpful</button>
-                <button class="feedback-button" onclick="giveFeedback(this, 'not-helpful')">Not Helpful</button>
-                <button class="feedback-button" onclick="giveFeedback(this, 'suggest-improvement')">Suggest Improvement</button>
-            </div>
-            
-            <!-- Email Collection Form -->
-            <div class="email-collection" id="emailCollection" style="display: none; margin-top: 2rem; padding-top: 2rem; border-top: 2px solid #e53e3e;">
-                <h4 style="color: #c53030; text-align: center; margin-bottom: 1rem;">📧 Get Demo Insights & Updates</h4>
-                <p style="text-align: center; color: #c53030; margin-bottom: 1.5rem; font-size: 0.9rem;">
-                    Share your email to receive detailed analysis reports and stay updated on AdjuvantIQ developments
-                </p>
-                <div style="display: flex; gap: 1rem; justify-content: center; align-items: center; flex-wrap: wrap;">
-                    <input type="email" id="feedbackEmail" placeholder="Enter your email address" 
-                           style="padding: 0.8rem 1rem; border: 2px solid #e53e3e; border-radius: 8px; font-size: 1rem; min-width: 250px;">
-                    <button onclick="submitEmailFeedback()" class="feedback-button" style="margin: 0;">
-                        📧 Submit & Get Report
-                    </button>
-                </div>
-                <p style="text-align: center; color: #666; font-size: 0.8rem; margin-top: 1rem;">
-                    We'll send you a comprehensive analysis report and keep you updated on AdjuvantIQ developments
-                </p>
-            </div>
-        </div>
+
 
         <div class="engagement-tools">
             <h3>Ready to explore the final phase?</h3>
@@ -909,7 +879,7 @@
             }
         }
         
-        // Enhanced feedback functionality with logging
+        // Simple feedback functionality with logging
         function giveFeedback(button, feedbackType) {
             // Visual feedback
             button.style.background = 'linear-gradient(135deg, #4caf50 0%, #45a049 100%)';
@@ -929,6 +899,7 @@
             const feedbackData = {
                 type: feedbackType,
                 page: 'adaptive-modifications',
+                step: getCurrentStep(),
                 timestamp: new Date().toISOString(),
                 userAgent: navigator.userAgent,
                 url: window.location.href
@@ -941,12 +912,7 @@
             existingFeedback.push(feedbackData);
             localStorage.setItem('adjuvantiq_feedback', JSON.stringify(existingFeedback));
             
-            showToast('Thank you for your feedback! We appreciate your input.');
-            
-            // Show email collection form after feedback
-            setTimeout(() => {
-                document.getElementById('emailCollection').style.display = 'block';
-            }, 1000);
+            showToast('Thank you for your feedback!');
             
             // Reset button after delay
             setTimeout(() => {
@@ -956,64 +922,18 @@
             }, 3000);
         }
         
-        // Submit email feedback
-        function submitEmailFeedback() {
-            const email = document.getElementById('feedbackEmail').value.trim();
-            
-            if (!email || !email.includes('@')) {
-                showToast('Please enter a valid email address');
-                return;
-            }
-            
-            // Get all feedback for this session
-            const allFeedback = JSON.parse(localStorage.getItem('adjuvantiq_feedback') || '[]');
-            
-            // Create comprehensive feedback report
-            const feedbackReport = {
-                email: email,
-                timestamp: new Date().toISOString(),
-                page: 'adaptive-modifications',
-                feedback: allFeedback,
-                sessionId: generateSessionId()
-            };
-            
-            console.log('Feedback report with email:', feedbackReport);
-            
-            // Store email with feedback
-            localStorage.setItem('adjuvantiq_feedback_email', email);
-            localStorage.setItem('adjuvantiq_feedback_report', JSON.stringify(feedbackReport));
-            
-            // Show success message
-            showToast('Thank you! We\'ll send you detailed insights and updates.');
-            
-            // Hide email form
-            document.getElementById('emailCollection').style.display = 'none';
-            
-            // Clear email input
-            document.getElementById('feedbackEmail').value = '';
-        }
-        
-        // Generate session ID for tracking
-        function generateSessionId() {
-            return 'session_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9);
+        // Get current step for feedback tracking
+        function getCurrentStep() {
+            const progressText = document.getElementById('progressText');
+            return progressText ? progressText.textContent : 'unknown';
         }
         
         // Function to retrieve all feedback (for admin use)
         function retrieveAllFeedback() {
             const feedback = localStorage.getItem('adjuvantiq_feedback');
-            const email = localStorage.getItem('adjuvantiq_feedback_email');
-            const report = localStorage.getItem('adjuvantiq_feedback_report');
-            
             console.log('=== FEEDBACK RETRIEVAL ===');
             console.log('All Feedback:', JSON.parse(feedback || '[]'));
-            console.log('Email:', email);
-            console.log('Complete Report:', JSON.parse(report || '{}'));
-            
-            return {
-                feedback: JSON.parse(feedback || '[]'),
-                email: email,
-                report: JSON.parse(report || '{}')
-            };
+            return JSON.parse(feedback || '[]');
         }
         
         // Show toast notifications

@@ -36,19 +36,19 @@
         .hero {
             background: linear-gradient(135deg, var(--navy) 0%, var(--teal) 100%);
             color: white;
-            padding: 4rem 2rem;
+            padding: 2.5rem 1.5rem;
             text-align: center;
         }
         
         .hero h1 {
-            font-size: clamp(1.8rem, 4vw, 2.8rem);
-            margin-bottom: 1.5rem;
+            font-size: clamp(1.6rem, 3.5vw, 2.4rem);
+            margin-bottom: 1rem;
             font-weight: 700;
         }
         
         .hero .lead {
-            font-size: clamp(1rem, 2.5vw, 1.3rem);
-            margin-bottom: 2rem;
+            font-size: clamp(0.95rem, 2.2vw, 1.15rem);
+            margin-bottom: 1.5rem;
             opacity: 0.9;
             max-width: 800px;
             margin-left: auto;
@@ -57,10 +57,10 @@
         
         .time-investment {
             background: rgba(255,255,255,0.1);
-            padding: 1.5rem;
+            padding: 1.25rem;
             border-radius: 8px;
-            margin-top: 2rem;
-            font-size: 1.1em;
+            margin-top: 1.5rem;
+            font-size: 1em;
         }
         
         .container {
@@ -71,16 +71,16 @@
         
         .back-link {
             display: inline-block;
-            margin: 20px 0;
+            margin: 15px 0;
             color: #667eea;
             text-decoration: none;
             font-weight: 600;
-            padding: 12px 20px;
+            padding: 10px 16px;
             background: linear-gradient(135deg, #f8f9fc 0%, #e3f2fd 100%);
-            border-radius: 8px;
+            border-radius: 6px;
             border: 2px solid #667eea;
             transition: all 0.3s ease;
-            font-size: 1.1em;
+            font-size: 1em;
         }
         
         .back-link:hover {
@@ -98,56 +98,56 @@
             border-radius: 12px;
             box-shadow: 0 4px 6px rgba(0,0,0,0.1);
             overflow: hidden;
-            margin: 40px 0;
+            margin: 2rem 0;
         }
         
         .overview-header {
             background: linear-gradient(135deg, #e3f2fd 0%, #f3e5f5 100%);
-            padding: 25px;
+            padding: 1.5rem;
             text-align: center;
         }
         
         .overview-header h2 {
-            font-size: 1.8em;
+            font-size: 1.5em;
             color: #1976d2;
-            margin-bottom: 10px;
+            margin-bottom: 8px;
         }
         
         .overview-header p {
-            font-size: 1.1em;
-            margin-bottom: 20px;
+            font-size: 1em;
+            margin-bottom: 1rem;
         }
         
         .trial-stats {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-            gap: 15px;
-            margin: 20px 0;
+            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            gap: 1rem;
+            margin: 1rem 0;
         }
         
         .stat-card {
             background: white;
-            padding: 15px;
+            padding: 1rem;
             border-radius: 8px;
             text-align: center;
             box-shadow: 0 2px 4px rgba(0,0,0,0.1);
         }
         
         .stat-number {
-            font-size: 2em;
+            font-size: 1.6em;
             font-weight: bold;
             color: #1976d2;
-            margin-bottom: 5px;
+            margin-bottom: 4px;
         }
         
         .stat-label {
             color: #666;
-            font-size: 0.8em;
+            font-size: 0.75em;
         }
         
         .team-section {
             background: white;
-            margin: 40px 0;
+            margin: 2rem 0;
             border-radius: 12px;
             box-shadow: 0 4px 6px rgba(0,0,0,0.1);
             overflow: hidden;
@@ -155,54 +155,112 @@
         
         .section-header {
             background: #f8f9fc;
-            padding: 30px;
+            padding: 1.5rem;
             border-bottom: 1px solid #e0e6ed;
         }
         
         .section-header h3 {
-            font-size: 1.8em;
+            font-size: 1.5em;
             color: #333;
-            margin-bottom: 10px;
+            margin-bottom: 8px;
         }
         
         .team-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-            padding: 30px;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+            padding: 1.5rem;
+            max-width: 100%;
         }
         
         .team-member {
             background: #f8f9fc;
             border-radius: 8px;
-            padding: 25px;
+            padding: 1rem;
             border-left: 4px solid #2196f3;
+            transition: all 0.3s ease;
+        }
+        
+        .team-member:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(33, 150, 243, 0.2);
+        }
+        
+        .team-member.expanded {
+            grid-column: span 2;
+            background: linear-gradient(135deg, #f8f9fc 0%, #e3f2fd 100%);
+        }
+        
+        .member-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 8px;
         }
         
         .member-name {
-            font-size: 1.3em;
+            font-size: 1.1em;
             font-weight: bold;
             color: #1976d2;
-            margin-bottom: 5px;
+            margin-bottom: 4px;
+        }
+        
+        .expand-toggle {
+            background: #2196f3;
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 24px;
+            height: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-size: 0.8em;
+            transition: all 0.3s ease;
+        }
+        
+        .expand-toggle:hover {
+            background: #1976d2;
+            transform: scale(1.1);
+        }
+        
+        .expand-toggle.expanded {
+            transform: rotate(45deg);
         }
         
         .member-role {
             color: #666;
-            font-size: 0.9em;
-            margin-bottom: 15px;
+            font-size: 0.8em;
+            margin-bottom: 8px;
         }
         
         .member-challenge {
             background: #fff3e0;
             border-left: 3px solid #ff9800;
-            padding: 15px;
-            margin-top: 15px;
+            padding: 8px;
+            margin-top: 8px;
             border-radius: 4px;
+            font-size: 0.85em;
+        }
+        
+        .member-bio {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+            margin-top: 8px;
+            color: #555;
+            font-size: 0.9em;
+            line-height: 1.4;
+        }
+        
+        .team-member.expanded .member-bio {
+            max-height: 200px;
         }
         
         .phase-navigation {
             background: white;
-            margin: 40px 0;
+            margin: 2rem 0;
             border-radius: 12px;
             box-shadow: 0 4px 6px rgba(0,0,0,0.1);
             overflow: hidden;
@@ -210,26 +268,41 @@
         
         .phase-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 30px;
-            padding: 30px;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.25rem;
+            padding: 1.5rem;
+            max-width: 100%;
         }
         
         .phase-card {
             background: linear-gradient(135deg, #f8f9fc 0%, #e3f2fd 100%);
             border-radius: 12px;
-            padding: 30px;
+            padding: 1.25rem;
             border: 2px solid transparent;
             transition: all 0.3s ease;
             cursor: pointer;
             position: relative;
             overflow: hidden;
+            transform: scale(0.95);
+            opacity: 0.8;
         }
         
         .phase-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+            transform: scale(1) translateY(-3px);
+            opacity: 1;
+            box-shadow: 0 6px 20px rgba(0,0,0,0.15);
             border-color: #2196f3;
+        }
+        
+        .phase-card.in-view {
+            transform: scale(1);
+            opacity: 1;
+        }
+        
+        .phase-card.expanded {
+            grid-column: span 2;
+            background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%);
+            transform: scale(1.02);
         }
         
         .phase-card::before {
@@ -246,34 +319,34 @@
             background: #2196f3;
             color: white;
             border-radius: 50%;
-            width: 40px;
-            height: 40px;
+            width: 36px;
+            height: 36px;
             display: flex;
             align-items: center;
             justify-content: center;
             font-weight: bold;
-            margin-bottom: 20px;
+            margin-bottom: 1rem;
         }
         
         .phase-title {
-            font-size: 1.4em;
+            font-size: 1.25em;
             font-weight: bold;
             color: #1976d2;
-            margin-bottom: 10px;
+            margin-bottom: 8px;
         }
         
         .phase-subtitle {
             color: #666;
-            margin-bottom: 20px;
+            margin-bottom: 1rem;
         }
         
         .phase-features {
             list-style: none;
-            margin: 20px 0;
+            margin: 1rem 0;
         }
         
         .phase-features li {
-            padding: 8px 0;
+            padding: 6px 0;
             border-bottom: 1px solid #e0e0e0;
         }
         
@@ -285,18 +358,18 @@
             content: "✓";
             color: #4caf50;
             font-weight: bold;
-            margin-right: 10px;
+            margin-right: 8px;
         }
         
         .phase-button {
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             color: white;
-            padding: 12px 25px;
+            padding: 10px 20px;
             border-radius: 6px;
             text-decoration: none;
             font-weight: 500;
             display: inline-block;
-            margin-top: 15px;
+            margin-top: 12px;
             transition: all 0.3s ease;
         }
         
@@ -307,7 +380,7 @@
         
         .pain-points {
             background: white;
-            margin: 40px 0;
+            margin: 2rem 0;
             border-radius: 12px;
             box-shadow: 0 4px 6px rgba(0,0,0,0.1);
             overflow: hidden;
@@ -315,28 +388,42 @@
         
         .pain-points-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 20px;
-            padding: 30px;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 1rem;
+            padding: 1.5rem;
+            max-width: 100%;
         }
         
         .pain-point {
             background: #fff3e0;
             border-left: 4px solid #ff9800;
-            padding: 20px;
+            padding: 1rem;
             border-radius: 6px;
+            transition: all 0.3s ease;
+        }
+        
+        .pain-point:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(255, 152, 0, 0.2);
         }
         
         .pain-point-title {
             font-weight: bold;
             color: #e65100;
-            margin-bottom: 10px;
+            margin-bottom: 6px;
+            font-size: 0.95em;
+        }
+        
+        .pain-point-description {
+            color: #8d6e63;
+            font-size: 0.85em;
+            line-height: 1.4;
         }
         
         .credibility-indicators {
             background: #f8f9fc;
-            padding: 20px;
-            margin: 30px 0;
+            padding: 1rem;
+            margin: 1.5rem 0;
             border-radius: 8px;
             border-left: 4px solid #9c27b0;
         }
@@ -344,18 +431,18 @@
         .expertise-note, .data-note {
             display: flex;
             align-items: center;
-            margin: 10px 0;
+            margin: 8px 0;
         }
         
         .expertise-note .icon, .data-note .icon {
-            font-size: 1.5em;
-            margin-right: 15px;
+            font-size: 1.25em;
+            margin-right: 12px;
         }
         
         .engagement-tools {
             background: #e8f5e8;
-            padding: 30px;
-            margin: 40px 0;
+            padding: 1.5rem;
+            margin: 2rem 0;
             border-radius: 8px;
             text-align: center;
         }
@@ -364,8 +451,8 @@
             background: #4caf50;
             color: white;
             border: none;
-            padding: 12px 20px;
-            margin: 5px;
+            padding: 10px 16px;
+            margin: 4px;
             border-radius: 6px;
             cursor: pointer;
             transition: background 0.3s ease;
@@ -381,7 +468,7 @@
             right: 20px;
             background: #4caf50;
             color: white;
-            padding: 15px 20px;
+            padding: 12px 16px;
             border-radius: 6px;
             opacity: 0;
             transition: opacity 0.3s ease;
@@ -394,7 +481,7 @@
         
         .tutorial-box {
             background: white;
-            margin: 40px 0;
+            margin: 2rem 0;
             border-radius: 12px;
             box-shadow: 0 4px 6px rgba(0,0,0,0.1);
             border-left: 4px solid #9c27b0;
@@ -403,7 +490,7 @@
         
         .tutorial-header {
             background: linear-gradient(135deg, #f8f9fc 0%, #e3f2fd 100%);
-            padding: 20px 30px;
+            padding: 1rem 1.5rem;
             cursor: pointer;
             display: flex;
             justify-content: space-between;
@@ -418,17 +505,17 @@
         .tutorial-header h3 {
             margin: 0;
             color: #333;
-            font-size: 1.3em;
+            font-size: 1.15em;
         }
         
         .tutorial-toggle {
-            font-size: 1.2em;
+            font-size: 1.1em;
             color: #667eea;
             transition: transform 0.3s ease;
         }
         
         .tutorial-content {
-            padding: 30px;
+            padding: 1.5rem;
             display: block;
         }
         
@@ -438,13 +525,13 @@
         
         .tutorial-tips {
             background: #f8f9fc;
-            padding: 20px;
+            padding: 1rem;
             border-radius: 8px;
-            margin-top: 20px;
+            margin-top: 1rem;
         }
         
         .tutorial-tips h4 {
-            margin-bottom: 15px;
+            margin-bottom: 12px;
             color: #333;
         }
         
@@ -454,16 +541,16 @@
         }
         
         .tutorial-tips li {
-            margin: 8px 0;
+            margin: 6px 0;
             color: #555;
         }
         
         .guide-item {
-            margin: 15px 0;
+            margin: 12px 0;
         }
         
         .guide-example {
-            padding: 15px;
+            padding: 12px;
             border-radius: 6px;
             position: relative;
             display: flex;
@@ -496,12 +583,283 @@
         }
         
         .guide-icon {
-            font-size: 1.5em;
-            margin-right: 15px;
+            font-size: 1.25em;
+            margin-right: 12px;
         }
         
         .guide-content {
             flex: 1;
+        }
+
+        /* Section-level collapse functionality */
+        .collapsible-section {
+            margin: 2rem 0;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            overflow: hidden;
+            background: white;
+        }
+        
+        .section-header {
+            background: #f8f9fc;
+            padding: 1.5rem;
+            border-bottom: 1px solid #e0e6ed;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: background 0.3s ease;
+        }
+        
+        .section-header:hover {
+            background: #e3f2fd;
+        }
+        
+        .section-header h3 {
+            font-size: 1.5em;
+            color: #333;
+            margin: 0;
+        }
+        
+        .section-toggle-container {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.85em;
+            color: #2196f3;
+            font-weight: 500;
+        }
+        
+        .section-toggle {
+            background: #2196f3;
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 32px;
+            height: 32px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-size: 1em;
+            transition: all 0.3s ease;
+        }
+        
+        .section-toggle:hover {
+            background: #1976d2;
+            transform: scale(1.1);
+        }
+        
+        .section-toggle.collapsed {
+            transform: rotate(180deg);
+        }
+        
+        .section-content {
+            max-height: 2000px;
+            overflow: hidden;
+            transition: max-height 0.5s ease;
+        }
+        
+        .section-content.collapsed {
+            max-height: 0;
+        }
+        
+        /* List view for collapsed sections */
+        .section-list {
+            padding: 1rem;
+            background: #f8f9fc;
+            border-top: 1px solid #e0e6ed;
+        }
+        
+        .section-list.collapsed {
+            display: block;
+        }
+        
+        .section-list.expanded {
+            display: none;
+        }
+        
+        /* Compact horizontal layout for team members */
+        .team-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            justify-content: space-between;
+        }
+        
+        .team-list-item {
+            background: white;
+            padding: 0.5rem 0.75rem;
+            border-radius: 6px;
+            border-left: 3px solid #2196f3;
+            font-size: 0.85em;
+            font-weight: 500;
+            color: #333;
+            flex: 1;
+            min-width: 200px;
+            text-align: center;
+        }
+        
+        /* Compact horizontal layout for pain points */
+        .pain-points-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            justify-content: space-between;
+        }
+        
+        .pain-point-list-item {
+            background: white;
+            padding: 0.5rem 0.75rem;
+            border-radius: 6px;
+            border-left: 3px solid #ff9800;
+            font-size: 0.85em;
+            font-weight: 500;
+            color: #333;
+            flex: 1;
+            min-width: 180px;
+            text-align: center;
+        }
+        
+        /* 1x4 row for workflow phases */
+        .phase-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1rem;
+            padding: 1.5rem;
+            max-width: 100%;
+        }
+        
+        .phase-card {
+            background: linear-gradient(135deg, #f8f9fc 0%, #e3f2fd 100%);
+            border-radius: 12px;
+            padding: 1.5rem;
+            border: 2px solid transparent;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            transform: scale(0.95);
+            opacity: 0.8;
+        }
+        
+        .phase-card:hover {
+            transform: scale(1) translateY(-3px);
+            opacity: 1;
+            box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+            border-color: #2196f3;
+        }
+        
+        .phase-card.in-view {
+            transform: scale(1);
+            opacity: 1;
+        }
+
+        /* Workflow Phases Section (Always Visible) */
+        .workflow-phases-section {
+            background: white;
+            margin: 2rem 0;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        
+        .workflow-phases-section .section-header {
+            background: #f8f9fc;
+            padding: 1.5rem;
+            border-bottom: 1px solid #e0e6ed;
+            cursor: default;
+        }
+        
+        .workflow-phases-section .section-header:hover {
+            background: #f8f9fc;
+        }
+
+        /* Enhanced feedback box styling with red arrows and glow */
+        .feedback-section {
+            position: relative;
+            margin: 2rem 0;
+            padding: 2rem;
+            background: linear-gradient(135deg, #fff5f5 0%, #fed7d7 100%);
+            border-radius: 12px;
+            border: 3px solid #e53e3e;
+            box-shadow: 0 0 20px rgba(229, 62, 62, 0.3);
+            animation: feedbackGlow 2s ease-in-out infinite alternate;
+        }
+        
+        @keyframes feedbackGlow {
+            0% {
+                box-shadow: 0 0 20px rgba(229, 62, 62, 0.3);
+            }
+            100% {
+                box-shadow: 0 0 30px rgba(229, 62, 62, 0.6);
+            }
+        }
+        
+        .feedback-section::before,
+        .feedback-section::after {
+            content: "→";
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 2rem;
+            color: #e53e3e;
+            font-weight: bold;
+            animation: arrowPulse 1.5s ease-in-out infinite;
+        }
+        
+        .feedback-section::before {
+            left: -30px;
+        }
+        
+        .feedback-section::after {
+            right: -30px;
+            transform: translateY(-50%) rotate(180deg);
+        }
+        
+        @keyframes arrowPulse {
+            0%, 100% {
+                opacity: 0.7;
+                transform: translateY(-50%) scale(1);
+            }
+            50% {
+                opacity: 1;
+                transform: translateY(-50%) scale(1.2);
+            }
+        }
+        
+        .feedback-title {
+            text-align: center;
+            font-size: 1.5em;
+            color: #c53030;
+            margin-bottom: 1rem;
+            font-weight: bold;
+        }
+        
+        .feedback-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            justify-content: center;
+            margin-top: 1.5rem;
+        }
+        
+        .feedback-button {
+            background: #e53e3e;
+            color: white;
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 8px rgba(229, 62, 62, 0.3);
+        }
+        
+        .feedback-button:hover {
+            background: #c53030;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(229, 62, 62, 0.4);
         }
     </style>
 </head>
@@ -622,160 +980,169 @@
             </div>
         </div>
 
-        <div class="team-section">
-            <div class="section-header">
-                <h3 id="team-section-title">Meet the Team</h3>
-                <p id="team-section-description">Follow these key stakeholders as they navigate critical decisions throughout the trial lifecycle</p>
+        <!-- Team Section -->
+        <div class="collapsible-section">
+            <div class="section-header" onclick="toggleSection('team-section')">
+                <h3>Meet the Team</h3>
+                <div class="section-toggle-container">
+                    <span>EXPAND</span>
+                    <button class="section-toggle collapsed" id="team-toggle">▲</button>
+                </div>
             </div>
-            
-            <div class="team-grid" id="team-grid">
-                <div class="team-member">
-                    <div class="member-name">Dr. Sarah Chen</div>
-                    <div class="member-role">VP Clinical Development</div>
-                    <p>Leading the trial design and strategic planning. Former Genentech, 15 years oncology experience.</p>
-                    <div class="member-challenge">
-                        <strong>Challenge:</strong> Design Phase III CV outcomes trial that improves on EMPA-REG timeline while maintaining regulatory strength
-                    </div>
+            <div class="section-list collapsed" id="team-list">
+                <div class="team-list">
+                    <div class="team-list-item">Dr. Sarah Chen - VP Clinical Development</div>
+                    <div class="team-list-item">Michael Rodriguez - Director of Clinical Operations</div>
+                    <div class="team-list-item">Dr. Jennifer Walsh - Study Director</div>
+                    <div class="team-list-item">Dr. Patricia Kim - Regulatory Affairs Director</div>
                 </div>
-                
-                <div class="team-member">
-                    <div class="member-name">Michael Rodriguez</div>
-                    <div class="member-role">Director of Clinical Operations</div>
-                    <p>Managing site selection, recruitment, and trial execution. Expert in global trial management.</p>
-                    <div class="member-challenge">
-                        <strong>Challenge:</strong> Optimize site portfolio for maximum recruitment efficiency and data quality
+            </div>
+            <div class="section-content collapsed" id="team-section">
+                <div class="team-grid" id="team-grid">
+                    <div class="team-member">
+                        <div class="member-name">Dr. Sarah Chen</div>
+                        <div class="member-role">VP Clinical Development</div>
+                        <p>Leading the trial design and strategic planning. Former Genentech, 15 years oncology experience.</p>
+                        <div class="member-challenge">
+                            <strong>Challenge:</strong> Design Phase III CV outcomes trial that improves on EMPA-REG timeline while maintaining regulatory strength
+                        </div>
                     </div>
-                </div>
-                
-                <div class="team-member">
-                    <div class="member-name">Dr. Jennifer Walsh</div>
-                    <div class="member-role">Study Director</div>
-                    <p>Overseeing day-to-day trial execution and adaptive modifications. Former FDA reviewer.</p>
-                    <div class="member-challenge">
-                        <strong>Challenge:</strong> Manage recruitment delays and emerging safety signals while maintaining trial integrity
+                    
+                    <div class="team-member">
+                        <div class="member-name">Michael Rodriguez</div>
+                        <div class="member-role">Director of Clinical Operations</div>
+                        <p>Managing site selection, recruitment, and trial execution. Expert in global trial management.</p>
+                        <div class="member-challenge">
+                            <strong>Challenge:</strong> Optimize site portfolio for maximum recruitment efficiency and data quality
+                        </div>
                     </div>
-                </div>
-                
-                <div class="team-member">
-                    <div class="member-name">Dr. Patricia Kim</div>
-                    <div class="member-role">Regulatory Affairs Director</div>
-                    <p>Leading regulatory strategy and submission preparation. 20 years regulatory experience.</p>
-                    <div class="member-challenge">
-                        <strong>Challenge:</strong> Optimize FDA pathway and prepare for potential advisory committee review
+                    
+                    <div class="team-member">
+                        <div class="member-name">Dr. Jennifer Walsh</div>
+                        <div class="member-role">Study Director</div>
+                        <p>Overseeing day-to-day trial execution and adaptive modifications. Former FDA reviewer.</p>
+                        <div class="member-challenge">
+                            <strong>Challenge:</strong> Manage recruitment delays and emerging safety signals while maintaining trial integrity
+                        </div>
+                    </div>
+                    
+                    <div class="team-member">
+                        <div class="member-name">Dr. Patricia Kim</div>
+                        <div class="member-role">Regulatory Affairs Director</div>
+                        <p>Leading regulatory strategy and submission preparation. 20 years regulatory experience.</p>
+                        <div class="member-challenge">
+                            <strong>Challenge:</strong> Optimize FDA pathway and prepare for potential advisory committee review
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
 
-        <div class="pain-points">
-            <div class="section-header">
-                <h3 id="pain-points-title">Critical Pain Points We Solve</h3>
-                <p id="pain-points-description">These challenges cost the industry billions annually in delays, failed trials, and lost value</p>
+        <!-- Pain Points Section -->
+        <div class="collapsible-section">
+            <div class="section-header" onclick="toggleSection('pain-points-section')">
+                <h3>Critical Pain Points</h3>
+                <div class="section-toggle-container">
+                    <span>EXPAND</span>
+                    <button class="section-toggle collapsed" id="pain-points-toggle">▲</button>
+                </div>
             </div>
-            
-            <div class="pain-points-grid" id="pain-points-grid">
-                <div class="pain-point">
-                    <div class="pain-point-title">📊 Interdependent Decision Making</div>
-                    <p>Protocol changes cascade through recruitment, regulatory, and statistical requirements - often discovered too late</p>
+            <div class="section-list collapsed" id="pain-points-list">
+                <div class="pain-points-list">
+                    <div class="pain-point-list-item">📊 Interdependent Decision Making</div>
+                    <div class="pain-point-list-item">⏰ Timeline Delays</div>
+                    <div class="pain-point-list-item">💰 Cost Overruns</div>
+                    <div class="pain-point-list-item">🎯 Regulatory Risk</div>
+                    <div class="pain-point-list-item">👥 Stakeholder Silos</div>
+                    <div class="pain-point-list-item">📈 Data Quality Issues</div>
                 </div>
-                
-                <div class="pain-point">
-                    <div class="pain-point-title">⏰ Timeline Delays</div>
-                    <p>Average 12-month delays due to poor site selection, recruitment issues, and regulatory misalignment</p>
-                </div>
-                
-                <div class="pain-point">
-                    <div class="pain-point-title">💰 Cost Overruns</div>
-                    <p>Unplanned protocol amendments and site additions cost $2-5M per trial on average</p>
-                </div>
-                
-                <div class="pain-point">
-                    <div class="pain-point-title">🎯 Regulatory Risk</div>
-                    <p>Poor alignment with FDA guidance leads to submission delays and advisory committee requirements</p>
-                </div>
-                
-                <div class="pain-point">
-                    <div class="pain-point-title">👥 Stakeholder Silos</div>
-                    <p>Clinical, regulatory, and operations teams work in isolation, missing critical interdependencies</p>
-                </div>
-                
-                <div class="pain-point">
-                    <div class="pain-point-title">📈 Data Quality Issues</div>
-                    <p>Site performance variability and poor monitoring lead to data integrity problems</p>
+            </div>
+            <div class="section-content collapsed" id="pain-points-section">
+                <div class="pain-points-grid" id="pain-points-grid">
+                    <div class="pain-point">
+                        <div class="pain-point-title">📊 Interdependent Decision Making</div>
+                        <div class="pain-point-description">
+                            Protocol changes cascade through recruitment, regulatory, and statistical requirements - often discovered too late
+                        </div>
+                    </div>
+                    
+                    <div class="pain-point">
+                        <div class="pain-point-title">⏰ Timeline Delays</div>
+                        <div class="pain-point-description">
+                            Average 12-month delays due to poor site selection, recruitment issues, and regulatory misalignment
+                        </div>
+                    </div>
+                    
+                    <div class="pain-point">
+                        <div class="pain-point-title">💰 Cost Overruns</div>
+                        <div class="pain-point-description">
+                            Unplanned protocol amendments and site additions cost $2-5M per trial on average
+                        </div>
+                    </div>
+                    
+                    <div class="pain-point">
+                        <div class="pain-point-title">🎯 Regulatory Risk</div>
+                        <div class="pain-point-description">
+                            Poor alignment with FDA guidance leads to submission delays and advisory committee requirements
+                        </div>
+                    </div>
+                    
+                    <div class="pain-point">
+                        <div class="pain-point-title">👥 Stakeholder Silos</div>
+                        <div class="pain-point-description">
+                            Clinical, regulatory, and operations teams work in isolation, missing critical interdependencies
+                        </div>
+                    </div>
+                    
+                    <div class="pain-point">
+                        <div class="pain-point-title">📈 Data Quality Issues</div>
+                        <div class="pain-point-description">
+                            Site performance variability and poor monitoring lead to data integrity problems
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
 
-        <div class="phase-navigation">
+        <!-- Workflow Phases Section (Always Visible) -->
+        <div class="workflow-phases-section">
             <div class="section-header">
-                <h3 id="phase-navigation-title">Explore Each Phase</h3>
-                <p id="phase-navigation-description">Click on any phase to see how AdjuvantIQ's AI system optimizes critical decisions and solves industry pain points</p>
+                <h3>Workflow Phases</h3>
             </div>
-            
-            <div class="phase-grid" id="phase-grid">
+            <div class="phase-grid" id="workflow-phases-grid">
                 <div class="phase-card" onclick="window.location.href='protocol-design.html'">
                     <div class="phase-number">1</div>
                     <div class="phase-title">Protocol Design & Optimization</div>
-                    <div class="phase-subtitle">Strategic trial planning with AI-assisted interdependency analysis</div>
-                    
-                    <ul class="phase-features">
-                        <li>Multi-agent optimization of protocol parameters</li>
-                        <li>Historical precedent analysis and benchmarking</li>
-                        <li>Regulatory pathway alignment</li>
-                        <li>Competitive intelligence integration</li>
-                        <li>Risk-adjusted scenario modeling</li>
-                    </ul>
-                    
-                    <a href="protocol-design.html" class="phase-button">Explore Protocol Design</a>
+                    <div class="phase-subtitle">AI-powered protocol development with regulatory alignment</div>
                 </div>
                 
                 <div class="phase-card" onclick="window.location.href='site-selection.html'">
                     <div class="phase-number">2</div>
-                    <div class="phase-title">Site Selection & Portfolio Optimization</div>
-                    <div class="phase-subtitle">Data-driven site selection with performance prediction</div>
-                    
-                    <ul class="phase-features">
-                        <li>Performance-based site tiering</li>
-                        <li>Geographic optimization and diversity</li>
-                        <li>Competitive trial impact assessment</li>
-                        <li>Recruitment timeline modeling</li>
-                        <li>Risk mitigation strategies</li>
-                    </ul>
-                    
-                    <a href="site-selection.html" class="phase-button">Explore Site Selection</a>
+                    <div class="phase-title">Site Selection & Recruitment</div>
+                    <div class="phase-subtitle">Intelligent site portfolio optimization and recruitment strategies</div>
                 </div>
                 
                 <div class="phase-card" onclick="window.location.href='adaptive-modifications.html'">
                     <div class="phase-number">3</div>
-                    <div class="phase-title">Adaptive Trial Management</div>
-                    <div class="phase-subtitle">Real-time monitoring and intelligent intervention</div>
-                    
-                    <ul class="phase-features">
-                        <li>Automated performance monitoring</li>
-                        <li>Safety signal detection and analysis</li>
-                        <li>Multi-stakeholder decision support</li>
-                        <li>Intervention impact modeling</li>
-                        <li>Continuous optimization</li>
-                    </ul>
-                    
-                    <a href="adaptive-modifications.html" class="phase-button">Explore Trial Management</a>
+                    <div class="phase-title">Adaptive Modifications</div>
+                    <div class="phase-subtitle">Real-time protocol adjustments based on emerging data</div>
                 </div>
                 
                 <div class="phase-card" onclick="window.location.href='regulatory-strategy.html'">
                     <div class="phase-number">4</div>
-                    <div class="phase-title">Regulatory Strategy & Submission</div>
-                    <div class="phase-subtitle">Optimized pathway to approval</div>
-                    
-                    <ul class="phase-features">
-                        <li>Regulatory pathway optimization</li>
-                        <li>Submission package preparation</li>
-                        <li>Advisory committee preparation</li>
-                        <li>Global registration strategy</li>
-                        <li>Post-approval planning</li>
-                    </ul>
-                    
-                    <a href="regulatory-strategy.html" class="phase-button">Explore Regulatory Strategy</a>
+                    <div class="phase-title">Regulatory Strategy</div>
+                    <div class="phase-subtitle">FDA pathway optimization and submission preparation</div>
                 </div>
+            </div>
+        </div>
+
+        <div class="feedback-section">
+            <h3 class="feedback-title">Your Feedback Matters!</h3>
+            <p>We'd love to hear your thoughts on how AdjuvantIQ can help transform your clinical development process. Please share your experience with us.</p>
+            <div class="feedback-buttons">
+                <button class="feedback-button" onclick="showToast('Thank you for your feedback!')">👍 Great Demo!</button>
+                <button class="feedback-button" onclick="showToast('We appreciate your feedback!')">👎 Could be better</button>
+                <button class="feedback-button" onclick="showToast('Thank you for your feedback!')">💡 Suggestion</button>
             </div>
         </div>
 
@@ -816,6 +1183,93 @@
             }
         }
         
+        // Section-level collapse functionality
+        function toggleSection(sectionId) {
+            const section = document.getElementById(sectionId);
+            const list = document.getElementById(sectionId.replace('-section', '-list'));
+            const toggle = document.getElementById(sectionId.replace('-section', '-toggle'));
+            const expandText = toggle.parentElement.querySelector('span');
+            
+            if (section.classList.contains('collapsed')) {
+                // Expand section
+                section.classList.remove('collapsed');
+                list.classList.remove('collapsed');
+                list.classList.add('expanded');
+                toggle.textContent = '▼';
+                toggle.classList.remove('collapsed');
+                expandText.textContent = 'COLLAPSE';
+            } else {
+                // Collapse section
+                section.classList.add('collapsed');
+                list.classList.add('collapsed');
+                list.classList.remove('expanded');
+                toggle.textContent = '▲';
+                toggle.classList.add('collapsed');
+                expandText.textContent = 'EXPAND';
+            }
+        }
+        
+        // Auto-collapse sections when scrolling
+        let autoCollapseTimer;
+        
+        function setupAutoCollapse() {
+            // Auto-collapse sections after 5 seconds of inactivity
+            document.addEventListener('scroll', () => {
+                clearTimeout(autoCollapseTimer);
+                autoCollapseTimer = setTimeout(() => {
+                    autoCollapseAll();
+                }, 5000);
+            });
+        }
+        
+        function autoCollapseAll() {
+            // Collapse all expanded sections (only team and pain points)
+            const sectionsToCollapse = ['team-section', 'pain-points-section'];
+            
+            sectionsToCollapse.forEach(sectionId => {
+                const section = document.getElementById(sectionId);
+                const list = document.getElementById(sectionId.replace('-section', '-list'));
+                const toggle = document.getElementById(sectionId.replace('-section', '-toggle'));
+                const expandText = toggle.parentElement.querySelector('span');
+                
+                if (section && !section.classList.contains('collapsed') && toggle && list) {
+                    section.classList.add('collapsed');
+                    list.classList.add('collapsed');
+                    list.classList.remove('expanded');
+                    toggle.textContent = '▲';
+                    toggle.classList.add('collapsed');
+                    expandText.textContent = 'EXPAND';
+                }
+            });
+        }
+        
+        // Intersection Observer for phase cards
+        function setupPhaseCardObserver() {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('in-view');
+                    } else {
+                        entry.target.classList.remove('in-view');
+                    }
+                });
+            }, {
+                threshold: 0.3,
+                rootMargin: '0px 0px -50px 0px'
+            });
+            
+            document.querySelectorAll('.phase-card').forEach(card => {
+                observer.observe(card);
+            });
+        }
+        
+        // Initialize auto-collapse and observers
+        document.addEventListener('DOMContentLoaded', function() {
+            setupAutoCollapse();
+            setupPhaseCardObserver();
+            loadCardiovascularDemoContent();
+        });
+        
         // Download case study (placeholder for now)
         function downloadCaseStudy() {
             showToast('Case study download coming soon! Contact us for detailed materials.');
@@ -849,13 +1303,6 @@
             showToast('Opening pilot application form...');
         }
         
-        // Initialize when page loads
-        document.addEventListener('DOMContentLoaded', function() {
-            console.log('Primary demo loaded successfully');
-            showToast('Welcome! Explore how AI transforms clinical development end-to-end.');
-            loadCardiovascularDemoContent();
-        });
-        
         // Load cardiovascular demo content from CMS
         async function loadCardiovascularDemoContent() {
             try {
@@ -867,6 +1314,7 @@
                     const heroTitle = document.getElementById('demo-hero-title');
                     const heroSubtitle = document.getElementById('demo-hero-subtitle');
                     const timeInvestment = document.getElementById('time-investment-text');
+                    
                     if (heroTitle) heroTitle.textContent = content.hero.title;
                     if (heroSubtitle) heroSubtitle.textContent = content.hero.subtitle;
                     if (timeInvestment) timeInvestment.textContent = content.hero.time_investment;
@@ -875,18 +1323,20 @@
                 // Update trial overview
                 if (content.trial_overview) {
                     const overviewTitle = document.getElementById('trial-overview-title');
+                    const overviewSubtitle = document.getElementById('trial-overview-subtitle');
                     const overviewDescription = document.getElementById('trial-overview-description');
+                    
                     if (overviewTitle) overviewTitle.textContent = content.trial_overview.title;
+                    if (overviewSubtitle) overviewSubtitle.textContent = content.trial_overview.subtitle;
                     if (overviewDescription) overviewDescription.textContent = content.trial_overview.description;
                     
-                    // Update trial stats
-                    if (content.trial_overview.trial_stats) {
-                        const statsGrid = document.getElementById('trial-stats');
-                        if (statsGrid) {
-                            statsGrid.innerHTML = content.trial_overview.trial_stats.map(stat => `
+                    // Update key metrics
+                    if (content.trial_overview.key_metrics) {
+                        const metricsGrid = document.getElementById('trial-metrics');
+                        if (metricsGrid) {
+                            metricsGrid.innerHTML = content.trial_overview.key_metrics.map(metric => `
                                 <div class="stat-card">
-                                    <div class="stat-number">${stat.value}</div>
-                                    <div class="stat-label">${stat.label}</div>
+                                    <div class="stat-number">${metric.metric}</div>
                                 </div>
                             `).join('');
                         }
@@ -894,79 +1344,61 @@
                 }
                 
                 // Update team section
-                if (content.team_section) {
-                    const teamTitle = document.getElementById('team-section-title');
-                    const teamDescription = document.getElementById('team-section-description');
-                    if (teamTitle) teamTitle.textContent = content.team_section.title;
-                    if (teamDescription) teamDescription.textContent = content.team_section.description;
-                    
-                    // Update team members
-                    if (content.team_section.team_members) {
-                        const teamGrid = document.getElementById('team-grid');
-                        if (teamGrid) {
-                            teamGrid.innerHTML = content.team_section.team_members.map(member => `
-                                <div class="team-member">
-                                    <div class="member-name">${member.name}</div>
-                                    <div class="member-role">${member.role}</div>
-                                    <p>${member.bio}</p>
-                                    <div class="member-challenge">
-                                        <strong>Challenge:</strong> ${member.challenge}
-                                    </div>
+                if (content.team_section && content.team_section.team_members) {
+                    const teamGrid = document.getElementById('team-grid');
+                    if (teamGrid) {
+                        teamGrid.innerHTML = content.team_section.team_members.map(member => `
+                            <div class="team-member">
+                                <div class="member-name">${member.name}</div>
+                                <div class="member-role">${member.role}</div>
+                                <p>${member.bio}</p>
+                                <div class="member-challenge">
+                                    <strong>Challenge:</strong> ${member.challenge}
                                 </div>
-                            `).join('');
-                        }
+                            </div>
+                        `).join('');
                     }
                 }
                 
                 // Update pain points
-                if (content.pain_points) {
-                    const painPointsTitle = document.getElementById('pain-points-title');
-                    const painPointsDescription = document.getElementById('pain-points-description');
-                    if (painPointsTitle) painPointsTitle.textContent = content.pain_points.title;
-                    if (painPointsDescription) painPointsDescription.textContent = content.pain_points.description;
-                    
-                    // Update pain points grid
-                    if (content.pain_points.pain_points_list) {
-                        const painPointsGrid = document.getElementById('pain-points-grid');
-                        if (painPointsGrid) {
-                            painPointsGrid.innerHTML = content.pain_points.pain_points_list.map(point => `
-                                <div class="pain-point">
-                                    <div class="pain-point-title">${point.icon} ${point.title}</div>
-                                    <p>${point.description}</p>
+                if (content.pain_points && content.pain_points.pain_points_list) {
+                    const painPointsGrid = document.getElementById('pain-points-grid');
+                    if (painPointsGrid) {
+                        painPointsGrid.innerHTML = content.pain_points.pain_points_list.map(point => `
+                            <div class="pain-point">
+                                <div class="pain-point-title">${point.icon} ${point.title}</div>
+                                <div class="pain-point-description">
+                                    ${point.description}
                                 </div>
-                            `).join('');
-                        }
+                            </div>
+                        `).join('');
                     }
                 }
                 
                 // Update workflow phases
                 if (content.workflow_phases) {
-                    const phasesTitle = document.getElementById('phase-navigation-title');
-                    const phasesDescription = document.getElementById('phase-navigation-description');
+                    const phasesTitle = document.getElementById('workflow-phases-title');
+                    const phasesDescription = document.getElementById('workflow-phases-description');
+                    const phasesGrid = document.getElementById('workflow-phases-grid');
+                    
                     if (phasesTitle) phasesTitle.textContent = content.workflow_phases.title;
                     if (phasesDescription) phasesDescription.textContent = content.workflow_phases.description;
                     
-                    // Update phases grid
                     if (content.workflow_phases.phases) {
-                        const phasesGrid = document.getElementById('phase-grid');
-                        if (phasesGrid) {
-                            phasesGrid.innerHTML = content.workflow_phases.phases.map(phase => `
-                                <div class="phase-card" onclick="window.location.href='${phase.link}'">
-                                    <div class="phase-number">${phase.number}</div>
-                                    <div class="phase-title">${phase.title}</div>
-                                    <div class="phase-subtitle">${phase.subtitle}</div>
-                                    <ul class="phase-features">
-                                        ${phase.features.map(feature => `<li>${feature}</li>`).join('')}
-                                    </ul>
-                                    <a href="${phase.link}" class="phase-button">${phase.button_text}</a>
-                                </div>
-                            `).join('');
-                        }
+                        phasesGrid.innerHTML = content.workflow_phases.phases.map(phase => `
+                            <div class="phase-card" onclick="window.location.href='${phase.link}'">
+                                <div class="phase-number">${phase.icon}</div>
+                                <div class="phase-title">${phase.title}</div>
+                                <div class="phase-subtitle">${phase.description}</div>
+                            </div>
+                        `).join('');
                     }
                 }
                 
-            } catch (error) {
                 console.log('Cardiovascular demo content loaded from CMS');
+                
+            } catch (error) {
+                console.error('Error loading cardiovascular demo content:', error);
             }
         }
     </script>

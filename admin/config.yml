@@ -297,132 +297,10 @@ collections:
           - {label: "Meta Description", name: "description", widget: "text", default: "Transform clinical trial design with AI-powered cognition. Join biotech leaders using AdjuvantIQ to unlock billions in lost drug development investment."}
           - {label: "Keywords", name: "keywords", widget: "string", default: "clinical trials, AI, biotech, drug development, trial design"}
 
-      - label: "Demo Hub Page"
-        name: "demo_hub"
-        file: "content/demo-hub.json"
-        fields:
-          - label: "Hero Section"
-            name: "hero"
-            widget: "object"
-            fields:
-              - {label: "Title", name: "title", widget: "string", default: "Interactive Demo Experience"}
-              - {label: "Subtitle", name: "subtitle", widget: "text", default: "Experience how AI-assisted reasoning transforms clinical trial optimization"}
-          - label: "Credibility Section"
-            name: "credibility_section"
-            widget: "object"
-            fields:
-              - {label: "Title", name: "title", widget: "string", default: "Why These Demos Matter"}
-              - {label: "Description", name: "description", widget: "text", default: "These interactive scenarios demonstrate how AdjuvantIQ's ontological AI system processes complex clinical trial decisions, providing real-time optimization recommendations while collecting valuable user feedback."}
-              - label: "Credibility Items"
-                name: "credibility_items"
-                widget: "list"
-                fields:
-                  - {label: "Icon", name: "icon", widget: "string"}
-                  - {label: "Title", name: "title", widget: "string"}
-                  - {label: "Description", name: "description", widget: "string"}
-          - label: "Demo Cards"
-            name: "demo_cards"
-            widget: "list"
-            fields:
-              - {label: "Title", name: "title", widget: "string"}
-              - {label: "Subtitle", name: "subtitle", widget: "string"}
-              - {label: "Description", name: "description", widget: "text"}
-              - label: "Features"
-                name: "features"
-                widget: "list"
-                fields:
-                  - {label: "Feature", name: "feature", widget: "string"}
-              - {label: "Button Text", name: "button_text", widget: "string"}
-              - {label: "Button Link", name: "button_link", widget: "string"}
-          - label: "CTA Section"
-            name: "cta_section"
-            widget: "object"
-            fields:
-              - {label: "Title", name: "title", widget: "string", default: "Ready to Transform Your Clinical Development?"}
-              - {label: "Description", name: "description", widget: "text", default: "These demos showcase just a fraction of AdjuvantIQ's capabilities. Contact us to discuss how our AI system can optimize your specific clinical trial challenges."}
-              - {label: "Button Text", name: "button_text", widget: "string", default: "Request Pilot Program"}
-              - {label: "Button Link", name: "button_link", widget: "string", default: "../#pilot"}
 
-      - label: "Cardiovascular Demo"
-        name: "demo_cardiovascular"
-        file: "content/demo-cardiovascular.json"
-        fields:
-          - label: "Hero Section"
-            name: "hero"
-            widget: "object"
-            fields:
-              - {label: "Title", name: "title", widget: "string", default: "End-to-End Trial Optimization"}
-              - {label: "Subtitle", name: "subtitle", widget: "text", default: "Experience how AdjuvantIQ transforms clinical development from initial planning through regulatory submission"}
-              - {label: "Time Investment", name: "time_investment", widget: "string", default: "⏱️ 20-25 minutes • Complete trial lifecycle • Multi-stakeholder perspectives"}
-          - label: "Trial Overview"
-            name: "trial_overview"
-            widget: "object"
-            fields:
-              - {label: "Title", name: "title", widget: "string", default: "Cardiovascular Outcomes Trial"}
-              - {label: "Subtitle", name: "subtitle", widget: "string", default: "Phase III SGLT2 Inhibitor Study"}
-              - {label: "Description", name: "description", widget: "text", default: "A comprehensive demonstration of AdjuvantIQ's capabilities across the entire clinical development lifecycle, from initial protocol design through regulatory submission."}
-              - label: "Key Metrics"
-                name: "key_metrics"
-                widget: "list"
-                fields:
-                  - {label: "Metric", name: "metric", widget: "string"}
-          - label: "Workflow Phases"
-            name: "workflow_phases"
-            widget: "list"
-            fields:
-              - {label: "Title", name: "title", widget: "string"}
-              - {label: "Description", name: "description", widget: "string"}
-              - {label: "Link", name: "link", widget: "string"}
-              - {label: "Icon", name: "icon", widget: "string"}
 
-      - label: "Oncology Demo"
-        name: "demo_oncology"
-        file: "content/demo-oncology.json"
-        fields:
-          - label: "Hero Section"
-            name: "hero"
-            widget: "object"
-            fields:
-              - {label: "Title", name: "title", widget: "string", default: "Oncology Interim Analysis"}
-              - {label: "Subtitle", name: "subtitle", widget: "text", default: "AI-powered statistical analysis and biomarker stratification"}
-              - {label: "Time Investment", name: "time_investment", widget: "string", default: "⏱️ 15-20 minutes • Statistical analysis • Biomarker insights"}
-          - label: "Trial Overview"
-            name: "trial_overview"
-            widget: "object"
-            fields:
-              - {label: "Title", name: "title", widget: "string", default: "Phase II Oncology Biomarker Trial"}
-              - {label: "Subtitle", name: "subtitle", widget: "string", default: "Novel Immunotherapy with Biomarker Stratification"}
-              - {label: "Description", name: "description", widget: "text", default: "Experience how AI processes complex interim analysis results for a Phase II oncology trial with mixed efficacy signals across biomarker subgroups."}
-              - label: "Key Metrics"
-                name: "key_metrics"
-                widget: "list"
-                fields:
-                  - {label: "Metric", name: "metric", widget: "string"}
 
-      - label: "Workflow Demo"
-        name: "demo_workflow"
-        file: "content/demo-workflow.json"
-        fields:
-          - label: "Hero Section"
-            name: "hero"
-            widget: "object"
-            fields:
-              - {label: "Title", name: "title", widget: "string", default: "User Workflow Exploration"}
-              - {label: "Subtitle", name: "subtitle", widget: "text", default: "Explore the complete user workflow system with detailed AI reasoning explanations"}
-              - {label: "Time Investment", name: "time_investment", widget: "string", default: "⏱️ 15-20 minutes • Complete workflow demonstration • Multi-stakeholder perspectives"}
-          - label: "Workflow Overview"
-            name: "workflow_overview"
-            widget: "object"
-            fields:
-              - {label: "Title", name: "title", widget: "string", default: "Complete User Workflow System"}
-              - {label: "Description", name: "description", widget: "text", default: "Explore how AdjuvantIQ's ontological AI system supports clinical trial optimization across the entire development lifecycle."}
-              - label: "Tabs"
-                name: "tabs"
-                widget: "list"
-                fields:
-                  - {label: "ID", name: "id", widget: "string"}
-                  - {label: "Title", name: "title", widget: "string"}
-                  - {label: "Active", name: "active", widget: "boolean"}
+
 
       - label: "Page Theme (Overrides Global Branding)"
         name: "theme"
@@ -967,3 +845,117 @@ collections:
               - {label: "Pilot Email", name: "pilot_email", widget: "string", default: "pilot@adjuvantiq.com"}
               - {label: "Phone Number", name: "phone", widget: "string", default: "+1 303-885-7143"}
               - {label: "Website", name: "website", widget: "string", default: "www.adjuvantiq.com"}
+
+  - name: "demo_pages"
+    label: "Demo Pages"
+    files:
+      - label: "Demo Hub Page"
+        name: "demo_hub"
+        file: "content/demo-hub.json"
+        fields:
+          - label: "Hero Section"
+            name: "hero"
+            widget: "object"
+            fields:
+              - {label: "Title", name: "title", widget: "string", default: "Interactive Demo Experience"}
+              - {label: "Subtitle", name: "subtitle", widget: "text", default: "Experience how AI-assisted reasoning transforms clinical trial optimization"}
+          - label: "Credibility Section"
+            name: "credibility_section"
+            widget: "object"
+            fields:
+              - {label: "Title", name: "title", widget: "string", default: "Why These Demos Matter"}
+              - {label: "Description", name: "description", widget: "text", default: "These interactive scenarios demonstrate how AdjuvantIQ's ontological AI system processes complex clinical trial decisions, providing real-time optimization recommendations while collecting valuable user feedback."}
+              - label: "Credibility Items"
+                name: "credibility_items"
+                widget: "list"
+                fields:
+                  - {label: "Icon", name: "icon", widget: "string"}
+                  - {label: "Title", name: "title", widget: "string"}
+                  - {label: "Description", name: "description", widget: "string"}
+          - label: "Demo Cards"
+            name: "demo_cards"
+            widget: "list"
+            fields:
+              - {label: "Title", name: "title", widget: "string"}
+              - {label: "Subtitle", name: "subtitle", widget: "string"}
+              - {label: "Description", name: "description", widget: "text"}
+              - label: "Features"
+                name: "features"
+                widget: "list"
+                fields:
+                  - {label: "Feature", name: "feature", widget: "string"}
+              - {label: "Button Text", name: "button_text", widget: "string"}
+              - {label: "Button Link", name: "button_link", widget: "string"}
+          - label: "CTA Section"
+            name: "cta_section"
+            widget: "object"
+            fields:
+              - {label: "Title", name: "title", widget: "string", default: "Ready to Transform Your Clinical Development?"}
+              - {label: "Description", name: "description", widget: "text", default: "These demos showcase just a fraction of AdjuvantIQ's capabilities. Contact us to discuss how our AI system can optimize your specific clinical trial challenges."}
+              - {label: "Button Text", name: "button_text", widget: "string", default: "Request Pilot Program"}
+              - {label: "Button Link", name: "button_link", widget: "string", default: "../#pilot"}
+
+      - label: "Cardiovascular Demo"
+        name: "demo_cardiovascular"
+        file: "content/demo-cardiovascular.json"
+        fields:
+          - label: "Hero Section"
+            name: "hero"
+            widget: "object"
+            fields:
+              - {label: "Title", name: "title", widget: "string", default: "End-to-End Trial Optimization"}
+              - {label: "Subtitle", name: "subtitle", widget: "text", default: "Experience how AdjuvantIQ transforms clinical development from initial planning through regulatory submission"}
+              - {label: "Time Investment", name: "time_investment", widget: "string", default: "⏱️ 20-25 minutes • Complete trial lifecycle • Multi-stakeholder perspectives"}
+          - label: "Trial Overview"
+            name: "trial_overview"
+            widget: "object"
+            fields:
+              - {label: "Title", name: "title", widget: "string", default: "Cardiovascular Outcomes Trial"}
+              - {label: "Subtitle", name: "subtitle", widget: "string", default: "Phase III SGLT2 Inhibitor Study"}
+              - {label: "Description", name: "description", widget: "text", default: "A comprehensive demonstration of AdjuvantIQ's capabilities across the entire clinical development lifecycle, from initial protocol design through regulatory submission."}
+              - label: "Key Metrics"
+                name: "key_metrics"
+                widget: "list"
+                fields:
+                  - {label: "Metric", name: "metric", widget: "string"}
+          - label: "Workflow Phases"
+            name: "workflow_phases"
+            widget: "list"
+            fields:
+              - {label: "Title", name: "title", widget: "string"}
+              - {label: "Description", name: "description", widget: "string"}
+              - {label: "Link", name: "link", widget: "string"}
+              - {label: "Icon", name: "icon", widget: "string"}
+
+      - label: "Oncology Demo"
+        name: "demo_oncology"
+        file: "content/demo-oncology.json"
+        fields:
+          - label: "Hero Section"
+            name: "hero"
+            widget: "object"
+            fields:
+              - {label: "Title", name: "title", widget: "string", default: "Oncology Interim Analysis"}
+              - {label: "Subtitle", name: "subtitle", widget: "text", default: "AI-powered statistical analysis and biomarker stratification"}
+              - {label: "Time Investment", name: "time_investment", widget: "string", default: "⏱️ 15-20 minutes • Statistical analysis • Biomarker insights"}
+          - label: "Trial Overview"
+            name: "trial_overview"
+            widget: "object"
+            fields:
+              - {label: "Title", name: "title", widget: "string", default: "Phase II Oncology Biomarker Trial"}
+              - {label: "Subtitle", name: "subtitle", widget: "string", default: "Novel Immunotherapy with Biomarker Stratification"}
+              - {label: "Description", name: "description", widget: "text", default: "Experience how AI processes complex interim analysis results for a Phase II oncology trial with mixed efficacy signals across biomarker subgroups."}
+              - label: "Key Metrics"
+                name: "key_metrics"
+                widget: "list"
+                fields:
+                  - {label: "Metric", name: "metric", widget: "string"}
+          - label: "Analysis Phases"
+            name: "analysis_phases"
+            widget: "list"
+            fields:
+              - {label: "Title", name: "title", widget: "string"}
+              - {label: "Description", name: "description", widget: "string"}
+              - {label: "Link", name: "link", widget: "string"}
+              - {label: "Icon", name: "icon", widget: "string"}
+
