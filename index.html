@@ -4,6 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AdjuvantIQ | The Operating System for Trial Cognition</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:ital,wght@0,300;0,400;0,600;0,700;1,400&family=Merriweather:ital,wght@0,300;0,400;0,700;1,300;1,400&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:ital,wght@0,300;0,400;0,600;0,700;1,400&family=Merriweather:ital,wght@0,300;0,400;0,700;1,300;1,400&display=swap" rel="stylesheet">
     <style>
         * {
@@ -14,17 +18,27 @@
 
         /* Brand Colors */
         :root {
-            --navy: #2c5282;
-            --teal: #2d7d7d;
-            --white: #ffffff;
-            --warm-gray: #718096;
-            --light-gray: rgba(113, 128, 150, 0.1);
-        }
+        --navy: #2c5282; --teal: #2d7d7d; --white: #ffffff; --warm-gray: #718096; --light-gray: rgba(113, 128, 150, 0.1);
+    }
 
         /* Typography */
         body {
             font-family: 'Merriweather', serif;
             line-height: 1.6;
+        }
+
+        /* Font Mapping Rules */
+        h1, h2, h3, h4, h5, h6, .nav-links a, .cta-button, .secondary-button, .form-group input, .form-group select, .form-group textarea, .form-group label, .logo, .demo-link {
+            font-family: 'Source Sans Pro', sans-serif;
+        }
+        body, p, li, span, div {
+            font-family: 'Merriweather', serif;
+        }
+        .font-body, .font-content, .font-text {
+            font-family: 'Merriweather', serif;
+        }
+        .font-heading, .font-title, .font-nav, .font-button, .font-form {
+            font-family: 'Source Sans Pro', sans-serif;
         }
 
         h1, h2, h3, h4, h5, h6 {
@@ -797,7 +811,7 @@
         }
     </style>
 </head>
-<body>
+<body data-brand-mission="Deliver immediate, measurable business value through rigorous, agentic AI solutions that orchestrate every aspect of clinical trials for biotech and pharma innovators." data-brand-vision="To be the AI-powered operating system, trusted by life sciences organizations to navigate and optimize clinical trials from start to finish." data-brand-promise="Where Rigor Meets Orchestration." data-value-propositions='["Immediate business impact through measurable results from day one","End-to-end orchestration across the entire clinical trial lifecycle","Scientific rigor at every touchpoint","Industry expertise built by and for trial professionals"]' data-differentiators='["Operating system approach vs. point solutions","Rigorous, validated methodology vs. experimental AI","Immediate value, not just speculative long-term ROI","Deep clinical trial domain expertise"]'>
     <!-- Header -->
     <header class="header">
         <nav class="nav">
@@ -809,9 +823,9 @@
                 <li><a href="#solution">Our Solution</a></li>
                 <li><a href="#platform">Platform</a></li>
                 <li><a href="#team">Team</a></li>
-                <li><a href="demo/" class="demo-link">Interactive Demo</a></li>
+                <li><a href="/demo" class="demo-link">Interactive Demo</a></li>
             </ul>
-            <a href="#pilot" class="cta-button">Join Pilot Program</a>
+            <a href="#pilot" class="cta-button">Join Our Development Cohort</a>
         </nav>
     </header>
 
@@ -820,7 +834,7 @@
         <div class="hero-content">
             <h1>Unlocking Billions in Lost Drug Development Investment</h1>
             <p class="subtitle">One Trial at a Time</p>
-            <p class="tagline">An operating system for Clinical Trial Design and Execution</p>
+            <p class="tagline">An operating system for Clinical Trial Design and Execution </p>
             <div class="hero-buttons">
                 <a href="#pilot" class="btn-primary">Start Your Pilot</a>
                 <a href="#solution" class="btn-secondary">Learn More</a>
@@ -832,8 +846,8 @@
     <section class="problem" id="problem">
         <div class="container">
             <div class="section-header fade-in">
-                <h2 class="section-title">An 'Analog' Process Needing a Digital Intelligence Upgrade</h2>
-                <p class="section-subtitle">Clinical trials are plagued by inefficiencies that cost billions and delay life-saving treatments</p>
+                <h2 class="section-title">Join the Founding Cohort of Agentic Biotech Leaders</h2>
+                <p class="section-subtitle">Be among the first sponsor companies to transform protocol development from months to hours</p>
             </div>
             <div class="problem-grid">
                 <div class="problem-card fade-in">
@@ -904,6 +918,12 @@
                         <p>Domain expertise + Regulatory knowledge = Unbeatable moat</p>
                     </div>
                 </div>
+                    <div class="zone-title">Application Layer</div>
+                    <div class="solution-highlight">
+                        <strong>AdjuvantIQ</strong>
+                        <p>Domain expertise + Regulatory knowledge = Unbeatable moat</p>
+                    </div>
+                </div>
 
                 <div class="divider">
                     <span>THE COMPETITIVE MOAT</span>
@@ -911,6 +931,11 @@
 
                 <div class="zone commodity-zone">
                     <div class="zone-label">📦 COMMODITIZING FAST</div>
+                    <div class="zone-title">Infrastructure Layer</div>
+                    <p style="font-size: 1.1rem; color: rgba(255, 255, 255, 0.8);">
+                        ChatGPT • Claude • LangChain • AutoGPT
+                    </p>
+                </div>
                     <div class="zone-title">Infrastructure Layer</div>
                     <p style="font-size: 1.1rem; color: rgba(255, 255, 255, 0.8);">
                         ChatGPT • Claude • LangChain • AutoGPT
@@ -966,7 +991,7 @@
         </div>
     </section>
 
-    <!-- Team Section -->
+        <!-- Team Section -->
     <section class="team" id="team">
         <div class="container">
             <div class="section-header fade-in">
@@ -975,13 +1000,13 @@
             </div>
             <div class="team-grid">
                 <div class="team-card fade-in">
-                    <div class="team-photo">DH</div>
+                    <div class="team-photo"><img src="/images/doug.jpeg" alt="Doug Henston" class="team-photo-img" /></div>
                     <h3>Doug Henston</h3>
                     <p class="team-role">CEO & Co-Founder</p>
                     <p class="team-bio">Serial company builder with 25+ years scaling frontier innovations from lab to market. Yale biophysics, Harvard MBA, Naval Aviator, and Goldman Sachs veteran who raised $400M+ for regulated ventures. Disciplined risk management and institutional funding expertise.</p>
                 </div>
                 <div class="team-card fade-in">
-                    <div class="team-photo">NH</div>
+                    <div class="team-photo"><img src="/images/ned-tryiton_tech-3.png" alt="Ned Harvey" class="team-photo-img" /></div>
                     <h3>Ned Harvey</h3>
                     <p class="team-role">Head of Product & Co-Founder</p>
                     <p class="team-bio">Engineering innovator and Harvard MBA with 20+ years pioneering data-driven solutions. Former Naval Submariner, Digital Gaia co-founder, and RMI Climate Intelligence architect. Specializes in translating complex systems into market-ready products.</p>

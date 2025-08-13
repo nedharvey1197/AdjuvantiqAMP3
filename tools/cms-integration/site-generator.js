@@ -695,7 +695,328 @@ class SiteGenerator {
     generateAll() {
         console.log('Starting site generation...');
         this.updateMainSite();
+        this.centralizeDemoStyling();
         console.log('Site generation complete!');
+    }
+
+    // Centralize demo styling without breaking existing functionality
+    centralizeDemoStyling() {
+        const content = this.loadSiteContent();
+        const branding = content.branding;
+        
+        if (!branding || !branding.demo_components) {
+            console.log('No demo component specifications found in branding.json');
+            return;
+        }
+
+        const demoFiles = [
+            'demo/oncology.html',
+            'demo/cardiovascular.html',
+            'demo/protocol-design.html',
+            'demo/site-selection.html',
+            'demo/regulatory-strategy.html',
+            'demo/adaptive-modifications.html'
+        ];
+        
+        demoFiles.forEach(file => {
+            const filePath = path.join(this.outputDir, file);
+            if (fs.existsSync(filePath)) {
+                this.centralizeDemoFileStyling(filePath, branding);
+            } else {
+                console.log(`Demo file not found: ${file}`);
+            }
+        });
+    }
+    
+    // Centralize styling for individual demo file
+    centralizeDemoFileStyling(filePath, branding) {
+        console.log(`Centralizing styling for: ${filePath}`);
+        let html = fs.readFileSync(filePath, 'utf8');
+        
+        // Generate centralized CSS from brand data
+        const centralizedCSS = this.generateCentralizedCSS(branding.demo_components);
+        
+        // Inject centralized CSS without removing existing styles
+        html = this.injectCentralizedCSS(html, centralizedCSS);
+        
+        fs.writeFileSync(filePath, html);
+        console.log(`Centralized styling for: ${filePath}`);
+    }
+
+    // Generate centralized CSS from component specifications
+    generateCentralizedCSS(components) {
+        let css = '\n        /* Centralized Demo Component Styles - Generated from CMS */\n';
+        
+        // Reasoning Boxes
+        if (components.reasoning_boxes) {
+            const rb = components.reasoning_boxes;
+            css += `
+        /* Centralized Reasoning Box Styles */
+        .reasoning-box {
+            background: ${rb.background} !important;
+            border: ${rb.border} !important;
+            padding: ${rb.padding} !important;
+            margin: ${rb.margin} !important;
+            border-radius: ${rb.border_radius} !important;
+            cursor: ${rb.cursor} !important;
+            transition: ${rb.transition} !important;
+            position: ${rb.position} !important;
+        }
+        
+        .reasoning-box:hover {
+            box-shadow: ${rb.hover_effects.box_shadow} !important;
+        }
+        
+        .reasoning-box.expanded {
+            background: ${rb.expanded.background} !important;
+        }
+        
+        .reasoning-box::before {
+            content: ${rb.before_content.content} !important;
+            position: ${rb.before_content.position} !important;
+            top: ${rb.before_content.top} !important;
+            left: ${rb.before_content.left} !important;
+            background: ${rb.before_content.background} !important;
+            color: ${rb.before_content.color} !important;
+            padding: ${rb.before_content.padding} !important;
+            font-size: ${rb.before_content.font_size} !important;
+            font-weight: ${rb.before_content.font_weight} !important;
+            border-radius: ${rb.before_content.border_radius} !important;
+        }
+        
+        .reasoning-header {
+            font-weight: ${rb.typography.header.font_weight} !important;
+            color: ${rb.typography.header.color} !important;
+            display: ${rb.typography.header.display} !important;
+            justify-content: ${rb.typography.header.justify_content} !important;
+            align-items: ${rb.typography.header.align_items} !important;
+        }
+        
+        .expand-icon {
+            font-size: ${rb.typography.expand_icon.font_size} !important;
+            margin-left: ${rb.typography.expand_icon.margin_left} !important;
+            transition: ${rb.typography.expand_icon.transition} !important;
+        }
+        
+        .reasoning-box.expanded .expand-icon {
+            transform: ${rb.typography.expand_icon.expanded_transform} !important;
+        }
+        
+        .reasoning-details {
+            margin-top: ${rb.typography.details.margin_top} !important;
+            display: ${rb.typography.details.display} !important;
+        }
+        
+        .reasoning-box.expanded .reasoning-details {
+            display: ${rb.typography.details.expanded_display} !important;
+        }`;
+        }
+
+        // Feedback System
+        if (components.feedback_system) {
+            const fs = components.feedback_system;
+            css += `
+        /* Centralized Feedback Section Styles */
+        .feedback-section {
+            position: ${fs.position} !important;
+            margin: ${fs.margin} !important;
+            padding: ${fs.padding} !important;
+            background: ${fs.background} !important;
+            border-radius: ${fs.border_radius} !important;
+            border: ${fs.border} !important;
+            box-shadow: ${fs.box_shadow} !important;
+            animation: ${fs.animation} !important;
+        }
+        
+        .feedback-title {
+            text-align: ${fs.typography.title.text_align} !important;
+            font-size: ${fs.typography.title.font_size} !important;
+            color: ${fs.typography.title.color} !important;
+            margin-bottom: ${fs.typography.title.margin_bottom} !important;
+            font-weight: ${fs.typography.title.font_weight} !important;
+        }
+        
+        .feedback-buttons {
+            display: ${fs.buttons.display} !important;
+            flex-wrap: ${fs.buttons.flex_wrap} !important;
+            gap: ${fs.buttons.gap} !important;
+            justify-content: ${fs.buttons.justify_content} !important;
+            margin-top: ${fs.buttons.margin_top} !important;
+        }
+        
+        .feedback-button {
+            background: ${fs.button.background} !important;
+            color: ${fs.button.color} !important;
+            border: ${fs.button.border} !important;
+            padding: ${fs.button.padding} !important;
+            border-radius: ${fs.button.border_radius} !important;
+            font-weight: ${fs.button.font_weight} !important;
+            cursor: ${fs.button.cursor} !important;
+            transition: ${fs.button.transition} !important;
+            box-shadow: ${fs.button.box_shadow} !important;
+        }
+        
+        .feedback-button:hover {
+            background: ${fs.button.hover.background} !important;
+            transform: ${fs.button.hover.transform} !important;
+            box-shadow: ${fs.button.hover.box_shadow} !important;
+        }
+        
+        .feedback-section::before {
+            content: ${fs.arrows.content} !important;
+            position: ${fs.arrows.position} !important;
+            top: ${fs.arrows.top} !important;
+            transform: ${fs.arrows.transform} !important;
+            font-size: ${fs.arrows.font_size} !important;
+            color: ${fs.arrows.color} !important;
+            font-weight: ${fs.arrows.font_weight} !important;
+            animation: ${fs.arrows.animation} !important;
+            left: ${fs.arrows.before.left} !important;
+        }
+        
+        .feedback-section::after {
+            content: ${fs.arrows.content} !important;
+            position: ${fs.arrows.position} !important;
+            top: ${fs.arrows.top} !important;
+            transform: ${fs.arrows.after.transform} !important;
+            font-size: ${fs.arrows.font_size} !important;
+            color: ${fs.arrows.color} !important;
+            font-weight: ${fs.arrows.font_weight} !important;
+            animation: ${fs.arrows.animation} !important;
+            right: ${fs.arrows.after.right} !important;
+        }`;
+        }
+
+        // Collapsible Sections
+        if (components.collapsible_sections) {
+            const cs = components.collapsible_sections;
+            css += `
+        /* Centralized Collapsible Section Styles */
+        .collapsible-section {
+            margin: ${cs.margin} !important;
+            border-radius: ${cs.border_radius} !important;
+            box-shadow: ${cs.box_shadow} !important;
+            overflow: ${cs.overflow} !important;
+            background: ${cs.background} !important;
+        }
+        
+        .section-header {
+            background: ${cs.header.background} !important;
+            padding: ${cs.header.padding} !important;
+            border-bottom: ${cs.header.border_bottom} !important;
+            cursor: ${cs.header.cursor} !important;
+            display: ${cs.header.display} !important;
+            justify-content: ${cs.header.justify_content} !important;
+            align-items: ${cs.header.align_items} !important;
+            transition: ${cs.header.transition} !important;
+        }
+        
+        .section-header:hover {
+            background: ${cs.header.hover.background} !important;
+        }
+        
+        .section-header h3 {
+            font-size: ${cs.header.typography.font_size} !important;
+            color: ${cs.header.typography.color} !important;
+            margin: ${cs.header.typography.margin} !important;
+        }
+        
+        .section-toggle-container {
+            display: ${cs.toggle_container.display} !important;
+            align-items: ${cs.toggle_container.align_items} !important;
+            gap: ${cs.toggle_container.gap} !important;
+            font-size: ${cs.toggle_container.font_size} !important;
+            color: ${cs.toggle_container.color} !important;
+            font-weight: ${cs.toggle_container.font_weight} !important;
+        }
+        
+        .section-toggle {
+            background: ${cs.toggle.background} !important;
+            color: ${cs.toggle.color} !important;
+            border: ${cs.toggle.border} !important;
+            border-radius: ${cs.toggle.border_radius} !important;
+            width: ${cs.toggle.width} !important;
+            height: ${cs.toggle.height} !important;
+            display: ${cs.toggle.display} !important;
+            align-items: ${cs.toggle.align_items} !important;
+            justify-content: ${cs.toggle.justify_content} !important;
+            cursor: ${cs.toggle.cursor} !important;
+            font-size: ${cs.toggle.font_size} !important;
+            transition: ${cs.toggle.transition} !important;
+        }
+        
+        .section-toggle:hover {
+            background: ${cs.toggle.hover.background} !important;
+            transform: ${cs.toggle.hover.transform} !important;
+        }
+        
+        .section-toggle.collapsed {
+            transform: ${cs.toggle.collapsed.transform} !important;
+        }
+        
+        .section-content {
+            max-height: ${cs.content.max_height} !important;
+            overflow: ${cs.content.overflow} !important;
+            transition: ${cs.content.transition} !important;
+        }
+        
+        .section-content.collapsed {
+            max-height: ${cs.content.collapsed.max_height} !important;
+        }
+        
+        .section-list {
+            padding: ${cs.list.padding} !important;
+            background: ${cs.list.background} !important;
+            border-top: ${cs.list.border_top} !important;
+        }`;
+        }
+
+        // Animations
+        if (components.animations) {
+            css += `
+        /* Centralized Animation Keyframes */
+        @keyframes feedbackGlow {
+            0% {
+                box-shadow: ${components.animations.feedbackGlow['0%'].box_shadow};
+            }
+            100% {
+                box-shadow: ${components.animations.feedbackGlow['100%'].box_shadow};
+            }
+        }
+        
+        @keyframes arrowPulse {
+            0%, 100% {
+                opacity: ${components.animations.arrowPulse['0%, 100%'].opacity};
+                transform: ${components.animations.arrowPulse['0%, 100%'].transform};
+            }
+            50% {
+                opacity: ${components.animations.arrowPulse['50%'].opacity};
+                transform: ${components.animations.arrowPulse['50%'].transform};
+            }
+        }`;
+        }
+
+        return css;
+    }
+
+    // Inject centralized CSS without removing existing styles
+    injectCentralizedCSS(html, centralizedCSS) {
+        // Find the existing style tag and inject centralized CSS before the closing tag
+        const styleTagRegex = /<style>([\s\S]*?)<\/style>/;
+        const match = html.match(styleTagRegex);
+        
+        if (match) {
+            const existingCSS = match[1];
+            const newCSS = existingCSS + centralizedCSS;
+            html = html.replace(styleTagRegex, `<style>${newCSS}</style>`);
+        } else {
+            // If no style tag exists, create one in the head
+            const headCloseRegex = /<\/head>/;
+            const styleTag = `    <style>${centralizedCSS}\n    </style>\n    </head>`;
+            html = html.replace(headCloseRegex, styleTag);
+        }
+        
+        return html;
     }
 }
 

@@ -935,7 +935,235 @@
             box-shadow: 0 4px 8px rgba(229, 62, 62, 0.4);
             background: linear-gradient(135deg, #c53030 0%, #a52a2a 100%);
         }
-    </style>
+    
+        /* Centralized Demo Component Styles - Generated from CMS */
+
+        /* Centralized Reasoning Box Styles */
+        .reasoning-box {
+            background: #fff3e0 !important;
+            border: 2px solid #ff9800 !important;
+            padding: 20px !important;
+            margin: 15px 0 !important;
+            border-radius: 8px !important;
+            cursor: pointer !important;
+            transition: all 0.3s ease !important;
+            position: relative !important;
+        }
+        
+        .reasoning-box:hover {
+            box-shadow: 0 4px 12px rgba(255,152,0,0.2) !important;
+        }
+        
+        .reasoning-box.expanded {
+            background: #fff8e1 !important;
+        }
+        
+        .reasoning-box::before {
+            content: "🔧 AI REASONING" !important;
+            position: absolute !important;
+            top: -10px !important;
+            left: 15px !important;
+            background: #ff9800 !important;
+            color: white !important;
+            padding: 4px 8px !important;
+            font-size: 0.8em !important;
+            font-weight: bold !important;
+            border-radius: 3px !important;
+        }
+        
+        .reasoning-header {
+            font-weight: bold !important;
+            color: #e65100 !important;
+            display: flex !important;
+            justify-content: space-between !important;
+            align-items: center !important;
+        }
+        
+        .expand-icon {
+            font-size: 1.2em !important;
+            margin-left: auto !important;
+            transition: transform 0.3s ease !important;
+        }
+        
+        .reasoning-box.expanded .expand-icon {
+            transform: rotate(45deg) !important;
+        }
+        
+        .reasoning-details {
+            margin-top: 15px !important;
+            display: none !important;
+        }
+        
+        .reasoning-box.expanded .reasoning-details {
+            display: block !important;
+        }
+        /* Centralized Feedback Section Styles */
+        .feedback-section {
+            position: relative !important;
+            margin: 2rem 0 !important;
+            padding: 2rem !important;
+            background: linear-gradient(135deg, #fff5f5 0%, #fed7d7 100%) !important;
+            border-radius: 12px !important;
+            border: 3px solid #e53e3e !important;
+            box-shadow: 0 0 20px rgba(229, 62, 62, 0.3) !important;
+            animation: feedbackGlow 2s ease-in-out infinite alternate !important;
+        }
+        
+        .feedback-title {
+            text-align: center !important;
+            font-size: 1.5em !important;
+            color: #c53030 !important;
+            margin-bottom: 1rem !important;
+            font-weight: bold !important;
+        }
+        
+        .feedback-buttons {
+            display: flex !important;
+            flex-wrap: wrap !important;
+            gap: 1rem !important;
+            justify-content: center !important;
+            margin-top: 1.5rem !important;
+        }
+        
+        .feedback-button {
+            background: #e53e3e !important;
+            color: white !important;
+            border: none !important;
+            padding: 0.75rem 1.5rem !important;
+            border-radius: 8px !important;
+            font-weight: 600 !important;
+            cursor: pointer !important;
+            transition: all 0.3s ease !important;
+            box-shadow: 0 4px 8px rgba(229, 62, 62, 0.3) !important;
+        }
+        
+        .feedback-button:hover {
+            background: #c53030 !important;
+            transform: translateY(-2px) !important;
+            box-shadow: 0 6px 12px rgba(229, 62, 62, 0.4) !important;
+        }
+        
+        .feedback-section::before {
+            content: "→" !important;
+            position: absolute !important;
+            top: 50% !important;
+            transform: translateY(-50%) !important;
+            font-size: 2rem !important;
+            color: #e53e3e !important;
+            font-weight: bold !important;
+            animation: arrowPulse 1.5s ease-in-out infinite !important;
+            left: -30px !important;
+        }
+        
+        .feedback-section::after {
+            content: "→" !important;
+            position: absolute !important;
+            top: 50% !important;
+            transform: translateY(-50%) rotate(180deg) !important;
+            font-size: 2rem !important;
+            color: #e53e3e !important;
+            font-weight: bold !important;
+            animation: arrowPulse 1.5s ease-in-out infinite !important;
+            right: -30px !important;
+        }
+        /* Centralized Collapsible Section Styles */
+        .collapsible-section {
+            margin: 2rem 0 !important;
+            border-radius: 12px !important;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1) !important;
+            overflow: hidden !important;
+            background: white !important;
+        }
+        
+        .section-header {
+            background: #f8f9fc !important;
+            padding: 1.5rem !important;
+            border-bottom: 1px solid #e0e6ed !important;
+            cursor: pointer !important;
+            display: flex !important;
+            justify-content: space-between !important;
+            align-items: center !important;
+            transition: background 0.3s ease !important;
+        }
+        
+        .section-header:hover {
+            background: #e3f2fd !important;
+        }
+        
+        .section-header h3 {
+            font-size: 1.5em !important;
+            color: #333 !important;
+            margin: 0 !important;
+        }
+        
+        .section-toggle-container {
+            display: flex !important;
+            align-items: center !important;
+            gap: 0.5rem !important;
+            font-size: 0.85em !important;
+            color: #2196f3 !important;
+            font-weight: 500 !important;
+        }
+        
+        .section-toggle {
+            background: #2196f3 !important;
+            color: white !important;
+            border: none !important;
+            border-radius: 50% !important;
+            width: 32px !important;
+            height: 32px !important;
+            display: flex !important;
+            align-items: center !important;
+            justify-content: center !important;
+            cursor: pointer !important;
+            font-size: 1em !important;
+            transition: all 0.3s ease !important;
+        }
+        
+        .section-toggle:hover {
+            background: #1976d2 !important;
+            transform: scale(1.1) !important;
+        }
+        
+        .section-toggle.collapsed {
+            transform: rotate(180deg) !important;
+        }
+        
+        .section-content {
+            max-height: 2000px !important;
+            overflow: hidden !important;
+            transition: max-height 0.5s ease !important;
+        }
+        
+        .section-content.collapsed {
+            max-height: 0 !important;
+        }
+        
+        .section-list {
+            padding: 1rem !important;
+            background: #f8f9fc !important;
+            border-top: 1px solid #e0e6ed !important;
+        }
+        /* Centralized Animation Keyframes */
+        @keyframes feedbackGlow {
+            0% {
+                box-shadow: 0 0 20px rgba(229, 62, 62, 0.3);
+            }
+            100% {
+                box-shadow: 0 0 30px rgba(229, 62, 62, 0.6);
+            }
+        }
+        
+        @keyframes arrowPulse {
+            0%, 100% {
+                opacity: 0.7;
+                transform: translateY(-50%) scale(1);
+            }
+            50% {
+                opacity: 1;
+                transform: translateY(-50%) scale(1.2);
+            }
+        }</style>
 </head>
 <body>
     <div class="hero">
@@ -1087,11 +1315,38 @@
                     </div>
                 </div>
 
-                <div class="data-visualization">
-                    <h4>Statistical Analysis Summary</h4>
-                    <div class="chart-placeholder">
-                        [Biomarker Stratification Chart]<br>
-                        Overall ORR: 23% | PIK3CA Wild-type: 35% | PIK3CA Mutant: 12% | Optimal Dose: 450mg (28% ORR)
+                <div class="dashboard-link" style="text-align: center; margin: 20px 0;">
+                    <button onclick="openDashboardModal()" 
+                            style="display: inline-block; padding: 12px 24px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); 
+                                   color: white; border: none; border-radius: 8px; font-weight: bold; cursor: pointer;
+                                   box-shadow: 0 4px 8px rgba(102, 126, 234, 0.3); transition: all 0.3s ease;">
+                        📊 View Full Analytics Dashboard
+                    </button>
+                </div>
+
+                <div class="system-recommendations">
+                    <strong>AI-Generated Strategic Recommendations:</strong><br><br>
+                    <strong>🎯 Immediate Action:</strong> Pivot to PIK3CA wild-type enrichment strategy. Strong biomarker signal (p=0.031) supports regulatory differentiation and faster approval pathway.<br><br>
+                    <strong>🏛️ FDA Engagement:</strong> Request pre-submission meeting to discuss biomarker strategy and Breakthrough Therapy Designation potential. 35% ORR exceeds typical BTD thresholds.<br><br>
+                    <strong>📋 Protocol Amendment:</strong> Modify inclusion criteria to require PIK3CA wild-type status. Implement centralized biomarker testing to ensure 48-hour turnaround for screening.<br><br>
+                    <strong>🏥 Site Optimization:</strong> Focus recruitment on high-volume sites with strong biomarker testing capabilities. Projected 2.8:1 screening ratio requires enhanced site support.<br><br>
+                    <strong>⚔️ Competitive Positioning:</strong> Leverage biomarker differentiation vs. competitors pursuing biomarker-unselected approaches. Recent competitor Phase III failure validates strategy.
+                </div>
+
+                <div class="reasoning-box" onclick="toggleReasoning(this)">
+                    <div class="reasoning-header">
+                        How does the system generate strategic recommendations from statistical analysis?
+                        <div class="section-toggle-container">
+                            <span>EXPAND</span>
+                            <span class="expand-icon">+</span>
+                        </div>
+                    </div>
+                    <div class="reasoning-details">
+                        <strong>1. Statistical Signal Interpretation:</strong> Analyzes p=0.031 biomarker effect and 35% ORR in wild-type population against FDA BTD thresholds<br><br>
+                        <strong>2. Regulatory Pathway Optimization:</strong> Maps biomarker findings to FDA guidance for accelerated approval and Breakthrough Therapy Designation<br><br>
+                        <strong>3. Risk-Benefit Assessment:</strong> Evaluates trade-offs between broader population enrollment vs. biomarker-selected approach<br><br>
+                        <strong>4. Competitive Landscape Analysis:</strong> Considers recent competitor failures and market positioning opportunities<br><br>
+                        <strong>5. Implementation Feasibility:</strong> Assesses practical requirements for protocol amendments, site capabilities, and biomarker testing infrastructure
                     </div>
                 </div>
 
@@ -1275,6 +1530,38 @@
             <button onclick="downloadOncologyGuide()">📄 Download Statistical Analysis Guide</button>
             <button onclick="shareOncologyInsights()">📤 Share This Demo</button>
             <button onclick="openPilotForm()">🚀 Discuss Data Analysis Pilot</button>
+
+            <p>This demonstration shows how AdjuvantIQ transforms complex statistical analysis and biomarker interpretation for oncology trials.</p>
+            <button onclick="window.location.href='index.html'">🏠 Return to Demo Hub</button>
+            <button onclick="window.location.href='cardiovascular.html'">📋 Explore End-to-End Demo</button>
+            <button onclick="downloadPhaseAnalysis('oncology')">📄 Download Oncology Analysis</button>
+        </div>
+
+        <!-- Overall Demo Feedback Section -->
+        <div class="feedback-section">
+            <h3 class="feedback-title">Your Feedback Matters!</h3>
+            <p>Help us improve our oncology analysis capabilities by sharing your thoughts on this demo.</p>
+            <div class="feedback-buttons">
+                <button class="feedback-button" onclick="showToast('Thank you for your feedback!')">👍 Great Demo!</button>
+                <button class="feedback-button" onclick="showToast('We appreciate your feedback!')">👎 Could be better</button>
+                <button class="feedback-button" onclick="showToast('Thank you for your feedback!')">💡 Suggestion</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Dashboard Modal -->
+    <div id="dashboardModal" style="display: none; position: fixed; z-index: 1000; left: 0; top: 0; width: 100%; height: 100%; 
+                                    background-color: rgba(0,0,0,0.5); backdrop-filter: blur(5px);">
+        <div style="position: relative; background-color: white; margin: 2% auto; padding: 0; width: 95%; max-width: 1200px; 
+                    height: 90%; border-radius: 12px; box-shadow: 0 10px 30px rgba(0,0,0,0.3); overflow: hidden;">
+            <div style="display: flex; justify-content: space-between; align-items: center; padding: 20px; 
+                        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white;">
+                <h3 style="margin: 0;">📊 CDK4/6 Inhibitor Trial - Interim Analysis Dashboard</h3>
+                <button onclick="closeDashboardModal()" style="background: none; border: none; color: white; font-size: 24px; 
+                                                                 cursor: pointer; padding: 5px;">&times;</button>
+            </div>
+            <iframe id="dashboardFrame" src="./CDK4%3A6%20Inhibitor%20Trial%20-%20Interim%20Analysis%20Dashboard.html" 
+                    style="width: 100%; height: calc(100% - 80px); border: none;"></iframe>
         </div>
     </div>
 
@@ -1367,6 +1654,32 @@
                 toast.classList.remove('show');
             }, 3000);
         }
+
+        // Dashboard Modal Functions
+        function openDashboardModal() {
+            document.getElementById('dashboardModal').style.display = 'block';
+            document.body.style.overflow = 'hidden'; // Prevent background scrolling
+        }
+
+        function closeDashboardModal() {
+            document.getElementById('dashboardModal').style.display = 'none';
+            document.body.style.overflow = 'auto'; // Restore scrolling
+        }
+
+        // Close modal when clicking outside of it
+        window.onclick = function(event) {
+            const modal = document.getElementById('dashboardModal');
+            if (event.target === modal) {
+                closeDashboardModal();
+            }
+        }
+
+        // Close modal with Escape key
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Escape') {
+                closeDashboardModal();
+            }
+        });
         
         // Progressive disclosure on scroll
         window.addEventListener('scroll', function() {
