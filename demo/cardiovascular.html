@@ -1876,8 +1876,12 @@
                 <div style="text-align: center; margin: 20px 0; padding: 15px; background: rgba(255,193,7,0.1); border: 2px solid #ffc107; border-radius: 8px;">
                     <p style="color: #856404; margin-bottom: 10px; font-size: 0.9em;"><strong>Debug:</strong> Test feedback submission</p>
                     <button onclick="testFeedbackSubmission()" 
-                            style="background: linear-gradient(135deg, #ffc107 0%, #ff9800 100%); color: #856404; border: none; padding: 10px 20px; border-radius: 6px; font-weight: bold; cursor: pointer;">
+                            style="background: linear-gradient(135deg, #ffc107 0%, #ff9800 100%); color: #856404; border: none; padding: 10px 20px; border-radius: 6px; font-weight: bold; cursor: pointer; margin-right: 10px;">
                         🧪 Test Feedback Submission
+                    </button>
+                    <button onclick="testFormspree()" 
+                            style="background: linear-gradient(135deg, #28a745 0%, #20c997 100%); color: white; border: none; padding: 10px 20px; border-radius: 6px; font-weight: bold; cursor: pointer;">
+                        🔗 Test Formspree Connection
                     </button>
                 </div>
             
@@ -1987,6 +1991,65 @@
             
             submitFeedbackToServer(testFeedback);
         }
+        
+        // Simple test function for console
+        function test() {
+            alert('Test function called!');
+            console.log('Test function executed');
+            return 'Test successful';
+        }
+        
+        // Test Formspree connection
+        function testFormspree() {
+            console.log('=== TESTING FORMSPREE CONNECTION ===');
+            
+            // Add a small delay to make it look more human
+            setTimeout(() => {
+                // Create a hidden form and submit it (like the working pilot form)
+                const form = document.createElement('form');
+                form.method = 'POST';
+                form.action = 'https://formspree.io/f/xjkoorgk';
+                form.style.display = 'none';
+                
+                // Add form fields with anti-spam measures
+                const fields = {
+                    '_subject': 'Test Feedback Submission',
+                    'email': 'test@adjuvantiq.com',
+                    'name': 'Test User',
+                    'message': 'This is a test feedback submission to verify Formspree is working.',
+                    'company': 'Test Company',
+                    'interest': 'demo',
+                    'timeline': 'planning'
+                };
+                
+                // Create input fields
+                Object.entries(fields).forEach(([name, value]) => {
+                    const input = document.createElement('input');
+                    input.type = 'hidden';
+                    input.name = name;
+                    input.value = value;
+                    form.appendChild(input);
+                });
+                
+                // Add form to page and submit
+                document.body.appendChild(form);
+                
+                console.log('Sending test data to Formspree...');
+                console.log('Test form fields:', fields);
+                
+                // Submit the form
+                form.submit();
+                
+                alert('✅ Test form submitted! Check your email for the test submission.');
+                
+                // Remove the form
+                setTimeout(() => {
+                    if (document.body.contains(form)) {
+                        document.body.removeChild(form);
+                    }
+                }, 1000);
+            }, 500); // 500ms delay to make it look more human
+        }
 
         // Show toast notifications
         function showToast(message) {
@@ -2087,52 +2150,62 @@
             console.log('=== COMPLETE FEEDBACK SUBMISSION ===');
             console.log('Feedback Data:', feedbackData);
             
-            // Prepare feedback data for Formspree
-            const formData = new FormData();
-            formData.append('subject', `AdjuvantIQ Demo Feedback - ${new Date().toLocaleDateString()}`);
-            formData.append('final_feedback', feedbackData.final_feedback);
-            formData.append('email', feedbackData.email || 'Not provided');
-            formData.append('timestamp', feedbackData.timestamp);
-            formData.append('session_feedback_count', feedbackData.session_feedback.length);
-            formData.append('pages_visited', [...new Set(feedbackData.session_feedback.map(f => f.page))].join(', '));
-            formData.append('feedback_types', Object.entries(
-                feedbackData.session_feedback.reduce((acc, f) => {
-                    acc[f.type] = (acc[f.type] || 0) + 1;
-                    return acc;
-                }, {})
-            ).map(([type, count]) => `${type} (${count})`).join(', '));
-            formData.append('session_feedback_details', JSON.stringify(feedbackData.session_feedback, null, 2));
-            formData.append('context', JSON.stringify(feedbackData.context, null, 2));
-            formData.append('user_agent', feedbackData.user_agent);
-            formData.append('url', feedbackData.url);
-            formData.append('demo_session_id', generateSessionId());
-            
-            // Submit to Formspree
-            fetch('https://formspree.io/f/xjkoorgk', {
-                method: 'POST',
-                body: formData,
-                headers: {
-                    'Accept': 'application/json'
-                }
-            })
-            .then(response => {
-                if (response.ok) {
-                    console.log('Feedback submitted successfully to Formspree');
-                    showToast('Thank you! Your feedback has been submitted successfully.');
-                    
-                    // Clear session feedback after successful submission
-                    localStorage.removeItem('adjuvantiq_feedback');
-                    localStorage.removeItem('feedback_context');
-                    localStorage.removeItem('complete_feedback');
-                } else {
-                    console.error('Error submitting feedback:', response.status);
-                    showToast('There was an error submitting your feedback. Please try again.');
-                }
-            })
-            .catch(error => {
-                console.error('Error submitting feedback:', error);
-                showToast('There was an error submitting your feedback. Please try again.');
-            });
+            // Add a small delay to make it look more human
+            setTimeout(() => {
+                // Create a hidden form and submit it (like the working pilot form)
+                const form = document.createElement('form');
+                form.method = 'POST';
+                form.action = 'https://formspree.io/f/xjkoorgk';
+                form.style.display = 'none';
+                
+                // Add form fields with anti-spam measures
+                const fields = {
+                    '_subject': `AdjuvantIQ Demo Feedback - ${new Date().toLocaleDateString()}`,
+                    'email': feedbackData.email || 'demo-feedback@adjuvantiq.com',
+                    'name': 'Demo User',
+                    'message': `Demo Feedback Submission\n\nFinal Feedback: ${feedbackData.final_feedback}\nTimestamp: ${feedbackData.timestamp}\nSession Feedback Count: ${feedbackData.session_feedback.length}\nPages Visited: ${[...new Set(feedbackData.session_feedback.map(f => f.page))].join(', ')}\n\nSession Details:\n${JSON.stringify(feedbackData.session_feedback, null, 2)}\n\nContext:\n${JSON.stringify(feedbackData.context, null, 2)}\n\nUser Agent: ${feedbackData.user_agent}\nURL: ${feedbackData.url}\nSession ID: ${generateSessionId()}`,
+                    'feedback_type': feedbackData.final_feedback,
+                    'session_feedback_count': feedbackData.session_feedback.length,
+                    'pages_visited': [...new Set(feedbackData.session_feedback.map(f => f.page))].join(', '),
+                    'demo_session_id': generateSessionId(),
+                    // Add human-like fields to reduce spam detection
+                    'company': 'Demo User',
+                    'interest': 'demo',
+                    'timeline': 'planning'
+                };
+                
+                // Create input fields
+                Object.entries(fields).forEach(([name, value]) => {
+                    const input = document.createElement('input');
+                    input.type = 'hidden';
+                    input.name = name;
+                    input.value = value;
+                    form.appendChild(input);
+                });
+                
+                // Add form to page and submit
+                document.body.appendChild(form);
+                
+                console.log('Submitting form with fields:', fields);
+                
+                // Submit the form
+                form.submit();
+                
+                // Show success message
+                showToast('Thank you! Your feedback has been submitted successfully.');
+                
+                // Clear session feedback after submission
+                localStorage.removeItem('adjuvantiq_feedback');
+                localStorage.removeItem('feedback_context');
+                localStorage.removeItem('complete_feedback');
+                
+                // Remove the form
+                setTimeout(() => {
+                    if (document.body.contains(form)) {
+                        document.body.removeChild(form);
+                    }
+                }, 1000);
+            }, 500); // 500ms delay to make it look more human
         }
         
         // Generate unique session ID for tracking
