@@ -1853,13 +1853,37 @@
             </div>
         </div>
 
-        <div class="feedback-section">
+        <div class="feedback-section" id="demo-feedback">
             <h3 class="feedback-title">Your Feedback Matters!</h3>
             <p>We'd love to hear your thoughts on how AdjuvantIQ can help transform your clinical development process. Please share your experience with us.</p>
+            
+            <!-- Session Feedback Summary -->
+            <div id="session-feedback-summary" style="background: rgba(255,255,255,0.9); padding: 15px; border-radius: 8px; margin: 20px 0; border-left: 4px solid #e53e3e;">
+                <h4 style="color: #c53030; margin-bottom: 10px;">📊 Your Demo Session Summary</h4>
+                <div id="feedback-summary-content">
+                    <p style="color: #666; font-size: 0.9em;">Loading your session feedback...</p>
+                </div>
+            </div>
+            
             <div class="feedback-buttons">
-                <button class="feedback-button" onclick="showToast('Thank you for your feedback!')">👍 Great Demo!</button>
-                <button class="feedback-button" onclick="showToast('We appreciate your feedback!')">👎 Could be better</button>
-                <button class="feedback-button" onclick="showToast('Thank you for your feedback!')">💡 Suggestion</button>
+                <button class="feedback-button" onclick="submitCompleteFeedback('great-demo')">👍 Great Demo!</button>
+                <button class="feedback-button" onclick="submitCompleteFeedback('could-be-better')">👎 Could be better</button>
+                <button class="feedback-button" onclick="submitCompleteFeedback('suggestion')">💡 Suggestion</button>
+                <button class="feedback-button" onclick="submitCompleteFeedback('contact-me')" style="background: linear-gradient(135deg, #2d7d7d 0%, #2c5282 100%);">📧 Contact Me About AdjuvantIQ</button>
+            </div>
+            
+            <!-- Email Collection for Detailed Feedback -->
+            <div id="email-collection" style="display: none; margin-top: 20px; padding: 20px; background: rgba(255,255,255,0.9); border-radius: 8px; border: 2px solid #e53e3e;">
+                <h4 style="color: #c53030; margin-bottom: 15px;">📧 Get Demo Insights & Updates</h4>
+                <p style="color: #c53030; margin-bottom: 15px;">Share your email to receive detailed analysis reports and stay updated on AdjuvantIQ developments.</p>
+                <div style="display: flex; gap: 10px; justify-content: center; align-items: center; flex-wrap: wrap;">
+                    <input type="email" id="feedbackEmail" placeholder="Enter your email address" 
+                           style="padding: 12px 15px; border: 2px solid #e53e3e; border-radius: 8px; font-size: 1rem; min-width: 250px;">
+                    <button onclick="submitFeedbackWithEmail()" 
+                            style="background: linear-gradient(135deg, #e53e3e 0%, #c53030 100%); color: white; border: none; padding: 12px 20px; border-radius: 8px; font-weight: bold; cursor: pointer;">
+                        Send Feedback
+                    </button>
+                </div>
             </div>
         </div>
 
@@ -1885,6 +1909,137 @@
                 toast.classList.remove('show');
             }, 3000);
         }
+
+        // Load and display session feedback summary
+        function loadSessionFeedbackSummary() {
+            const summaryContent = document.getElementById('feedback-summary-content');
+            const sessionFeedback = JSON.parse(localStorage.getItem('adjuvantiq_feedback') || '[]');
+            const feedbackContext = JSON.parse(localStorage.getItem('feedback_context') || '{}');
+            
+            if (sessionFeedback.length === 0) {
+                summaryContent.innerHTML = '<p style="color: #666; font-size: 0.9em;">No session feedback collected yet. Your feedback will appear here as you interact with the demos.</p>';
+                return;
+            }
+            
+            let summaryHTML = '<div style="margin-bottom: 15px;">';
+            summaryHTML += `<p style="color: #c53030; font-weight: bold;">📊 Session Summary:</p>`;
+            summaryHTML += `<p style="color: #666; font-size: 0.9em;">• <strong>${sessionFeedback.length}</strong> feedback points collected</p>`;
+            summaryHTML += `<p style="color: #666; font-size: 0.9em;">• <strong>${new Set(sessionFeedback.map(f => f.page)).size}</strong> demo pages visited</p>`;
+            
+            // Group feedback by type
+            const feedbackTypes = {};
+            sessionFeedback.forEach(feedback => {
+                const type = feedback.type;
+                feedbackTypes[type] = (feedbackTypes[type] || 0) + 1;
+            });
+            
+            if (Object.keys(feedbackTypes).length > 0) {
+                summaryHTML += '<p style="color: #666; font-size: 0.9em;">• <strong>Feedback types:</strong> ';
+                summaryHTML += Object.entries(feedbackTypes).map(([type, count]) => `${type} (${count})`).join(', ');
+                summaryHTML += '</p>';
+            }
+            
+            summaryHTML += '</div>';
+            summaryContent.innerHTML = summaryHTML;
+        }
+
+        // Submit complete feedback with session data
+        function submitCompleteFeedback(feedbackType) {
+            const sessionFeedback = JSON.parse(localStorage.getItem('adjuvantiq_feedback') || '[]');
+            const feedbackContext = JSON.parse(localStorage.getItem('feedback_context') || '{}');
+            
+            // Prepare comprehensive feedback data
+            const completeFeedback = {
+                final_feedback: feedbackType,
+                session_feedback: sessionFeedback,
+                context: feedbackContext,
+                timestamp: new Date().toISOString(),
+                user_agent: navigator.userAgent,
+                url: window.location.href
+            };
+            
+            // Store complete feedback
+            localStorage.setItem('complete_feedback', JSON.stringify(completeFeedback));
+            
+            // Show email collection for detailed feedback
+            if (feedbackType === 'suggestion' || feedbackType === 'contact-me') {
+                document.getElementById('email-collection').style.display = 'block';
+                showToast('Please provide your email to receive detailed feedback and updates!');
+            } else {
+                // Submit feedback without email
+                submitFeedbackToServer(completeFeedback);
+                showToast('Thank you for your feedback! We appreciate your input.');
+            }
+        }
+
+        // Submit feedback with email
+        function submitFeedbackWithEmail() {
+            const email = document.getElementById('feedbackEmail').value.trim();
+            if (!email) {
+                showToast('Please enter a valid email address.');
+                return;
+            }
+            
+            const completeFeedback = JSON.parse(localStorage.getItem('complete_feedback') || '{}');
+            completeFeedback.email = email;
+            
+            // Submit to server
+            submitFeedbackToServer(completeFeedback);
+            
+            // Clear form
+            document.getElementById('feedbackEmail').value = '';
+            document.getElementById('email-collection').style.display = 'none';
+            
+            showToast('Thank you! We\'ll be in touch with detailed insights and updates.');
+        }
+
+        // Submit feedback to server (placeholder for actual implementation)
+        function submitFeedbackToServer(feedbackData) {
+            // Log feedback for development
+            console.log('=== COMPLETE FEEDBACK SUBMISSION ===');
+            console.log('Feedback Data:', feedbackData);
+            
+            // In production, this would send to your server/email service
+            // Example: fetch('/api/feedback', { method: 'POST', body: JSON.stringify(feedbackData) })
+            
+            // For now, we'll simulate sending to email
+            const emailBody = `
+Subject: AdjuvantIQ Demo Feedback - ${new Date().toLocaleDateString()}
+
+Complete Demo Session Feedback:
+
+Final Feedback: ${feedbackData.final_feedback}
+Email: ${feedbackData.email || 'Not provided'}
+Timestamp: ${feedbackData.timestamp}
+
+Session Feedback Summary:
+${feedbackData.session_feedback.map(f => `- ${f.type} (${f.page}): ${f.timestamp}`).join('\n')}
+
+Context: ${JSON.stringify(feedbackData.context, null, 2)}
+
+User Agent: ${feedbackData.user_agent}
+URL: ${feedbackData.url}
+            `;
+            
+            console.log('Email Body:', emailBody);
+            
+            // Clear session feedback after submission
+            localStorage.removeItem('adjuvantiq_feedback');
+            localStorage.removeItem('feedback_context');
+            localStorage.removeItem('complete_feedback');
+        }
+
+        // Load feedback summary when page loads
+        document.addEventListener('DOMContentLoaded', function() {
+            loadSessionFeedbackSummary();
+            
+            // Scroll to feedback section if coming from another demo
+            if (window.location.hash === '#demo-feedback') {
+                setTimeout(() => {
+                    document.getElementById('demo-feedback').scrollIntoView({ behavior: 'smooth' });
+                }, 500);
+            }
+        });
         
         // Toggle tutorial
         function toggleTutorial() {

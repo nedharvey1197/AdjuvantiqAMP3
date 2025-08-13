@@ -1570,6 +1570,22 @@
             </div>
         </div>
 
+        <!-- Demo-Wide Feedback Button -->
+        <div style="text-align: center; margin: 30px 0; padding: 20px; background: linear-gradient(135deg, #fff5f5 0%, #fed7d7 100%); border-radius: 12px; border: 2px solid #e53e3e;">
+            <h4 style="color: #c53030; margin-bottom: 15px;">📝 Share Your Complete Demo Experience</h4>
+            <p style="color: #c53030; margin-bottom: 20px;">We'd love to hear your overall thoughts on the AdjuvantIQ demo experience!</p>
+            <button onclick="goToDemoFeedback()" 
+                    style="background: linear-gradient(135deg, #e53e3e 0%, #c53030 100%); 
+                           color: white; border: none; padding: 15px 30px; border-radius: 8px; 
+                           font-weight: bold; font-size: 1.1em; cursor: pointer; 
+                           box-shadow: 0 4px 8px rgba(229, 62, 62, 0.3); transition: all 0.3s ease;">
+                🔴 Share Complete Demo Feedback
+            </button>
+            <p style="color: #c53030; font-size: 0.9em; margin-top: 15px;">
+                <strong>Note:</strong> This will take you to the main demo feedback section where all your session feedback will be collected and sent to our team.
+            </p>
+        </div>
+
         <div class="engagement-tools">
             <h3>🎉 Congratulations! You've completed the end-to-end trial optimization demo.</h3>
             <p>This comprehensive demonstration shows how AdjuvantIQ transforms clinical development from planning through approval.</p>
@@ -1635,6 +1651,20 @@
             }, 3000);
         }
         
+        // Navigate to demo-wide feedback section
+        function goToDemoFeedback() {
+            // Store current page info for feedback context
+            const feedbackContext = {
+                source_page: 'regulatory-strategy',
+                timestamp: new Date().toISOString(),
+                user_agent: navigator.userAgent
+            };
+            localStorage.setItem('feedback_context', JSON.stringify(feedbackContext));
+            
+            // Navigate to cardiovascular demo with feedback anchor
+            window.location.href = 'cardiovascular.html#demo-feedback';
+        }
+
         // Progressive disclosure on scroll
         window.addEventListener('scroll', function() {
             const steps = document.querySelectorAll('.workflow-step');
