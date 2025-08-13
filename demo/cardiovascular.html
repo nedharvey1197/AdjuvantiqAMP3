@@ -5,6 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>End-to-End Trial Optimization - AdjuvantIQ Demo</title>
     <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:ital,wght@0,300;0,400;0,600;0,700;1,400&family=Merriweather:ital,wght@0,300;0,400;0,700;1,300;1,400&display=swap" rel="stylesheet">
+    
+    <!-- AdjuvantIQ Feedback Analytics System - Sends feedback to Netlify Forms -->
+    <script src="../tools/feedback-analytics/feedback-to-netlify.js"></script>
     <style>
         * {
             margin: 0;
@@ -1581,6 +1584,12 @@
         }</style>
 </head>
 <body>
+    <!-- Hidden Netlify Form for Feedback Collection -->
+    <form name="demo-feedback" method="POST" data-netlify="true" netlify-honeypot="bot-field" style="display: none;">
+        <input name="bot-field" />
+        <input type="hidden" name="form-name" value="demo-feedback" />
+    </form>
+    
     <div class="hero">
         <div class="container">
             <a href="index.html" class="back-link">← Back to Demo Hub</a>

@@ -5,6 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Oncology Interim Analysis - AdjuvantIQ Demo</title>
     <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:ital,wght@0,300;0,400;0,600;0,700;1,400&family=Merriweather:ital,wght@0,300;0,400;0,700;1,300;1,400&display=swap" rel="stylesheet">
+    
+    <!-- AdjuvantIQ Feedback Analytics System - Sends feedback to Netlify Forms -->
+    <script src="../tools/feedback-analytics/feedback-to-netlify.js"></script>
     <style>
         * {
             margin: 0;
@@ -1427,6 +1430,12 @@
         }</style>
 </head>
 <body>
+    <!-- Hidden Netlify Form for Feedback Collection -->
+    <form name="demo-feedback" method="POST" data-netlify="true" netlify-honeypot="bot-field" style="display: none;">
+        <input name="bot-field" />
+        <input type="hidden" name="form-name" value="demo-feedback" />
+    </form>
+    
     <div class="hero">
         <div class="container">
             <a href="index.html" class="back-link">← Back to Demo Hub</a>
@@ -1803,9 +1812,9 @@
             <h3 class="feedback-title">Your Feedback Matters!</h3>
             <p>Help us improve our oncology analysis capabilities by sharing your thoughts on this demo.</p>
             <div class="feedback-buttons">
-                <button class="feedback-button" onclick="showToast('Thank you for your feedback!')">👍 Great Demo!</button>
-                <button class="feedback-button" onclick="showToast('We appreciate your feedback!')">👎 Could be better</button>
-                <button class="feedback-button" onclick="showToast('Thank you for your feedback!')">💡 Suggestion</button>
+                <button class="feedback-button" data-feedback-type="great-demo">👍 Great Demo!</button>
+                <button class="feedback-button" data-feedback-type="could-be-better">👎 Could be better</button>
+                <button class="feedback-button" data-feedback-type="suggestion">💡 Suggestion</button>
             </div>
         </div>
     </div>
@@ -1828,6 +1837,8 @@
 
     <div class="toast" id="toast"></div>
 
+
+    
     <script>
         // Simple, working JavaScript
         let startTime = Date.now();
@@ -1847,55 +1858,7 @@
             }
         }
         
-        // Simple feedback functionality with logging
-        function giveFeedback(button, feedbackType) {
-            // Visual feedback
-            button.style.background = 'linear-gradient(135deg, #4caf50 0%, #45a049 100%)';
-            button.style.transform = 'scale(1.05)';
-            button.textContent = '✓ Thank you!';
-            
-            // Disable other buttons in the same group
-            const siblings = button.parentElement.querySelectorAll('button');
-            siblings.forEach(function(btn) {
-                if (btn !== button) {
-                    btn.disabled = true;
-                    btn.style.opacity = '0.5';
-                }
-            });
-            
-            // Log feedback with timestamp and page info
-            const feedbackData = {
-                type: feedbackType,
-                page: 'oncology',
-                step: getCurrentStep(),
-                timestamp: new Date().toISOString(),
-                userAgent: navigator.userAgent,
-                url: window.location.href
-            };
-            
-            console.log('Feedback logged:', feedbackData);
-            
-            // Store feedback in localStorage for retrieval
-            const existingFeedback = JSON.parse(localStorage.getItem('adjuvantiq_feedback') || '[]');
-            existingFeedback.push(feedbackData);
-            localStorage.setItem('adjuvantiq_feedback', JSON.stringify(existingFeedback));
-            
-            showToast('Thank you for your feedback!');
-            console.log('Feedback:', feedbackType);
-            
-            // Reset button after delay
-            setTimeout(() => {
-                button.style.background = '';
-                button.style.transform = '';
-                button.textContent = button.getAttribute('data-original-text') || 'Feedback';
-            }, 3000);
-        }
-        
-        // Get current step for feedback tracking
-        function getCurrentStep() {
-            const progressText = document.getElementById('progressText');
-            return progressText ? progressText.textContent : 'unknown';
-        }
+        // Feedback is now handled automatically by feedback-to-netlify.js
         
         // Function to retrieve all feedback (for admin use)
         function retrieveAllFeedback() {

@@ -132,20 +132,37 @@ class SessionFeedbackTracker {
      * Track individual micro-feedback
      */
     trackMicroFeedback(feedbackType, context) {
-        const feedback = {
-            timestamp: new Date().toISOString(),
-            type: feedbackType,
-            context: context,
-            page: window.location.pathname,
-            element_text: context.elementText || '',
-            element_class: context.elementClass || ''
-        };
-        
-        this.feedbackData.micro_feedback.push(feedback);
-        this.saveToLocalStorage();
-        
-        // Show visual confirmation without form submission
-        this.showFeedbackConfirmation(feedbackType);
+        try {
+            // Ensure context is an object with safe defaults
+            const safeContext = context || {};
+            
+            console.log('SessionTracker: Tracking feedback:', {
+                feedbackType,
+                context: safeContext,
+                hasElementText: !!safeContext.elementText,
+                hasElementClass: !!safeContext.elementClass
+            });
+            
+            const feedback = {
+                timestamp: new Date().toISOString(),
+                type: feedbackType,
+                context: safeContext,
+                page: window.location.pathname,
+                element_text: safeContext.elementText || safeContext.element_text || '',
+                element_class: safeContext.elementClass || safeContext.element_class || ''
+            };
+            
+            this.feedbackData.micro_feedback.push(feedback);
+            this.saveToLocalStorage();
+            
+            console.log('SessionTracker: Feedback saved successfully:', feedback);
+            
+            // Show visual confirmation without form submission
+            this.showFeedbackConfirmation(feedbackType);
+        } catch (error) {
+            console.error('SessionTracker: Error tracking feedback:', error);
+            console.error('Feedback data:', { feedbackType, context });
+        }
     }
 
     /**
@@ -342,6 +359,27 @@ class SessionFeedbackTracker {
             pageCount: this.feedbackData.page_visits.length
         };
     }
+    
+    /**
+     * Display current feedback data in console
+     */
+    showFeedbackData() {
+        console.log('=== ADJUVANTIQ FEEDBACK DATA ===');
+        console.log('Session ID:', this.sessionId);
+        console.log('Session Duration:', Math.round((Date.now() - this.startTime) / 1000), 'seconds');
+        console.log('Page Visits:', this.feedbackData.page_visits.length);
+        console.log('Interactions:', this.feedbackData.interactions.length);
+        console.log('Micro-Feedback:', this.feedbackData.micro_feedback.length);
+        
+        if (this.feedbackData.micro_feedback.length > 0) {
+            console.log('Feedback Details:');
+            this.feedbackData.micro_feedback.forEach((feedback, index) => {
+                console.log(`  ${index + 1}. ${feedback.type}: "${feedback.element_text}"`);
+            });
+        }
+        
+        console.log('===============================');
+    }
 }
 
 // Export for use in other modules
@@ -361,4 +399,22 @@ if (typeof window !== 'undefined') {
     } else {
         window.sessionTracker = new SessionFeedbackTracker();
     }
+    
+    // Add global helper function to view feedback data
+    window.showFeedbackData = function() {
+        if (window.sessionTracker) {
+            window.sessionTracker.showFeedbackData();
+        } else {
+            console.log('Session tracker not available yet. Wait for page to load.');
+        }
+    };
+    
+    // Add global helper function to export feedback data
+    window.exportFeedbackData = function() {
+        if (window.sessionTracker) {
+            window.sessionTracker.exportAnalyticsCSV();
+        } else {
+            console.log('Session tracker not available yet. Wait for page to load.');
+        }
+    };
 }

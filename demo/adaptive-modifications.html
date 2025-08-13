@@ -5,6 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Adaptive Trial Management - AdjuvantIQ Demo</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- AdjuvantIQ Feedback Analytics System - Sends feedback to Netlify Forms -->
+    <script src="../tools/feedback-analytics/feedback-to-netlify.js"></script>
     <style>
         * {
             margin: 0;
@@ -1364,6 +1367,12 @@
         }</style>
 </head>
 <body>
+    <!-- Hidden Netlify Form for Feedback Collection -->
+    <form name="demo-feedback" method="POST" data-netlify="true" netlify-honeypot="bot-field" style="display: none;">
+        <input name="bot-field" />
+        <input type="hidden" name="form-name" value="demo-feedback" />
+    </form>
+    
     <div class="hero">
         <div class="container">
             <a href="cardiovascular.html" class="back-link">← Back to Trial Overview</a>
