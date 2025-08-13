@@ -211,6 +211,15 @@
             margin-bottom: 0;
         }
 
+        .section-toggle-container {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: #2d7d7d;
+        }
+
         .expand-icon {
             font-size: 1.2rem;
             font-weight: bold;
@@ -713,7 +722,10 @@
                 <div class="reasoning-box" onclick="toggleReasoning(this)">
                     <div class="reasoning-header">
                         How did the system analyze Dr. Chen's input?
-                        <span class="expand-icon">+</span>
+                        <div class="section-toggle-container">
+                            <span>EXPAND</span>
+                            <span class="expand-icon">+</span>
+                        </div>
                     </div>
                     <div class="reasoning-details">
                         <strong>1. Natural Language Processing:</strong> LLM extracts key concepts: "Phase III" → clinical trial phase, "SGLT2 inhibitor" → drug class, "cardiovascular outcomes" → trial type<br><br>
@@ -751,7 +763,10 @@
                 <div class="reasoning-box" onclick="toggleReasoning(this)">
                     <div class="reasoning-header">
                         How do multiple AI agents coordinate this analysis?
-                        <span class="expand-icon">+</span>
+                        <div class="section-toggle-container">
+                            <span>EXPAND</span>
+                            <span class="expand-icon">+</span>
+                        </div>
                     </div>
                     <div class="reasoning-details">
                         <strong>1. Parallel Agent Activation:</strong> System simultaneously queries 5 specialized agents, each with access to relevant historical data and regulatory requirements<br><br>
@@ -792,7 +807,10 @@
                 <div class="reasoning-box" onclick="toggleReasoning(this)">
                     <div class="reasoning-header">
                         How does the system generate these optimization recommendations?
-                        <span class="expand-icon">+</span>
+                        <div class="section-toggle-container">
+                            <span>EXPAND</span>
+                            <span class="expand-icon">+</span>
+                        </div>
                     </div>
                     <div class="reasoning-details">
                         <strong>1. Multi-Objective Optimization:</strong> System balances conflicting objectives: minimize timeline, minimize cost, maximize success probability<br><br>
@@ -825,7 +843,10 @@
                 <div class="reasoning-box" onclick="toggleReasoning(this)">
                     <div class="reasoning-header">
                         How does the system learn from Dr. Chen's decision?
-                        <span class="expand-icon">+</span>
+                        <div class="section-toggle-container">
+                            <span>EXPAND</span>
+                            <span class="expand-icon">+</span>
+                        </div>
                     </div>
                     <div class="reasoning-details">
                         <strong>1. Decision Pattern Learning:</strong> System identifies pattern: "mid-stage biotech + resource constraints → risk-averse optimization preference"<br><br>
@@ -852,11 +873,14 @@
         function toggleReasoning(element) {
             element.classList.toggle('expanded');
             const icon = element.querySelector('.expand-icon');
+            const textSpan = element.querySelector('.section-toggle-container span:first-child');
             
             if (element.classList.contains('expanded')) {
                 icon.textContent = '−';
+                textSpan.textContent = 'COLLAPSE';
             } else {
                 icon.textContent = '+';
+                textSpan.textContent = 'EXPAND';
             }
         }
         

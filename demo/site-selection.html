@@ -211,6 +211,15 @@
             margin-bottom: 0;
         }
 
+        .section-toggle-container {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: #2d7d7d;
+        }
+
         .expand-icon {
             font-size: 1.2rem;
             font-weight: bold;
@@ -710,7 +719,10 @@
                 <div class="reasoning-box" onclick="toggleReasoning(this)">
                     <div class="reasoning-header">
                         How does the system analyze site performance?
-                        <span class="expand-icon">+</span>
+                        <div class="section-toggle-container">
+                            <span>EXPAND</span>
+                            <span class="expand-icon">+</span>
+                        </div>
                     </div>
                     <div class="reasoning-details">
                         <strong>1. Query Ontological Mapping:</strong> Maps "cardiovascular outcomes trial" to formal CTO concepts and retrieves protocol parameters<br><br>
@@ -748,7 +760,10 @@
                 <div class="reasoning-box" onclick="toggleReasoning(this)">
                     <div class="reasoning-header">
                         How does the system optimize site selection?
-                        <span class="expand-icon">+</span>
+                        <div class="section-toggle-container">
+                            <span>EXPAND</span>
+                            <span class="expand-icon">+</span>
+                        </div>
                     </div>
                     <div class="reasoning-details">
                         <strong>1. Multi-Objective Optimization Setup:</strong> Defines optimization problem using ontological constraints<br><br>
@@ -789,7 +804,10 @@
                 <div class="reasoning-box" onclick="toggleReasoning(this)">
                     <div class="reasoning-header">
                         How does the system assess and mitigate risks?
-                        <span class="expand-icon">+</span>
+                        <div class="section-toggle-container">
+                            <span>EXPAND</span>
+                            <span class="expand-icon">+</span>
+                        </div>
                     </div>
                     <div class="reasoning-details">
                         <strong>1. Risk Ontology Activation:</strong> Accesses formal risk categories with associated probability models<br><br>
@@ -822,7 +840,10 @@
                 <div class="reasoning-box" onclick="toggleReasoning(this)">
                     <div class="reasoning-header">
                         How does the system validate the final selection?
-                        <span class="expand-icon">+</span>
+                        <div class="section-toggle-container">
+                            <span>EXPAND</span>
+                            <span class="expand-icon">+</span>
+                        </div>
                     </div>
                     <div class="reasoning-details">
                         <strong>1. Decision Integration:</strong> Captures site selections and maps them back to Site Performance Ontology<br><br>
@@ -850,11 +871,14 @@
         function toggleReasoning(element) {
             element.classList.toggle('expanded');
             const icon = element.querySelector('.expand-icon');
+            const textSpan = element.querySelector('.section-toggle-container span:first-child');
             
             if (element.classList.contains('expanded')) {
                 icon.textContent = '−';
+                textSpan.textContent = 'COLLAPSE';
             } else {
                 icon.textContent = '+';
+                textSpan.textContent = 'EXPAND';
             }
         }
         

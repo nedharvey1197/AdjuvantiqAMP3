@@ -605,6 +605,15 @@
             box-shadow: 0 4px 8px rgba(229, 62, 62, 0.4);
             background: linear-gradient(135deg, #c53030 0%, #a52a2a 100%);
         }
+
+        .section-toggle-container {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: #2d7d7d;
+        }
     </style>
 </head>
 <body>
@@ -674,7 +683,10 @@
                 <div class="reasoning-box" onclick="toggleReasoning(this)">
                     <div class="reasoning-header">
                         How does the system analyze regulatory pathways?
-                        <span class="expand-icon">+</span>
+                        <div class="section-toggle-container">
+                            <span>EXPAND</span>
+                            <span class="expand-icon">+</span>
+                        </div>
                     </div>
                     <div class="reasoning-details">
                         <strong>1. Regulatory Ontology Mapping:</strong> Maps drug characteristics to FDA regulatory pathways and requirements<br><br>
@@ -720,7 +732,10 @@
                 <div class="reasoning-box" onclick="toggleReasoning(this)">
                     <div class="reasoning-header">
                         How does the system optimize regulatory strategy?
-                        <span class="expand-icon">+</span>
+                        <div class="section-toggle-container">
+                            <span>EXPAND</span>
+                            <span class="expand-icon">+</span>
+                        </div>
                     </div>
                     <div class="reasoning-details">
                         <strong>1. Multi-Objective Optimization:</strong> Balances approval speed, approval probability, and post-approval requirements<br><br>
@@ -764,7 +779,10 @@
                 <div class="reasoning-box" onclick="toggleReasoning(this)">
                     <div class="reasoning-header">
                         How does the system optimize submission package preparation?
-                        <span class="expand-icon">+</span>
+                        <div class="section-toggle-container">
+                            <span>EXPAND</span>
+                            <span class="expand-icon">+</span>
+                        </div>
                     </div>
                     <div class="reasoning-details">
                         <strong>1. Regulatory Requirement Mapping:</strong> Maps submission requirements to available data and analyses<br><br>
@@ -799,7 +817,10 @@
                 <div class="reasoning-box" onclick="toggleReasoning(this)">
                     <div class="reasoning-header">
                         How does the system predict regulatory outcomes?
-                        <span class="expand-icon">+</span>
+                        <div class="section-toggle-container">
+                            <span>EXPAND</span>
+                            <span class="expand-icon">+</span>
+                        </div>
                     </div>
                     <div class="reasoning-details">
                         <strong>1. Historical Pattern Analysis:</strong> Analyzes outcomes of similar submissions and regulatory decisions<br><br>
@@ -828,11 +849,14 @@
         function toggleReasoning(element) {
             element.classList.toggle('expanded');
             const icon = element.querySelector('.expand-icon');
+            const textSpan = element.querySelector('.section-toggle-container span:first-child');
             
             if (element.classList.contains('expanded')) {
                 icon.textContent = '−';
+                textSpan.textContent = 'COLLAPSE';
             } else {
                 icon.textContent = '+';
+                textSpan.textContent = 'EXPAND';
             }
         }
         
