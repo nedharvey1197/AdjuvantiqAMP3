@@ -2027,11 +2027,13 @@
             const formContainer = document.createElement('div');
             formContainer.style.cssText = `
                 background: white;
-                padding: 30px;
-                border-radius: 12px;
-                max-width: 500px;
-                width: 100%;
+                padding: 40px;
+                border-radius: 16px;
+                max-width: 700px;
+                width: 90vw;
                 position: relative;
+                box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+                border: 2px solid #e2e8f0;
             `;
             
             const form = document.createElement('form');
@@ -2039,42 +2041,42 @@
             form.method = 'POST';
             
             form.innerHTML = `
-                <h3 style="color: #2c5282; margin-bottom: 20px; text-align: center;">🧪 Test Formspree Connection</h3>
+                <h3 style="color: #2c5282; margin-bottom: 30px; text-align: center; font-size: 24px; font-weight: 700;">🧪 Test Formspree Connection</h3>
                 
-                <div style="display: grid; gap: 15px;">
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 25px;">
                     <div>
-                        <label for="test-name" style="display: block; margin-bottom: 5px; font-weight: 600; color: #333;">Full Name *</label>
-                        <input type="text" id="test-name" name="name" required style="width: 100%; padding: 12px; border: 2px solid #e2e8f0; border-radius: 6px; font-size: 16px;" value="Test User">
+                        <label for="test-name" style="display: block; margin-bottom: 8px; font-weight: 600; color: #333; font-size: 16px;">Full Name *</label>
+                        <input type="text" id="test-name" name="name" required style="width: 100%; padding: 15px; border: 2px solid #e2e8f0; border-radius: 8px; font-size: 16px; transition: border-color 0.3s ease;" value="Test User">
                     </div>
                     
                     <div>
-                        <label for="test-email" style="display: block; margin-bottom: 5px; font-weight: 600; color: #333;">Email Address *</label>
-                        <input type="email" id="test-email" name="email" required style="width: 100%; padding: 12px; border: 2px solid #e2e8f0; border-radius: 6px; font-size: 16px;" value="test@adjuvantiq.com">
+                        <label for="test-email" style="display: block; margin-bottom: 8px; font-weight: 600; color: #333; font-size: 16px;">Email Address *</label>
+                        <input type="email" id="test-email" name="email" required style="width: 100%; padding: 15px; border: 2px solid #e2e8f0; border-radius: 8px; font-size: 16px; transition: border-color 0.3s ease;" value="test@adjuvantiq.com">
                     </div>
                     
                     <div>
-                        <label for="test-company" style="display: block; margin-bottom: 5px; font-weight: 600; color: #333;">Company *</label>
-                        <input type="text" id="test-company" name="company" required style="width: 100%; padding: 12px; border: 2px solid #e2e8f0; border-radius: 6px; font-size: 16px;" value="Test Company">
+                        <label for="test-company" style="display: block; margin-bottom: 8px; font-weight: 600; color: #333; font-size: 16px;">Company *</label>
+                        <input type="text" id="test-company" name="company" required style="width: 100%; padding: 16px; border: 2px solid #e2e8f0; border-radius: 8px; font-size: 16px; transition: border-color 0.3s ease;" value="Test Company">
                     </div>
                     
                     <div>
-                        <label for="test-interest" style="display: block; margin-bottom: 5px; font-weight: 600; color: #333;">Primary Interest *</label>
-                        <select id="test-interest" name="interest" required style="width: 100%; padding: 12px; border: 2px solid #e2e8f0; border-radius: 6px; font-size: 16px;">
+                        <label for="test-interest" style="display: block; margin-bottom: 8px; font-weight: 600; color: #333; font-size: 16px;">Primary Interest *</label>
+                        <select id="test-interest" name="interest" required style="width: 100%; padding: 15px; border: 2px solid #e2e8f0; border-radius: 8px; font-size: 16px; transition: border-color 0.3s ease;">
                             <option value="demo">Demo Feedback</option>
                             <option value="pilot">Pilot Program</option>
                             <option value="demo">Request Demo</option>
                         </select>
                     </div>
-                    
-                    <div>
-                        <label for="test-message" style="display: block; margin-bottom: 5px; font-weight: 600; color: #333;">Test Message</label>
-                        <textarea id="test-message" name="message" rows="3" required style="width: 100%; padding: 12px; border: 2px solid #e2e8f0; border-radius: 6px; font-size: 16px; resize: vertical;">This is a test feedback submission to verify Formspree is working properly.</textarea>
-                    </div>
                 </div>
                 
-                <div style="display: flex; gap: 15px; margin-top: 25px;">
-                    <button type="submit" style="flex: 1; background: linear-gradient(135deg, #28a745 0%, #20c997 100%); color: white; border: none; padding: 15px; border-radius: 8px; font-weight: bold; font-size: 16px; cursor: pointer;">Send Test</button>
-                    <button type="button" onclick="closeFeedbackModal()" style="flex: 1; background: #e2e8f0; color: #333; border: none; padding: 15px; border-radius: 8px; font-weight: bold; font-size: 16px; cursor: pointer;">Cancel</button>
+                <div style="margin-top: 25px;">
+                    <label for="test-message" style="display: block; margin-bottom: 8px; font-weight: 600; color: #333; font-size: 16px;">Test Message</label>
+                    <textarea id="test-message" name="message" rows="4" required style="width: 100%; padding: 15px; border: 2px solid #e2e8f0; border-radius: 8px; font-size: 16px; resize: vertical; font-family: inherit; line-height: 1.5;">This is a test feedback submission to verify Formspree is working properly.</textarea>
+                </div>
+                
+                <div style="display: flex; gap: 20px; margin-top: 35px;">
+                    <button type="submit" style="flex: 1; background: linear-gradient(135deg, #28a745 0%, #20c997 100%); color: white; border: none; padding: 18px; border-radius: 10px; font-weight: bold; font-size: 18px; cursor: pointer; transition: transform 0.2s ease, box-shadow 0.2s ease; box-shadow: 0 4px 12px rgba(40, 167, 69, 0.3);">Send Test</button>
+                    <button type="button" onclick="closeFeedbackModal()" style="flex: 1; background: #e2e8f0; color: #333; border: none; padding: 18px; border-radius: 10px; font-weight: bold; font-size: 18px; cursor: pointer; transition: transform 0.2s ease;">Cancel</button>
                 </div>
             `;
             
@@ -2236,13 +2238,15 @@
             const formContainer = document.createElement('div');
             formContainer.style.cssText = `
                 background: white;
-                padding: 30px;
-                border-radius: 12px;
-                max-width: 600px;
-                width: 100%;
+                padding: 40px;
+                border-radius: 16px;
+                max-width: 800px;
+                width: 90vw;
                 max-height: 90vh;
                 overflow-y: auto;
                 position: relative;
+                box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+                border: 2px solid #e2e8f0;
             `;
             
             // Create form that matches pilot form exactly
@@ -2277,27 +2281,27 @@
             
             // Add visible form fields (like pilot form)
             const formHTML = `
-                <h3 style="color: #2c5282; margin-bottom: 20px; text-align: center;">📝 Demo Feedback Submission</h3>
+                <h3 style="color: #2c5282; margin-bottom: 30px; text-align: center; font-size: 24px; font-weight: 700;">📝 Demo Feedback Submission</h3>
                 
-                <div style="display: grid; gap: 15px;">
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 25px;">
                     <div>
-                        <label for="feedback-name" style="display: block; margin-bottom: 5px; font-weight: 600; color: #333;">Full Name *</label>
-                        <input type="text" id="feedback-name" name="name" required style="width: 100%; padding: 12px; border: 2px solid #e2e8f0; border-radius: 6px; font-size: 16px;">
+                        <label for="feedback-name" style="display: block; margin-bottom: 8px; font-weight: 600; color: #333; font-size: 16px;">Full Name *</label>
+                        <input type="text" id="feedback-name" name="name" required style="width: 100%; padding: 15px; border: 2px solid #e2e8f0; border-radius: 8px; font-size: 16px; transition: border-color 0.3s ease;">
                     </div>
                     
                     <div>
-                        <label for="feedback-email" style="display: block; margin-bottom: 5px; font-weight: 600; color: #333;">Email Address *</label>
-                        <input type="email" id="feedback-email" name="email" required style="width: 100%; padding: 12px; border: 2px solid #e2e8f0; border-radius: 6px; font-size: 16px;">
+                        <label for="feedback-email" style="display: block; margin-bottom: 8px; font-weight: 600; color: #333; font-size: 16px;">Email Address *</label>
+                        <input type="email" id="feedback-email" name="email" required style="width: 100%; padding: 15px; border: 2px solid #e2e8f0; border-radius: 8px; font-size: 16px; transition: border-color 0.3s ease;">
                     </div>
                     
                     <div>
-                        <label for="feedback-company" style="display: block; margin-bottom: 5px; font-weight: 600; color: #333;">Company *</label>
-                        <input type="text" id="feedback-company" name="company" required style="width: 100%; padding: 12px; border: 2px solid #e2e8f0; border-radius: 6px; font-size: 16px;">
+                        <label for="feedback-company" style="display: block; margin-bottom: 8px; font-weight: 600; color: #333; font-size: 16px;">Company *</label>
+                        <input type="text" id="feedback-company" name="company" required style="width: 100%; padding: 15px; border: 2px solid #e2e8f0; border-radius: 8px; font-size: 16px; transition: border-color 0.3s ease;">
                     </div>
                     
                     <div>
-                        <label for="feedback-interest" style="display: block; margin-bottom: 5px; font-weight: 600; color: #333;">Primary Interest *</label>
-                        <select id="feedback-interest" name="interest" required style="width: 100%; padding: 12px; border: 2px solid #e2e8f0; border-radius: 6px; font-size: 16px;">
+                        <label for="feedback-interest" style="display: block; margin-bottom: 8px; font-weight: 600; color: #333; font-size: 16px;">Primary Interest *</label>
+                        <select id="feedback-interest" name="interest" required style="width: 100%; padding: 15px; border: 2px solid #e2e8f0; border-radius: 8px; font-size: 16px; transition: border-color 0.3s ease;">
                             <option value="">Select Interest</option>
                             <option value="demo">Demo Feedback</option>
                             <option value="pilot">Pilot Program</option>
@@ -2306,22 +2310,22 @@
                             <option value="partnership">Partnership Discussion</option>
                         </select>
                     </div>
-                    
-                    <div>
-                        <label for="feedback-message" style="display: block; margin-bottom: 5px; font-weight: 600; color: #333;">Your Demo Experience & Feedback</label>
-                        <textarea id="feedback-message" name="message" rows="4" required style="width: 100%; padding: 12px; border: 2px solid #e2e8f0; border-radius: 6px; font-size: 16px; resize: vertical;" placeholder="Tell us about your experience with the AdjuvantIQ demo and any feedback you have...">Demo Feedback: ${feedbackData.final_feedback}
+                </div>
+                
+                <div style="margin-top: 25px;">
+                    <label for="feedback-message" style="display: block; margin-bottom: 8px; font-weight: 600; color: #333; font-size: 16px;">Your Demo Experience & Feedback</label>
+                    <textarea id="feedback-message" name="message" rows="6" required style="width: 100%; padding: 15px; border: 2px solid #e2e8f0; border-radius: 8px; font-size: 16px; resize: vertical; font-family: inherit; line-height: 1.5;" placeholder="Tell us about your experience with the AdjuvantIQ demo and any feedback you have...">Demo Feedback: ${feedbackData.final_feedback}
 
 Session Summary:
 - Pages Visited: ${[...new Set(feedbackData.session_feedback.map(f => f.page))].join(', ')}
 - Total Feedback Points: ${feedbackData.session_feedback.length}
 
 Your thoughts on the demo experience:</textarea>
-                    </div>
                 </div>
                 
-                <div style="display: flex; gap: 15px; margin-top: 25px;">
-                    <button type="submit" style="flex: 1; background: linear-gradient(135deg, #2c5282 0%, #2d7d7d 100%); color: white; border: none; padding: 15px; border-radius: 8px; font-weight: bold; font-size: 16px; cursor: pointer;">Submit Feedback</button>
-                    <button type="button" onclick="closeFeedbackModal()" style="flex: 1; background: #e2e8f0; color: #333; border: none; padding: 15px; border-radius: 8px; font-weight: bold; font-size: 16px; cursor: pointer;">Cancel</button>
+                <div style="display: flex; gap: 20px; margin-top: 35px;">
+                    <button type="submit" style="flex: 1; background: linear-gradient(135deg, #2c5282 0%, #2d7d7d 100%); color: white; border: none; padding: 18px; border-radius: 10px; font-weight: bold; font-size: 18px; cursor: pointer; transition: transform 0.2s ease, box-shadow 0.2s ease; box-shadow: 0 4px 12px rgba(44, 82, 130, 0.3);">Submit Feedback</button>
+                    <button type="button" onclick="closeFeedbackModal()" style="flex: 1; background: #e2e8f0; color: #333; border: none; padding: 18px; border-radius: 10px; font-weight: bold; font-size: 18px; cursor: pointer; transition: transform 0.2s ease;">Cancel</button>
                 </div>
             `;
             
