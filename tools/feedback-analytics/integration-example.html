@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Feedback System Integration Example</title>
+    <style>
+        body {
+            font-family: 'Source Sans Pro', sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+            background: #f8f9fc;
+        }
+        
+        .demo-section {
+            background: white;
+            margin: 20px 0;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        .micro-feedback {
+            background: #f0f9ff;
+            border: 2px solid #2d7d7d;
+            color: #2c5282;
+            padding: 8px 16px;
+            border-radius: 20px;
+            cursor: pointer;
+            margin: 10px 5px;
+            font-size: 14px;
+            transition: all 0.3s ease;
+        }
+        
+        .micro-feedback:hover {
+            background: #2d7d7d;
+            color: white;
+            transform: translateY(-2px);
+        }
+        
+        .feedback-section {
+            background: linear-gradient(135deg, #f8f9fc 0%, #e3f2fd 100%);
+            border: 2px solid #2d7d7d;
+            border-radius: 15px;
+            padding: 30px;
+            margin: 30px 0;
+        }
+        
+        .feedback-section h3 {
+            color: #2c5282;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        
+        .cta-button {
+            background: linear-gradient(135deg, #2d7d7d 0%, #2c5282 100%);
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: 600;
+            margin: 10px 5px;
+            transition: all 0.3s ease;
+        }
+        
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(45, 125, 125, 0.3);
+        }
+        
+        .reasoning-box {
+            background: #fff3e0;
+            border: 2px solid #ff9800;
+            border-left: 5px solid #ff9800;
+            padding: 20px;
+            margin: 15px 0;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .reasoning-box:hover {
+            box-shadow: 0 4px 12px rgba(255,152,0,0.2);
+        }
+        
+        .collapsible-section {
+            background: #f0f9ff;
+            border: 2px solid #2d7d7d;
+            padding: 20px;
+            margin: 15px 0;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .collapsible-section:hover {
+            background: #e0f2fe;
+        }
+    </style>
+</head>
+<body>
+    <h1>AdjuvantIQ Demo - Feedback System Integration</h1>
+    
+    <!-- Step 1: Include Session Tracker -->
+    <script src="session-tracker.js"></script>
+    
+    <!-- Demo Content Section 1 -->
+    <div class="demo-section">
+        <h2>Problem Statement</h2>
+        <p>Clinical trials face significant challenges in patient recruitment, protocol design, and regulatory compliance.</p>
+        
+        <!-- Micro-feedback buttons -->
+        <div style="margin: 20px 0;">
+            <button class="micro-feedback" data-feedback-type="clear-understanding">
+                ✅ Clear Understanding
+            </button>
+            <button class="micro-feedback" data-feedback-type="needs-clarification">
+                ❓ Needs Clarification
+            </button>
+            <button class="micro-feedback" data-feedback-type="very-relevant">
+                🎯 Very Relevant
+            </button>
+        </div>
+        
+        <!-- CTA Button -->
+        <button class="cta-button">Learn More About Challenges</button>
+    </div>
+    
+    <!-- Demo Content Section 2 -->
+    <div class="demo-section">
+        <h2>AI-Powered Solution</h2>
+        <p>AdjuvantIQ uses advanced AI to optimize clinical trial design and execution.</p>
+        
+        <!-- Micro-feedback buttons -->
+        <div style="margin: 20px 0;">
+            <button class="micro-feedback" data-feedback-type="solution-compelling">
+                💡 Solution Compelling
+            </button>
+            <button class="micro-feedback" data-feedback-type="want-details">
+                🔍 Want More Details
+            </button>
+            <button class="micro-feedback" data-feedback-type="skeptical">
+                🤔 Skeptical
+            </button>
+        </div>
+        
+        <!-- Reasoning Box -->
+        <div class="reasoning-box">
+            <h4>AI Reasoning Process</h4>
+            <p>Our AI analyzes historical trial data to identify patterns and optimize future trials.</p>
+        </div>
+        
+        <!-- CTA Button -->
+        <button class="cta-button">See AI in Action</button>
+    </div>
+    
+    <!-- Demo Content Section 3 -->
+    <div class="demo-section">
+        <h2>Implementation Strategy</h2>
+        <p>Phased rollout approach with pilot programs and gradual expansion.</p>
+        
+        <!-- Micro-feedback buttons -->
+        <div style="margin: 20px 0;">
+            <button class="micro-feedback" data-feedback-type="strategy-sound">
+                🎯 Strategy Sound
+            </button>
+            <button class="micro-feedback" data-feedback-type="timeline-concern">
+                ⏰ Timeline Concern
+            </button>
+            <button class="micro-feedback" data-feedback-type="ready-to-start">
+                🚀 Ready to Start
+            </button>
+        </div>
+        
+        <!-- Collapsible Section -->
+        <div class="collapsible-section">
+            <h4>Phase 1: Pilot Program</h4>
+            <p>Initial implementation with 3-5 clinical trial sites to validate approach.</p>
+        </div>
+        
+        <!-- CTA Button -->
+        <button class="cta-button">Join Pilot Program</button>
+    </div>
+    
+    <!-- Step 3: Include Netlify Feedback Form -->
+    <div class="feedback-section">
+        <h3>Share Your Experience</h3>
+        <div id="feedback-form-container">
+            <!-- The Netlify feedback form will be loaded here -->
+        </div>
+    </div>
+    
+    <!-- Step 4: Analytics Dashboard Link -->
+    <div class="demo-section">
+        <h2>View Analytics</h2>
+        <p>Access comprehensive feedback analytics and session data:</p>
+        <a href="analytics-dashboard.html" class="cta-button" style="text-decoration: none; display: inline-block;">
+            Open Analytics Dashboard
+        </a>
+    </div>
+    
+    <script>
+        // Load the Netlify feedback form
+        document.addEventListener('DOMContentLoaded', function() {
+            // Load the feedback form
+            fetch('netlify-feedback-form.html')
+                .then(response => response.text())
+                .then(html => {
+                    document.getElementById('feedback-form-container').innerHTML = html;
+                })
+                .catch(error => {
+                    console.log('Could not load feedback form:', error.message);
+                    document.getElementById('feedback-form-container').innerHTML = 
+                        '<p style="text-align: center; color: #718096;">Feedback form could not be loaded. Please refresh the page.</p>';
+                });
+        });
+        
+        // Example of custom interaction tracking
+        document.addEventListener('click', function(e) {
+            if (e.target.matches('.cta-button')) {
+                // Track CTA button clicks
+                if (window.sessionTracker) {
+                    window.sessionTracker.trackInteraction('cta_click', {
+                        button_text: e.target.textContent.trim(),
+                        page_section: e.target.closest('.demo-section') ? 
+                            e.target.closest('.demo-section').querySelector('h2').textContent : 'unknown'
+                    });
+                }
+            }
+        });
+        
+        // Example of custom feedback tracking
+        document.addEventListener('click', function(e) {
+            if (e.target.matches('.micro-feedback')) {
+                // Track micro-feedback clicks
+                if (window.sessionTracker) {
+                    window.sessionTracker.trackMicroFeedback(
+                        e.target.dataset.feedbackType,
+                        {
+                            elementText: e.target.textContent.trim(),
+                            elementClass: e.target.className,
+                            pageSection: e.target.closest('.demo-section') ? 
+                                e.target.closest('.demo-section').querySelector('h2').textContent : 'unknown'
+                        }
+                    );
+                }
+            }
+        });
+    </script>
+</body>
+</html>
