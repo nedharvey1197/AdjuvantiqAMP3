@@ -701,60 +701,78 @@ class SiteGenerator {
 
     // Centralize demo styling without breaking existing functionality
     centralizeDemoStyling() {
-        const content = this.loadSiteContent();
-        const branding = content.branding;
-        
-        // Load demo components from separate file
-        const demoComponentsPath = path.join(this.contentDir, 'demo-components.json');
-        let demoComponents;
-        
         try {
-            demoComponents = JSON.parse(fs.readFileSync(demoComponentsPath, 'utf8'));
-        } catch (error) {
-            console.log('No demo component specifications found in demo-components.json');
-            return;
-        }
-
-        const demoFiles = [
-            'demo/oncology.html',
-            'demo/cardiovascular.html',
-            'demo/protocol-design.html',
-            'demo/site-selection.html',
-            'demo/regulatory-strategy.html',
-            'demo/adaptive-modifications.html'
-        ];
-        
-        demoFiles.forEach(file => {
-            const filePath = path.join(this.outputDir, file);
-            if (fs.existsSync(filePath)) {
-                this.centralizeDemoFileStyling(filePath, branding);
-            } else {
-                console.log(`Demo file not found: ${file}`);
+            const content = this.loadSiteContent();
+            const branding = content.branding;
+            
+            // Load demo components from separate file
+            const demoComponentsPath = path.join(this.contentDir, 'demo-components.json');
+            let demoComponents;
+            
+            try {
+                demoComponents = JSON.parse(fs.readFileSync(demoComponentsPath, 'utf8'));
+            } catch (error) {
+                console.log('No demo component specifications found in demo-components.json - skipping demo styling');
+                return;
             }
-        });
+
+            const demoFiles = [
+                'demo/oncology.html',
+                'demo/cardiovascular.html',
+                'demo/protocol-design.html',
+                'demo/site-selection.html',
+                'demo/regulatory-strategy.html',
+                'demo/adaptive-modifications.html'
+            ];
+            
+            demoFiles.forEach(file => {
+                try {
+                    const filePath = path.join(this.outputDir, file);
+                    if (fs.existsSync(filePath)) {
+                        this.centralizeDemoFileStyling(filePath, branding, demoComponents);
+                    } else {
+                        console.log(`Demo file not found: ${file}`);
+                    }
+                } catch (fileError) {
+                    console.log(`Error processing demo file ${file}:`, fileError.message);
+                }
+            });
+        } catch (error) {
+            console.log('Demo styling centralization failed - continuing with build:', error.message);
+        }
     }
     
     // Centralize styling for individual demo file
-    centralizeDemoFileStyling(filePath, branding) {
-        console.log(`Centralizing styling for: ${filePath}`);
-        let html = fs.readFileSync(filePath, 'utf8');
-        
-        // Generate centralized CSS from brand data
-        const centralizedCSS = this.generateCentralizedCSS(demoComponents);
-        
-        // Inject centralized CSS without removing existing styles
-        html = this.injectCentralizedCSS(html, centralizedCSS);
-        
-        fs.writeFileSync(filePath, html);
-        console.log(`Centralized styling for: ${filePath}`);
+    centralizeDemoFileStyling(filePath, branding, demoComponents) {
+        try {
+            console.log(`Centralizing styling for: ${filePath}`);
+            let html = fs.readFileSync(filePath, 'utf8');
+            
+            // Generate centralized CSS from brand data
+            const centralizedCSS = this.generateCentralizedCSS(demoComponents);
+            
+            // Inject centralized CSS without removing existing styles
+            html = this.injectCentralizedCSS(html, centralizedCSS);
+            
+            fs.writeFileSync(filePath, html);
+            console.log(`Centralized styling for: ${filePath}`);
+        } catch (error) {
+            console.log(`Error processing ${filePath}:`, error.message);
+        }
     }
 
     // Generate centralized CSS from component specifications
     generateCentralizedCSS(components) {
-        let css = '\n        /* Centralized Demo Component Styles - Generated from CMS */\n';
-        
-        // Reasoning Boxes
-        if (components.reasoning_boxes) {
+        try {
+            if (!components || typeof components !== 'object') {
+                console.log('Invalid components data - generating minimal CSS');
+                return '\n        /* Centralized Demo Component Styles - Minimal Fallback */\n';
+            }
+            
+            let css = '\n        /* Centralized Demo Component Styles - Generated from CMS */\n';
+            
+            // Reasoning Boxes
+            if (components.reasoning_boxes) {
             const rb = components.reasoning_boxes;
             css += `
         /* Centralized Reasoning Box Styles */
@@ -1053,6 +1071,10 @@ class SiteGenerator {
         }
 
         return css;
+        } catch (error) {
+            console.log('Error generating centralized CSS:', error.message);
+            return '\n        /* Centralized Demo Component Styles - Error Fallback */\n';
+        }
     }
 
     // Inject centralized CSS without removing existing styles
