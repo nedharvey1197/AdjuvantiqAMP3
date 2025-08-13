@@ -1,0 +1,480 @@
+<!--
+AdjuvantIQ Feedback Analytics Dashboard
+Aggregates session data and provides insights for product improvement
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AdjuvantIQ Feedback Analytics Dashboard</title>
+    <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:ital,wght@0,300;0,400;0,600;0,700;1,400&family=Merriweather:ital,wght@0,300;0,400;0,700;1,300;1,400&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Merriweather', serif;
+            line-height: 1.6;
+            color: #333;
+            background: #f8f9fc;
+        }
+
+        .dashboard-header {
+            background: linear-gradient(135deg, #2c5282 0%, #2d7d7d 100%);
+            color: white;
+            padding: 2rem 0;
+            text-align: center;
+        }
+
+        .dashboard-header h1 {
+            font-family: 'Source Sans Pro', sans-serif;
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .dashboard-header p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+
+        .dashboard-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 3rem;
+        }
+
+        .stat-card {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            border-left: 4px solid #2d7d7d;
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #2c5282;
+            font-family: 'Source Sans Pro', sans-serif;
+        }
+
+        .stat-label {
+            color: #718096;
+            font-size: 1rem;
+            margin-top: 0.5rem;
+        }
+
+        .dashboard-tabs {
+            display: flex;
+            background: white;
+            border-radius: 12px 12px 0 0;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .tab-button {
+            flex: 1;
+            padding: 1rem 1.5rem;
+            background: #f8f9fc;
+            border: none;
+            cursor: pointer;
+            font-family: 'Source Sans Pro', sans-serif;
+            font-weight: 600;
+            color: #718096;
+            transition: all 0.3s ease;
+        }
+
+        .tab-button.active {
+            background: white;
+            color: #2c5282;
+            border-bottom: 3px solid #2d7d7d;
+        }
+
+        .tab-button:hover {
+            background: #e3f2fd;
+        }
+
+        .tab-content {
+            background: white;
+            border-radius: 0 0 12px 12px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+
+        .tab-pane {
+            display: none;
+            padding: 2rem;
+        }
+
+        .tab-pane.active {
+            display: block;
+        }
+
+        .data-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-family: 'Source Sans Pro', sans-serif;
+            font-size: 0.9rem;
+        }
+
+        .data-table th,
+        .data-table td {
+            padding: 0.75rem;
+            text-align: left;
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        .data-table th {
+            background: #f8f9fc;
+            font-weight: 600;
+            color: #2c5282;
+            position: sticky;
+            top: 0;
+        }
+
+        .data-table tr:hover {
+            background: #f8f9fc;
+        }
+
+        .feedback-type {
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+
+        .feedback-type.demo-experience { background: #dbeafe; color: #1e40af; }
+        .feedback-type.feature-request { background: #dcfce7; color: #166534; }
+        .feedback-type.bug-report { background: #fef3c7; color: #92400e; }
+        .feedback-type.general-feedback { background: #f3e8ff; color: #7c3aed; }
+        .feedback-type.pilot-interest { background: #fef2f2; color: #dc2626; }
+
+        .rating-display {
+            display: flex;
+            gap: 0.25rem;
+        }
+
+        .rating-star {
+            color: #fbbf24;
+            font-size: 0.9rem;
+        }
+
+        .export-controls {
+            margin-bottom: 2rem;
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .export-button {
+            background: linear-gradient(135deg, #2d7d7d 0%, #2c5282 100%);
+            color: white;
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
+            cursor: pointer;
+            font-family: 'Source Sans Pro', sans-serif;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .export-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(45, 125, 125, 0.3);
+        }
+
+        .filter-controls {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .filter-controls select,
+        .filter-controls input {
+            padding: 0.5rem;
+            border: 2px solid #e2e8f0;
+            border-radius: 6px;
+            font-family: 'Source Sans Pro', sans-serif;
+        }
+
+        .filter-controls select:focus,
+        .filter-controls input:focus {
+            outline: none;
+            border-color: #2d7d7d;
+        }
+
+        .chart-container {
+            margin: 2rem 0;
+            padding: 1.5rem;
+            background: #f8f9fc;
+            border-radius: 8px;
+        }
+
+        .chart-title {
+            font-family: 'Source Sans Pro', sans-serif;
+            font-size: 1.2rem;
+            color: #2c5282;
+            margin-bottom: 1rem;
+        }
+
+        .chart-placeholder {
+            text-align: center;
+            padding: 3rem;
+            color: #718096;
+            font-style: italic;
+        }
+
+        .no-data {
+            text-align: center;
+            padding: 3rem;
+            color: #718096;
+        }
+
+        .no-data h3 {
+            color: #2c5282;
+            margin-bottom: 1rem;
+            font-family: 'Source Sans Pro', sans-serif;
+        }
+
+        @media (max-width: 768px) {
+            .dashboard-container {
+                padding: 1rem;
+            }
+            
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .dashboard-tabs {
+                flex-direction: column;
+            }
+            
+            .export-controls {
+                flex-direction: column;
+                align-items: stretch;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="dashboard-header">
+        <h1>AdjuvantIQ Feedback Analytics</h1>
+        <p>Comprehensive insights from user sessions and feedback</p>
+    </div>
+
+    <div class="dashboard-container">
+        <!-- Statistics Overview -->
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-number" id="total-sessions">0</div>
+                <div class="stat-label">Total Sessions</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number" id="total-feedback">0</div>
+                <div class="stat-label">Total Feedback</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number" id="avg-rating">0.0</div>
+                <div class="stat-label">Average Rating</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number" id="total-interactions">0</div>
+                <div class="stat-label">Total Interactions</div>
+            </div>
+        </div>
+
+        <!-- Dashboard Tabs -->
+        <div class="dashboard-tabs">
+            <button class="tab-button active" data-tab="sessions">Session Overview</button>
+            <button class="tab-button" data-tab="feedback">Feedback Details</button>
+            <button class="tab-button" data-tab="interactions">User Interactions</button>
+            <button class="tab-button" data-tab="analytics">Analytics</button>
+        </div>
+
+        <!-- Tab Content -->
+        <div class="tab-content">
+            <!-- Sessions Tab -->
+            <div class="tab-pane active" id="sessions">
+                <div class="export-controls">
+                    <button class="export-button" onclick="exportSessionsCSV()">Export Sessions CSV</button>
+                    <div class="filter-controls">
+                        <select id="session-filter">
+                            <option value="">All Sessions</option>
+                            <option value="recent">Last 7 Days</option>
+                            <option value="month">Last 30 Days</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <div class="table-container">
+                    <table class="data-table" id="sessions-table">
+                        <thead>
+                            <tr>
+                                <th>Session ID</th>
+                                <th>Start Time</th>
+                                <th>Duration</th>
+                                <th>Pages Visited</th>
+                                <th>Interactions</th>
+                                <th>Feedback Count</th>
+                                <th>User Agent</th>
+                            </tr>
+                        </thead>
+                        <tbody id="sessions-tbody">
+                            <!-- Sessions data will be populated here -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Feedback Tab -->
+            <div class="tab-pane" id="feedback">
+                <div class="export-controls">
+                    <button class="export-button" onclick="exportFeedbackCSV()">Export Feedback CSV</button>
+                    <div class="filter-controls">
+                        <select id="feedback-type-filter">
+                            <option value="">All Feedback Types</option>
+                            <option value="demo-experience">Demo Experience</option>
+                            <option value="feature-request">Feature Request</option>
+                            <option value="bug-report">Bug Report</option>
+                            <option value="general-feedback">General Feedback</option>
+                            <option value="pilot-interest">Pilot Interest</option>
+                        </select>
+                        <select id="rating-filter">
+                            <option value="">All Ratings</option>
+                            <option value="5">5 Stars</option>
+                            <option value="4">4 Stars</option>
+                            <option value="3">3 Stars</option>
+                            <option value="2">2 Stars</option>
+                            <option value="1">1 Star</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <div class="table-container">
+                    <table class="data-table" id="feedback-table">
+                        <thead>
+                            <tr>
+                                <th>Timestamp</th>
+                                <th>Session ID</th>
+                                <th>Feedback Type</th>
+                                <th>Rating</th>
+                                <th>Areas</th>
+                                <th>Detailed Feedback</th>
+                                <th>Contact Email</th>
+                                <th>Company</th>
+                            </tr>
+                        </thead>
+                        <tbody id="feedback-tbody">
+                            <!-- Feedback data will be populated here -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Interactions Tab -->
+            <div class="tab-pane" id="interactions">
+                <div class="export-controls">
+                    <button class="export-button" onclick="exportInteractionsCSV()">Export Interactions CSV</button>
+                    <div class="filter-controls">
+                        <select id="interaction-type-filter">
+                            <option value="">All Interaction Types</option>
+                            <option value="button_click">Button Clicks</option>
+                            <option value="content_expand">Content Expansion</option>
+                            <option value="scroll_depth">Scroll Depth</option>
+                            <option value="form_submit">Form Submissions</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <div class="table-container">
+                    <table class="data-table" id="interactions-table">
+                        <thead>
+                            <tr>
+                                <th>Timestamp</th>
+                                <th>Session ID</th>
+                                <th>Page</th>
+                                <th>Interaction Type</th>
+                                <th>Data</th>
+                            </tr>
+                        </thead>
+                        <tbody id="interactions-tbody">
+                            <!-- Interactions data will be populated here -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Analytics Tab -->
+            <div class="tab-pane" id="analytics">
+                <div class="chart-container">
+                    <div class="chart-title">Feedback Distribution by Type</div>
+                    <div class="chart-placeholder">
+                        Chart visualization would go here
+                        <br>Shows breakdown of feedback types and ratings
+                    </div>
+                </div>
+                
+                <div class="chart-container">
+                    <div class="chart-title">User Engagement Over Time</div>
+                    <div class="chart-placeholder">
+                        Chart visualization would go here
+                        <br>Shows session duration and interaction patterns
+                    </div>
+                </div>
+                
+                <div class="chart-container">
+                    <div class="chart-title">Page Performance Analysis</div>
+                    <div class="chart-placeholder">
+                        Chart visualization would go here
+                        <br>Shows which pages generate most feedback and engagement
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="analytics-processor.js"></script>
+    <script>
+        // Tab switching functionality
+        document.querySelectorAll('.tab-button').forEach(button => {
+            button.addEventListener('click', () => {
+                // Remove active class from all buttons and panes
+                document.querySelectorAll('.tab-button').forEach(btn => btn.classList.remove('active'));
+                document.querySelectorAll('.tab-pane').forEach(pane => pane.classList.remove('active'));
+                
+                // Add active class to clicked button and corresponding pane
+                button.classList.add('active');
+                const tabId = button.dataset.tab;
+                document.getElementById(tabId).classList.add('active');
+            });
+        });
+
+        // Filter functionality
+        document.getElementById('session-filter').addEventListener('change', filterSessions);
+        document.getElementById('feedback-type-filter').addEventListener('change', filterFeedback);
+        document.getElementById('rating-filter').addEventListener('change', filterFeedback);
+        document.getElementById('interaction-type-filter').addEventListener('change', filterInteractions);
+
+        // Initialize dashboard
+        document.addEventListener('DOMContentLoaded', function() {
+            initializeDashboard();
+        });
+    </script>
+</body>
+</html>

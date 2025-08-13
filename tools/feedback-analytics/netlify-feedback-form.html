@@ -1,0 +1,428 @@
+<!--
+Netlify Form-Based Feedback System
+This follows Netlify's recommended practices to avoid spam detection
+-->
+
+<div class="netlify-feedback-form" id="netlify-feedback-form">
+    <div class="feedback-header">
+        <h3>Share Your Experience</h3>
+        <p>Help us improve AdjuvantIQ by sharing your feedback</p>
+    </div>
+
+    <form name="demo-feedback" method="POST" data-netlify="true" netlify-honeypot="bot-field">
+        <!-- Hidden honeypot field to catch bots -->
+        <p class="hidden">
+            <label>Don't fill this out if you're human: <input name="bot-field" /></label>
+        </p>
+        
+        <!-- Hidden form name for Netlify -->
+        <input type="hidden" name="form-name" value="demo-feedback" />
+        
+        <!-- Session tracking -->
+        <input type="hidden" name="session_id" id="session-id" />
+        <input type="hidden" name="page_url" id="page-url" />
+        <input type="hidden" name="user_agent" id="user-agent" />
+        
+        <!-- Feedback type selection -->
+        <div class="form-group">
+            <label for="feedback-type">What type of feedback do you have?</label>
+            <select name="feedback-type" id="feedback-type" required>
+                <option value="">Select feedback type</option>
+                <option value="demo-experience">Demo Experience</option>
+                <option value="feature-request">Feature Request</option>
+                <option value="bug-report">Bug Report</option>
+                <option value="general-feedback">General Feedback</option>
+                <option value="pilot-interest">Pilot Program Interest</option>
+            </select>
+        </div>
+        
+        <!-- Rating -->
+        <div class="form-group">
+            <label for="rating">How would you rate your experience?</label>
+            <div class="rating-buttons">
+                <input type="radio" name="rating" value="1" id="rating-1" />
+                <label for="rating-1" class="rating-label">1</label>
+                
+                <input type="radio" name="rating" value="2" id="rating-2" />
+                <label for="rating-2" class="rating-label">2</label>
+                
+                <input type="radio" name="rating" value="3" id="rating-3" />
+                <label for="rating-3" class="rating-label">3</label>
+                
+                <input type="radio" name="rating" value="4" id="rating-4" />
+                <label for="rating-4" class="rating-label">4</label>
+                
+                <input type="radio" name="rating" value="5" id="rating-5" />
+                <label for="rating-5" class="rating-label">5</label>
+            </div>
+            <div class="rating-labels">
+                <span>Poor</span>
+                <span>Excellent</span>
+            </div>
+        </div>
+        
+        <!-- Specific feedback areas -->
+        <div class="form-group">
+            <label for="feedback-areas">What aspects would you like to provide feedback on?</label>
+            <div class="checkbox-group">
+                <label class="checkbox-label">
+                    <input type="checkbox" name="feedback-areas" value="user-interface" />
+                    User Interface & Design
+                </label>
+                <label class="checkbox-label">
+                    <input type="checkbox" name="feedback-areas" value="functionality" />
+                    Functionality & Features
+                </label>
+                <label class="checkbox-label">
+                    <input type="checkbox" name="feedback-areas" value="performance" />
+                    Performance & Speed
+                </label>
+                <label class="checkbox-label">
+                    <input type="checkbox" name="feedback-areas" value="content" />
+                    Content & Information
+                </label>
+                <label class="checkbox-label">
+                    <input type="checkbox" name="feedback-areas" value="navigation" />
+                    Navigation & Usability
+                </label>
+            </div>
+        </div>
+        
+        <!-- Detailed feedback -->
+        <div class="form-group">
+            <label for="detailed-feedback">Please share your detailed feedback:</label>
+            <textarea 
+                name="detailed-feedback" 
+                id="detailed-feedback" 
+                rows="4" 
+                placeholder="Tell us about your experience, suggestions, or any issues you encountered..."
+                required
+            ></textarea>
+        </div>
+        
+        <!-- Contact information (optional) -->
+        <div class="form-group">
+            <label for="contact-email">Email (optional - for follow-up questions)</label>
+            <input 
+                type="email" 
+                name="contact-email" 
+                id="contact-email" 
+                placeholder="your.email@example.com"
+            />
+        </div>
+        
+        <!-- Company information (optional) -->
+        <div class="form-group">
+            <label for="company">Company (optional)</label>
+            <input 
+                type="text" 
+                name="company" 
+                id="company" 
+                placeholder="Your company name"
+            />
+        </div>
+        
+        <!-- Submit button -->
+        <div class="form-group">
+            <button type="submit" class="submit-button">
+                <span class="button-text">Submit Feedback</span>
+                <span class="button-loading" style="display: none;">
+                    <svg class="spinner" viewBox="0 0 24 24">
+                        <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4" fill="none" />
+                    </svg>
+                    Submitting...
+                </span>
+            </button>
+        </div>
+        
+        <!-- Success message (hidden by default) -->
+        <div class="success-message" style="display: none;">
+            <div class="success-icon">✓</div>
+            <h4>Thank You!</h4>
+            <p>Your feedback has been submitted successfully. We appreciate you taking the time to help us improve AdjuvantIQ.</p>
+        </div>
+    </form>
+</div>
+
+<style>
+.netlify-feedback-form {
+    max-width: 600px;
+    margin: 2rem auto;
+    padding: 2rem;
+    background: linear-gradient(135deg, #f8f9fc 0%, #e3f2fd 100%);
+    border-radius: 15px;
+    border: 2px solid #2d7d7d;
+    box-shadow: 0 8px 32px rgba(45, 125, 125, 0.15);
+}
+
+.feedback-header {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.feedback-header h3 {
+    color: #2c5282;
+    font-size: 1.8rem;
+    margin-bottom: 0.5rem;
+    font-family: 'Source Sans Pro', sans-serif;
+}
+
+.feedback-header p {
+    color: #718096;
+    font-size: 1.1rem;
+}
+
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    color: #2c5282;
+    font-weight: 600;
+    font-family: 'Source Sans Pro', sans-serif;
+}
+
+.form-group input[type="text"],
+.form-group input[type="email"],
+.form-group select,
+.form-group textarea {
+    width: 100%;
+    padding: 0.75rem;
+    border: 2px solid #e2e8f0;
+    border-radius: 8px;
+    background: white;
+    color: #2c5282;
+    font-size: 1rem;
+    font-family: 'Source Sans Pro', sans-serif;
+    transition: all 0.3s ease;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+    outline: none;
+    border-color: #2d7d7d;
+    box-shadow: 0 0 0 3px rgba(45, 125, 125, 0.1);
+}
+
+.rating-buttons {
+    display: flex;
+    gap: 0.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.rating-label {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border: 2px solid #e2e8f0;
+    border-radius: 50%;
+    background: white;
+    color: #718096;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-weight: 600;
+}
+
+.rating-label:hover {
+    border-color: #2d7d7d;
+    background: #f0f9ff;
+}
+
+input[type="radio"]:checked + .rating-label {
+    border-color: #2d7d7d;
+    background: #2d7d7d;
+    color: white;
+}
+
+.rating-labels {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.9rem;
+    color: #718096;
+}
+
+.checkbox-group {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 0.75rem;
+}
+
+.checkbox-label {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    cursor: pointer;
+    color: #2c5282;
+    font-size: 0.95rem;
+}
+
+.checkbox-label input[type="checkbox"] {
+    width: auto;
+    margin: 0;
+}
+
+.submit-button {
+    width: 100%;
+    padding: 1rem 2rem;
+    background: linear-gradient(135deg, #2d7d7d 0%, #2c5282 100%);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-family: 'Source Sans Pro', sans-serif;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+}
+
+.submit-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(45, 125, 125, 0.3);
+}
+
+.submit-button:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
+    transform: none;
+}
+
+.spinner {
+    animation: spin 1s linear infinite;
+    width: 20px;
+    height: 20px;
+}
+
+@keyframes spin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+.success-message {
+    text-align: center;
+    padding: 2rem;
+    background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%);
+    border: 2px solid #22c55e;
+    border-radius: 12px;
+    margin-top: 2rem;
+}
+
+.success-icon {
+    font-size: 3rem;
+    color: #22c55e;
+    margin-bottom: 1rem;
+}
+
+.success-message h4 {
+    color: #166534;
+    margin-bottom: 0.5rem;
+    font-family: 'Source Sans Pro', sans-serif;
+}
+
+.success-message p {
+    color: #15803d;
+    margin: 0;
+}
+
+.hidden {
+    display: none !important;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+    .netlify-feedback-form {
+        margin: 1rem;
+        padding: 1.5rem;
+    }
+    
+    .checkbox-group {
+        grid-template-columns: 1fr;
+    }
+    
+    .rating-buttons {
+        justify-content: center;
+    }
+}
+</style>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const form = document.getElementById('netlify-feedback-form').querySelector('form');
+    const submitButton = form.querySelector('.submit-button');
+    const buttonText = submitButton.querySelector('.button-text');
+    const buttonLoading = submitButton.querySelector('.button-loading');
+    const successMessage = form.querySelector('.success-message');
+    
+    // Set session data
+    if (window.sessionTracker) {
+        const stats = window.sessionTracker.getSessionStats();
+        document.getElementById('session-id').value = stats.sessionId;
+    }
+    
+    document.getElementById('page-url').value = window.location.href;
+    document.getElementById('user-agent').value = navigator.userAgent;
+    
+    // Handle form submission
+    form.addEventListener('submit', function(e) {
+        e.preventDefault();
+        
+        // Show loading state
+        submitButton.disabled = true;
+        buttonText.style.display = 'none';
+        buttonLoading.style.display = 'flex';
+        
+        // Submit form data
+        const formData = new FormData(form);
+        
+        fetch('/', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+            body: new URLSearchParams(formData).toString()
+        })
+        .then(response => {
+            if (response.ok) {
+                // Show success message
+                form.style.display = 'none';
+                successMessage.style.display = 'block';
+                
+                // Track successful submission
+                if (window.sessionTracker) {
+                    window.sessionTracker.trackInteraction('feedback_form_submit', {
+                        form_type: 'netlify_feedback',
+                        success: true
+                    });
+                }
+            } else {
+                throw new Error('Form submission failed');
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            alert('There was an error submitting your feedback. Please try again.');
+            
+            // Reset button state
+            submitButton.disabled = false;
+            buttonText.style.display = 'inline';
+            buttonLoading.style.display = 'none';
+        });
+    });
+    
+    // Track form interactions
+    form.addEventListener('change', function(e) {
+        if (window.sessionTracker) {
+            window.sessionTracker.trackInteraction('feedback_form_change', {
+                field: e.target.name,
+                value: e.target.value
+            });
+        }
+    });
+});
+</script>
