@@ -9,7 +9,7 @@ class DemoGenerator {
     constructor() {
         this.contentDir = path.join(__dirname, '../../content');
         this.outputDir = path.join(__dirname, '../../demo');
-        this.templateDir = path.join(__dirname, '../template-engine');
+        this.templateDir = path.join(__dirname, '../demo template-engine');
     }
 
     // Load demo content from CMS

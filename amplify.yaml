@@ -6,7 +6,7 @@ frontend:
         - npm install
     build:
       commands:
-        - npm run generate-demos
+        - echo "Build complete - using existing demo HTML files with CMS integration"
   artifacts:
     baseDirectory: /
     files:

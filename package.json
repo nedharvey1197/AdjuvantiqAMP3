@@ -5,12 +5,8 @@
   "main": "index.html",
   "scripts": {
     "dev": "python3 -m http.server 8000",
-    "generate-demos": "node tools/cms-integration/demo-generator.js generate-all",
-    "generate-demo": "node tools/cms-integration/demo-generator.js generate-demo",
-    "generate-phase": "node tools/cms-integration/demo-generator.js generate-phase",
-    "generate-hub": "node tools/cms-integration/demo-generator.js generate-hub",
     "generate-site": "node tools/cms-integration/site-generator.js generate",
-    "build": "npm run generate-site && npm run generate-demos",
+    "build": "npm run generate-site",
     "auth0-setup": "node tools/auth0-setup.js"
   },
   "dependencies": {
