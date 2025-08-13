@@ -961,7 +961,7 @@ collections:
 
   - name: "demo_components"
     label: "Demo Component Styling"
-    file: "content/branding.json"
+    file: "content/demo-components.json"
     fields:
       - label: "AI Reasoning Boxes"
         name: "reasoning_boxes"

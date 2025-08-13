@@ -1,0 +1,230 @@
+{
+  "reasoning_boxes": {
+    "background": "#fff3e0",
+    "border": "2px solid #ff9800",
+    "border_left": "5px solid #ff9800",
+    "padding": "20px",
+    "margin": "15px 0",
+    "border_radius": "8px",
+    "cursor": "pointer",
+    "transition": "all 0.3s ease",
+    "position": "relative",
+    "hover_effects": {
+      "box_shadow": "0 4px 12px rgba(255,152,0,0.2)"
+    },
+    "expanded": {
+      "background": "#fff8e1"
+    },
+    "typography": {
+      "header": {
+        "font_weight": "bold",
+        "color": "#e65100",
+        "display": "flex",
+        "justify_content": "space-between",
+        "align_items": "center"
+      },
+      "expand_icon": {
+        "font_size": "1.2em",
+        "margin_left": "auto",
+        "transition": "transform 0.3s ease",
+        "expanded_transform": "rotate(45deg)"
+      },
+      "details": {
+        "margin_top": "15px",
+        "display": "none",
+        "expanded_display": "block"
+      }
+    },
+    "before_content": {
+      "content": "🔧 AI REASONING",
+      "position": "absolute",
+      "top": "-10px",
+      "left": "15px",
+      "background": "#ff9800",
+      "color": "white",
+      "padding": "4px 8px",
+      "font_size": "0.8em",
+      "font_weight": "bold",
+      "border_radius": "3px"
+    }
+  },
+  "feedback_system": {
+    "position": "relative",
+    "margin": "2rem 0",
+    "padding": "2rem",
+    "background": "linear-gradient(135deg, #fff5f5 0%, #fed7d7 100%)",
+    "border_radius": "12px",
+    "border": "3px solid #e53e3e",
+    "box_shadow": "0 0 20px rgba(229, 62, 62, 0.3)",
+    "animation": "feedbackGlow 2s ease-in-out infinite alternate",
+    "typography": {
+      "title": {
+        "text_align": "center",
+        "font_size": "1.5em",
+        "color": "#c53030",
+        "margin_bottom": "1rem",
+        "font_weight": "bold"
+      }
+    },
+    "buttons": {
+      "display": "flex",
+      "flex_wrap": "wrap",
+      "gap": "1rem",
+      "justify_content": "center",
+      "margin_top": "1.5rem"
+    },
+    "button": {
+      "background": "#e53e3e",
+      "color": "white",
+      "border": "none",
+      "padding": "0.75rem 1.5rem",
+      "border_radius": "8px",
+      "font_weight": "600",
+      "cursor": "pointer",
+      "transition": "all 0.3s ease",
+      "box_shadow": "0 4px 8px rgba(229, 62, 62, 0.3)",
+      "hover": {
+        "background": "#c53030",
+        "transform": "translateY(-2px)",
+        "box_shadow": "0 6px 12px rgba(229, 62, 62, 0.4)"
+      }
+    },
+    "arrows": {
+      "content": "→",
+      "position": "absolute",
+      "top": "50%",
+      "transform": "translateY(-50%)",
+      "font_size": "2rem",
+      "color": "#e53e3e",
+      "font_weight": "bold",
+      "animation": "arrowPulse 1.5s ease-in-out infinite",
+      "before": {
+        "left": "-30px"
+      },
+      "after": {
+        "right": "-30px",
+        "transform": "translateY(-50%) rotate(180deg)"
+      }
+    }
+  },
+  "progressive_disclosure": {
+    "workflow_step": {
+      "initial_state": {
+        "opacity": "0.7",
+        "transform": "translateY(20px) scale(0.95)",
+        "transition": "all 0.5s ease"
+      },
+      "in_view_state": {
+        "opacity": "1",
+        "transform": "translateY(0) scale(1)"
+      },
+      "expanded_state": {
+        "background": "linear-gradient(135deg, #f8f9fc 0%, #e3f2fd 100%)",
+        "transform": "scale(1.02)"
+      }
+    },
+    "phase_card": {
+      "initial_state": {
+        "opacity": "0.7",
+        "transform": "translateY(20px) scale(0.95)",
+        "transition": "all 0.5s ease"
+      },
+      "in_view_state": {
+        "opacity": "1",
+        "transform": "translateY(0) scale(1)"
+      },
+      "expanded_state": {
+        "grid_column": "span 2",
+        "background": "linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%)",
+        "transform": "scale(1.02)"
+      }
+    }
+  },
+  "collapsible_sections": {
+    "margin": "2rem 0",
+    "border_radius": "12px",
+    "box_shadow": "0 4px 6px rgba(0,0,0,0.1)",
+    "overflow": "hidden",
+    "background": "white",
+    "header": {
+      "background": "#f8f9fc",
+      "padding": "1.5rem",
+      "border_bottom": "1px solid #e0e6ed",
+      "cursor": "pointer",
+      "display": "flex",
+      "justify_content": "space-between",
+      "align_items": "center",
+      "transition": "background 0.3s ease",
+      "hover": {
+        "background": "#e3f2fd"
+      },
+      "typography": {
+        "font_size": "1.5em",
+        "color": "#333",
+        "margin": "0"
+      }
+    },
+    "toggle_container": {
+      "display": "flex",
+      "align_items": "center",
+      "gap": "0.5rem",
+      "font_size": "0.85em",
+      "color": "#2196f3",
+      "font_weight": "500"
+    },
+    "toggle": {
+      "background": "#2196f3",
+      "color": "white",
+      "border": "none",
+      "border_radius": "50%",
+      "width": "32px",
+      "height": "32px",
+      "display": "flex",
+      "align_items": "center",
+      "justify_content": "center",
+      "cursor": "pointer",
+      "font_size": "1em",
+      "transition": "all 0.3s ease",
+      "hover": {
+        "background": "#1976d2",
+        "transform": "scale(1.1)"
+      },
+      "collapsed": {
+        "transform": "rotate(180deg)"
+      }
+    },
+    "content": {
+      "max_height": "2000px",
+      "overflow": "hidden",
+      "transition": "max-height 0.5s ease",
+      "collapsed": {
+        "max_height": "0"
+      }
+    },
+    "list": {
+      "padding": "1rem",
+      "background": "#f8f9fc",
+      "border_top": "1px solid #e0e6ed"
+    }
+  },
+  "animations": {
+    "feedbackGlow": {
+      "0%": {
+        "box_shadow": "0 0 20px rgba(229, 62, 62, 0.3)"
+      },
+      "100%": {
+        "box_shadow": "0 0 30px rgba(229, 62, 62, 0.6)"
+      }
+    },
+    "arrowPulse": {
+      "0%, 100%": {
+        "opacity": "0.7",
+        "transform": "translateY(-50%) scale(1)"
+      },
+      "50%": {
+        "opacity": "1",
+        "transform": "translateY(-50%) scale(1.2)"
+      }
+    }
+  }
+}

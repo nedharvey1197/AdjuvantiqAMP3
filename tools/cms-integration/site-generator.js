@@ -704,8 +704,14 @@ class SiteGenerator {
         const content = this.loadSiteContent();
         const branding = content.branding;
         
-        if (!branding || !branding.demo_components) {
-            console.log('No demo component specifications found in branding.json');
+        // Load demo components from separate file
+        const demoComponentsPath = path.join(this.contentDir, 'demo-components.json');
+        let demoComponents;
+        
+        try {
+            demoComponents = JSON.parse(fs.readFileSync(demoComponentsPath, 'utf8'));
+        } catch (error) {
+            console.log('No demo component specifications found in demo-components.json');
             return;
         }
 
@@ -734,7 +740,7 @@ class SiteGenerator {
         let html = fs.readFileSync(filePath, 'utf8');
         
         // Generate centralized CSS from brand data
-        const centralizedCSS = this.generateCentralizedCSS(branding.demo_components);
+        const centralizedCSS = this.generateCentralizedCSS(demoComponents);
         
         // Inject centralized CSS without removing existing styles
         html = this.injectCentralizedCSS(html, centralizedCSS);
