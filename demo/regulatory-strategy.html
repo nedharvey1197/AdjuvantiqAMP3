@@ -1070,6 +1070,267 @@
                 opacity: 1;
                 transform: translateY(-50%) scale(1.2);
             }
+        }
+        /* Centralized Demo Component Styles - Generated from CMS */
+
+        /* Centralized Reasoning Box Styles */
+        .reasoning-box {
+            background: #fff3e0 !important;
+            border: 2px solid #ff9800 !important;
+            padding: 20px !important;
+            margin: 15px 0 !important;
+            border-radius: 8px !important;
+            cursor: pointer !important;
+            transition: all 0.3s ease !important;
+            position: relative !important;
+        }
+        
+        .reasoning-box:hover {
+            box-shadow: 0 4px 12px rgba(255,152,0,0.2) !important;
+        }
+        
+        .reasoning-box.expanded {
+            background: #fff8e1 !important;
+        }
+        
+        .reasoning-box::before {
+            content: "🔧 AI REASONING" !important;
+            position: absolute !important;
+            top: -10px !important;
+            left: 15px !important;
+            background: #ff9800 !important;
+            color: white !important;
+            padding: 4px 8px !important;
+            font-size: 0.8em !important;
+            font-weight: bold !important;
+            border-radius: 3px !important;
+        }
+        
+        .reasoning-header {
+            font-weight: bold !important;
+            color: #e65100 !important;
+            display: flex !important;
+            justify-content: space-between !important;
+            align-items: center !important;
+        }
+        
+        .expand-icon {
+            font-size: 1.2em !important;
+            margin-left: auto !important;
+            transition: transform 0.3s ease !important;
+        }
+        
+        .reasoning-box.expanded .expand-icon {
+            transform: rotate(45deg) !important;
+        }
+        
+        .reasoning-details {
+            margin-top: 15px !important;
+            display: none !important;
+        }
+        
+        .reasoning-box.expanded .reasoning-details {
+            display: block !important;
+        }
+        /* Centralized Feedback Section Styles */
+        .feedback-section {
+            position: relative !important;
+            margin: 2rem 0 !important;
+            padding: 2rem !important;
+            background: linear-gradient(135deg, #fff5f5 0%, #fed7d7 100%) !important;
+            border-radius: 12px !important;
+            border: 3px solid #e53e3e !important;
+            box-shadow: 0 0 20px rgba(229, 62, 62, 0.3) !important;
+            animation: feedbackGlow 2s ease-in-out infinite alternate !important;
+        }
+        
+        .feedback-title {
+            text-align: center !important;
+            font-size: 1.5em !important;
+            color: #c53030 !important;
+            margin-bottom: 1rem !important;
+            font-weight: bold !important;
+        }
+        
+        .feedback-buttons {
+            display: flex !important;
+            flex-wrap: wrap !important;
+            gap: 1rem !important;
+            justify-content: center !important;
+            margin-top: 1.5rem !important;
+        }
+        
+        .feedback-button {
+            background: #e53e3e !important;
+            color: white !important;
+            border: none !important;
+            padding: 0.75rem 1.5rem !important;
+            border-radius: 8px !important;
+            font-weight: 600 !important;
+            cursor: pointer !important;
+            transition: all 0.3s ease !important;
+            box-shadow: 0 4px 8px rgba(229, 62, 62, 0.3) !important;
+        }
+        
+        .feedback-button:hover {
+            background: #c53030 !important;
+            transform: translateY(-2px) !important;
+            box-shadow: 0 6px 12px rgba(229, 62, 62, 0.4) !important;
+        }
+        
+        .feedback-section::before {
+            content: "→" !important;
+            position: absolute !important;
+            top: 50% !important;
+            transform: translateY(-50%) !important;
+            font-size: 2rem !important;
+            color: #e53e3e !important;
+            font-weight: bold !important;
+            animation: arrowPulse 1.5s ease-in-out infinite !important;
+            left: -30px !important;
+        }
+        
+        .feedback-section::after {
+            content: "→" !important;
+            position: absolute !important;
+            top: 50% !important;
+            transform: translateY(-50%) rotate(180deg) !important;
+            font-size: 2rem !important;
+            color: #e53e3e !important;
+            font-weight: bold !important;
+            animation: arrowPulse 1.5s ease-in-out infinite !important;
+            right: -30px !important;
+        }
+        /* Centralized Collapsible Section Styles */
+        .collapsible-section {
+            margin: 2rem 0 !important;
+            border-radius: 12px !important;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1) !important;
+            overflow: hidden !important;
+            background: white !important;
+        }
+        
+        .section-header {
+            background: #f8f9fc !important;
+            padding: 1.5rem !important;
+            border-bottom: 1px solid #e0e6ed !important;
+            cursor: pointer !important;
+            display: flex !important;
+            justify-content: space-between !important;
+            align-items: center !important;
+            transition: background 0.3s ease !important;
+        }
+        
+        .section-header:hover {
+            background: #e3f2fd !important;
+        }
+        
+        .section-header h3 {
+            font-size: 1.5em !important;
+            color: #333 !important;
+            margin: 0 !important;
+        }
+        
+        .section-toggle-container {
+            display: flex !important;
+            align-items: center !important;
+            gap: 0.5rem !important;
+            font-size: 0.85em !important;
+            color: #2196f3 !important;
+            font-weight: 500 !important;
+        }
+        
+        .section-toggle {
+            background: #2196f3 !important;
+            color: white !important;
+            border: none !important;
+            border-radius: 50% !important;
+            width: 32px !important;
+            height: 32px !important;
+            display: flex !important;
+            align-items: center !important;
+            justify-content: center !important;
+            cursor: pointer !important;
+            font-size: 1em !important;
+            transition: all 0.3s ease !important;
+        }
+        
+        .section-toggle:hover {
+            background: #1976d2 !important;
+            transform: scale(1.1) !important;
+        }
+        
+        .section-toggle.collapsed {
+            transform: rotate(180deg) !important;
+        }
+        
+        .section-content {
+            max-height: 2000px !important;
+            overflow: hidden !important;
+            transition: max-height 0.5s ease !important;
+        }
+        
+        .section-content.collapsed {
+            max-height: 0 !important;
+        }
+        
+        .section-list {
+            padding: 1rem !important;
+            background: #f8f9fc !important;
+            border-top: 1px solid #e0e6ed !important;
+        }
+        /* Centralized Progressive Disclosure - Workflow Steps */
+        .workflow-step {
+            opacity: 0.7 !important;
+            transform: translateY(20px) scale(0.95) !important;
+            transition: all 0.5s ease !important;
+        }
+        
+        .workflow-step.in-view {
+            opacity: 1 !important;
+            transform: translateY(0) scale(1) !important;
+        }
+        
+        .workflow-step.expanded {
+            background: linear-gradient(135deg, #f8f9fc 0%, #e3f2fd 100%) !important;
+            transform: scale(1.02) !important;
+        }
+        /* Centralized Progressive Disclosure - Phase Cards */
+        .phase-card {
+            opacity: 0.7 !important;
+            transform: translateY(20px) scale(0.95) !important;
+            transition: all 0.5s ease !important;
+        }
+        
+        .phase-card.in-view {
+            opacity: 1 !important;
+            transform: translateY(0) scale(1) !important;
+        }
+        
+        .phase-card.expanded {
+            grid-column: span 2 !important;
+            background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%) !important;
+            transform: scale(1.02) !important;
+        }
+        /* Centralized Animation Keyframes */
+        @keyframes feedbackGlow {
+            0% {
+                box-shadow: 0 0 20px rgba(229, 62, 62, 0.3);
+            }
+            100% {
+                box-shadow: 0 0 30px rgba(229, 62, 62, 0.6);
+            }
+        }
+        
+        @keyframes arrowPulse {
+            0%, 100% {
+                opacity: 0.7;
+                transform: translateY(-50%) scale(1);
+            }
+            50% {
+                opacity: 1;
+                transform: translateY(-50%) scale(1.2);
+            }
         }</style>
 </head>
 <body>

@@ -971,6 +971,56 @@ class SiteGenerator {
         }`;
         }
 
+        // Progressive Disclosure
+        if (components.progressive_disclosure) {
+            const pd = components.progressive_disclosure;
+            
+            // Workflow Step Progressive Disclosure
+            if (pd.workflow_step) {
+                const ws = pd.workflow_step;
+                css += `
+        /* Centralized Progressive Disclosure - Workflow Steps */
+        .workflow-step {
+            opacity: ${ws.initial_state.opacity} !important;
+            transform: ${ws.initial_state.transform} !important;
+            transition: ${ws.initial_state.transition} !important;
+        }
+        
+        .workflow-step.in-view {
+            opacity: ${ws.in_view_state.opacity} !important;
+            transform: ${ws.in_view_state.transform} !important;
+        }
+        
+        .workflow-step.expanded {
+            background: ${ws.expanded_state.background} !important;
+            transform: ${ws.expanded_state.transform} !important;
+        }`;
+            }
+            
+            // Phase Card Progressive Disclosure
+            if (pd.phase_card) {
+                const pc = pd.phase_card;
+                css += `
+        /* Centralized Progressive Disclosure - Phase Cards */
+        .phase-card {
+            opacity: ${pc.initial_state.opacity} !important;
+            transform: ${pc.initial_state.transform} !important;
+            transition: ${pc.initial_state.transition} !important;
+        }
+        
+        .phase-card.in-view {
+            opacity: ${pc.in_view_state.opacity} !important;
+            transform: ${pc.in_view_state.transform} !important;
+        }
+        
+        .phase-card.expanded {
+            grid-column: ${pc.expanded_state.grid_column} !important;
+            background: ${pc.expanded_state.background} !important;
+            transform: ${pc.expanded_state.transform} !important;
+        }`;
+            }
+        }
+
         // Animations
         if (components.animations) {
             css += `

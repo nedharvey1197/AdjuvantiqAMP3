@@ -621,6 +621,39 @@
         "border_top": "1px solid #e0e6ed"
       }
     },
+    "progressive_disclosure": {
+      "workflow_step": {
+        "initial_state": {
+          "opacity": "0.7",
+          "transform": "translateY(20px) scale(0.95)",
+          "transition": "all 0.5s ease"
+        },
+        "in_view_state": {
+          "opacity": "1",
+          "transform": "translateY(0) scale(1)"
+        },
+        "expanded_state": {
+          "background": "linear-gradient(135deg, #f8f9fc 0%, #e3f2fd 100%)",
+          "transform": "scale(1.02)"
+        }
+      },
+      "phase_card": {
+        "initial_state": {
+          "opacity": "0.7",
+          "transform": "translateY(20px) scale(0.95)",
+          "transition": "all 0.5s ease"
+        },
+        "in_view_state": {
+          "opacity": "1",
+          "transform": "translateY(0) scale(1)"
+        },
+        "expanded_state": {
+          "grid_column": "span 2",
+          "background": "linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%)",
+          "transform": "scale(1.02)"
+        }
+      }
+    },
     "animations": {
       "feedbackGlow": {
         "0%": {

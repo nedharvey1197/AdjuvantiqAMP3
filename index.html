@@ -9,6 +9,10 @@
     <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:ital,wght@0,300;0,400;0,600;0,700;1,400&family=Merriweather:ital,wght@0,300;0,400;0,700;1,300;1,400&display=swap" rel="stylesheet">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:ital,wght@0,300;0,400;0,600;0,700;1,400&family=Merriweather:ital,wght@0,300;0,400;0,700;1,300;1,400&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:ital,wght@0,300;0,400;0,600;0,700;1,400&family=Merriweather:ital,wght@0,300;0,400;0,700;1,300;1,400&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:ital,wght@0,300;0,400;0,600;0,700;1,400&family=Merriweather:ital,wght@0,300;0,400;0,700;1,300;1,400&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
@@ -30,6 +34,206 @@
         /* Font Mapping Rules */
         h1, h2, h3, h4, h5, h6, .nav-links a, .cta-button, .secondary-button, .form-group input, .form-group select, .form-group textarea, .form-group label, .logo, .demo-link {
             font-family: 'Source Sans Pro', sans-serif;
+        }
+        body, p, li, span, div {
+            font-family: 'Merriweather', serif;
+        }
+        .font-body, .font-content, .font-text {
+            font-family: 'Merriweather', serif;
+        }
+        .font-heading, .font-title, .font-nav, .font-button, .font-form {
+            font-family: 'Source Sans Pro', sans-serif;
+        }
+
+        /* Font Mapping Rules */
+        h1, h2, h3, h4, h5, h6, .nav-links a, .cta-button, .secondary-button, .form-group input, .form-group select, .form-group textarea, .form-group label, .logo, .demo-link {
+            font-family: 'Source Sans Pro', sans-serif;
+        }
+
+        /* Color Mapping Rules */
+        h1, h2, h3, h4, h5, h6, .nav-links a, .logo {
+            color: var(--navy);
+        }
+
+        /* Background Mapping Rules */
+        .hero {
+            background: linear-gradient(135deg, var(--white) 0%, #f8fafc 50%, #e2e8f0 100%);
+        }
+
+        /* Professional Color Pairing Rules */
+        /* White background (#ffffff) - Primary content areas */
+        .content-section, .form-section, .light-section, .card, .main-content, .hero, .section-header, .credibility-section {
+            background: #ffffff;
+        }
+        .content-section, .form-section, .light-section, .card, .main-content, .hero, .section-header, .credibility-section h1, .content-section, .form-section, .light-section, .card, .main-content, .hero, .section-header, .credibility-section h2, .content-section, .form-section, .light-section, .card, .main-content, .hero, .section-header, .credibility-section h3, .content-section, .form-section, .light-section, .card, .main-content, .hero, .section-header, .credibility-section h4, .content-section, .form-section, .light-section, .card, .main-content, .hero, .section-header, .credibility-section h5, .content-section, .form-section, .light-section, .card, .main-content, .hero, .section-header, .credibility-section h6, .content-section, .form-section, .light-section, .card, .main-content, .hero, .section-header, .credibility-section .section-title {
+            color: #2c5282;
+        }
+        .content-section, .form-section, .light-section, .card, .main-content, .hero, .section-header, .credibility-section p, .content-section, .form-section, .light-section, .card, .main-content, .hero, .section-header, .credibility-section li, .content-section, .form-section, .light-section, .card, .main-content, .hero, .section-header, .credibility-section span {
+            color: #718096;
+        }
+        .content-section, .form-section, .light-section, .card, .main-content, .hero, .section-header, .credibility-section .subheading, .content-section, .form-section, .light-section, .card, .main-content, .hero, .section-header, .credibility-section .subtitle, .content-section, .form-section, .light-section, .card, .main-content, .hero, .section-header, .credibility-section .section-subtitle {
+            color: #2d7d7d;
+        }
+        .content-section, .form-section, .light-section, .card, .main-content, .hero, .section-header, .credibility-section a, .content-section, .form-section, .light-section, .card, .main-content, .hero, .section-header, .credibility-section .link {
+            color: #2d7d7d;
+        }
+        .content-section, .form-section, .light-section, .card, .main-content, .hero, .section-header, .credibility-section .button, .content-section, .form-section, .light-section, .card, .main-content, .hero, .section-header, .credibility-section .btn, .content-section, .form-section, .light-section, .card, .main-content, .hero, .section-header, .credibility-section .cta-button {
+            color: #2c5282;
+        }
+        /* Navy background (#2c5282) - Headers, emphasis sections */
+        .header, .section-dark, .emphasis-section, .nav-section, .cta-section {
+            background: #2c5282;
+        }
+        .header, .section-dark, .emphasis-section, .nav-section, .cta-section h1, .header, .section-dark, .emphasis-section, .nav-section, .cta-section h2, .header, .section-dark, .emphasis-section, .nav-section, .cta-section h3, .header, .section-dark, .emphasis-section, .nav-section, .cta-section h4, .header, .section-dark, .emphasis-section, .nav-section, .cta-section h5, .header, .section-dark, .emphasis-section, .nav-section, .cta-section h6, .header, .section-dark, .emphasis-section, .nav-section, .cta-section .section-title {
+            color: #ffffff;
+        }
+        .header, .section-dark, .emphasis-section, .nav-section, .cta-section p, .header, .section-dark, .emphasis-section, .nav-section, .cta-section li, .header, .section-dark, .emphasis-section, .nav-section, .cta-section span {
+            color: #ffffff;
+        }
+        .header, .section-dark, .emphasis-section, .nav-section, .cta-section .subheading, .header, .section-dark, .emphasis-section, .nav-section, .cta-section .subtitle, .header, .section-dark, .emphasis-section, .nav-section, .cta-section .section-subtitle {
+            color: #2d7d7d;
+        }
+        .header, .section-dark, .emphasis-section, .nav-section, .cta-section a, .header, .section-dark, .emphasis-section, .nav-section, .cta-section .link {
+            color: #2d7d7d;
+        }
+        .header, .section-dark, .emphasis-section, .nav-section, .cta-section .button, .header, .section-dark, .emphasis-section, .nav-section, .cta-section .btn, .header, .section-dark, .emphasis-section, .nav-section, .cta-section .cta-button {
+            color: #ffffff;
+        }
+        /* Teal background (#2d7d7d) - Accent sections, highlights */
+        .highlight-section, .accent-section, .feature-box, .demo-link {
+            background: #2d7d7d;
+        }
+        .highlight-section, .accent-section, .feature-box, .demo-link h1, .highlight-section, .accent-section, .feature-box, .demo-link h2, .highlight-section, .accent-section, .feature-box, .demo-link h3, .highlight-section, .accent-section, .feature-box, .demo-link h4, .highlight-section, .accent-section, .feature-box, .demo-link h5, .highlight-section, .accent-section, .feature-box, .demo-link h6, .highlight-section, .accent-section, .feature-box, .demo-link .section-title {
+            color: #ffffff;
+        }
+        .highlight-section, .accent-section, .feature-box, .demo-link p, .highlight-section, .accent-section, .feature-box, .demo-link li, .highlight-section, .accent-section, .feature-box, .demo-link span {
+            color: #ffffff;
+        }
+        .highlight-section, .accent-section, .feature-box, .demo-link .subheading, .highlight-section, .accent-section, .feature-box, .demo-link .subtitle, .highlight-section, .accent-section, .feature-box, .demo-link .section-subtitle {
+            color: #2c5282;
+        }
+        .highlight-section, .accent-section, .feature-box, .demo-link a, .highlight-section, .accent-section, .feature-box, .demo-link .link {
+            color: #ffffff;
+        }
+        .highlight-section, .accent-section, .feature-box, .demo-link .button, .highlight-section, .accent-section, .feature-box, .demo-link .btn, .highlight-section, .accent-section, .feature-box, .demo-link .cta-button {
+            color: #ffffff;
+        }
+        /* Warm gray background (#718096) - Neutral sections */
+        .neutral-section, .gray-section, .secondary-content {
+            background: #718096;
+        }
+        .neutral-section, .gray-section, .secondary-content h1, .neutral-section, .gray-section, .secondary-content h2, .neutral-section, .gray-section, .secondary-content h3, .neutral-section, .gray-section, .secondary-content h4, .neutral-section, .gray-section, .secondary-content h5, .neutral-section, .gray-section, .secondary-content h6, .neutral-section, .gray-section, .secondary-content .section-title {
+            color: #2c5282;
+        }
+        .neutral-section, .gray-section, .secondary-content p, .neutral-section, .gray-section, .secondary-content li, .neutral-section, .gray-section, .secondary-content span {
+            color: #ffffff;
+        }
+        .neutral-section, .gray-section, .secondary-content .subheading, .neutral-section, .gray-section, .secondary-content .subtitle, .neutral-section, .gray-section, .secondary-content .section-subtitle {
+            color: #ffffff;
+        }
+        .neutral-section, .gray-section, .secondary-content a, .neutral-section, .gray-section, .secondary-content .link {
+            color: #2d7d7d;
+        }
+        .neutral-section, .gray-section, .secondary-content .button, .neutral-section, .gray-section, .secondary-content .btn, .neutral-section, .gray-section, .secondary-content .cta-button {
+            color: #ffffff;
+        }
+        /* Navy to Teal gradient - Emphasis, chart highlights, logo accent, buttons */
+        .cta-button, .emphasis-gradient, .chart-highlight, .logo-accent {
+            background: linear-gradient(135deg, #2c5282 0%, #2d7d7d 100%);
+        }
+        .cta-button, .emphasis-gradient, .chart-highlight, .logo-accent h1, .cta-button, .emphasis-gradient, .chart-highlight, .logo-accent h2, .cta-button, .emphasis-gradient, .chart-highlight, .logo-accent h3, .cta-button, .emphasis-gradient, .chart-highlight, .logo-accent h4, .cta-button, .emphasis-gradient, .chart-highlight, .logo-accent h5, .cta-button, .emphasis-gradient, .chart-highlight, .logo-accent h6 {
+            color: #ffffff;
+        }
+        .cta-button, .emphasis-gradient, .chart-highlight, .logo-accent p, .cta-button, .emphasis-gradient, .chart-highlight, .logo-accent li, .cta-button, .emphasis-gradient, .chart-highlight, .logo-accent span {
+            color: #ffffff;
+        }
+        /* White to Warm Gray gradient - Subtle backgrounds for cards, overlays, table fills */
+        .card, .overlay, .table-fill, .subtle-section {
+            background: linear-gradient(135deg, #ffffff 0%, #718096 100%);
+        }
+        .card, .overlay, .table-fill, .subtle-section h1, .card, .overlay, .table-fill, .subtle-section h2, .card, .overlay, .table-fill, .subtle-section h3, .card, .overlay, .table-fill, .subtle-section h4, .card, .overlay, .table-fill, .subtle-section h5, .card, .overlay, .table-fill, .subtle-section h6 {
+            color: #2c5282;
+        }
+        .card, .overlay, .table-fill, .subtle-section p, .card, .overlay, .table-fill, .subtle-section li, .card, .overlay, .table-fill, .subtle-section span {
+            color: #718096;
+        }
+        .bg-hero, .bg-light-gradient, .bg-main {
+            background: linear-gradient(135deg, var(--white) 0%, #f8fafc 50%, #e2e8f0 100%);
+        }
+        .header {
+            background: rgba(255, 255, 255, 0.95);
+        }
+        .bg-header, .bg-transparent-white, .bg-blur {
+            background: rgba(255, 255, 255, 0.95);
+        }
+        .cta-button, .section-dark, .footer {
+            background: linear-gradient(135deg, var(--navy) 0%, var(--teal) 100%);
+        }
+        .bg-primary-gradient, .bg-brand, .bg-dark {
+            background: linear-gradient(135deg, var(--navy) 0%, var(--teal) 100%);
+        }
+        .demo-link, .contact-method, .highlight-section {
+            background: linear-gradient(135deg, var(--teal) 0%, var(--navy) 100%);
+        }
+        .bg-accent-gradient, .bg-teal-navy, .bg-highlight {
+            background: linear-gradient(135deg, var(--teal) 0%, var(--navy) 100%);
+        }
+        .demo-link:hover, .contact-method:hover, .button-teal {
+            background: var(--teal);
+        }
+        .bg-teal, .bg-accent, .bg-solid-teal {
+            background: var(--teal);
+        }
+        .content-section, .form-section, .light-section {
+            background: var(--white);
+        }
+        .bg-white, .bg-light, .bg-content {
+            background: var(--white);
+        }
+        .form-group input, .pilot-form, .subtle-section {
+            background: var(--light-gray);
+        }
+        .bg-light-gray, .bg-subtle, .bg-form {
+            background: var(--light-gray);
+        }
+        .footer, .dark-section, .section-dark {
+            background: linear-gradient(135deg, var(--navy) 0%, #1e293b 100%);
+        }
+        .bg-dark-gradient, .bg-dark, .bg-footer {
+            background: linear-gradient(135deg, var(--navy) 0%, #1e293b 100%);
+        }
+        .neutral-section, .gray-section {
+            background: linear-gradient(135deg, var(--warm-gray) 0%, #95a5a6 100%);
+        }
+        .bg-warm-gray-gradient, .bg-neutral, .bg-gray {
+            background: linear-gradient(135deg, var(--warm-gray) 0%, #95a5a6 100%);
+        }
+        .color-primary, .color-navy, .color-heading, .color-main {
+            color: var(--navy);
+        }
+        .nav-links a:hover, .cta-button, .demo-link, .form-group label, .contact-method {
+            color: var(--teal);
+        }
+        .color-accent, .color-teal, .color-link, .color-highlight {
+            color: var(--teal);
+        }
+        p, li, span, .form-note, .contact-info {
+            color: var(--warm-gray);
+        }
+        .color-secondary, .color-gray, .color-text, .color-body {
+            color: var(--warm-gray);
+        }
+        .cta-button, .hero, .header {
+            color: var(--white);
+        }
+        .color-white, .color-light, .color-bg {
+            color: var(--white);
+        }
+        .header, .form-group input, .pilot-form {
+            color: var(--light-gray);
+        }
+        .color-light-gray, .color-border, .color-subtle {
+            color: var(--light-gray);
         }
         body, p, li, span, div {
             font-family: 'Merriweather', serif;
@@ -811,7 +1015,7 @@
         }
     </style>
 </head>
-<body data-brand-mission="Deliver immediate, measurable business value through rigorous, agentic AI solutions that orchestrate every aspect of clinical trials for biotech and pharma innovators." data-brand-vision="To be the AI-powered operating system, trusted by life sciences organizations to navigate and optimize clinical trials from start to finish." data-brand-promise="Where Rigor Meets Orchestration." data-value-propositions='["Immediate business impact through measurable results from day one","End-to-end orchestration across the entire clinical trial lifecycle","Scientific rigor at every touchpoint","Industry expertise built by and for trial professionals"]' data-differentiators='["Operating system approach vs. point solutions","Rigorous, validated methodology vs. experimental AI","Immediate value, not just speculative long-term ROI","Deep clinical trial domain expertise"]'>
+<body data-brand-mission="Deliver immediate, measurable business value through rigorous, agentic AI solutions that orchestrate every aspect of clinical trials for biotech and pharma innovators." data-brand-vision="To be the AI-powered operating system, trusted by life sciences organizations to navigate and optimize clinical trials from start to finish." data-brand-promise="Where Rigor Meets Orchestration." data-value-propositions='["Immediate business impact through measurable results from day one","End-to-end orchestration across the entire clinical trial lifecycle","Scientific rigor at every touchpoint","Industry expertise built by and for trial professionals"]' data-differentiators='["Operating system approach vs. point solutions","Rigorous, validated methodology vs. experimental AI","Immediate value, not just speculative long-term ROI","Deep clinical trial domain expertise"]' data-brand-mission="Deliver immediate, measurable business value through rigorous, agentic AI solutions that orchestrate every aspect of clinical trials for biotech and pharma innovators." data-brand-vision="To be the AI-powered operating system, trusted by life sciences organizations to navigate and optimize clinical trials from start to finish." data-brand-promise="Where Rigor Meets Orchestration." data-value-propositions='["Immediate business impact through measurable results from day one","End-to-end orchestration across the entire clinical trial lifecycle","Scientific rigor at every touchpoint","Industry expertise built by and for trial professionals"]' data-differentiators='["Operating system approach vs. point solutions","Rigorous, validated methodology vs. experimental AI","Immediate value, not just speculative long-term ROI","Deep clinical trial domain expertise"]'>
     <!-- Header -->
     <header class="header">
         <nav class="nav">
@@ -924,6 +1128,12 @@
                         <p>Domain expertise + Regulatory knowledge = Unbeatable moat</p>
                     </div>
                 </div>
+                    <div class="zone-title">Application Layer</div>
+                    <div class="solution-highlight">
+                        <strong>AdjuvantIQ</strong>
+                        <p>Domain expertise + Regulatory knowledge = Unbeatable moat</p>
+                    </div>
+                </div>
 
                 <div class="divider">
                     <span>THE COMPETITIVE MOAT</span>
@@ -931,6 +1141,11 @@
 
                 <div class="zone commodity-zone">
                     <div class="zone-label">📦 COMMODITIZING FAST</div>
+                    <div class="zone-title">Infrastructure Layer</div>
+                    <p style="font-size: 1.1rem; color: rgba(255, 255, 255, 0.8);">
+                        ChatGPT • Claude • LangChain • AutoGPT
+                    </p>
+                </div>
                     <div class="zone-title">Infrastructure Layer</div>
                     <p style="font-size: 1.1rem; color: rgba(255, 255, 255, 0.8);">
                         ChatGPT • Claude • LangChain • AutoGPT
@@ -991,7 +1206,7 @@
         </div>
     </section>
 
-        <!-- Team Section -->
+            <!-- Team Section -->
     <section class="team" id="team">
         <div class="container">
             <div class="section-header fade-in">

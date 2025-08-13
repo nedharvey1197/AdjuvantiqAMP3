@@ -1107,6 +1107,58 @@ collections:
                   - {label: "Right", name: "right", widget: "string", default: "-30px"}
                   - {label: "Transform", name: "transform", widget: "string", default: "translateY(-50%) rotate(180deg)"}
 
+      - label: "Progressive Disclosure"
+        name: "progressive_disclosure"
+        widget: "object"
+        fields:
+          - label: "Workflow Step"
+            name: "workflow_step"
+            widget: "object"
+            fields:
+              - label: "Initial State"
+                name: "initial_state"
+                widget: "object"
+                fields:
+                  - {label: "Opacity", name: "opacity", widget: "string", default: "0.7"}
+                  - {label: "Transform", name: "transform", widget: "string", default: "translateY(20px) scale(0.95)"}
+                  - {label: "Transition", name: "transition", widget: "string", default: "all 0.5s ease"}
+              - label: "In View State"
+                name: "in_view_state"
+                widget: "object"
+                fields:
+                  - {label: "Opacity", name: "opacity", widget: "string", default: "1"}
+                  - {label: "Transform", name: "transform", widget: "string", default: "translateY(0) scale(1)"}
+              - label: "Expanded State"
+                name: "expanded_state"
+                widget: "object"
+                fields:
+                  - {label: "Background", name: "background", widget: "string", default: "linear-gradient(135deg, #f8f9fc 0%, #e3f2fd 100%)"}
+                  - {label: "Transform", name: "transform", widget: "string", default: "scale(1.02)"}
+          - label: "Phase Card"
+            name: "phase_card"
+            widget: "object"
+            fields:
+              - label: "Initial State"
+                name: "initial_state"
+                widget: "object"
+                fields:
+                  - {label: "Opacity", name: "opacity", widget: "string", default: "0.7"}
+                  - {label: "Transform", name: "transform", widget: "string", default: "translateY(20px) scale(0.95)"}
+                  - {label: "Transition", name: "transition", widget: "string", default: "all 0.5s ease"}
+              - label: "In View State"
+                name: "in_view_state"
+                widget: "object"
+                fields:
+                  - {label: "Opacity", name: "opacity", widget: "string", default: "1"}
+                  - {label: "Transform", name: "transform", widget: "string", default: "translateY(0) scale(1)"}
+              - label: "Expanded State"
+                name: "expanded_state"
+                widget: "object"
+                fields:
+                  - {label: "Grid Column", name: "grid_column", widget: "string", default: "span 2"}
+                  - {label: "Background", name: "background", widget: "string", default: "linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%)"}
+                  - {label: "Transform", name: "transform", widget: "string", default: "scale(1.02)"}
+
       - label: "Collapsible Sections"
         name: "collapsible_sections"
         widget: "object"
