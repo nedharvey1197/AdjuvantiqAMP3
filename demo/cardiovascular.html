@@ -1865,12 +1865,21 @@
                 </div>
             </div>
             
-            <div class="feedback-buttons">
-                <button class="feedback-button" onclick="submitCompleteFeedback('great-demo')">👍 Great Demo!</button>
-                <button class="feedback-button" onclick="submitCompleteFeedback('could-be-better')">👎 Could be better</button>
-                <button class="feedback-button" onclick="submitCompleteFeedback('suggestion')">💡 Suggestion</button>
-                <button class="feedback-button" onclick="submitCompleteFeedback('contact-me')" style="background: linear-gradient(135deg, #2d7d7d 0%, #2c5282 100%);">📧 Contact Me About AdjuvantIQ</button>
-            </div>
+                            <div class="feedback-buttons">
+                    <button class="feedback-button" onclick="submitCompleteFeedback('great-demo')">👍 Great Demo!</button>
+                    <button class="feedback-button" onclick="submitCompleteFeedback('could-be-better')">👎 Could be better</button>
+                    <button class="feedback-button" onclick="submitCompleteFeedback('suggestion')">💡 Suggestion</button>
+                    <button class="feedback-button" onclick="submitCompleteFeedback('contact-me')" style="background: linear-gradient(135deg, #2d7d7d 0%, #2c5282 100%);">📧 Contact Me About AdjuvantIQ</button>
+                </div>
+                
+                <!-- Debug Test Button -->
+                <div style="text-align: center; margin: 20px 0; padding: 15px; background: rgba(255,193,7,0.1); border: 2px solid #ffc107; border-radius: 8px;">
+                    <p style="color: #856404; margin-bottom: 10px; font-size: 0.9em;"><strong>Debug:</strong> Test feedback submission</p>
+                    <button onclick="testFeedbackSubmission()" 
+                            style="background: linear-gradient(135deg, #ffc107 0%, #ff9800 100%); color: #856404; border: none; padding: 10px 20px; border-radius: 6px; font-weight: bold; cursor: pointer;">
+                        🧪 Test Feedback Submission
+                    </button>
+                </div>
             
             <!-- Email Collection for Detailed Feedback -->
             <div id="email-collection" style="display: none; margin-top: 20px; padding: 20px; background: rgba(255,255,255,0.9); border-radius: 8px; border: 2px solid #e53e3e;">
@@ -1956,6 +1965,28 @@
             console.log('All Feedback:', JSON.parse(feedback || '[]'));
             return JSON.parse(feedback || '[]');
         }
+        
+        // Debug function to test feedback submission
+        function testFeedbackSubmission() {
+            console.log('=== TESTING FEEDBACK SUBMISSION ===');
+            const sessionFeedback = JSON.parse(localStorage.getItem('adjuvantiq_feedback') || '[]');
+            const feedbackContext = JSON.parse(localStorage.getItem('feedback_context') || '{}');
+            
+            console.log('Session Feedback Count:', sessionFeedback.length);
+            console.log('Feedback Context:', feedbackContext);
+            
+            // Test submission
+            const testFeedback = {
+                final_feedback: 'test-submission',
+                session_feedback: sessionFeedback,
+                context: feedbackContext,
+                timestamp: new Date().toISOString(),
+                user_agent: navigator.userAgent,
+                url: window.location.href
+            };
+            
+            submitFeedbackToServer(testFeedback);
+        }
 
         // Show toast notifications
         function showToast(message) {
@@ -2024,9 +2055,8 @@
                 document.getElementById('email-collection').style.display = 'block';
                 showToast('Please provide your email to receive detailed feedback and updates!');
             } else {
-                // Submit feedback without email
+                // Submit feedback immediately for simple feedback types
                 submitFeedbackToServer(completeFeedback);
-                showToast('Thank you for your feedback! We appreciate your input.');
             }
         }
 
@@ -2119,6 +2149,12 @@
         document.addEventListener('DOMContentLoaded', function() {
             // Ensure session ID exists for this user
             generateSessionId();
+            
+            // Debug: Log current localStorage state
+            console.log('=== DEMO PAGE LOADED ===');
+            console.log('Session ID:', localStorage.getItem('adjuvantiq_session_id'));
+            console.log('Stored Feedback:', localStorage.getItem('adjuvantiq_feedback'));
+            console.log('Feedback Context:', localStorage.getItem('feedback_context'));
             
             loadSessionFeedbackSummary();
             
