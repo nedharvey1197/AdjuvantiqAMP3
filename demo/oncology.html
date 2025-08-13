@@ -2004,10 +2004,23 @@
             showToast('Opening pilot application form...');
         }
         
+        // Generate unique session ID for tracking
+        function generateSessionId() {
+            const sessionId = localStorage.getItem('adjuvantiq_session_id');
+            if (sessionId) return sessionId;
+            
+            const newSessionId = 'session_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9);
+            localStorage.setItem('adjuvantiq_session_id', newSessionId);
+            return newSessionId;
+        }
+        
         // Initialize when page loads
         document.addEventListener('DOMContentLoaded', function() {
             console.log('Oncology demo loaded successfully');
             showToast('Welcome! Explore how AI processes complex oncology trial data.');
+            
+            // Ensure session ID exists for this user
+            generateSessionId();
             loadOncologyDemoContent();
         });
         

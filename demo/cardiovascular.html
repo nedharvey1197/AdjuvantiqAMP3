@@ -1899,6 +1899,64 @@
     <div class="toast" id="toast"></div>
 
     <script>
+        // Enhanced feedback functionality with comprehensive logging
+        function giveFeedback(button, feedbackType) {
+            // Visual feedback
+            button.style.background = 'linear-gradient(135deg, #4caf50 0%, #45a049 100%)';
+            button.style.transform = 'scale(1.05)';
+            button.textContent = '✓ Thank you!';
+            
+            // Disable other buttons in the same group
+            const siblings = button.parentElement.querySelectorAll('button');
+            siblings.forEach(function(btn) {
+                if (btn !== button) {
+                    btn.disabled = true;
+                    btn.style.opacity = '0.5';
+                }
+            });
+            
+            // Log feedback with timestamp and page info
+            const feedbackData = {
+                type: feedbackType,
+                page: 'cardiovascular',
+                step: getCurrentStep(),
+                timestamp: new Date().toISOString(),
+                userAgent: navigator.userAgent,
+                url: window.location.href
+            };
+            
+            console.log('Feedback logged:', feedbackData);
+            
+            // Store feedback in localStorage for retrieval
+            const existingFeedback = JSON.parse(localStorage.getItem('adjuvantiq_feedback') || '[]');
+            existingFeedback.push(feedbackData);
+            localStorage.setItem('adjuvantiq_feedback', JSON.stringify(existingFeedback));
+            
+            showToast('Thank you for your feedback!');
+            console.log('Feedback:', feedbackType);
+            
+            // Reset button after delay
+            setTimeout(() => {
+                button.style.background = '';
+                button.style.transform = '';
+                button.textContent = button.getAttribute('data-original-text') || 'Feedback';
+            }, 3000);
+        }
+        
+        // Get current step for feedback tracking
+        function getCurrentStep() {
+            const progressText = document.getElementById('progressText');
+            return progressText ? progressText.textContent : 'unknown';
+        }
+        
+        // Function to retrieve all feedback (for admin use)
+        function retrieveAllFeedback() {
+            const feedback = localStorage.getItem('adjuvantiq_feedback');
+            console.log('=== FEEDBACK RETRIEVAL ===');
+            console.log('All Feedback:', JSON.parse(feedback || '[]'));
+            return JSON.parse(feedback || '[]');
+        }
+
         // Show toast notifications
         function showToast(message) {
             const toast = document.getElementById('toast');
@@ -1993,44 +2051,75 @@
             showToast('Thank you! We\'ll be in touch with detailed insights and updates.');
         }
 
-        // Submit feedback to server (placeholder for actual implementation)
+        // Submit feedback to Formspree service
         function submitFeedbackToServer(feedbackData) {
             // Log feedback for development
             console.log('=== COMPLETE FEEDBACK SUBMISSION ===');
             console.log('Feedback Data:', feedbackData);
             
-            // In production, this would send to your server/email service
-            // Example: fetch('/api/feedback', { method: 'POST', body: JSON.stringify(feedbackData) })
+            // Prepare feedback data for Formspree
+            const formData = new FormData();
+            formData.append('subject', `AdjuvantIQ Demo Feedback - ${new Date().toLocaleDateString()}`);
+            formData.append('final_feedback', feedbackData.final_feedback);
+            formData.append('email', feedbackData.email || 'Not provided');
+            formData.append('timestamp', feedbackData.timestamp);
+            formData.append('session_feedback_count', feedbackData.session_feedback.length);
+            formData.append('pages_visited', [...new Set(feedbackData.session_feedback.map(f => f.page))].join(', '));
+            formData.append('feedback_types', Object.entries(
+                feedbackData.session_feedback.reduce((acc, f) => {
+                    acc[f.type] = (acc[f.type] || 0) + 1;
+                    return acc;
+                }, {})
+            ).map(([type, count]) => `${type} (${count})`).join(', '));
+            formData.append('session_feedback_details', JSON.stringify(feedbackData.session_feedback, null, 2));
+            formData.append('context', JSON.stringify(feedbackData.context, null, 2));
+            formData.append('user_agent', feedbackData.user_agent);
+            formData.append('url', feedbackData.url);
+            formData.append('demo_session_id', generateSessionId());
             
-            // For now, we'll simulate sending to email
-            const emailBody = `
-Subject: AdjuvantIQ Demo Feedback - ${new Date().toLocaleDateString()}
-
-Complete Demo Session Feedback:
-
-Final Feedback: ${feedbackData.final_feedback}
-Email: ${feedbackData.email || 'Not provided'}
-Timestamp: ${feedbackData.timestamp}
-
-Session Feedback Summary:
-${feedbackData.session_feedback.map(f => `- ${f.type} (${f.page}): ${f.timestamp}`).join('\n')}
-
-Context: ${JSON.stringify(feedbackData.context, null, 2)}
-
-User Agent: ${feedbackData.user_agent}
-URL: ${feedbackData.url}
-            `;
+            // Submit to Formspree
+            fetch('https://formspree.io/f/xjkoorgk', {
+                method: 'POST',
+                body: formData,
+                headers: {
+                    'Accept': 'application/json'
+                }
+            })
+            .then(response => {
+                if (response.ok) {
+                    console.log('Feedback submitted successfully to Formspree');
+                    showToast('Thank you! Your feedback has been submitted successfully.');
+                    
+                    // Clear session feedback after successful submission
+                    localStorage.removeItem('adjuvantiq_feedback');
+                    localStorage.removeItem('feedback_context');
+                    localStorage.removeItem('complete_feedback');
+                } else {
+                    console.error('Error submitting feedback:', response.status);
+                    showToast('There was an error submitting your feedback. Please try again.');
+                }
+            })
+            .catch(error => {
+                console.error('Error submitting feedback:', error);
+                showToast('There was an error submitting your feedback. Please try again.');
+            });
+        }
+        
+        // Generate unique session ID for tracking
+        function generateSessionId() {
+            const sessionId = localStorage.getItem('adjuvantiq_session_id');
+            if (sessionId) return sessionId;
             
-            console.log('Email Body:', emailBody);
-            
-            // Clear session feedback after submission
-            localStorage.removeItem('adjuvantiq_feedback');
-            localStorage.removeItem('feedback_context');
-            localStorage.removeItem('complete_feedback');
+            const newSessionId = 'session_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9);
+            localStorage.setItem('adjuvantiq_session_id', newSessionId);
+            return newSessionId;
         }
 
         // Load feedback summary when page loads
         document.addEventListener('DOMContentLoaded', function() {
+            // Ensure session ID exists for this user
+            generateSessionId();
+            
             loadSessionFeedbackSummary();
             
             // Scroll to feedback section if coming from another demo

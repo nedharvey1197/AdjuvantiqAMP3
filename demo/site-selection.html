@@ -1619,7 +1619,7 @@
             }
         }
         
-        // Enhanced feedback functionality
+        // Enhanced feedback functionality with comprehensive logging
         function giveFeedback(button, feedbackType) {
             // Visual feedback
             button.style.background = 'linear-gradient(135deg, #4caf50 0%, #45a049 100%)';
@@ -1635,7 +1635,24 @@
                 }
             });
             
-            showToast('Thank you for your feedback! We appreciate your input.');
+            // Log feedback with timestamp and page info
+            const feedbackData = {
+                type: feedbackType,
+                page: 'site-selection',
+                step: getCurrentStep(),
+                timestamp: new Date().toISOString(),
+                userAgent: navigator.userAgent,
+                url: window.location.href
+            };
+            
+            console.log('Feedback logged:', feedbackData);
+            
+            // Store feedback in localStorage for retrieval
+            const existingFeedback = JSON.parse(localStorage.getItem('adjuvantiq_feedback') || '[]');
+            existingFeedback.push(feedbackData);
+            localStorage.setItem('adjuvantiq_feedback', JSON.stringify(existingFeedback));
+            
+            showToast('Thank you for your feedback!');
             console.log('Feedback:', feedbackType);
             
             // Reset button after delay
@@ -1644,6 +1661,20 @@
                 button.style.transform = '';
                 button.textContent = button.getAttribute('data-original-text') || 'Feedback';
             }, 3000);
+        }
+        
+        // Get current step for feedback tracking
+        function getCurrentStep() {
+            const progressText = document.getElementById('progressText');
+            return progressText ? progressText.textContent : 'unknown';
+        }
+        
+        // Function to retrieve all feedback (for admin use)
+        function retrieveAllFeedback() {
+            const feedback = localStorage.getItem('adjuvantiq_feedback');
+            console.log('=== FEEDBACK RETRIEVAL ===');
+            console.log('All Feedback:', JSON.parse(feedback || '[]'));
+            return JSON.parse(feedback || '[]');
         }
         
         // Show toast notifications
@@ -1698,10 +1729,23 @@
             // In the future, this could link to specific PDFs for each phase
         }
         
+        // Generate unique session ID for tracking
+        function generateSessionId() {
+            const sessionId = localStorage.getItem('adjuvantiq_session_id');
+            if (sessionId) return sessionId;
+            
+            const newSessionId = 'session_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9);
+            localStorage.setItem('adjuvantiq_session_id', newSessionId);
+            return newSessionId;
+        }
+        
         // Initialize when page loads
         document.addEventListener('DOMContentLoaded', function() {
             console.log('Site selection demo loaded successfully');
             showToast('Welcome! Explore how AI optimizes site selection decisions.');
+            
+            // Ensure session ID exists for this user
+            generateSessionId();
         });
     </script>
 </body>
