@@ -2003,52 +2003,113 @@
         function testFormspree() {
             console.log('=== TESTING FORMSPREE CONNECTION ===');
             
-            // Add a small delay to make it look more human
-            setTimeout(() => {
-                // Create a hidden form and submit it (like the working pilot form)
-                const form = document.createElement('form');
-                form.method = 'POST';
-                form.action = 'https://formspree.io/f/xjkoorgk';
-                form.style.display = 'none';
+            // Show manual test form to avoid spam detection
+            showTestForm();
+        }
+        
+        // Show test form
+        function showTestForm() {
+            const modal = document.createElement('div');
+            modal.style.cssText = `
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: rgba(0,0,0,0.8);
+                z-index: 10000;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                padding: 20px;
+            `;
+            
+            const formContainer = document.createElement('div');
+            formContainer.style.cssText = `
+                background: white;
+                padding: 30px;
+                border-radius: 12px;
+                max-width: 500px;
+                width: 100%;
+                position: relative;
+            `;
+            
+            const form = document.createElement('form');
+            form.action = 'https://formspree.io/f/xjkoorgk';
+            form.method = 'POST';
+            
+            form.innerHTML = `
+                <h3 style="color: #2c5282; margin-bottom: 20px; text-align: center;">🧪 Test Formspree Connection</h3>
                 
-                // Add form fields with anti-spam measures
-                const fields = {
-                    '_subject': 'Test Feedback Submission',
-                    'email': 'test@adjuvantiq.com',
-                    'name': 'Test User',
-                    'message': 'This is a test feedback submission to verify Formspree is working.',
-                    'company': 'Test Company',
-                    'interest': 'demo',
-                    'timeline': 'planning'
-                };
+                <div style="display: grid; gap: 15px;">
+                    <div>
+                        <label for="test-name" style="display: block; margin-bottom: 5px; font-weight: 600; color: #333;">Full Name *</label>
+                        <input type="text" id="test-name" name="name" required style="width: 100%; padding: 12px; border: 2px solid #e2e8f0; border-radius: 6px; font-size: 16px;" value="Test User">
+                    </div>
+                    
+                    <div>
+                        <label for="test-email" style="display: block; margin-bottom: 5px; font-weight: 600; color: #333;">Email Address *</label>
+                        <input type="email" id="test-email" name="email" required style="width: 100%; padding: 12px; border: 2px solid #e2e8f0; border-radius: 6px; font-size: 16px;" value="test@adjuvantiq.com">
+                    </div>
+                    
+                    <div>
+                        <label for="test-company" style="display: block; margin-bottom: 5px; font-weight: 600; color: #333;">Company *</label>
+                        <input type="text" id="test-company" name="company" required style="width: 100%; padding: 12px; border: 2px solid #e2e8f0; border-radius: 6px; font-size: 16px;" value="Test Company">
+                    </div>
+                    
+                    <div>
+                        <label for="test-interest" style="display: block; margin-bottom: 5px; font-weight: 600; color: #333;">Primary Interest *</label>
+                        <select id="test-interest" name="interest" required style="width: 100%; padding: 12px; border: 2px solid #e2e8f0; border-radius: 6px; font-size: 16px;">
+                            <option value="demo">Demo Feedback</option>
+                            <option value="pilot">Pilot Program</option>
+                            <option value="demo">Request Demo</option>
+                        </select>
+                    </div>
+                    
+                    <div>
+                        <label for="test-message" style="display: block; margin-bottom: 5px; font-weight: 600; color: #333;">Test Message</label>
+                        <textarea id="test-message" name="message" rows="3" required style="width: 100%; padding: 12px; border: 2px solid #e2e8f0; border-radius: 6px; font-size: 16px; resize: vertical;">This is a test feedback submission to verify Formspree is working properly.</textarea>
+                    </div>
+                </div>
                 
-                // Create input fields
-                Object.entries(fields).forEach(([name, value]) => {
-                    const input = document.createElement('input');
-                    input.type = 'hidden';
-                    input.name = name;
-                    input.value = value;
-                    form.appendChild(input);
-                });
-                
-                // Add form to page and submit
-                document.body.appendChild(form);
-                
-                console.log('Sending test data to Formspree...');
-                console.log('Test form fields:', fields);
+                <div style="display: flex; gap: 15px; margin-top: 25px;">
+                    <button type="submit" style="flex: 1; background: linear-gradient(135deg, #28a745 0%, #20c997 100%); color: white; border: none; padding: 15px; border-radius: 8px; font-weight: bold; font-size: 16px; cursor: pointer;">Send Test</button>
+                    <button type="button" onclick="closeFeedbackModal()" style="flex: 1; background: #e2e8f0; color: #333; border: none; padding: 15px; border-radius: 8px; font-weight: bold; font-size: 16px; cursor: pointer;">Cancel</button>
+                </div>
+            `;
+            
+            formContainer.appendChild(form);
+            modal.appendChild(formContainer);
+            
+            // Add close button
+            const closeBtn = document.createElement('button');
+            closeBtn.innerHTML = '×';
+            closeBtn.style.cssText = `
+                position: absolute;
+                top: 15px;
+                right: 20px;
+                background: none;
+                border: none;
+                font-size: 24px;
+                cursor: pointer;
+                color: #666;
+            `;
+            closeBtn.onclick = closeFeedbackModal;
+            formContainer.appendChild(closeBtn);
+            
+            // Add form submission handler
+            form.onsubmit = function(e) {
+                e.preventDefault();
                 
                 // Submit the form
                 form.submit();
                 
                 alert('✅ Test form submitted! Check your email for the test submission.');
-                
-                // Remove the form
-                setTimeout(() => {
-                    if (document.body.contains(form)) {
-                        document.body.removeChild(form);
-                    }
-                }, 1000);
-            }, 500); // 500ms delay to make it look more human
+                closeFeedbackModal();
+            };
+            
+            // Add to page
+            document.body.appendChild(modal);
         }
 
         // Show toast notifications
@@ -2150,43 +2211,157 @@
             console.log('=== COMPLETE FEEDBACK SUBMISSION ===');
             console.log('Feedback Data:', feedbackData);
             
-            // Add a small delay to make it look more human
-            setTimeout(() => {
-                // Create a hidden form and submit it (like the working pilot form)
-                const form = document.createElement('form');
-                form.method = 'POST';
-                form.action = 'https://formspree.io/f/xjkoorgk';
-                form.style.display = 'none';
+            // Instead of automated submission, show a manual form that looks exactly like the pilot form
+            showManualFeedbackForm(feedbackData);
+        }
+        
+        // Show manual feedback form to avoid spam detection
+        function showManualFeedbackForm(feedbackData) {
+            // Create a modal with a form that looks exactly like the pilot form
+            const modal = document.createElement('div');
+            modal.style.cssText = `
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: rgba(0,0,0,0.8);
+                z-index: 10000;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                padding: 20px;
+            `;
+            
+            const formContainer = document.createElement('div');
+            formContainer.style.cssText = `
+                background: white;
+                padding: 30px;
+                border-radius: 12px;
+                max-width: 600px;
+                width: 100%;
+                max-height: 90vh;
+                overflow-y: auto;
+                position: relative;
+            `;
+            
+            // Create form that matches pilot form exactly
+            const form = document.createElement('form');
+            form.action = 'https://formspree.io/f/xjkoorgk';
+            form.method = 'POST';
+            form.style.cssText = `
+                display: grid;
+                gap: 20px;
+            `;
+            
+            // Add hidden fields with feedback data
+            const hiddenFields = {
+                '_subject': `AdjuvantIQ Demo Feedback - ${new Date().toLocaleDateString()}`,
+                'feedback_type': feedbackData.final_feedback,
+                'session_feedback_count': feedbackData.session_feedback.length,
+                'pages_visited': [...new Set(feedbackData.session_feedback.map(f => f.page))].join(', '),
+                'demo_session_id': generateSessionId(),
+                'session_feedback_details': JSON.stringify(feedbackData.session_feedback, null, 2),
+                'context': JSON.stringify(feedbackData.context, null, 2),
+                'user_agent': feedbackData.user_agent,
+                'url': feedbackData.url
+            };
+            
+            Object.entries(hiddenFields).forEach(([name, value]) => {
+                const input = document.createElement('input');
+                input.type = 'hidden';
+                input.name = name;
+                input.value = value;
+                form.appendChild(input);
+            });
+            
+            // Add visible form fields (like pilot form)
+            const formHTML = `
+                <h3 style="color: #2c5282; margin-bottom: 20px; text-align: center;">📝 Demo Feedback Submission</h3>
                 
-                // Add form fields with anti-spam measures
-                const fields = {
-                    '_subject': `AdjuvantIQ Demo Feedback - ${new Date().toLocaleDateString()}`,
-                    'email': feedbackData.email || 'demo-feedback@adjuvantiq.com',
-                    'name': 'Demo User',
-                    'message': `Demo Feedback Submission\n\nFinal Feedback: ${feedbackData.final_feedback}\nTimestamp: ${feedbackData.timestamp}\nSession Feedback Count: ${feedbackData.session_feedback.length}\nPages Visited: ${[...new Set(feedbackData.session_feedback.map(f => f.page))].join(', ')}\n\nSession Details:\n${JSON.stringify(feedbackData.session_feedback, null, 2)}\n\nContext:\n${JSON.stringify(feedbackData.context, null, 2)}\n\nUser Agent: ${feedbackData.user_agent}\nURL: ${feedbackData.url}\nSession ID: ${generateSessionId()}`,
-                    'feedback_type': feedbackData.final_feedback,
-                    'session_feedback_count': feedbackData.session_feedback.length,
-                    'pages_visited': [...new Set(feedbackData.session_feedback.map(f => f.page))].join(', '),
-                    'demo_session_id': generateSessionId(),
-                    // Add human-like fields to reduce spam detection
-                    'company': 'Demo User',
-                    'interest': 'demo',
-                    'timeline': 'planning'
-                };
+                <div style="display: grid; gap: 15px;">
+                    <div>
+                        <label for="feedback-name" style="display: block; margin-bottom: 5px; font-weight: 600; color: #333;">Full Name *</label>
+                        <input type="text" id="feedback-name" name="name" required style="width: 100%; padding: 12px; border: 2px solid #e2e8f0; border-radius: 6px; font-size: 16px;">
+                    </div>
+                    
+                    <div>
+                        <label for="feedback-email" style="display: block; margin-bottom: 5px; font-weight: 600; color: #333;">Email Address *</label>
+                        <input type="email" id="feedback-email" name="email" required style="width: 100%; padding: 12px; border: 2px solid #e2e8f0; border-radius: 6px; font-size: 16px;">
+                    </div>
+                    
+                    <div>
+                        <label for="feedback-company" style="display: block; margin-bottom: 5px; font-weight: 600; color: #333;">Company *</label>
+                        <input type="text" id="feedback-company" name="company" required style="width: 100%; padding: 12px; border: 2px solid #e2e8f0; border-radius: 6px; font-size: 16px;">
+                    </div>
+                    
+                    <div>
+                        <label for="feedback-interest" style="display: block; margin-bottom: 5px; font-weight: 600; color: #333;">Primary Interest *</label>
+                        <select id="feedback-interest" name="interest" required style="width: 100%; padding: 12px; border: 2px solid #e2e8f0; border-radius: 6px; font-size: 16px;">
+                            <option value="">Select Interest</option>
+                            <option value="demo">Demo Feedback</option>
+                            <option value="pilot">Pilot Program</option>
+                            <option value="demo">Request Demo</option>
+                            <option value="investment">Investment Inquiry</option>
+                            <option value="partnership">Partnership Discussion</option>
+                        </select>
+                    </div>
+                    
+                    <div>
+                        <label for="feedback-message" style="display: block; margin-bottom: 5px; font-weight: 600; color: #333;">Your Demo Experience & Feedback</label>
+                        <textarea id="feedback-message" name="message" rows="4" required style="width: 100%; padding: 12px; border: 2px solid #e2e8f0; border-radius: 6px; font-size: 16px; resize: vertical;" placeholder="Tell us about your experience with the AdjuvantIQ demo and any feedback you have...">Demo Feedback: ${feedbackData.final_feedback}
+
+Session Summary:
+- Pages Visited: ${[...new Set(feedbackData.session_feedback.map(f => f.page))].join(', ')}
+- Total Feedback Points: ${feedbackData.session_feedback.length}
+
+Your thoughts on the demo experience:</textarea>
+                    </div>
+                </div>
                 
-                // Create input fields
-                Object.entries(fields).forEach(([name, value]) => {
-                    const input = document.createElement('input');
-                    input.type = 'hidden';
-                    input.name = name;
-                    input.value = value;
-                    form.appendChild(input);
-                });
+                <div style="display: flex; gap: 15px; margin-top: 25px;">
+                    <button type="submit" style="flex: 1; background: linear-gradient(135deg, #2c5282 0%, #2d7d7d 100%); color: white; border: none; padding: 15px; border-radius: 8px; font-weight: bold; font-size: 16px; cursor: pointer;">Submit Feedback</button>
+                    <button type="button" onclick="closeFeedbackModal()" style="flex: 1; background: #e2e8f0; color: #333; border: none; padding: 15px; border-radius: 8px; font-weight: bold; font-size: 16px; cursor: pointer;">Cancel</button>
+                </div>
+            `;
+            
+            formContainer.innerHTML = formHTML;
+            form.appendChild(formContainer);
+            modal.appendChild(form);
+            
+            // Add close button
+            const closeBtn = document.createElement('button');
+            closeBtn.innerHTML = '×';
+            closeBtn.style.cssText = `
+                position: absolute;
+                top: 15px;
+                right: 20px;
+                background: none;
+                border: none;
+                font-size: 24px;
+                cursor: pointer;
+                color: #666;
+            `;
+            closeBtn.onclick = closeFeedbackModal;
+            formContainer.appendChild(closeBtn);
+            
+            // Add form submission handler
+            form.onsubmit = function(e) {
+                e.preventDefault();
                 
-                // Add form to page and submit
-                document.body.appendChild(form);
+                // Get form data
+                const formData = new FormData(form);
+                const name = formData.get('name');
+                const email = formData.get('email');
+                const company = formData.get('company');
+                const interest = formData.get('interest');
+                const message = formData.get('message');
                 
-                console.log('Submitting form with fields:', fields);
+                // Validate required fields
+                if (!name || !email || !company || !interest || !message) {
+                    alert('Please fill in all required fields.');
+                    return;
+                }
                 
                 // Submit the form
                 form.submit();
@@ -2199,13 +2374,20 @@
                 localStorage.removeItem('feedback_context');
                 localStorage.removeItem('complete_feedback');
                 
-                // Remove the form
-                setTimeout(() => {
-                    if (document.body.contains(form)) {
-                        document.body.removeChild(form);
-                    }
-                }, 1000);
-            }, 500); // 500ms delay to make it look more human
+                // Close modal
+                closeFeedbackModal();
+            };
+            
+            // Add to page
+            document.body.appendChild(modal);
+        }
+        
+        // Close feedback modal
+        function closeFeedbackModal() {
+            const modal = document.querySelector('div[style*="z-index: 10000"]');
+            if (modal) {
+                document.body.removeChild(modal);
+            }
         }
         
         // Generate unique session ID for tracking
