@@ -1,0 +1,124 @@
+{
+  "AWSTemplateFormatVersion": "2010-09-09",
+  "Description": "Feedback API for AdjuvantIQ Demo Pages",
+  "Parameters": {
+    "authRoleName": {
+      "Type": "String"
+    },
+    "unauthRoleName": {
+      "Type": "String"
+    },
+    "s3DeploymentBucket": {
+      "Type": "String"
+    },
+    "s3DeploymentRootKey": {
+      "Type": "String"
+    }
+  },
+  "Resources": {
+    "FeedbackAPI": {
+      "Type": "AWS::ApiGateway::RestApi",
+      "Properties": {
+        "Name": "FeedbackAPI",
+        "Description": "API for collecting user feedback from AdjuvantIQ demo pages"
+      }
+    },
+    "FeedbackResource": {
+      "Type": "AWS::ApiGateway::Resource",
+      "Properties": {
+        "RestApiId": {
+          "Ref": "FeedbackAPI"
+        },
+        "ParentId": {
+          "Fn::GetAtt": ["FeedbackAPI", "RootResourceId"]
+        },
+        "PathPart": "feedback"
+      }
+    },
+    "FeedbackMethod": {
+      "Type": "AWS::ApiGateway::Method",
+      "Properties": {
+        "RestApiId": {
+          "Ref": "FeedbackAPI"
+        },
+        "ResourceId": {
+          "Ref": "FeedbackResource"
+        },
+        "HttpMethod": "POST",
+        "AuthorizationType": "NONE",
+        "Integration": {
+          "Type": "AWS_PROXY",
+          "IntegrationHttpMethod": "POST",
+          "Uri": {
+            "Fn::Sub": "arn:aws:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/${FeedbackLambdaFunction.Arn}/invocations"
+          }
+        }
+      }
+    },
+    "FeedbackLambdaFunction": {
+      "Type": "AWS::Lambda::Function",
+      "Properties": {
+        "FunctionName": "adjuvantiq-feedback-handler",
+        "Handler": "index.handler",
+        "Role": {
+          "Fn::GetAtt": ["FeedbackLambdaRole", "Arn"]
+        },
+        "Code": {
+          "ZipFile": "exports.handler = async (event) => { return { statusCode: 200, body: JSON.stringify({ message: 'Feedback received' }) }; };"
+        },
+        "Runtime": "nodejs18.x",
+        "Timeout": "30",
+        "Environment": {
+          "Variables": {
+            "ENV": "prod"
+          }
+        }
+      }
+    },
+    "FeedbackLambdaRole": {
+      "Type": "AWS::IAM::Role",
+      "Properties": {
+        "AssumeRolePolicyDocument": {
+          "Version": "2012-10-17",
+          "Statement": [
+            {
+              "Effect": "Allow",
+              "Principal": {
+                "Service": "lambda.amazonaws.com"
+              },
+              "Action": "sts:AssumeRole"
+            }
+          ]
+        },
+        "ManagedPolicyArns": [
+          "arn:aws:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
+        ]
+      }
+    },
+    "FeedbackLambdaPermission": {
+      "Type": "AWS::Lambda::Permission",
+      "Properties": {
+        "FunctionName": {
+          "Ref": "FeedbackLambdaFunction"
+        },
+        "Action": "lambda:InvokeFunction",
+        "Principal": "apigateway.amazonaws.com",
+        "SourceArn": {
+          "Fn::Sub": "arn:aws:execute-api:${AWS::Region}:${AWS::AccountId}:${FeedbackAPI}/*/*"
+        }
+      }
+    }
+  },
+  "Outputs": {
+    "FeedbackAPIId": {
+      "Value": {
+        "Ref": "FeedbackAPI"
+      }
+    },
+    "FeedbackAPIEndpoint": {
+      "Value": {
+        "Fn::Sub": "https://${FeedbackAPI}.execute-api.${AWS::Region}.amazonaws.com/prod/feedback"
+      }
+    }
+  }
+}

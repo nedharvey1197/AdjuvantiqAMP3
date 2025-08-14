@@ -1,0 +1,644 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AdjuvantIQ Feedback Dashboard</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #f8f9fc;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #2c5282 0%, #2d7d7d 100%);
+            color: white;
+            padding: 2rem;
+            text-align: center;
+        }
+        
+        .header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .header p {
+            opacity: 0.9;
+            font-size: 1.1rem;
+        }
+        
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+        
+        .stat-card {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+        
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #2d7d7d;
+            margin-bottom: 0.5rem;
+        }
+        
+        .stat-label {
+            color: #666;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        
+        .controls {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            margin-bottom: 2rem;
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+        
+        .btn {
+            background: #2196f3;
+            color: white;
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        
+        .btn:hover {
+            background: #1976d2;
+            transform: translateY(-2px);
+        }
+        
+        .btn-success {
+            background: #4caf50;
+        }
+        
+        .btn-success:hover {
+            background: #45a049;
+        }
+        
+        .btn-warning {
+            background: #ff9800;
+        }
+        
+        .btn-warning:hover {
+            background: #f57c00;
+        }
+        
+        .btn-danger {
+            background: #f44336;
+        }
+        
+        .btn-danger:hover {
+            background: #d32f2f;
+        }
+        
+        .feedback-table {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        
+        .table-header {
+            background: #f8f9fc;
+            padding: 1rem 1.5rem;
+            border-bottom: 1px solid #e0e6ed;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .table-header h3 {
+            color: #333;
+            font-size: 1.2rem;
+        }
+        
+        .table-filters {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+        }
+        
+        .filter-select {
+            padding: 0.5rem;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            font-size: 0.9rem;
+        }
+        
+        .table-container {
+            max-height: 600px;
+            overflow-y: auto;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        
+        th, td {
+            padding: 1rem;
+            text-align: left;
+            border-bottom: 1px solid #f0f0f0;
+        }
+        
+        th {
+            background: #f8f9fc;
+            font-weight: 600;
+            color: #333;
+            position: sticky;
+            top: 0;
+            z-index: 10;
+        }
+        
+        tr:hover {
+            background: #f8f9fc;
+        }
+        
+        .feedback-type {
+            display: inline-block;
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+        
+        .type-page_view {
+            background: #e3f2fd;
+            color: #1976d2;
+        }
+        
+        .type-page_visibility {
+            background: #fff3e0;
+            color: #f57c00;
+        }
+        
+        .type-feedback {
+            background: #e8f5e8;
+            color: #388e3c;
+        }
+        
+        .timestamp {
+            font-size: 0.9rem;
+            color: #666;
+        }
+        
+        .page-name {
+            font-weight: 600;
+            color: #2d7d7d;
+        }
+        
+        .no-data {
+            text-align: center;
+            padding: 3rem;
+            color: #666;
+        }
+        
+        .loading {
+            text-align: center;
+            padding: 2rem;
+            color: #666;
+        }
+        
+        .spinner {
+            border: 3px solid #f3f3f3;
+            border-top: 3px solid #2d7d7d;
+            border-radius: 50%;
+            width: 30px;
+            height: 30px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 1rem;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        .export-options {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+        
+        .search-box {
+            flex: 1;
+            min-width: 300px;
+        }
+        
+        .search-input {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            font-size: 1rem;
+        }
+        
+        .search-input:focus {
+            outline: none;
+            border-color: #2196f3;
+            box-shadow: 0 0 0 3px rgba(33, 150, 243, 0.1);
+        }
+        
+        @media (max-width: 768px) {
+            .controls {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            
+            .search-box {
+                min-width: auto;
+            }
+            
+            .table-container {
+                max-height: 400px;
+            }
+            
+            th, td {
+                padding: 0.75rem 0.5rem;
+                font-size: 0.9rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>📊 AdjuvantIQ Feedback Dashboard</h1>
+        <p>Monitor user engagement and collect insights from your demo pages</p>
+    </div>
+    
+    <div class="container">
+        <!-- Statistics Cards -->
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-number" id="totalFeedback">-</div>
+                <div class="stat-label">Total Feedback</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number" id="totalSessions">-</div>
+                <div class="stat-label">Active Sessions</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number" id="totalPages">-</div>
+                <div class="stat-label">Pages Tracked</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number" id="todayFeedback">-</div>
+                <div class="stat-label">Today's Feedback</div>
+            </div>
+        </div>
+        
+        <!-- Controls -->
+        <div class="controls">
+            <div class="search-box">
+                <input type="text" class="search-input" id="searchInput" placeholder="Search feedback content, pages, or types...">
+            </div>
+            
+            <div class="table-filters">
+                <select class="filter-select" id="typeFilter">
+                    <option value="">All Types</option>
+                    <option value="feedback">User Feedback</option>
+                    <option value="page_view">Page Views</option>
+                    <option value="page_visibility">Page Visibility</option>
+                </select>
+                
+                <select class="filter-select" id="pageFilter">
+                    <option value="">All Pages</option>
+                </select>
+            </div>
+            
+            <div class="export-options">
+                <button class="btn btn-success" onclick="exportFeedback()">📤 Export JSON</button>
+                <button class="btn btn-success" onclick="exportFeedbackCSV()">📊 Export CSV</button>
+                <button class="btn btn-warning" onclick="refreshData()">🔄 Refresh</button>
+                <button class="btn btn-danger" onclick="clearFeedback()">🗑️ Clear All</button>
+            </div>
+        </div>
+        
+        <!-- Feedback Table -->
+        <div class="feedback-table">
+            <div class="table-header">
+                <h3>Feedback Data</h3>
+                <div class="table-filters">
+                    <span id="filteredCount">Showing all feedback</span>
+                </div>
+            </div>
+            
+            <div class="table-container">
+                <div id="tableContent">
+                    <div class="loading">
+                        <div class="spinner"></div>
+                        Loading feedback data...
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        let allFeedback = [];
+        let filteredFeedback = [];
+        
+        // Initialize dashboard
+        document.addEventListener('DOMContentLoaded', function() {
+            loadFeedbackData();
+            setupEventListeners();
+        });
+        
+        // Set up event listeners
+        function setupEventListeners() {
+            document.getElementById('searchInput').addEventListener('input', filterFeedback);
+            document.getElementById('typeFilter').addEventListener('change', filterFeedback);
+            document.getElementById('pageFilter').addEventListener('change', filterFeedback);
+        }
+        
+        // Load feedback data
+        function loadFeedbackData() {
+            try {
+                // Try to get feedback from localStorage
+                const feedback = localStorage.getItem('adjuvantiq_feedback');
+                if (feedback) {
+                    allFeedback = JSON.parse(feedback);
+                } else {
+                    // Try sessionStorage as fallback
+                    const sessionFeedback = sessionStorage.getItem('adjuvantiq_feedback');
+                    if (sessionFeedback) {
+                        allFeedback = JSON.parse(sessionFeedback);
+                    }
+                }
+                
+                updateDashboard();
+            } catch (error) {
+                console.error('Error loading feedback data:', error);
+                showNoData();
+            }
+        }
+        
+        // Update dashboard with current data
+        function updateDashboard() {
+            updateStats();
+            updateFilters();
+            filterFeedback();
+        }
+        
+        // Update statistics
+        function updateStats() {
+            const total = allFeedback.length;
+            const sessions = new Set(allFeedback.map(f => f.sessionId)).size;
+            const pages = new Set(allFeedback.map(f => f.page)).size;
+            
+            // Count today's feedback
+            const today = new Date().toISOString().split('T')[0];
+            const todayCount = allFeedback.filter(f => 
+                f.timestamp && f.timestamp.startsWith(today)
+            ).length;
+            
+            document.getElementById('totalFeedback').textContent = total;
+            document.getElementById('totalSessions').textContent = sessions;
+            document.getElementById('totalPages').textContent = pages;
+            document.getElementById('todayFeedback').textContent = todayCount;
+        }
+        
+        // Update filter options
+        function updateFilters() {
+            const typeFilter = document.getElementById('typeFilter');
+            const pageFilter = document.getElementById('pageFilter');
+            
+            // Get unique types and pages
+            const types = [...new Set(allFeedback.map(f => f.type))];
+            const pages = [...new Set(allFeedback.map(f => f.page))];
+            
+            // Update type filter
+            typeFilter.innerHTML = '<option value="">All Types</option>';
+            types.forEach(type => {
+                const option = document.createElement('option');
+                option.value = type;
+                option.textContent = type.replace('_', ' ').replace(/\b\w/g, l => l.toUpperCase());
+                typeFilter.appendChild(option);
+            });
+            
+            // Update page filter
+            pageFilter.innerHTML = '<option value="">All Pages</option>';
+            pages.forEach(page => {
+                const option = document.createElement('option');
+                option.value = page;
+                option.textContent = page.replace('-', ' ').replace(/\b\w/g, l => l.toUpperCase());
+                pageFilter.appendChild(option);
+            });
+        }
+        
+        // Filter feedback based on search and filters
+        function filterFeedback() {
+            const searchTerm = document.getElementById('searchInput').value.toLowerCase();
+            const typeFilter = document.getElementById('typeFilter').value;
+            const pageFilter = document.getElementById('pageFilter').value;
+            
+            filteredFeedback = allFeedback.filter(feedback => {
+                // Search filter
+                const searchMatch = !searchTerm || 
+                    feedback.type?.toLowerCase().includes(searchTerm) ||
+                    feedback.page?.toLowerCase().includes(searchTerm) ||
+                    feedback.section?.toLowerCase().includes(searchTerm) ||
+                    feedback.step?.toLowerCase().includes(searchTerm) ||
+                    feedback.value?.toLowerCase().includes(searchTerm);
+                
+                // Type filter
+                const typeMatch = !typeFilter || feedback.type === typeFilter;
+                
+                // Page filter
+                const pageMatch = !pageFilter || feedback.page === pageFilter;
+                
+                return searchMatch && typeMatch && pageMatch;
+            });
+            
+            displayFeedback();
+            updateFilteredCount();
+        }
+        
+        // Display filtered feedback
+        function displayFeedback() {
+            const tableContent = document.getElementById('tableContent');
+            
+            if (filteredFeedback.length === 0) {
+                tableContent.innerHTML = '<div class="no-data">No feedback data found</div>';
+                return;
+            }
+            
+            // Sort by timestamp (newest first)
+            const sortedFeedback = [...filteredFeedback].sort((a, b) => 
+                new Date(b.timestamp) - new Date(a.timestamp)
+            );
+            
+            let tableHTML = `
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Type</th>
+                            <th>Page</th>
+                            <th>Section/Step</th>
+                            <th>Content</th>
+                            <th>User</th>
+                            <th>Time</th>
+                            <th>Timestamp</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+            `;
+            
+            sortedFeedback.forEach(feedback => {
+                const typeClass = `type-${feedback.type}`;
+                const timestamp = new Date(feedback.timestamp).toLocaleString();
+                const timeOnPage = feedback.timeOnPage ? `${feedback.timeOnPage}s` : '-';
+                
+                tableHTML += `
+                    <tr>
+                        <td>
+                            <span class="feedback-type ${typeClass}">
+                                ${feedback.type?.replace('_', ' ').replace(/\b\w/g, l => l.toUpperCase()) || 'Unknown'}
+                            </span>
+                        </td>
+                        <td class="page-name">${feedback.page || 'Unknown'}</td>
+                        <td>${feedback.section || feedback.step || '-'}</td>
+                        <td>${feedback.value || feedback.buttonText || '-'}</td>
+                        <td>${feedback.userId?.substring(0, 8) || 'Unknown'}</td>
+                        <td>${timeOnPage}</td>
+                        <td class="timestamp">${timestamp}</td>
+                    </tr>
+                `;
+            });
+            
+            tableHTML += '</tbody></table>';
+            tableContent.innerHTML = tableHTML;
+        }
+        
+        // Update filtered count display
+        function updateFilteredCount() {
+            const count = filteredFeedback.length;
+            const total = allFeedback.length;
+            const element = document.getElementById('filteredCount');
+            
+            if (count === total) {
+                element.textContent = `Showing all ${total} feedback items`;
+            } else {
+                element.textContent = `Showing ${count} of ${total} feedback items`;
+            }
+        }
+        
+        // Show no data message
+        function showNoData() {
+            document.getElementById('tableContent').innerHTML = `
+                <div class="no-data">
+                    <h3>No Feedback Data Available</h3>
+                    <p>Visit your demo pages and interact with feedback buttons to collect data.</p>
+                    <p>Make sure you're using the updated feedback system.</p>
+                </div>
+            `;
+        }
+        
+        // Export functions
+        function exportFeedback() {
+            if (typeof window.exportFeedback === 'function') {
+                window.exportFeedback();
+            } else {
+                // Fallback export
+                const dataStr = JSON.stringify(filteredFeedback, null, 2);
+                const dataBlob = new Blob([dataStr], {type: 'application/json'});
+                const link = document.createElement('a');
+                link.href = URL.createObjectURL(dataBlob);
+                link.download = `adjuvantiq_feedback_${new Date().toISOString().split('T')[0]}.json`;
+                link.click();
+            }
+        }
+        
+        function exportFeedbackCSV() {
+            if (typeof window.exportFeedbackCSV === 'function') {
+                window.exportFeedbackCSV();
+            } else {
+                // Fallback CSV export
+                const feedback = filteredFeedback.length > 0 ? filteredFeedback : allFeedback;
+                if (feedback.length === 0) {
+                    alert('No feedback data to export');
+                    return;
+                }
+                
+                const keys = [...new Set(feedback.flatMap(item => Object.keys(item)))];
+                const csvHeader = keys.join(',');
+                const csvRows = feedback.map(item => {
+                    return keys.map(key => {
+                        const value = item[key] || '';
+                        if (typeof value === 'string' && (value.includes(',') || value.includes('"'))) {
+                            return `"${value.replace(/"/g, '""')}"`;
+                        }
+                        return value;
+                    }).join(',');
+                });
+                
+                const csvContent = [csvHeader, ...csvRows].join('\n');
+                const dataBlob = new Blob([csvContent], {type: 'text/csv'});
+                const link = document.createElement('a');
+                link.href = URL.createObjectURL(dataBlob);
+                link.download = `adjuvantiq_feedback_${new Date().toISOString().split('T')[0]}.csv`;
+                link.click();
+            }
+        }
+        
+        // Refresh data
+        function refreshData() {
+            loadFeedbackData();
+        }
+        
+        // Clear all feedback
+        function clearFeedback() {
+            if (confirm('Are you sure you want to clear all feedback data? This action cannot be undone.')) {
+                if (typeof window.clearFeedback === 'function') {
+                    window.clearFeedback();
+                } else {
+                    // Fallback clear
+                    localStorage.removeItem('adjuvantiq_feedback');
+                    sessionStorage.removeItem('adjuvantiq_feedback');
+                }
+                
+                allFeedback = [];
+                filteredFeedback = [];
+                updateDashboard();
+                showNoData();
+            }
+        }
+        
+        // Auto-refresh every 30 seconds
+        setInterval(refreshData, 30000);
+    </script>
+</body>
+</html>
